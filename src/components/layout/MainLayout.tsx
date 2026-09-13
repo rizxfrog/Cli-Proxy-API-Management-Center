@@ -633,6 +633,12 @@ export function MainLayout() {
           metaKey: 'nav_meta.oauth',
           icon: sidebarIcons.oauth,
         },
+        {
+          path: '/web-login',
+          labelKey: 'web_login.title',
+          metaKey: 'web_login.nav_meta',
+          icon: sidebarIcons.oauth,
+        },
         ...(isApiKeyFunConfigured ? [quickStartNavItem] : []),
       ],
     },

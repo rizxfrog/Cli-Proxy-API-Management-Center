@@ -1777,5 +1777,36 @@
     "modelCatalog": {
       "notLoaded": "未加载"
     }
+  },
+  "web_login": {
+    "title": "Web登录",
+    "nav_meta": "Web AI 会话",
+    "description": "连接 Web AI 账号，提供基础聊天和图片生成能力。这里使用网站会话，不是 OAuth 授权或官方 API Key。",
+    "capabilities": "仅支持文本对话和图片生成，不支持工具调用或包含工具调用的历史记录。",
+    "chat_model": "聊天模型",
+    "image_model": "图片模型",
+    "image_hint": "调用 /v1/images/generations，设置 response_format: url。每次请求生成一次，不支持图片编辑或流式图片输出。",
+    "open_site": "打开 Qwen 网站",
+    "popup_hint": "网站将在独立标签页打开，管理面板无法自动读取其 Cookie。",
+    "method": "登录方式",
+    "methods": {
+      "cookie": "Cookie",
+      "password": "邮箱 + 密码",
+      "token": "会话 Token"
+    },
+    "cookie": "Cookie 请求头",
+    "cookie_hint": "粘贴 chat.qwen.ai 请求中的 Cookie 请求头。可识别 qwen_token 和 token；只有统计 Cookie 无法登录，必要时请使用会话 Token。",
+    "email": "Qwen 账号邮箱",
+    "password": "Qwen 账号密码",
+    "password_hint": "仅用于本次登录，不保存密码。需要验证码、账号激活或第三方登录的账号，请先在 Qwen 网站完成登录。",
+    "token": "会话 Token",
+    "token_hint": "备用方式：粘贴 Qwen 网站 localStorage 中的 token 值，不带 Bearer 前缀。",
+    "security": "远程管理请使用 HTTPS。凭证会发送到你的服务器及 Qwen 进行验证，仅保存获得的会话 Token，不保留密码或完整 Cookie 请求头。会话失效后需要重新登录。",
+    "save": "验证并保存账号",
+    "saving": "正在验证…",
+    "cancel": "取消",
+    "success": "Qwen Web 账号已保存。",
+    "manage": "管理认证文件",
+    "failed": "未能保存会话。请检查 Cookie/Token 或邮箱密码，并确认服务器能够访问 Qwen。如需账号激活或验证码，请先在 chat.qwen.ai 完成后导入会话。后端必须支持 Web登录功能。"
   }
 }

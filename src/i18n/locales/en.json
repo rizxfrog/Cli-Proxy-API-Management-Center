@@ -1777,5 +1777,36 @@
     "modelCatalog": {
       "notLoaded": "Not loaded"
     }
+  },
+  "web_login": {
+    "title": "Web login",
+    "nav_meta": "Web AI sessions",
+    "description": "Connect Web AI accounts for basic chat and image generation. These are website sessions, not OAuth grants or official API keys.",
+    "capabilities": "Text conversations and image generation only. Tool calling and tool history are not supported.",
+    "chat_model": "Chat model",
+    "image_model": "Image model",
+    "image_hint": "Use /v1/images/generations with response_format: url. One generation per request; no image editing or streaming.",
+    "open_site": "Open Qwen website",
+    "popup_hint": "The website opens separately. This panel cannot read its cookies automatically.",
+    "method": "Sign-in method",
+    "methods": {
+      "cookie": "Cookie",
+      "password": "Email + password",
+      "token": "Session token"
+    },
+    "cookie": "Cookie header",
+    "cookie_hint": "Paste the Cookie request header from chat.qwen.ai. qwen_token and token are recognized. Analytics-only cookies cannot authenticate; use a session token if necessary.",
+    "email": "Qwen account email",
+    "password": "Qwen account password",
+    "password_hint": "Used for this sign-in only, never saved. Accounts requiring CAPTCHA, activation or third-party login must first complete login on the Qwen website.",
+    "token": "Session token",
+    "token_hint": "Fallback: paste the token value from Qwen website localStorage, without the Bearer prefix.",
+    "security": "Use HTTPS for remote management. Credentials are sent to your server and Qwen for validation; only the resulting session token is saved. No password or full Cookie header is retained. Expired sessions require signing in again.",
+    "save": "Validate and save account",
+    "saving": "Validating…",
+    "cancel": "Cancel",
+    "success": "Qwen Web account saved.",
+    "manage": "Manage authentication files",
+    "failed": "Unable to save this session. Check the Cookie/token or email and password, and confirm that your server can reach Qwen. Complete any account activation or CAPTCHA on chat.qwen.ai, then import the session. This requires a backend with Web login support."
   }
 }

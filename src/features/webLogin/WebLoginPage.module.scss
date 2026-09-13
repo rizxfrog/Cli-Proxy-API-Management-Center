@@ -1,0 +1,84 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+  width: 100%;
+
+  h1 {
+    margin: 0 0 $spacing-sm;
+    font-size: 28px;
+  }
+}
+
+.description,
+.hint {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 76ch;
+}
+
+.providerLayout {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(300px, 2fr);
+  gap: $spacing-xl;
+  align-items: start;
+}
+
+.instructions {
+  line-height: 1.6;
+
+  p:first-child {
+    margin-top: 0;
+  }
+}
+
+.models {
+  margin: $spacing-lg 0;
+
+  dt {
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+
+  dd {
+    margin: 0 0 $spacing-md;
+    overflow-wrap: anywhere;
+  }
+}
+
+.form {
+  min-width: 0;
+}
+
+.methods {
+  margin: 0 0 $spacing-lg;
+  padding: 0;
+  border: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+
+  legend {
+    margin-bottom: $spacing-sm;
+    font-weight: 600;
+  }
+
+  label {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-xs;
+    cursor: pointer;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+}
+
+@media (max-width: 760px) {
+  .providerLayout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

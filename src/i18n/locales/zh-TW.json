@@ -1803,5 +1803,36 @@
     "modelCatalog": {
       "notLoaded": "未載入"
     }
+  },
+  "web_login": {
+    "title": "Web登入",
+    "nav_meta": "Web AI 工作階段",
+    "description": "連接 Web AI 帳號，提供基本聊天和圖片生成功能。這裡使用網站工作階段，不是 OAuth 授權或官方 API Key。",
+    "capabilities": "僅支援文字對話和圖片生成，不支援工具呼叫或包含工具呼叫的歷史記錄。",
+    "chat_model": "聊天模型",
+    "image_model": "圖片模型",
+    "image_hint": "呼叫 /v1/images/generations，設定 response_format: url。每次請求生成一次，不支援圖片編輯或串流圖片輸出。",
+    "open_site": "開啟 Qwen 網站",
+    "popup_hint": "網站將在獨立分頁開啟，管理面板無法自動讀取其 Cookie。",
+    "method": "登入方式",
+    "methods": {
+      "cookie": "Cookie",
+      "password": "電子郵件 + 密碼",
+      "token": "工作階段 Token"
+    },
+    "cookie": "Cookie 請求標頭",
+    "cookie_hint": "貼上 chat.qwen.ai 請求中的 Cookie 標頭。可辨識 qwen_token 和 token；只有統計 Cookie 無法登入，必要時請使用工作階段 Token。",
+    "email": "Qwen 帳號電子郵件",
+    "password": "Qwen 帳號密碼",
+    "password_hint": "僅用於本次登入，不儲存密碼。需要驗證碼、帳號啟用或第三方登入的帳號，請先在 Qwen 網站完成登入。",
+    "token": "工作階段 Token",
+    "token_hint": "備用方式：貼上 Qwen 網站 localStorage 中的 token 值，不含 Bearer 前綴。",
+    "security": "遠端管理請使用 HTTPS。憑證會傳送至你的伺服器及 Qwen 進行驗證，僅儲存取得的工作階段 Token，不保留密碼或完整 Cookie 標頭。工作階段失效後需要重新登入。",
+    "save": "驗證並儲存帳號",
+    "saving": "正在驗證…",
+    "cancel": "取消",
+    "success": "Qwen Web 帳號已儲存。",
+    "manage": "管理認證檔案",
+    "failed": "無法儲存工作階段。請檢查 Cookie/Token 或電子郵件密碼，並確認伺服器能夠存取 Qwen。如需啟用帳號或驗證碼，請先在 chat.qwen.ai 完成後匯入工作階段。後端必須支援 Web登入功能。"
   }
 }
