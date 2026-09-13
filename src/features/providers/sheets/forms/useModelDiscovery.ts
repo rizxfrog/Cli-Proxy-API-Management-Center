@@ -11,6 +11,7 @@ export const MODEL_DISCOVERY_BRANDS: ReadonlyArray<ProviderBrand> = [
   'codex',
   'xai',
   'codebuddyCn',
+  'codebuddyAi',
   'claude',
   'claudeApi',
   'openaiCompatibility',
@@ -64,7 +65,12 @@ export function useModelDiscovery(args: UseModelDiscoveryArgs): UseModelDiscover
           baseHeaders,
           resolvedAuthIndex
         );
-      } else if (brand === 'codex' || brand === 'xai' || brand === 'codebuddyCn') {
+      } else if (
+        brand === 'codex' ||
+        brand === 'xai' ||
+        brand === 'codebuddyCn' ||
+        brand === 'codebuddyAi'
+      ) {
         const key = (apiKey ?? '').trim() || (fallbackApiKey ?? '').trim();
         next = await modelsApi.fetchV1ModelsViaApiCall(
           baseUrl,

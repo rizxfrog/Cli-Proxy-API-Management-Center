@@ -1,5 +1,7 @@
 /**
- * CodeBuddy CN 额度数据层：Tencent billing-meter 计费端点。
+ * CodeBuddy 额度数据层：Tencent billing-meter 计费端点。
+ * 同时覆盖中国版（copilot.tencent.com）与国际版（www.codebuddy.ai），
+ * 两者为同一套 /v2 REST 协议，仅 host 与鉴权域名不同。
  * React-free / SCSS-free —— 由 tests/codebuddyQuota.test.ts 直接消费。
  */
 
@@ -9,10 +11,13 @@ import { apiCallApi, getApiCallErrorMessage } from '@/services/api';
 import {
   CODEBUDDY_USAGE_URL,
   CODEBUDDY_REQUEST_HEADERS,
+  CODEBUDDY_AI_USAGE_URL,
+  CODEBUDDY_AI_REQUEST_HEADERS,
   parseCodeBuddyUsagePayload,
   buildCodeBuddyQuotaRows,
   createStatusError,
   isCodeBuddyFile,
+  isCodeBuddyAiFile,
   isDisabledAuthFile,
 } from '@/utils/quota';
 import { normalizeAuthIndex } from '@/utils/authIndex';
@@ -30,11 +35,13 @@ const fetchCodeBuddyQuota = async (file: AuthFileItem, t: TFunction): Promise<Co
     throw new Error(t('codebuddy_quota.missing_auth_index'));
   }
 
+  const isInternational = isCodeBuddyAiFile(file);
+
   const result = await apiCallApi.request({
     authIndex,
     method: 'POST',
-    url: CODEBUDDY_USAGE_URL,
-    header: { ...CODEBUDDY_REQUEST_HEADERS },
+    url: isInternational ? CODEBUDDY_AI_USAGE_URL : CODEBUDDY_USAGE_URL,
+    header: { ...(isInternational ? CODEBUDDY_AI_REQUEST_HEADERS : CODEBUDDY_REQUEST_HEADERS) },
     data: '{}',
   });
 
@@ -61,7 +68,8 @@ const fetchCodeBuddyQuota = async (file: AuthFileItem, t: TFunction): Promise<Co
   }
 
   const basePkg = accounts[0] ?? {};
-  const plan = basePkg.PackageName || basePkg.SubProductName || 'CodeBuddy CN';
+  const plan =
+    basePkg.PackageName || basePkg.SubProductName || (isInternational ? 'CodeBuddy AI' : 'CodeBuddy CN');
 
   return { plan, rows: buildCodeBuddyQuotaRows(accounts) };
 };

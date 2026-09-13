@@ -32,7 +32,12 @@ export function isXaiFile(file: AuthFileItem): boolean {
 }
 
 export function isCodeBuddyFile(file: AuthFileItem): boolean {
-  return resolveAuthProvider(file) === 'codebuddy-cn';
+  const provider = resolveAuthProvider(file);
+  return provider === 'codebuddy-cn' || provider === 'codebuddy-ai';
+}
+
+export function isCodeBuddyAiFile(file: AuthFileItem): boolean {
+  return resolveAuthProvider(file) === 'codebuddy-ai';
 }
 
 export function isTraeFile(file: AuthFileItem): boolean {

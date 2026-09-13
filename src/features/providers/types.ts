@@ -11,6 +11,7 @@ export type ProviderBrand =
   | 'codex'
   | 'xai'
   | 'codebuddyCn'
+  | 'codebuddyAi'
   | 'claude'
   | 'claudeApi'
   | 'vertex'
@@ -38,6 +39,7 @@ export type ProviderResourceSelector =
   | { brand: 'codex'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'xai'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'codebuddyCn'; apiKey: string; baseUrl?: string; index: number }
+  | { brand: 'codebuddyAi'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'claude'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'claudeApi'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'vertex'; apiKey: string; baseUrl?: string; index: number }

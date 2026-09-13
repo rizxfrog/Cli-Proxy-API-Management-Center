@@ -77,6 +77,7 @@ export const AUTH_FILE_ICONS: Record<string, AuthFileIconAsset> = {
   aistudio: iconGemini,
   claude: iconClaude,
   'codebuddy-cn': iconCodebuddy,
+  'codebuddy-ai': iconCodebuddy,
   codex: iconCodex,
   gemini: iconGemini,
   xai: { light: iconGrok, dark: iconGrokDark },

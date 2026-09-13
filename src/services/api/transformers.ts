@@ -378,6 +378,13 @@ export const normalizeConfigResponse = (raw: unknown): Config => {
       .filter(Boolean) as ProviderKeyConfig[];
   }
 
+  const codebuddyAiList = raw['codebuddy-ai-api-key'];
+  if (Array.isArray(codebuddyAiList)) {
+    config.codebuddyAiApiKeys = codebuddyAiList
+      .map((item) => normalizeProviderKeyConfig(item))
+      .filter(Boolean) as ProviderKeyConfig[];
+  }
+
   const claudeList = raw['claude-api-key'];
   if (Array.isArray(claudeList)) {
     config.claudeApiKeys = claudeList

@@ -13,6 +13,7 @@ import {
   claudeApiToResource,
   claudeToResource,
   code0ToResource,
+  codebuddyAiToResource,
   codebuddyCnToResource,
   codexToResource,
   fennoAIToResource,
@@ -182,7 +183,15 @@ const buildModelAliases = (
     .filter((m) => m.name);
 
 const buildProviderKeyConfig = (
-  brand: 'gemini' | 'interactions' | 'codex' | 'xai' | 'codebuddyCn' | 'claude' | 'vertex',
+  brand:
+    | 'gemini'
+    | 'interactions'
+    | 'codex'
+    | 'xai'
+    | 'codebuddyCn'
+    | 'codebuddyAi'
+    | 'claude'
+    | 'vertex',
   input: ProviderEntryFormInput,
   existing?: ProviderKeyConfig | GeminiKeyConfig | null
 ): ProviderKeyConfig | GeminiKeyConfig => {
@@ -512,6 +521,11 @@ export function useProviderWorkbench(): UseProviderWorkbenchResult {
             codebuddyCnToResource(item, index)
           );
           break;
+        case 'codebuddyAi':
+          resources = (config.codebuddyAiApiKeys ?? []).map((item, index) =>
+            codebuddyAiToResource(item, index)
+          );
+          break;
         case 'claude':
           resources = (config.claudeApiKeys ?? []).reduce<ProviderResource[]>(
             (out, item, index) => {
@@ -753,6 +767,10 @@ export function useProviderWorkbench(): UseProviderWorkbenchResult {
           await providersApi.createCodeBuddyCNConfig(
             buildProviderKeyConfig('codebuddyCn', input) as ProviderKeyConfig
           );
+        } else if (brand === 'codebuddyAi') {
+          await providersApi.createCodeBuddyAIConfig(
+            buildProviderKeyConfig('codebuddyAi', input) as ProviderKeyConfig
+          );
         } else if (brand === 'claude') {
           await providersApi.createClaudeConfig(
             buildProviderKeyConfig('claude', input) as ProviderKeyConfig
@@ -825,6 +843,13 @@ export function useProviderWorkbench(): UseProviderWorkbenchResult {
             selector.baseUrl,
             buildProviderKeyConfig('codebuddyCn', input, existing) as ProviderKeyConfig
           );
+        } else if (brand === 'codebuddyAi' && selector.brand === 'codebuddyAi') {
+          const existing = resource.raw as ProviderKeyConfig;
+          await providersApi.updateCodeBuddyAIConfig(
+            selector.apiKey,
+            selector.baseUrl,
+            buildProviderKeyConfig('codebuddyAi', input, existing) as ProviderKeyConfig
+          );
         } else if (brand === 'claude' && selector.brand === 'claude') {
           const existing = resource.raw as ProviderKeyConfig;
           await providersApi.updateClaudeConfig(
@@ -895,6 +920,10 @@ export function useProviderWorkbench(): UseProviderWorkbenchResult {
           await providersApi.deleteCodeBuddyCNConfig(sel.apiKey, sel.baseUrl);
           const next = (config?.codebuddyCnApiKeys ?? []).filter((_, i) => i !== sel.index);
           updateConfigValue('codebuddy-cn-api-key', next);
+        } else if (sel.brand === 'codebuddyAi') {
+          await providersApi.deleteCodeBuddyAIConfig(sel.apiKey, sel.baseUrl);
+          const next = (config?.codebuddyAiApiKeys ?? []).filter((_, i) => i !== sel.index);
+          updateConfigValue('codebuddy-ai-api-key', next);
         } else if (sel.brand === 'claude') {
           await providersApi.deleteClaudeConfig(sel.apiKey, sel.baseUrl);
           const next = (config?.claudeApiKeys ?? []).filter((_, i) => i !== sel.index);
@@ -977,6 +1006,7 @@ export function useProviderWorkbench(): UseProviderWorkbenchResult {
           (brand === 'codex' && selector.brand === 'codex') ||
           (brand === 'xai' && selector.brand === 'xai') ||
           (brand === 'codebuddyCn' && selector.brand === 'codebuddyCn') ||
+          (brand === 'codebuddyAi' && selector.brand === 'codebuddyAi') ||
           (brand === 'claude' && selector.brand === 'claude') ||
           (brand === 'claudeApi' && selector.brand === 'claudeApi') ||
           (brand === 'vertex' && selector.brand === 'vertex')
@@ -992,6 +1022,8 @@ export function useProviderWorkbench(): UseProviderWorkbenchResult {
             await providersApi.updateXAIConfig(selector.apiKey, selector.baseUrl, next);
           } else if (selector.brand === 'codebuddyCn') {
             await providersApi.updateCodeBuddyCNConfig(selector.apiKey, selector.baseUrl, next);
+          } else if (selector.brand === 'codebuddyAi') {
+            await providersApi.updateCodeBuddyAIConfig(selector.apiKey, selector.baseUrl, next);
           } else if (selector.brand === 'claude' || selector.brand === 'claudeApi') {
             await providersApi.updateClaudeConfig(selector.apiKey, selector.baseUrl, next);
           } else if (selector.brand === 'vertex') {

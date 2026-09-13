@@ -286,18 +286,24 @@ export function useConnectivityTest(
   }, [apiKeyEntries, brand, runOpenAIKey]);
 
   const runCodex = useCallback(async (): Promise<void> => {
-    if (brand !== 'codex' && brand !== 'xai' && brand !== 'codebuddyCn') return;
+    if (
+      brand !== 'codex' &&
+      brand !== 'xai' &&
+      brand !== 'codebuddyCn' &&
+      brand !== 'codebuddyAi'
+    )
+      return;
 
+    const isCodeBuddyChat = brand === 'codebuddyCn' || brand === 'codebuddyAi';
     const trimmedBase = baseUrl.trim();
     if (!trimmedBase) {
       setCodexStatus({ state: 'error', message: messages.baseUrlRequired });
       return;
     }
 
-    const endpoint =
-      brand === 'codebuddyCn'
-        ? buildOpenAIChatCompletionsEndpoint(trimmedBase)
-        : buildCodexResponsesEndpoint(trimmedBase);
+    const endpoint = isCodeBuddyChat
+      ? buildOpenAIChatCompletionsEndpoint(trimmedBase)
+      : buildCodexResponsesEndpoint(trimmedBase);
     if (!endpoint) {
       setCodexStatus({ state: 'error', message: messages.endpointInvalid });
       return;
@@ -343,7 +349,7 @@ export function useConnectivityTest(
           url: endpoint,
           header: headerObj,
           data: JSON.stringify(
-            brand === 'codebuddyCn'
+            isCodeBuddyChat
               ? {
                   model,
                   messages: [{ role: 'user', content: 'Hi' }],

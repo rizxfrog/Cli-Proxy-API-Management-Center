@@ -78,7 +78,16 @@ const truncateForId = (value: string | undefined | null): string => {
 };
 
 function providerKeyToResource(
-  brand: 'gemini' | 'interactions' | 'codex' | 'xai' | 'codebuddyCn' | 'claude' | 'claudeApi' | 'vertex',
+  brand:
+    | 'gemini'
+    | 'interactions'
+    | 'codex'
+    | 'xai'
+    | 'codebuddyCn'
+    | 'codebuddyAi'
+    | 'claude'
+    | 'claudeApi'
+    | 'vertex',
   config: GeminiKeyConfig | ProviderKeyConfig,
   index: number
 ): ProviderResource {
@@ -144,6 +153,10 @@ export function xaiToResource(config: ProviderKeyConfig, index: number): Provide
 
 export function codebuddyCnToResource(config: ProviderKeyConfig, index: number): ProviderResource {
   return providerKeyToResource('codebuddyCn', config, index);
+}
+
+export function codebuddyAiToResource(config: ProviderKeyConfig, index: number): ProviderResource {
+  return providerKeyToResource('codebuddyAi', config, index);
 }
 
 export function claudeToResource(config: ProviderKeyConfig, index: number): ProviderResource {

@@ -142,8 +142,11 @@ export const KIMI_REQUEST_HEADERS = {
 };
 
 // CodeBuddy CN API configuration
-export const CODEBUDDY_USAGE_URL =
-  'https://copilot.tencent.com/v2/billing/meter/get-user-resource';
+export const CODEBUDDY_USAGE_URL = 'https://copilot.tencent.com/v2/billing/meter/get-user-resource';
+
+// CodeBuddy AI (international) API configuration. The international build uses
+// the same /v2 REST surface; only the gateway host differs.
+export const CODEBUDDY_AI_USAGE_URL = 'https://www.codebuddy.ai/v2/billing/meter/get-user-resource';
 
 export const CODEBUDDY_REQUEST_HEADERS = {
   Authorization: 'Bearer $TOKEN$',
@@ -155,6 +158,11 @@ export const CODEBUDDY_REQUEST_HEADERS = {
   'X-IDE-Name': 'CLI',
   'x-requested-with': 'XMLHttpRequest',
   'x-codebuddy-request': '1',
+};
+
+export const CODEBUDDY_AI_REQUEST_HEADERS = {
+  ...CODEBUDDY_REQUEST_HEADERS,
+  'X-Domain': 'www.codebuddy.ai',
 };
 
 // xAI/Grok API configuration

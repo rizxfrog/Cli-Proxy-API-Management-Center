@@ -36,6 +36,7 @@ const INTERACTIONS_KEY_FIELDS = PROVIDER_COMMON_KEY_FIELDS;
 const CODEX_KEY_FIELDS = [...PROVIDER_COMMON_KEY_FIELDS, 'websockets'] as const;
 const XAI_KEY_FIELDS = CODEX_KEY_FIELDS;
 const CODEBUDDY_CN_KEY_FIELDS = PROVIDER_COMMON_KEY_FIELDS;
+const CODEBUDDY_AI_KEY_FIELDS = PROVIDER_COMMON_KEY_FIELDS;
 const CLAUDE_KEY_FIELDS = [
   ...PROVIDER_COMMON_KEY_FIELDS,
   'cloak',
@@ -532,6 +533,26 @@ export const providersApi = {
 
   deleteCodeBuddyCNConfig: (apiKey: string, baseUrl?: string) =>
     apiClient.delete(`/codebuddy-cn-api-key${buildProviderDeleteQuery(apiKey, baseUrl)}`),
+
+  createCodeBuddyAIConfig: (config: ProviderKeyConfig) =>
+    mutateLatestProviderList('codebuddy-ai-api-key', (latestItems) =>
+      appendLatestProviderRecord(latestItems, serializeProviderKey(config), (raw, payload) =>
+        mergeProviderKeyPayload(raw, payload, CODEBUDDY_AI_KEY_FIELDS)
+      )
+    ),
+
+  updateCodeBuddyAIConfig: (apiKey: string, baseUrl: string | undefined, config: ProviderKeyConfig) =>
+    mutateLatestProviderList('codebuddy-ai-api-key', (latestItems) =>
+      replaceLatestProviderRecord(
+        latestItems,
+        (record) => matchesProviderKey(record, apiKey, baseUrl),
+        serializeProviderKey(config),
+        (raw, payload) => mergeProviderKeyPayload(raw, payload, CODEBUDDY_AI_KEY_FIELDS)
+      )
+    ),
+
+  deleteCodeBuddyAIConfig: (apiKey: string, baseUrl?: string) =>
+    apiClient.delete(`/codebuddy-ai-api-key${buildProviderDeleteQuery(apiKey, baseUrl)}`),
 
   createClaudeConfig: (config: ProviderKeyConfig) =>
     mutateLatestProviderList('claude-api-key', (latestItems) =>
