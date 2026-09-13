@@ -448,3 +448,62 @@ export interface CodeBuddyQuotaState {
   error?: string;
   errorStatus?: number;
 }
+
+// TRAE SOLO CN credits payload types.
+// Endpoint: POST https://api.trae.cn/trae/api/v2/pay/ide_user_ent_usage
+// Body: {"require_usage":true,"req_source":2} (req_source 2 = solo-lite client)
+export interface TraeUsageSummary {
+  total_amount?: number;
+  consumed_amount?: number;
+  consumption_ratio?: number;
+}
+
+export interface TraeEntitlementQuota {
+  credits_limit?: number | null;
+  no_bonus_quota?: boolean;
+}
+
+export interface TraeEntitlementPackExtra {
+  package_extra?: {
+    package_name?: string | null;
+  } | null;
+}
+
+export interface TraeEntitlementBaseInfo {
+  entitlement_id?: string | null;
+  end_time?: number | null;
+  start_time?: number | null;
+  quota?: TraeEntitlementQuota | null;
+  product_extra?: TraeEntitlementPackExtra | null;
+}
+
+export interface TraeEntitlementPack {
+  entitlement_base_info?: TraeEntitlementBaseInfo | null;
+  display_desc?: string | null;
+  usage?: { credits_amount?: number } | null;
+}
+
+export interface TraeUsagePayload {
+  code?: number;
+  message?: string | null;
+  is_credits_billing?: boolean;
+  usage_summary?: TraeUsageSummary | null;
+  user_entitlement_pack_list?: TraeEntitlementPack[] | null;
+}
+
+export interface TraeQuotaRow {
+  id: string;
+  label?: string;
+  used: number;
+  total: number;
+  /** Reset instant in epoch ms; null when the pack carried no expiry. */
+  resetAtMs?: number | null;
+}
+
+export interface TraeQuotaState {
+  status: 'idle' | 'loading' | 'success' | 'error';
+  plan?: string | null;
+  rows: TraeQuotaRow[];
+  error?: string;
+  errorStatus?: number;
+}

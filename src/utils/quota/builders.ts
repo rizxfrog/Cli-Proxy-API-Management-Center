@@ -13,6 +13,8 @@ import type {
   KimiLimitItem,
   KimiLimitWindow,
   KimiQuotaRow,
+  TraeUsagePayload,
+  TraeQuotaRow,
   XaiBillingConfig,
   XaiBillingPeriod,
   XaiBillingPeriodType,
@@ -637,9 +639,7 @@ function codeBuddyIsRefill(acc: CodeBuddyAccount): boolean {
   const cycleEnd = codeBuddyResetMs(acc.CycleEndTime);
   const deductionEnd = codeBuddyResetMs(acc.DeductionEndTime);
   return (
-    cycleEnd !== null &&
-    deductionEnd !== null &&
-    deductionEnd - cycleEnd > CODEBUDDY_REFILL_GAP_MS
+    cycleEnd !== null && deductionEnd !== null && deductionEnd - cycleEnd > CODEBUDDY_REFILL_GAP_MS
   );
 }
 
@@ -650,9 +650,7 @@ function codeBuddyIsRefill(acc: CodeBuddyAccount): boolean {
  * cadence (Monthly/Weekly/Daily, suffixed on repeats); bonus packs get
  * "Bonus Pack N", soonest-expiring first.
  */
-export function buildCodeBuddyQuotaRows(
-  accounts: CodeBuddyAccount[]
-): CodeBuddyQuotaRow[] {
+export function buildCodeBuddyQuotaRows(accounts: CodeBuddyAccount[]): CodeBuddyQuotaRow[] {
   const byExpiry = (a: CodeBuddyAccount, b: CodeBuddyAccount) =>
     (codeBuddyResetMs(a.CycleEndTime) ?? Number.POSITIVE_INFINITY) -
     (codeBuddyResetMs(b.CycleEndTime) ?? Number.POSITIVE_INFINITY);
@@ -688,6 +686,61 @@ export function buildCodeBuddyQuotaRows(
       unlimited: false,
       resetAtMs: codeBuddyResetMs(acc.CycleEndTime),
       periodHours: null,
+    });
+  });
+
+  return rows;
+}
+
+/**
+ * Flatten a TRAE SOLO CN entitlement payload into quota rows.
+ *
+ * The overall credits balance lives in usage_summary (total_amount /
+ * consumed_amount). Individual packs carry their own credits_limit but report
+ * usage only when they have been drawn from, so the summary row is emitted
+ * first and each pack follows, soonest-expiring first.
+ */
+export function buildTraeQuotaRows(payload: TraeUsagePayload | null): TraeQuotaRow[] {
+  if (!payload) return [];
+  const rows: TraeQuotaRow[] = [];
+
+  const summary = payload.usage_summary;
+  const total = normalizeNumberValue(summary?.total_amount);
+  if (total !== null && total > 0) {
+    const consumed = normalizeNumberValue(summary?.consumed_amount) ?? 0;
+    rows.push({
+      id: 'total',
+      used: consumed,
+      total,
+      resetAtMs: null,
+    });
+  }
+
+  const packs = payload.user_entitlement_pack_list ?? [];
+  const withReset = packs
+    .map((pack) => ({
+      pack,
+      resetAtMs: resolveResetMs([pack?.entitlement_base_info?.end_time]),
+    }))
+    .sort(
+      (a, b) =>
+        (a.resetAtMs ?? Number.POSITIVE_INFINITY) - (b.resetAtMs ?? Number.POSITIVE_INFINITY)
+    );
+
+  withReset.forEach(({ pack, resetAtMs }, index) => {
+    const base = pack?.entitlement_base_info;
+    const limit = normalizeNumberValue(base?.quota?.credits_limit);
+    if (limit === null || limit <= 0) return;
+    const entitlementId = normalizeStringValue(base?.entitlement_id);
+    const packName = normalizeStringValue(base?.product_extra?.package_extra?.package_name);
+    const desc = normalizeStringValue(pack?.display_desc);
+    const used = normalizeNumberValue(pack?.usage?.credits_amount) ?? 0;
+    rows.push({
+      id: entitlementId ?? `pack-${index + 1}`,
+      label: packName ?? desc ?? entitlementId ?? undefined,
+      used,
+      total: limit,
+      resetAtMs,
     });
   });
 

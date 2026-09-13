@@ -7,6 +7,7 @@ import type {
   CodeBuddyUsagePayload,
   CodexUsagePayload,
   KimiUsagePayload,
+  TraeUsagePayload,
   XaiBillingPayload,
 } from '@/types';
 import { normalizeAuthIndex } from '@/utils/authIndex';
@@ -200,6 +201,23 @@ export function parseXaiBillingPayload(payload: unknown): XaiBillingPayload | nu
   }
   if (typeof payload === 'object') {
     return payload as XaiBillingPayload;
+  }
+  return null;
+}
+
+export function parseTraeUsagePayload(payload: unknown): TraeUsagePayload | null {
+  if (payload === undefined || payload === null) return null;
+  if (typeof payload === 'string') {
+    const trimmed = payload.trim();
+    if (!trimmed) return null;
+    try {
+      return JSON.parse(trimmed) as TraeUsagePayload;
+    } catch {
+      return null;
+    }
+  }
+  if (typeof payload === 'object') {
+    return payload as TraeUsagePayload;
   }
   return null;
 }

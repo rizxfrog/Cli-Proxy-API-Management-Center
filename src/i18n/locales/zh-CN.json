@@ -296,6 +296,7 @@
     "filter_codebuddy-cn": "CodeBuddy CN",
     "filter_antigravity": "Antigravity",
     "filter_xai": "xAI",
+    "filter_trae": "TRAE",
     "filter_iflow": "iFlow",
     "filter_vertex": "Vertex",
     "filter_empty": "空文件",
@@ -504,6 +505,22 @@
     "limit_window": "{{duration}} 限额",
     "limit_index": "限额 #{{index}}",
     "reset_hint": "{{hint}} 后重置"
+  },
+  "trae_quota": {
+    "title": "TRAE SOLO CN 额度",
+    "empty_title": "暂无 TRAE 认证",
+    "empty_desc": "上传 TRAE SOLO CN 认证文件后即可查看剩余积分。",
+    "idle": "点击此处刷新额度",
+    "loading": "正在加载额度...",
+    "load_failed": "额度获取失败：{{message}}",
+    "missing_auth_index": "认证文件缺少 auth_index",
+    "empty_data": "暂无额度数据",
+    "invalid_credential": "TRAE 凭证无效或已过期",
+    "quota_error": "TRAE 额度查询错误",
+    "no_package": "已连接，但未找到额度包。",
+    "plan_label": "计费方式",
+    "plan_credits": "积分计费",
+    "total_credits": "总积分"
   },
   "xai_quota": {
     "title": "Grok 额度",

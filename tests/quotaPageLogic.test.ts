@@ -56,6 +56,7 @@ describe('buildTabCounts', () => {
       antigravity: 0,
       codex: 2,
       codebuddy: 0,
+      trae: 0,
       xai: 1,
       kimi: 1,
     });

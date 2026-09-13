@@ -100,24 +100,38 @@ export function QuotaPage() {
   /* ---------- 额度缓存 ----------
    * 排在归类/排序之前：「最快恢复优先」要读它算排序键。 */
 
+  // Each cache is subscribed individually so zustand v5's Object.is comparison
+  // stays stable between renders. The map is typed as a full
+  // Record<QuotaProviderType, ...> instead of cast with `as unknown as`, so a
+  // newly added provider that has no cache wired up fails to compile rather
+  // than crashing at runtime.
   const antigravityQuota = useQuotaStore((state) => state.antigravityQuota);
   const claudeQuota = useQuotaStore((state) => state.claudeQuota);
   const codebuddyQuota = useQuotaStore((state) => state.codebuddyQuota);
   const codexQuota = useQuotaStore((state) => state.codexQuota);
   const kimiQuota = useQuotaStore((state) => state.kimiQuota);
+  const traeQuota = useQuotaStore((state) => state.traeQuota);
   const xaiQuota = useQuotaStore((state) => state.xaiQuota);
 
-  const quotaByType = useMemo<Record<QuotaProviderType, Record<string, QuotaCardState>>>(
-    () =>
-      ({
-        antigravity: antigravityQuota,
-        claude: claudeQuota,
-        codebuddy: codebuddyQuota,
-        codex: codexQuota,
-        kimi: kimiQuota,
-        xai: xaiQuota,
-      }) as unknown as Record<QuotaProviderType, Record<string, QuotaCardState>>,
-    [antigravityQuota, claudeQuota, codebuddyQuota, codexQuota, kimiQuota, xaiQuota]
+  const quotaByType: Record<QuotaProviderType, Record<string, QuotaCardState>> = useMemo(
+    () => ({
+      antigravity: antigravityQuota,
+      claude: claudeQuota,
+      codebuddy: codebuddyQuota,
+      codex: codexQuota,
+      kimi: kimiQuota,
+      trae: traeQuota,
+      xai: xaiQuota,
+    }),
+    [
+      antigravityQuota,
+      claudeQuota,
+      codebuddyQuota,
+      codexQuota,
+      kimiQuota,
+      traeQuota,
+      xaiQuota,
+    ]
   );
 
   const getQuota = useCallback(

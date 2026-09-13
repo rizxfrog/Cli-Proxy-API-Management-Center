@@ -48,6 +48,7 @@ export function AuthFileQuotaSection(props: AuthFileQuotaSectionProps) {
       return state.codebuddyQuota[file.name] as QuotaCardState | undefined;
     if (quotaType === 'codex') return state.codexQuota[file.name] as QuotaCardState | undefined;
     if (quotaType === 'kimi') return state.kimiQuota[file.name] as QuotaCardState | undefined;
+    if (quotaType === 'trae') return state.traeQuota[file.name] as QuotaCardState | undefined;
     if (quotaType === 'xai') return state.xaiQuota[file.name] as QuotaCardState | undefined;
     return assertNever(quotaType);
   });

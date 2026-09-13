@@ -178,3 +178,22 @@ export const XAI_API_REQUEST_HEADERS = {
   Authorization: 'Bearer $TOKEN$',
   accept: 'application/json',
 };
+
+// TRAE SOLO CN credits configuration.
+// The desktop client signs these requests with Cloud-IDE-JWT (not Bearer) and
+// sends device/runtime identity headers alongside it.
+export const TRAE_USAGE_URL = 'https://api.trae.cn/trae/api/v2/pay/ide_user_ent_usage';
+
+export const TRAE_USAGE_BODY = JSON.stringify({ require_usage: true, req_source: 2 });
+
+export const TRAE_REQUEST_HEADERS = {
+  Authorization: 'Cloud-IDE-JWT $TOKEN$',
+  'Content-Type': 'application/json',
+  Accept: 'application/json',
+  'User-Agent': 'Trae/0.1.62',
+  'x-app-version': '0.1.62',
+  'x-device-type': 'windows',
+  'x-device-brand': '83DG',
+  'x-os-version': 'Windows 11 Pro',
+  'x-rust-request-timeout': '30000',
+};

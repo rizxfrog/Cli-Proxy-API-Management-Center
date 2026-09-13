@@ -35,6 +35,10 @@ export function isCodeBuddyFile(file: AuthFileItem): boolean {
   return resolveAuthProvider(file) === 'codebuddy-cn';
 }
 
+export function isTraeFile(file: AuthFileItem): boolean {
+  return resolveAuthProvider(file) === 'trae';
+}
+
 export function isDisabledAuthFile(file: AuthFileItem): boolean {
   const raw = (file as { disabled?: unknown }).disabled;
   if (typeof raw === 'boolean') return raw;

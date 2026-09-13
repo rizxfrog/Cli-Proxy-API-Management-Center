@@ -295,6 +295,7 @@
     "filter_codebuddy-cn": "CodeBuddy CN",
     "filter_antigravity": "Antigravity",
     "filter_xai": "xAI",
+    "filter_trae": "TRAE",
     "filter_iflow": "iFlow",
     "filter_vertex": "Vertex",
     "filter_empty": "Пусто",
@@ -503,6 +504,22 @@
     "limit_window": "Лимит {{duration}}",
     "limit_index": "Лимит #{{index}}",
     "reset_hint": "сброс через {{hint}}"
+  },
+  "trae_quota": {
+    "title": "Квота TRAE SOLO CN",
+    "empty_title": "Файлы авторизации TRAE отсутствуют",
+    "empty_desc": "Загрузите учётные данные TRAE SOLO CN, чтобы увидеть оставшиеся кредиты.",
+    "idle": "Не загружено. Нажмите \"Обновить квоту\".",
+    "loading": "Загрузка квоты...",
+    "load_failed": "Не удалось загрузить квоту: {{message}}",
+    "missing_auth_index": "В файле авторизации отсутствует auth_index",
+    "empty_data": "Данные по квоте отсутствуют",
+    "invalid_credential": "Учётные данные TRAE недействительны или истекли",
+    "quota_error": "Ошибка запроса квоты TRAE",
+    "no_package": "Подключено, но пакет квоты не найден.",
+    "plan_label": "Тарификация",
+    "plan_credits": "Оплата кредитами",
+    "total_credits": "Всего кредитов"
   },
   "xai_quota": {
     "title": "Квота Grok",

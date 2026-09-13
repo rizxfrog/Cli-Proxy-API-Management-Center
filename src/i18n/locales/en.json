@@ -296,6 +296,7 @@
     "filter_codebuddy-cn": "CodeBuddy CN",
     "filter_antigravity": "Antigravity",
     "filter_xai": "xAI",
+    "filter_trae": "TRAE",
     "filter_iflow": "iFlow",
     "filter_vertex": "Vertex",
     "filter_empty": "Empty",
@@ -504,6 +505,22 @@
     "limit_window": "{{duration}} limit",
     "limit_index": "Limit #{{index}}",
     "reset_hint": "resets in {{hint}}"
+  },
+  "trae_quota": {
+    "title": "TRAE SOLO CN Quota",
+    "empty_title": "No TRAE Auth Files",
+    "empty_desc": "Upload a TRAE SOLO CN credential to view remaining credits.",
+    "idle": "Click here to refresh quota",
+    "loading": "Loading quota...",
+    "load_failed": "Failed to load quota: {{message}}",
+    "missing_auth_index": "Auth file missing auth_index",
+    "empty_data": "No quota data available",
+    "invalid_credential": "TRAE credential is invalid or expired",
+    "quota_error": "TRAE quota query error",
+    "no_package": "Connected, but no quota package found.",
+    "plan_label": "Billing",
+    "plan_credits": "Credits billing",
+    "total_credits": "Total credits"
   },
   "xai_quota": {
     "title": "Grok Quota",
