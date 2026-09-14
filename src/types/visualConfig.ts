@@ -6,6 +6,14 @@ export type PluginStoreAuthApplyTo = 'registry' | 'metadata' | 'artifact';
 export type PayloadParamValidationErrorCode =
   'payload_invalid_number' | 'payload_invalid_boolean' | 'payload_invalid_json';
 
+export type SystemPromptOverrideValues = {
+  enabled: boolean;
+  prompt: string;
+  providers: string[];
+  excludedProviders: string[];
+  models: string[];
+};
+
 export type VisualConfigFieldPath =
   | 'port'
   | 'errorLogsMaxFiles'
@@ -135,6 +143,7 @@ export type VisualConfigValues = {
   claudeHeaderStabilizeDeviceProfile: boolean;
   codexHeaderUserAgent: string;
   codexHeaderBetaFeatures: string;
+  systemPromptOverride: SystemPromptOverrideValues;
   payloadDefaultRules: PayloadRule[];
   payloadDefaultRawRules: PayloadRule[];
   payloadOverrideRules: PayloadRule[];
@@ -201,6 +210,13 @@ export const DEFAULT_VISUAL_VALUES: VisualConfigValues = {
   claudeHeaderStabilizeDeviceProfile: false,
   codexHeaderUserAgent: '',
   codexHeaderBetaFeatures: '',
+  systemPromptOverride: {
+    enabled: false,
+    prompt: '',
+    providers: [],
+    excludedProviders: [],
+    models: [],
+  },
   payloadDefaultRules: [],
   payloadDefaultRawRules: [],
   payloadOverrideRules: [],

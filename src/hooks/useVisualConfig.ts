@@ -1045,6 +1045,12 @@ function mergeVisualConfigValues(
   if (patch.streaming) {
     nextValues.streaming = { ...currentValues.streaming, ...patch.streaming };
   }
+  if (patch.systemPromptOverride) {
+    nextValues.systemPromptOverride = {
+      ...currentValues.systemPromptOverride,
+      ...patch.systemPromptOverride,
+    };
+  }
   return nextValues;
 }
 
@@ -1205,6 +1211,36 @@ function getNextDirtyFields(
     }
   }
 
+  if (patch.systemPromptOverride) {
+    const overridePatch = patch.systemPromptOverride;
+    const baselineOverride = baselineValues.systemPromptOverride;
+    const nextOverride = nextValues.systemPromptOverride;
+    if (Object.prototype.hasOwnProperty.call(overridePatch, 'enabled')) {
+      updateDirty('systemPromptOverride.enabled', nextOverride.enabled === baselineOverride.enabled);
+    }
+    if (Object.prototype.hasOwnProperty.call(overridePatch, 'prompt')) {
+      updateDirty('systemPromptOverride.prompt', nextOverride.prompt === baselineOverride.prompt);
+    }
+    if (Object.prototype.hasOwnProperty.call(overridePatch, 'providers')) {
+      updateDirty(
+        'systemPromptOverride.providers',
+        areStringArraysEqual(nextOverride.providers, baselineOverride.providers)
+      );
+    }
+    if (Object.prototype.hasOwnProperty.call(overridePatch, 'excludedProviders')) {
+      updateDirty(
+        'systemPromptOverride.excludedProviders',
+        areStringArraysEqual(nextOverride.excludedProviders, baselineOverride.excludedProviders)
+      );
+    }
+    if (Object.prototype.hasOwnProperty.call(overridePatch, 'models')) {
+      updateDirty(
+        'systemPromptOverride.models',
+        areStringArraysEqual(nextOverride.models, baselineOverride.models)
+      );
+    }
+  }
+
   return nextDirtyFields;
 }
 
@@ -1286,6 +1322,7 @@ export function useVisualConfig() {
       const routing = asRecord(parsed.routing);
       const payload = asRecord(parsed.payload);
       const streaming = asRecord(parsed.streaming);
+      const systemPromptOverride = asRecord(parsed['system-prompt-override']);
       const plugins = asRecord(parsed.plugins);
       const antigravity = asRecord(parsed.antigravity);
       const devin = asRecord(parsed.devin);
@@ -1411,6 +1448,15 @@ export function useVisualConfig() {
           keepaliveSeconds: String(streaming?.['keepalive-seconds'] ?? ''),
           bootstrapRetries: String(streaming?.['bootstrap-retries'] ?? ''),
           nonstreamKeepaliveInterval: String(parsed['nonstream-keepalive-interval'] ?? ''),
+        },
+
+        systemPromptOverride: {
+          enabled: Boolean(systemPromptOverride?.enabled),
+          prompt:
+            typeof systemPromptOverride?.prompt === 'string' ? systemPromptOverride.prompt : '',
+          providers: parseStringList(systemPromptOverride?.providers),
+          excludedProviders: parseStringList(systemPromptOverride?.['excluded-providers']),
+          models: parseStringList(systemPromptOverride?.models),
         },
       };
 
@@ -1766,6 +1812,33 @@ export function useVisualConfig() {
 
         if (dirtyFields.has('streaming.nonstreamKeepaliveInterval')) {
           setIntFromStringInDoc(doc, ['nonstream-keepalive-interval'], nonstreamKeepaliveInterval);
+        }
+
+        const systemPromptOverrideDirty = Array.from(dirtyFields).some((key) =>
+          key.startsWith('systemPromptOverride.')
+        );
+        if (systemPromptOverrideDirty) {
+          const override = values.systemPromptOverride;
+          ensureMapInDoc(doc, ['system-prompt-override']);
+          if (dirtyFields.has('systemPromptOverride.enabled')) {
+            setBooleanInDoc(doc, ['system-prompt-override', 'enabled'], override.enabled);
+          }
+          if (dirtyFields.has('systemPromptOverride.prompt')) {
+            setStringInDoc(doc, ['system-prompt-override', 'prompt'], override.prompt);
+          }
+          if (dirtyFields.has('systemPromptOverride.providers')) {
+            setStringListInDoc(doc, ['system-prompt-override', 'providers'], override.providers);
+          }
+          if (dirtyFields.has('systemPromptOverride.excludedProviders')) {
+            setStringListInDoc(
+              doc,
+              ['system-prompt-override', 'excluded-providers'],
+              override.excludedProviders
+            );
+          }
+          if (dirtyFields.has('systemPromptOverride.models')) {
+            setStringListInDoc(doc, ['system-prompt-override', 'models'], override.models);
+          }
         }
 
         if (hasPayloadDirtyFields(dirtyFields)) {

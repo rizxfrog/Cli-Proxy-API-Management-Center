@@ -42,6 +42,23 @@ export function SectionAdvanced({ values, disabled, animateIn, onChange }: Confi
     (devinSensitiveWords: string[]) => onChange({ devinSensitiveWords }),
     [onChange]
   );
+  const handleOverrideProvidersChange = useCallback(
+    (providers: string[]) =>
+      onChange({ systemPromptOverride: { ...values.systemPromptOverride, providers } }),
+    [onChange, values.systemPromptOverride]
+  );
+  const handleOverrideExcludedProvidersChange = useCallback(
+    (excludedProviders: string[]) =>
+      onChange({
+        systemPromptOverride: { ...values.systemPromptOverride, excludedProviders },
+      }),
+    [onChange, values.systemPromptOverride]
+  );
+  const handleOverrideModelsChange = useCallback(
+    (models: string[]) =>
+      onChange({ systemPromptOverride: { ...values.systemPromptOverride, models } }),
+    [onChange, values.systemPromptOverride]
+  );
 
   return (
     <SectionCard
@@ -213,6 +230,111 @@ export function SectionAdvanced({ values, disabled, animateIn, onChange }: Confi
                 </FieldShell>
               </FieldGroup>
             </FieldAnchor>
+          </FieldStack>
+        </Collapsible>
+
+        <Collapsible
+          label={t('config_management.visual.sections.advanced.system_prompt_override_title')}
+          defaultOpen={false}
+        >
+          <FieldStack>
+            <FieldAnchor fieldId="systemPromptOverride">
+              <ToggleRow
+                title={t('config_management.visual.sections.system_prompt_override.enabled')}
+                description={t(
+                  'config_management.visual.sections.system_prompt_override.enabled_desc'
+                )}
+                checked={values.systemPromptOverride.enabled}
+                disabled={disabled}
+                onChange={(enabled) => onChange({ systemPromptOverride: { ...values.systemPromptOverride, enabled } })}
+              />
+            </FieldAnchor>
+
+            <FieldAnchor fieldId="systemPromptOverride">
+              <FieldShell
+                label={t('config_management.visual.sections.system_prompt_override.prompt')}
+                hint={t('config_management.visual.sections.system_prompt_override.prompt_hint')}
+              >
+                <textarea
+                  className="input"
+                  style={{ minHeight: 96, resize: 'vertical', width: '100%' }}
+                  value={values.systemPromptOverride.prompt}
+                  disabled={disabled}
+                  rows={4}
+                  placeholder={t(
+                    'config_management.visual.sections.system_prompt_override.prompt_placeholder'
+                  )}
+                  onChange={(e) => onChange({
+                      systemPromptOverride: { ...values.systemPromptOverride, prompt: e.target.value },
+                    })}
+                />
+              </FieldShell>
+            </FieldAnchor>
+
+            <FieldGroup
+              title={t('config_management.visual.sections.system_prompt_override.scope_title')}
+              description={t(
+                'config_management.visual.sections.system_prompt_override.scope_desc'
+              )}
+            >
+              <FieldHint>
+                {t('config_management.visual.sections.system_prompt_override.scope_hint')}
+              </FieldHint>
+              <FieldAnchor fieldId="systemPromptOverride">
+                <FieldShell
+                  label={t('config_management.visual.sections.system_prompt_override.providers')}
+                  hint={t(
+                    'config_management.visual.sections.system_prompt_override.providers_hint'
+                  )}
+                >
+                  <StringListEditor
+                    value={values.systemPromptOverride.providers}
+                    disabled={disabled}
+                    placeholder="claude"
+                    inputAriaLabel={t(
+                      'config_management.visual.sections.system_prompt_override.providers'
+                    )}
+                    onChange={handleOverrideProvidersChange}
+                  />
+                </FieldShell>
+              </FieldAnchor>
+              <FieldAnchor fieldId="systemPromptOverride">
+                <FieldShell
+                  label={t(
+                    'config_management.visual.sections.system_prompt_override.excluded_providers'
+                  )}
+                  hint={t(
+                    'config_management.visual.sections.system_prompt_override.excluded_providers_hint'
+                  )}
+                >
+                  <StringListEditor
+                    value={values.systemPromptOverride.excludedProviders}
+                    disabled={disabled}
+                    placeholder="codex"
+                    inputAriaLabel={t(
+                      'config_management.visual.sections.system_prompt_override.excluded_providers'
+                    )}
+                    onChange={handleOverrideExcludedProvidersChange}
+                  />
+                </FieldShell>
+              </FieldAnchor>
+              <FieldAnchor fieldId="systemPromptOverride">
+                <FieldShell
+                  label={t('config_management.visual.sections.system_prompt_override.models')}
+                  hint={t('config_management.visual.sections.system_prompt_override.models_hint')}
+                >
+                  <StringListEditor
+                    value={values.systemPromptOverride.models}
+                    disabled={disabled}
+                    placeholder="gemini-*"
+                    inputAriaLabel={t(
+                      'config_management.visual.sections.system_prompt_override.models'
+                    )}
+                    onChange={handleOverrideModelsChange}
+                  />
+                </FieldShell>
+              </FieldAnchor>
+            </FieldGroup>
           </FieldStack>
         </Collapsible>
 

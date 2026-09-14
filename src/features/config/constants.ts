@@ -151,6 +151,13 @@ export const FIELD_VALUE_KEYS: Record<string, readonly string[]> = {
   claudeHeaderStabilizeDeviceProfile: ['claudeHeaderStabilizeDeviceProfile'],
   codexHeaderUserAgent: ['codexHeaderUserAgent'],
   codexHeaderBetaFeatures: ['codexHeaderBetaFeatures'],
+  systemPromptOverride: [
+    'systemPromptOverride.enabled',
+    'systemPromptOverride.prompt',
+    'systemPromptOverride.providers',
+    'systemPromptOverride.excludedProviders',
+    'systemPromptOverride.models',
+  ],
   // ── payload ───────────────────────────────────────────────────────────────
   payloadDefaultRules: ['payloadDefaultRules'],
   payloadDefaultRawRules: ['payloadDefaultRawRules'],

@@ -21,11 +21,13 @@ import { DEFAULT_VISUAL_VALUES } from '@/types/visualConfig';
 const INDEX_FIELD_IDS = CONFIG_FIELD_SEARCH_INDEX.map((entry) => entry.fieldId);
 const INDEX_FIELD_ID_SET = new Set(INDEX_FIELD_IDS);
 
-/** VisualConfigValues 的叶值键：顶层标量 + streaming 展开为点号叶（= dirtyFields 的键域）。 */
+/** VisualConfigValues 的叶值键：顶层标量 + 嵌套对象（streaming 等）展开为点号叶（= dirtyFields 的键域）。 */
+const NESTED_VALUE_OBJECT_KEYS = new Set(['streaming', 'systemPromptOverride']);
+
 const LEAF_VALUE_KEYS = new Set(
-  Object.keys(DEFAULT_VISUAL_VALUES).flatMap((key) =>
-    key === 'streaming'
-      ? Object.keys(DEFAULT_VISUAL_VALUES.streaming).map((leaf) => `streaming.${leaf}`)
+  Object.entries(DEFAULT_VISUAL_VALUES).flatMap(([key, value]) =>
+    NESTED_VALUE_OBJECT_KEYS.has(key) && value && typeof value === 'object'
+      ? Object.keys(value as Record<string, unknown>).map((leaf) => `${key}.${leaf}`)
       : [key]
   )
 );

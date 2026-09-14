@@ -1048,7 +1048,8 @@
           "plugins_title": "Plugins",
           "antigravity_title": "Antigravity",
           "devin_title": "Devin",
-          "signature_title": "Signature Validation"
+          "signature_title": "Signature Validation",
+          "system_prompt_override_title": "System Prompt Override"
         },
         "server": {
           "host": "Host Address",
@@ -1137,6 +1138,23 @@
           "antigravity_signature_cache_desc": "Prefer and validate cached thinking-block signatures",
           "antigravity_signature_strict": "Strict Bypass Signature Validation",
           "antigravity_signature_strict_desc": "Only applies when the signature cache is disabled; validates the full Claude protobuf tree"
+        },
+        "system_prompt_override": {
+          "title": "System Prompt Override",
+          "enabled": "Enable system prompt override",
+          "enabled_desc": "Appends the configured section to matching requests after credential selection; excluded providers stay byte-identical",
+          "prompt": "Prompt section",
+          "prompt_hint": "Appended after the client system prompt to keep upstream prompt-cache prefixes stable",
+          "prompt_placeholder": "Text to append to the system prompt…",
+          "scope_title": "Scope",
+          "scope_desc": "Filter by provider and model; empty providers means all, exclusion wins over the allowlist",
+          "scope_hint": "Provider IDs: gemini / codex / claude / codebuddy-cn / codebuddy-ai / deepseek-web / trae / kimi / aistudio / vertex / antigravity / devin / xai / qwen-web / openai-compatibility names",
+          "providers": "Provider allowlist",
+          "providers_hint": "Empty means all providers",
+          "excluded_providers": "Excluded providers",
+          "excluded_providers_hint": "Exclusion wins over the allowlist; keep strict-input gateways excluded",
+          "models": "Model patterns",
+          "models_hint": "Supports * wildcards, e.g. gemini-*; empty means all models"
         },
         "headers": {
           "title": "Header Defaults",

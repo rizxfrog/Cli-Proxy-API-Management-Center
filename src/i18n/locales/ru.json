@@ -1051,7 +1051,8 @@
           "plugins_title": "Плагины",
           "antigravity_title": "Antigravity",
           "devin_title": "Devin",
-          "signature_title": "Проверка подписей"
+          "signature_title": "Проверка подписей",
+          "system_prompt_override_title": "Переопределение системного промпта"
         },
         "server": {
           "host": "Адрес хоста",
@@ -1140,6 +1141,23 @@
           "antigravity_signature_cache_desc": "Предпочитать и проверять кэшированные подписи thinking-блоков",
           "antigravity_signature_strict": "Строгая проверка bypass-подписи",
           "antigravity_signature_strict_desc": "Применяется только при отключённом кэше подписей; проверяет полное дерево Claude protobuf"
+        },
+        "system_prompt_override": {
+          "title": "Переопределение системного промпта",
+          "enabled": "Включить переопределение системного промпта",
+          "enabled_desc": "Добавляет настроенный раздел к подходящим запросам после выбора учётных данных; исключённые провайдеры не изменяются",
+          "prompt": "Текст промпта",
+          "prompt_hint": "Добавляется после системного промпта клиента, сохраняя префиксы prompt cache",
+          "prompt_placeholder": "Текст для добавления к системному промпту…",
+          "scope_title": "Область действия",
+          "scope_desc": "Фильтрация по провайдеру и модели; пустой список провайдеров — все, исключение приоритетнее белого списка",
+          "scope_hint": "Идентификаторы провайдеров: gemini / codex / claude / codebuddy-cn / codebuddy-ai / deepseek-web / trae / kimi / aistudio / vertex / antigravity / devin / xai / qwen-web / названия openai-compatibility",
+          "providers": "Белый список провайдеров",
+          "providers_hint": "Пусто — все провайдеры",
+          "excluded_providers": "Исключённые провайдеры",
+          "excluded_providers_hint": "Исключение приоритетнее белого списка; исключайте шлюзы со строгой политикой входа",
+          "models": "Шаблоны моделей",
+          "models_hint": "Поддерживает * (например, gemini-*); пусто — все модели"
         },
         "headers": {
           "title": "Заголовки по умолчанию",

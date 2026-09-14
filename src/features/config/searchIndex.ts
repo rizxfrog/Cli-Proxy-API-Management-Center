@@ -433,6 +433,14 @@ export const CONFIG_FIELD_SEARCH_INDEX: ConfigFieldSearchEntry[] = [
     yamlKeys: ['codex-header-defaults', 'beta-features'],
     keywords: ['codex'],
   },
+  {
+    fieldId: 'systemPromptOverride',
+    sectionId: 'advanced',
+    labelKey: L('sections.system_prompt_override.title'),
+    qualifierKey: L('sections.advanced.system_prompt_override_title'),
+    yamlKeys: ['system-prompt-override'],
+    keywords: ['system prompt', 'override', 'inject', '提示词'],
+  },
   // ── payload (coarse: one entry per rule group) ──────────────────────────────
   {
     fieldId: 'payloadDefaultRules',

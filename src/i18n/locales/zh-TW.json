@@ -1072,7 +1072,8 @@
           "plugins_title": "外掛",
           "antigravity_title": "Antigravity",
           "devin_title": "Devin",
-          "signature_title": "簽章驗證"
+          "signature_title": "簽章驗證",
+          "system_prompt_override_title": "系統提示詞覆寫"
         },
         "server": {
           "host": "主機位址",
@@ -1161,6 +1162,23 @@
           "antigravity_signature_cache_desc": "優先使用並校驗快取的 thinking block 簽名",
           "antigravity_signature_strict": "嚴格校驗旁路簽名",
           "antigravity_signature_strict_desc": "僅在關閉簽名快取時生效，按完整 Claude protobuf 樹校驗"
+        },
+        "system_prompt_override": {
+          "title": "系統提示詞覆寫",
+          "enabled": "啟用系統提示詞覆寫",
+          "enabled_desc": "在憑證選定後，向匹配請求的系統提示詞附加設定段落；排除的供應商位元組級不變",
+          "prompt": "注入文字",
+          "prompt_hint": "附加到客戶端系統提示詞之後，保持上游 prompt cache 前綴穩定",
+          "prompt_placeholder": "輸入要附加到系統提示詞的文字…",
+          "scope_title": "生效範圍",
+          "scope_desc": "按供應商與模型篩選；供應商為空表示全部，排除優先於白名單",
+          "scope_hint": "供應商識別：gemini / codex / claude / codebuddy-cn / codebuddy-ai / deepseek-web / trae / kimi / aistudio / vertex / antigravity / devin / xai / qwen-web / openai-compatibility 名稱",
+          "providers": "供應商白名單",
+          "providers_hint": "留空表示所有供應商",
+          "excluded_providers": "排除供應商",
+          "excluded_providers_hint": "排除優先於白名單；建議排除輸入策略嚴格的閘道",
+          "models": "模型匹配",
+          "models_hint": "支援 * 萬用字元，如 gemini-*；留空表示所有模型"
         },
         "headers": {
           "title": "Header 預設值",
