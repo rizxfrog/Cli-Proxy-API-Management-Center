@@ -11,12 +11,13 @@ import type {
   PayloadParamEntry,
   PayloadParamValueType,
   PayloadRule,
+  PromptReplacementRuleEntry,
   RoutingStrategy,
   VisualConfigValues,
   VisualConfigValidationErrors,
   PayloadParamValidationErrorCode,
 } from '@/types/visualConfig';
-import { DEFAULT_VISUAL_VALUES } from '@/types/visualConfig';
+import { DEFAULT_VISUAL_VALUES, makeClientId } from '@/types/visualConfig';
 
 function asRecord(value: unknown): Record<string, unknown> | null {
   if (value === null || typeof value !== 'object' || Array.isArray(value)) return null;
@@ -109,6 +110,21 @@ function setStringInDoc(doc: YamlDocument, path: YamlPath, value: unknown): void
   if (docHas(doc, path)) {
     doc.setIn(path, '');
   }
+}
+
+function setPromptReplacementRulesInDoc(
+  doc: YamlDocument,
+  path: YamlPath,
+  rules: PromptReplacementRuleEntry[]
+): void {
+  const entries = rules
+    .filter((rule) => rule.find !== '' || rule.replace !== '')
+    .map((rule) => ({ find: rule.find, replace: rule.replace }));
+  if (entries.length > 0) {
+    doc.setIn(path, entries);
+    return;
+  }
+  if (docHas(doc, path)) doc.deleteIn(path);
 }
 
 function setStringListInDoc(doc: YamlDocument, path: YamlPath, values: string[]): void {
@@ -325,6 +341,14 @@ function arePayloadHeaderEntriesEqual(
   return true;
 }
 
+function arePromptReplacementRulesEqual(
+  a: PromptReplacementRuleEntry[],
+  b: PromptReplacementRuleEntry[]
+): boolean {
+  if (a.length !== b.length) return false;
+  return a.every((rule, idx) => rule.find === b[idx]?.find && rule.replace === b[idx]?.replace);
+}
+
 function areStringArraysEqual(left: string[] | undefined, right: string[] | undefined): boolean {
   const leftItems = left ?? [];
   const rightItems = right ?? [];
@@ -499,6 +523,22 @@ function parsePayloadConditions(raw: unknown, idPrefix: string): PayloadParamEnt
   });
 
   return entries;
+}
+
+function parsePromptReplacementRules(
+  value: unknown
+): PromptReplacementRuleEntry[] {
+  if (!Array.isArray(value)) return [];
+  const rules: PromptReplacementRuleEntry[] = [];
+  for (const item of value) {
+    if (!item || typeof item !== 'object') continue;
+    const record = item as Record<string, unknown>;
+    const find = typeof record['find'] === 'string' ? record['find'] : '';
+    const replace = typeof record['replace'] === 'string' ? record['replace'] : '';
+    if (!find && !replace) continue;
+    rules.push({ id: makeClientId(), find, replace });
+  }
+  return rules;
 }
 
 function parseStringList(raw: unknown): string[] {
@@ -1221,6 +1261,12 @@ function getNextDirtyFields(
     if (Object.prototype.hasOwnProperty.call(overridePatch, 'prompt')) {
       updateDirty('systemPromptOverride.prompt', nextOverride.prompt === baselineOverride.prompt);
     }
+    if (Object.prototype.hasOwnProperty.call(overridePatch, 'promptFile')) {
+      updateDirty(
+        'systemPromptOverride.promptFile',
+        nextOverride.promptFile === baselineOverride.promptFile
+      );
+    }
     if (Object.prototype.hasOwnProperty.call(overridePatch, 'providers')) {
       updateDirty(
         'systemPromptOverride.providers',
@@ -1237,6 +1283,21 @@ function getNextDirtyFields(
       updateDirty(
         'systemPromptOverride.models',
         areStringArraysEqual(nextOverride.models, baselineOverride.models)
+      );
+    }
+    if (Object.prototype.hasOwnProperty.call(overridePatch, 'replacements')) {
+      updateDirty(
+        'systemPromptOverride.replacements',
+        arePromptReplacementRulesEqual(nextOverride.replacements, baselineOverride.replacements)
+      );
+    }
+    if (Object.prototype.hasOwnProperty.call(overridePatch, 'toolDescriptionReplacements')) {
+      updateDirty(
+        'systemPromptOverride.toolDescriptionReplacements',
+        arePromptReplacementRulesEqual(
+          nextOverride.toolDescriptionReplacements,
+          baselineOverride.toolDescriptionReplacements
+        )
       );
     }
   }
@@ -1454,9 +1515,17 @@ export function useVisualConfig() {
           enabled: Boolean(systemPromptOverride?.enabled),
           prompt:
             typeof systemPromptOverride?.prompt === 'string' ? systemPromptOverride.prompt : '',
+          promptFile:
+            typeof systemPromptOverride?.['prompt-file'] === 'string'
+              ? systemPromptOverride['prompt-file']
+              : '',
           providers: parseStringList(systemPromptOverride?.providers),
           excludedProviders: parseStringList(systemPromptOverride?.['excluded-providers']),
           models: parseStringList(systemPromptOverride?.models),
+          replacements: parsePromptReplacementRules(systemPromptOverride?.replacements),
+          toolDescriptionReplacements: parsePromptReplacementRules(
+            systemPromptOverride?.['tool-description-replacements']
+          ),
         },
       };
 
@@ -1838,6 +1907,23 @@ export function useVisualConfig() {
           }
           if (dirtyFields.has('systemPromptOverride.models')) {
             setStringListInDoc(doc, ['system-prompt-override', 'models'], override.models);
+          }
+          if (dirtyFields.has('systemPromptOverride.promptFile')) {
+            setStringInDoc(doc, ['system-prompt-override', 'prompt-file'], override.promptFile);
+          }
+          if (dirtyFields.has('systemPromptOverride.replacements')) {
+            setPromptReplacementRulesInDoc(
+              doc,
+              ['system-prompt-override', 'replacements'],
+              override.replacements
+            );
+          }
+          if (dirtyFields.has('systemPromptOverride.toolDescriptionReplacements')) {
+            setPromptReplacementRulesInDoc(
+              doc,
+              ['system-prompt-override', 'tool-description-replacements'],
+              override.toolDescriptionReplacements
+            );
           }
         }
 

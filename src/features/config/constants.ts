@@ -154,9 +154,12 @@ export const FIELD_VALUE_KEYS: Record<string, readonly string[]> = {
   systemPromptOverride: [
     'systemPromptOverride.enabled',
     'systemPromptOverride.prompt',
+    'systemPromptOverride.promptFile',
     'systemPromptOverride.providers',
     'systemPromptOverride.excludedProviders',
     'systemPromptOverride.models',
+    'systemPromptOverride.replacements',
+    'systemPromptOverride.toolDescriptionReplacements',
   ],
   // ── payload ───────────────────────────────────────────────────────────────
   payloadDefaultRules: ['payloadDefaultRules'],

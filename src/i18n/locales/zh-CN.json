@@ -1152,7 +1152,21 @@
           "excluded_providers": "排除供应商",
           "excluded_providers_hint": "排除优先于白名单；建议排除输入策略严格的网关",
           "models": "模型匹配",
-          "models_hint": "支持 * 通配符，如 gemini-*；留空表示所有模型"
+          "models_hint": "支持 * 通配符，如 gemini-*；留空表示所有模型",
+          "prompt_file": "提示词文件路径",
+          "prompt_file_hint": "注入文本为空时从此文件读取；文件 mtime/大小变化后自动重读，无需重载配置",
+          "replacements_title": "系统提示词替换规则",
+          "replacements_desc": "对客户端发来的系统提示词做查找→替换，再追加注入文本",
+          "replacements_hint": "精确子串匹配，按顺序执行；留空注入文本时替换规则仍生效",
+          "tool_replacements_title": "工具描述替换规则",
+          "tool_replacements_desc": "对请求里工具的 description 做查找→替换（OpenAI 与 Gemini 布局均支持）",
+          "tool_replacements_hint": "适用于中和工具描述中的拒绝/审批话术；规则与系统提示词替换同构",
+          "rule_find": "查找 → 替换",
+          "rule_find_placeholder": "要查找的原文…",
+          "rule_replace_placeholder": "替换为…（留空即删除）",
+          "rule_replace_hint": "每行一条：查找原文 → 替换文本",
+          "rule_add": "添加规则",
+          "rule_remove": "删除规则"
         },
         "headers": {
           "title": "Header 默认值",

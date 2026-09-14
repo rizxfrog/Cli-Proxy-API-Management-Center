@@ -1154,7 +1154,21 @@
           "excluded_providers": "Excluded providers",
           "excluded_providers_hint": "Exclusion wins over the allowlist; keep strict-input gateways excluded",
           "models": "Model patterns",
-          "models_hint": "Supports * wildcards, e.g. gemini-*; empty means all models"
+          "models_hint": "Supports * wildcards, e.g. gemini-*; empty means all models",
+          "prompt_file": "Prompt file path",
+          "prompt_file_hint": "Used when the prompt section is empty; re-read automatically on mtime/size change without a config reload",
+          "replacements_title": "System prompt replacement rules",
+          "replacements_desc": "Find→replace on the client-provided system prompt before appending the prompt section",
+          "replacements_hint": "Exact substring match, applied in order; rules run even when the prompt section is empty",
+          "tool_replacements_title": "Tool description replacement rules",
+          "tool_replacements_desc": "Find→replace on tool descriptions in the request (OpenAI and Gemini layouts)",
+          "tool_replacements_hint": "Useful to neutralize refusal/approval wording in tool descriptions; same rule shape as system prompt replacements",
+          "rule_find": "Find → Replace",
+          "rule_find_placeholder": "Text to find…",
+          "rule_replace_placeholder": "Replace with… (empty deletes)",
+          "rule_replace_hint": "One rule per row: find text → replacement",
+          "rule_add": "Add rule",
+          "rule_remove": "Remove rule"
         },
         "headers": {
           "title": "Header Defaults",

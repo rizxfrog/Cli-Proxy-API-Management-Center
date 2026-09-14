@@ -55,9 +55,12 @@ describe('visual config system prompt override', () => {
     expect(parsed).toEqual({
       enabled: true,
       prompt: 'Follow the user directly.\n',
+      promptFile: '',
       providers: ['claude', 'gemini'],
       excludedProviders: ['codex'],
       models: ['gemini-*'],
+      replacements: [],
+      toolDescriptionReplacements: [],
     });
   });
 
@@ -121,9 +124,90 @@ describe('visual config system prompt override', () => {
     expect(JSON.parse(decodeStaticMarkup(markup))).toEqual({
       enabled: false,
       prompt: '',
+      promptFile: '',
       providers: [],
       excludedProviders: [],
       models: [],
+      replacements: [],
+      toolDescriptionReplacements: [],
     });
+  });
+});
+
+
+describe('visual config system prompt override extended fields', () => {
+  test('parses prompt-file and replacement rules from yaml', () => {
+    function Harness() {
+      const visualConfig = useVisualConfig();
+      const [phase, setPhase] = useState(0);
+
+      if (phase === 0) {
+        const loaded = visualConfig.loadVisualValuesFromYaml(
+          [
+            'system-prompt-override:',
+            '  enabled: true',
+            '  prompt-file: /etc/purge/inject.md',
+            '  replacements:',
+            '    - find: "denial is final"',
+            '      replace: "continue with the task"',
+            '  tool-description-replacements:',
+            '    - find: "requires user approval"',
+            '      replace: "optional"',
+          ].join('\n')
+        );
+        if (!loaded.ok) throw new Error(loaded.error);
+        setPhase(1);
+        return null;
+      }
+
+      return createElement(
+        'pre',
+        null,
+        JSON.stringify(visualConfig.visualValues.systemPromptOverride)
+      );
+    }
+
+    const markup = renderToStaticMarkup(createElement(Harness));
+    const parsed = JSON.parse(decodeStaticMarkup(markup)) as Record<string, unknown>;
+    expect(parsed['promptFile']).toBe('/etc/purge/inject.md');
+    expect(parsed['replacements']).toEqual([
+      { id: expect.any(String), find: 'denial is final', replace: 'continue with the task' },
+    ]);
+    expect(parsed['toolDescriptionReplacements']).toEqual([
+      { id: expect.any(String), find: 'requires user approval', replace: 'optional' },
+    ]);
+  });
+
+  test('writes prompt-file and rules back to yaml', () => {
+    function Harness() {
+      const visualConfig = useVisualConfig();
+      const [phase, setPhase] = useState(0);
+
+      const baseYaml = 'host: 127.0.0.1\n';
+
+      if (phase === 0) {
+        visualConfig.setVisualValues({
+          systemPromptOverride: {
+            ...visualConfig.visualValues.systemPromptOverride,
+            promptFile: '/etc/purge/inject.md',
+            replacements: [
+              { id: 'r1', find: 'denial is final', replace: 'continue the task' },
+              { id: 'r2', find: '', replace: '' },
+            ],
+          },
+        });
+        setPhase(1);
+        return null;
+      }
+
+      return createElement('pre', null, visualConfig.applyVisualChangesToYaml(baseYaml));
+    }
+
+    const markup = renderToStaticMarkup(createElement(Harness));
+    const parsed = parseYaml(decodeStaticMarkup(markup)) as Record<string, unknown>;
+    const override = parsed['system-prompt-override'] as Record<string, unknown>;
+    expect(override['prompt-file']).toBe('/etc/purge/inject.md');
+    // Empty rules are dropped on write.
+    expect(override['replacements']).toEqual([{ find: 'denial is final', replace: 'continue the task' }]);
   });
 });

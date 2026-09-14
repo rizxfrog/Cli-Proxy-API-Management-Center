@@ -2,7 +2,10 @@ import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Collapsible } from '@/components/ui/Collapsible';
 import { Input } from '@/components/ui/Input';
-import type { PluginStoreAuthRule } from '@/types/visualConfig';
+import type {
+  PluginStoreAuthRule,
+  PromptReplacementRuleEntry,
+} from '@/types/visualConfig';
 import { CONFIG_TAB_ICONS, SECTION_INDEX_LABELS } from '../../constants';
 import type { ConfigSectionProps } from '../../types';
 import { SectionCard } from '../SectionCard';
@@ -18,6 +21,7 @@ import {
   ToggleRow,
 } from '../fields/FieldPrimitives';
 import { PluginStoreAuthEditor } from '../blocks/PluginStoreAuthEditor';
+import { PromptReplacementRulesEditor } from '../blocks/PromptReplacementRulesEditor';
 import { StringListEditor } from '../blocks/StringListEditor';
 
 const Icon = CONFIG_TAB_ICONS.advanced;
@@ -57,6 +61,18 @@ export function SectionAdvanced({ values, disabled, animateIn, onChange }: Confi
   const handleOverrideModelsChange = useCallback(
     (models: string[]) =>
       onChange({ systemPromptOverride: { ...values.systemPromptOverride, models } }),
+    [onChange, values.systemPromptOverride]
+  );
+  const handleOverrideReplacementsChange = useCallback(
+    (replacements: PromptReplacementRuleEntry[]) =>
+      onChange({ systemPromptOverride: { ...values.systemPromptOverride, replacements } }),
+    [onChange, values.systemPromptOverride]
+  );
+  const handleOverrideToolReplacementsChange = useCallback(
+    (toolDescriptionReplacements: PromptReplacementRuleEntry[]) =>
+      onChange({
+        systemPromptOverride: { ...values.systemPromptOverride, toolDescriptionReplacements },
+      }),
     [onChange, values.systemPromptOverride]
   );
 
@@ -264,11 +280,36 @@ export function SectionAdvanced({ values, disabled, animateIn, onChange }: Confi
                   placeholder={t(
                     'config_management.visual.sections.system_prompt_override.prompt_placeholder'
                   )}
-                  onChange={(e) => onChange({
-                      systemPromptOverride: { ...values.systemPromptOverride, prompt: e.target.value },
-                    })}
+                  onChange={(e) =>
+                    onChange({
+                      systemPromptOverride: {
+                        ...values.systemPromptOverride,
+                        prompt: e.target.value,
+                      },
+                    })
+                  }
                 />
               </FieldShell>
+            </FieldAnchor>
+
+            <FieldAnchor fieldId="systemPromptOverride">
+              <Input
+                label={t('config_management.visual.sections.system_prompt_override.prompt_file')}
+                placeholder="/path/to/prompt-inject.md"
+                value={values.systemPromptOverride.promptFile}
+                onChange={(e) =>
+                  onChange({
+                    systemPromptOverride: {
+                      ...values.systemPromptOverride,
+                      promptFile: e.target.value,
+                    },
+                  })
+                }
+                disabled={disabled}
+                hint={t(
+                  'config_management.visual.sections.system_prompt_override.prompt_file_hint'
+                )}
+              />
             </FieldAnchor>
 
             <FieldGroup
@@ -331,6 +372,56 @@ export function SectionAdvanced({ values, disabled, animateIn, onChange }: Confi
                       'config_management.visual.sections.system_prompt_override.models'
                     )}
                     onChange={handleOverrideModelsChange}
+                  />
+                </FieldShell>
+              </FieldAnchor>
+            </FieldGroup>
+
+            <FieldGroup
+              title={t('config_management.visual.sections.system_prompt_override.replacements_title')}
+              description={t(
+                'config_management.visual.sections.system_prompt_override.replacements_desc'
+              )}
+            >
+              <FieldHint>
+                {t('config_management.visual.sections.system_prompt_override.replacements_hint')}
+              </FieldHint>
+              <FieldAnchor fieldId="systemPromptOverride">
+                <FieldShell
+                  label={t('config_management.visual.sections.system_prompt_override.rule_find')}
+                  hint={t('config_management.visual.sections.system_prompt_override.rule_replace_hint')}
+                >
+                  <PromptReplacementRulesEditor
+                    value={values.systemPromptOverride.replacements}
+                    disabled={disabled}
+                    onChange={handleOverrideReplacementsChange}
+                  />
+                </FieldShell>
+              </FieldAnchor>
+            </FieldGroup>
+
+            <FieldGroup
+              title={t(
+                'config_management.visual.sections.system_prompt_override.tool_replacements_title'
+              )}
+              description={t(
+                'config_management.visual.sections.system_prompt_override.tool_replacements_desc'
+              )}
+            >
+              <FieldHint>
+                {t(
+                  'config_management.visual.sections.system_prompt_override.tool_replacements_hint'
+                )}
+              </FieldHint>
+              <FieldAnchor fieldId="systemPromptOverride">
+                <FieldShell
+                  label={t('config_management.visual.sections.system_prompt_override.rule_find')}
+                  hint={t('config_management.visual.sections.system_prompt_override.rule_replace_hint')}
+                >
+                  <PromptReplacementRulesEditor
+                    value={values.systemPromptOverride.toolDescriptionReplacements}
+                    disabled={disabled}
+                    onChange={handleOverrideToolReplacementsChange}
                   />
                 </FieldShell>
               </FieldAnchor>

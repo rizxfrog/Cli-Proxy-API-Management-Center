@@ -9,9 +9,19 @@ export type PayloadParamValidationErrorCode =
 export type SystemPromptOverrideValues = {
   enabled: boolean;
   prompt: string;
+  promptFile: string;
   providers: string[];
   excludedProviders: string[];
   models: string[];
+  replacements: PromptReplacementRuleEntry[];
+  toolDescriptionReplacements: PromptReplacementRuleEntry[];
+};
+
+/** find→replace rule with a client-side id for list editing. */
+export type PromptReplacementRuleEntry = {
+  id: string;
+  find: string;
+  replace: string;
 };
 
 export type VisualConfigFieldPath =
@@ -213,9 +223,12 @@ export const DEFAULT_VISUAL_VALUES: VisualConfigValues = {
   systemPromptOverride: {
     enabled: false,
     prompt: '',
+    promptFile: '',
     providers: [],
     excludedProviders: [],
     models: [],
+    replacements: [],
+    toolDescriptionReplacements: [],
   },
   payloadDefaultRules: [],
   payloadDefaultRawRules: [],
