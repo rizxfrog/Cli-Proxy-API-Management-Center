@@ -36,7 +36,6 @@ import { ConnectivityStatusIcon } from './ConnectivityStatusIcon';
 import { ApiKeyEntriesEditor } from './ApiKeyEntriesEditor';
 import { ModelEntriesEditor } from './ModelEntriesEditor';
 import styles from './sharedForm.module.scss';
-import { CLAUDE_API_BASE_URL } from '../../claudeApi';
 import { MAX_CREDENTIAL_WEIGHT } from '@/utils/credentialWeight';
 
 /** 模块级常量，免得每次渲染都给 picker 一个新数组引用。 */
@@ -71,8 +70,7 @@ const formatJsonObject = (value?: Record<string, unknown>): string => {
   return JSON.stringify(value, null, 2);
 };
 
-const isClaudeLikeBrand = (brand: ProviderBrand): boolean =>
-  brand === 'claude' || brand === 'claudeApi';
+const isClaudeLikeBrand = (brand: ProviderBrand): boolean => brand === 'claude';
 
 function buildInitialForm(
   brand: ProviderBrand,
@@ -84,15 +82,13 @@ function buildInitialForm(
       apiKey: '',
       name: '',
       baseUrl:
-        brand === 'claudeApi'
-          ? CLAUDE_API_BASE_URL
-          : brand === 'xai'
-            ? XAI_API_BASE_URL
-            : brand === 'codebuddyCn'
-              ? CODEBUDDY_CN_API_BASE_URL
-              : brand === 'codebuddyAi'
-                ? CODEBUDDY_AI_API_BASE_URL
-                : '',
+        brand === 'xai'
+          ? XAI_API_BASE_URL
+          : brand === 'codebuddyCn'
+            ? CODEBUDDY_CN_API_BASE_URL
+            : brand === 'codebuddyAi'
+              ? CODEBUDDY_AI_API_BASE_URL
+              : '',
       proxyUrl: '',
       prefix: '',
       disabled: false,

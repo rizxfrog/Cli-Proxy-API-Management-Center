@@ -8,6 +8,7 @@ import { ANTIGRAVITY_CONFIG } from './providers/antigravity/data';
 import { CLAUDE_CONFIG } from './providers/claude/data';
 import { CODEBUDDY_CONFIG } from './providers/codebuddy/data';
 import { CODEX_CONFIG } from './providers/codex/data';
+import { DEVIN_CONFIG } from './providers/devin/data';
 import { KIMI_CONFIG } from './providers/kimi/data';
 import { TRAE_CONFIG } from './providers/trae/data';
 import { XAI_CONFIG } from './providers/xai/data';
@@ -19,6 +20,7 @@ const QUOTA_FILTER_MAP: Record<QuotaProviderType, (file: AuthFileItem) => boolea
   claude: CLAUDE_CONFIG.filterFn,
   codebuddy: CODEBUDDY_CONFIG.filterFn,
   codex: CODEX_CONFIG.filterFn,
+  devin: DEVIN_CONFIG.filterFn,
   kimi: KIMI_CONFIG.filterFn,
   trae: TRAE_CONFIG.filterFn,
   xai: XAI_CONFIG.filterFn,
@@ -27,6 +29,19 @@ const QUOTA_FILTER_MAP: Record<QuotaProviderType, (file: AuthFileItem) => boolea
 export interface QuotaFileEntry {
   file: AuthFileItem;
   type: QuotaProviderType;
+}
+
+/** A refresh-all intent belongs to the session that requested a successful list read. */
+export function canRefreshQuotaAfterList(
+  requestedSession: number,
+  currentSession: number,
+  filesSession: number | null,
+  hasError: boolean,
+  disabled: boolean
+): boolean {
+  return (
+    !disabled && !hasError && requestedSession === currentSession && filesSession === currentSession
+  );
 }
 
 export const resolveQuotaProviderType = (file: AuthFileItem): QuotaProviderType | null =>
