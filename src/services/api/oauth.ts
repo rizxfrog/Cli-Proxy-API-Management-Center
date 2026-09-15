@@ -17,7 +17,8 @@ export type BuiltInOAuthProvider =
   | 'codebuddy-ai'
   | 'xai'
   | 'trae'
-  | 'devin';
+  | 'devin'
+  | 'xiaohuanxiong';
 
 export interface OAuthStartResponse {
   url: string;
@@ -78,6 +79,20 @@ export const oauthApi = {
       signal ? { signal } : undefined
     );
   },
+
+  /**
+   * Xiaohuanxiong redirects to an office-raccoon:// deep link that carries only
+   * a one-time code and no state, so the shared /oauth-callback contract (which
+   * requires state) cannot be used. The dedicated endpoint re-associates the
+   * callback with the pending session server-side and accepts the full deep
+   * link, an https callback, or a bare authorization code.
+   */
+  submitXiaohuanxiongCallback: (state: string, redirectUrl: string, signal?: AbortSignal) =>
+    apiClient.post<OAuthCallbackResponse>(
+      '/xiaohuanxiong-auth-callback',
+      { state, redirect_url: redirectUrl },
+      signal ? { signal } : undefined
+    ),
 
   /**
    * TRAE has no device-code endpoint and forces a 127.0.0.1 loopback callback,

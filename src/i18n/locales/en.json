@@ -401,7 +401,8 @@
     "quota_refresh_single": "Refresh quota",
     "quota_refresh_hint": "Refresh quota only for this credential",
     "quota_refresh_success": "Quota refreshed for \"{{name}}\"",
-    "quota_refresh_failed": "Failed to refresh quota for \"{{name}}\": {{message}}"
+    "quota_refresh_failed": "Failed to refresh quota for \"{{name}}\": {{message}}",
+    "filter_xiaohuanxiong": "Xiaohuanxiong (Raccoon)"
   },
   "antigravity_subscription": {
     "plan_unknown": "Unknown",
@@ -897,7 +898,18 @@
     "iflow_oauth_status_error": "Authentication failed:",
     "iflow_oauth_start_error": "Failed to start iFlow OAuth:",
     "iflow_oauth_polling_error": "Failed to check authentication status:",
-    "remote_access_disabled": "This login method is not available for remote access. Please access from localhost."
+    "remote_access_disabled": "This login method is not available for remote access. Please access from localhost.",
+    "xiaohuanxiong_oauth_title": "Xiaohuanxiong (SenseTime Raccoon) OAuth",
+    "xiaohuanxiong_oauth_button": "Sign in to Xiaohuanxiong",
+    "xiaohuanxiong_oauth_hint": "Sign in on the Xiaohuanxiong website. The page redirects to an office-raccoon:// link that the browser cannot hand to the proxy, so copy the full address from the address bar and paste it below within five minutes.",
+    "xiaohuanxiong_oauth_url_label": "Authorization link:",
+    "xiaohuanxiong_copy_link": "Copy link",
+    "xiaohuanxiong_open_link": "Open link",
+    "xiaohuanxiong_oauth_status_waiting": "Waiting for the pasted callback link...",
+    "xiaohuanxiong_oauth_status_success": "Authentication succeeded!",
+    "xiaohuanxiong_oauth_status_error": "Authentication failed:",
+    "xiaohuanxiong_oauth_start_error": "Failed to start Xiaohuanxiong OAuth:",
+    "xiaohuanxiong_oauth_polling_error": "Failed to check authentication status:"
   },
   "stats": {
     "success": "Success",
@@ -1668,7 +1680,8 @@
       "apikeyFun": "APIKEY.FUN",
       "fennoAI": "FennoAI",
       "qiniuCloud": "Qiniu Cloud",
-      "kimi": "Kimi"
+      "kimi": "Kimi",
+      "xiaohuanxiong": "Xiaohuanxiong (Raccoon)"
     },
     "table": {
       "key": "Key",
@@ -1854,7 +1867,13 @@
         "baseUrlRequired": "Base URL is required",
         "weightInteger": "Scheduling weight must be an integer",
         "weightMax": "Scheduling weight cannot exceed {{max}}"
-      }
+      },
+      "refreshToken": "Refresh token",
+      "refreshTokenHint": "Optional. The gateway issues short-lived access tokens, so a refresh token enables automatic rotation through /api/web/auth/v1/refresh without a new browser sign-in.",
+      "refreshTokenCreatePlaceholder": "Paste the refresh token (optional)",
+      "refreshTokenEditPlaceholder": "Leave empty to keep the current refresh token",
+      "showRefreshToken": "Show refresh token",
+      "hideRefreshToken": "Hide refresh token"
     },
     "delete": {
       "title": "Delete resource",

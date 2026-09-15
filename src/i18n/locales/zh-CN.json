@@ -399,7 +399,8 @@
     "quota_refresh_single": "刷新额度",
     "quota_refresh_hint": "仅刷新该认证文件的额度",
     "quota_refresh_success": "已刷新 \"{{name}}\" 的额度",
-    "quota_refresh_failed": "刷新 \"{{name}}\" 的额度失败：{{message}}"
+    "quota_refresh_failed": "刷新 \"{{name}}\" 的额度失败：{{message}}",
+    "filter_xiaohuanxiong": "商汤小浣熊"
   },
   "antigravity_subscription": {
     "plan_unknown": "未知",
@@ -895,7 +896,18 @@
     "iflow_oauth_status_error": "认证失败:",
     "iflow_oauth_start_error": "启动 iFlow OAuth 失败:",
     "iflow_oauth_polling_error": "检查认证状态失败:",
-    "remote_access_disabled": "远程访问不支持此登录方式，请从本地 (localhost) 访问"
+    "remote_access_disabled": "远程访问不支持此登录方式，请从本地 (localhost) 访问",
+    "xiaohuanxiong_oauth_title": "商汤小浣熊 OAuth",
+    "xiaohuanxiong_oauth_button": "登录商汤小浣熊",
+    "xiaohuanxiong_oauth_hint": "在商汤小浣熊网页完成登录。页面会跳转到 office-raccoon:// 链接，浏览器无法直接交给代理，请复制地址栏中的完整链接并在五分钟内提交到下方。",
+    "xiaohuanxiong_oauth_url_label": "授权链接：",
+    "xiaohuanxiong_copy_link": "复制链接",
+    "xiaohuanxiong_open_link": "打开链接",
+    "xiaohuanxiong_oauth_status_waiting": "等待粘贴回调链接…",
+    "xiaohuanxiong_oauth_status_success": "认证成功！",
+    "xiaohuanxiong_oauth_status_error": "认证失败：",
+    "xiaohuanxiong_oauth_start_error": "启动商汤小浣熊 OAuth 失败：",
+    "xiaohuanxiong_oauth_polling_error": "检查认证状态失败："
   },
   "stats": {
     "success": "成功",
@@ -1666,7 +1678,8 @@
       "apikeyFun": "APIKEY.FUN",
       "fennoAI": "FennoAI",
       "qiniuCloud": "七牛云",
-      "kimi": "Kimi"
+      "kimi": "Kimi",
+      "xiaohuanxiong": "商汤小浣熊"
     },
     "table": {
       "key": "密钥",
@@ -1852,7 +1865,13 @@
         "baseUrlRequired": "服务地址必填",
         "weightInteger": "调度权重必须是整数",
         "weightMax": "调度权重不能超过 {{max}}"
-      }
+      },
+      "refreshToken": "刷新令牌",
+      "refreshTokenHint": "可选。网关签发的是短期访问令牌，提供刷新令牌后可通过 /api/web/auth/v1/refresh 自动续期，无需重新网页登录。",
+      "refreshTokenCreatePlaceholder": "粘贴刷新令牌（可选）",
+      "refreshTokenEditPlaceholder": "留空表示保留当前刷新令牌",
+      "showRefreshToken": "显示刷新令牌",
+      "hideRefreshToken": "隐藏刷新令牌"
     },
     "delete": {
       "title": "删除资源",

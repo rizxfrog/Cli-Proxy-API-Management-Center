@@ -24,6 +24,7 @@ import iconKimiLight from '@/assets/icons/kimi-light.svg';
 import iconKimiDark from '@/assets/icons/kimi-dark.svg';
 import iconCodeBuddy from '@/assets/icons/codebuddy.svg';
 import iconTrae from '@/assets/icons/trae.png';
+import iconXiaohuanxiong from '@/assets/icons/xiaohuanxiong.svg';
 import iconVertex from '@/assets/icons/vertex.svg';
 import iconGrok from '@/assets/icons/grok.svg';
 import iconGrokDark from '@/assets/icons/grok-dark.svg';
@@ -138,6 +139,12 @@ const PROVIDERS: BuiltInOAuthProviderCard[] = [
     titleKey: 'auth_login.devin_oauth_title',
     icon: { light: iconDevin, dark: iconDevinDark },
   },
+  {
+    kind: 'builtin',
+    id: 'xiaohuanxiong',
+    titleKey: 'auth_login.xiaohuanxiong_oauth_title',
+    icon: iconXiaohuanxiong,
+  },
 ];
 
 const BUILTIN_PROVIDER_IDS = new Set<string>(PROVIDERS.map((provider) => provider.id));
@@ -148,6 +155,9 @@ const CALLBACK_SUPPORTED = new Set<string>([
   'xai',
   'trae',
   'devin',
+  // Xiaohuanxiong redirects to an office-raccoon:// deep link that the browser
+  // cannot hand to the proxy, so the user pastes the final callback URL.
+  'xiaohuanxiong',
 ]);
 const XAI_CALLBACK_URL = 'http://127.0.0.1:56121/callback';
 const SUCCESS_RESET_DELAY_MS = 5000;
@@ -588,6 +598,19 @@ export function OAuthPage() {
       callbackError: undefined,
     });
     try {
+      if (provider === 'xiaohuanxiong') {
+        // The deep link carries no state, so submit the raw callback and let the
+        // dedicated endpoint bind it to this pending session.
+        await oauthApi.submitXiaohuanxiongCallback(
+          states[provider]?.state || '',
+          redirectUrl,
+          attempt.signal
+        );
+        if (!attempt.isCurrent()) return;
+        updateProviderState(provider, { callbackSubmitting: false, callbackStatus: 'success' });
+        showNotification(t('auth_login.oauth_callback_success'), 'success');
+        return;
+      }
       if (provider === 'trae') {
         await oauthApi.submitTraeCallback(
           states[provider]?.state || '',

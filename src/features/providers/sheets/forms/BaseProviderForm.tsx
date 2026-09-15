@@ -61,6 +61,7 @@ const emptyApiKeyEntry = (): ApiKeyEntryInput => ({
 const XAI_API_BASE_URL = 'https://api.x.ai/v1';
 const CODEBUDDY_CN_API_BASE_URL = 'https://copilot.tencent.com/v2/chat/completions';
 const CODEBUDDY_AI_API_BASE_URL = 'https://www.codebuddy.ai/v2/chat/completions';
+const XIAOHUANXIONG_API_BASE_URL = 'https://xiaohuanxiong.com/api/web/llm/v2';
 
 const stripDisableAllRule = (list?: string[]): string[] =>
   (list ?? []).filter((s) => s.trim() !== '*');
@@ -81,6 +82,7 @@ function buildInitialForm(
     return {
       apiKey: '',
       name: '',
+      refreshToken: brand === 'xiaohuanxiong' ? '' : undefined,
       baseUrl:
         brand === 'xai'
           ? XAI_API_BASE_URL
@@ -88,7 +90,9 @@ function buildInitialForm(
             ? CODEBUDDY_CN_API_BASE_URL
             : brand === 'codebuddyAi'
               ? CODEBUDDY_AI_API_BASE_URL
-              : '',
+              : brand === 'xiaohuanxiong'
+                ? XIAOHUANXIONG_API_BASE_URL
+                : '',
       proxyUrl: '',
       prefix: '',
       disabled: false,
@@ -109,6 +113,7 @@ function buildInitialForm(
         brand === 'xai' ||
         brand === 'codebuddyCn' ||
         brand === 'codebuddyAi' ||
+        brand === 'xiaohuanxiong' ||
         isClaudeLikeBrand(brand) ||
         brand === 'gemini' ||
         brand === 'interactions'
@@ -168,6 +173,7 @@ function buildInitialForm(
     // empty field is preserved on save via buildProviderKeyConfig's existing fallback.
     apiKey: '',
     name: '',
+    refreshToken: '',
     baseUrl: cfg.baseUrl ?? '',
     proxyUrl: cfg.proxyUrl ?? '',
     prefix: cfg.prefix ?? '',
@@ -209,6 +215,7 @@ function buildInitialForm(
       brand === 'xai' ||
       brand === 'codebuddyCn' ||
       brand === 'codebuddyAi' ||
+      brand === 'xiaohuanxiong' ||
       isClaudeLikeBrand(brand) ||
       brand === 'gemini' ||
       brand === 'interactions'
@@ -237,6 +244,7 @@ export function BaseProviderForm({
   );
   const [error, setError] = useState<string | null>(null);
   const [showSingleApiKey, setShowSingleApiKey] = useState(false);
+  const [showRefreshToken, setShowRefreshToken] = useState(false);
 
   const isDirty = useMemo(
     () => JSON.stringify(form) !== initialFormSignature,
@@ -582,6 +590,52 @@ export function BaseProviderForm({
                 {showSingleApiKey ? <IconEyeOff size={16} /> : <IconEye size={16} />}
               </button>
             </div>
+          </div>
+        ) : null}
+
+        {brand === 'xiaohuanxiong' ? (
+          <div className={styles.field}>
+            <label className={styles.label} htmlFor={`${fid}-refreshToken`}>
+              {t('providersPage.form.refreshToken')}
+            </label>
+            <div className={styles.passwordField}>
+              <input
+                id={`${fid}-refreshToken`}
+                className={styles.passwordInput}
+                type={showRefreshToken ? 'text' : 'password'}
+                value={form.refreshToken ?? ''}
+                onChange={(e) => updateField('refreshToken', e.target.value)}
+                autoComplete="new-password"
+                data-1p-ignore="true"
+                data-lpignore="true"
+                data-bwignore="true"
+                placeholder={
+                  mode === 'edit'
+                    ? t('providersPage.form.refreshTokenEditPlaceholder')
+                    : t('providersPage.form.refreshTokenCreatePlaceholder')
+                }
+                disabled={mutating}
+              />
+              <button
+                type="button"
+                className={styles.passwordToggle}
+                onClick={() => setShowRefreshToken((v) => !v)}
+                disabled={mutating}
+                aria-label={
+                  showRefreshToken
+                    ? t('providersPage.form.hideRefreshToken')
+                    : t('providersPage.form.showRefreshToken')
+                }
+                title={
+                  showRefreshToken
+                    ? t('providersPage.form.hideRefreshToken')
+                    : t('providersPage.form.showRefreshToken')
+                }
+              >
+                {showRefreshToken ? <IconEyeOff size={16} /> : <IconEye size={16} />}
+              </button>
+            </div>
+            <p className={styles.hint}>{t('providersPage.form.refreshTokenHint')}</p>
           </div>
         ) : null}
 

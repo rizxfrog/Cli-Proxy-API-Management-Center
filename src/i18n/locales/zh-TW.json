@@ -399,7 +399,8 @@
     "quota_refresh_single": "重新整理配額",
     "quota_refresh_hint": "僅重新整理該驗證檔案的配額",
     "quota_refresh_success": "已重新整理「{{name}}」的配額",
-    "quota_refresh_failed": "重新整理「{{name}}」的配額失敗：{{message}}"
+    "quota_refresh_failed": "重新整理「{{name}}」的配額失敗：{{message}}",
+    "filter_xiaohuanxiong": "商湯小浣熊"
   },
   "antigravity_subscription": {
     "plan_unknown": "未知",
@@ -921,7 +922,18 @@
     "iflow_cookie_result_expired": "到期時間",
     "iflow_cookie_result_path": "儲存路徑",
     "iflow_cookie_result_type": "類型",
-    "remote_access_disabled": "遠端存取不支援此登入方式，請從本地（localhost）存取"
+    "remote_access_disabled": "遠端存取不支援此登入方式，請從本地（localhost）存取",
+    "xiaohuanxiong_oauth_title": "商湯小浣熊 OAuth",
+    "xiaohuanxiong_oauth_button": "登入商湯小浣熊",
+    "xiaohuanxiong_oauth_hint": "在商湯小浣熊網頁完成登入。頁面會跳轉到 office-raccoon:// 連結，瀏覽器無法直接交給代理，請複製網址列中的完整連結並在五分鐘內提交到下方。",
+    "xiaohuanxiong_oauth_url_label": "授權連結：",
+    "xiaohuanxiong_copy_link": "複製連結",
+    "xiaohuanxiong_open_link": "開啟連結",
+    "xiaohuanxiong_oauth_status_waiting": "等待貼上回呼連結…",
+    "xiaohuanxiong_oauth_status_success": "認證成功！",
+    "xiaohuanxiong_oauth_status_error": "認證失敗：",
+    "xiaohuanxiong_oauth_start_error": "啟動商湯小浣熊 OAuth 失敗：",
+    "xiaohuanxiong_oauth_polling_error": "檢查認證狀態失敗："
   },
   "stats": {
     "success": "成功",
@@ -1692,7 +1704,8 @@
       "apikeyFun": "APIKEY.FUN",
       "fennoAI": "FennoAI",
       "qiniuCloud": "七牛雲",
-      "kimi": "Kimi"
+      "kimi": "Kimi",
+      "xiaohuanxiong": "商湯小浣熊"
     },
     "table": {
       "key": "金鑰",
@@ -1878,7 +1891,13 @@
         "baseUrlRequired": "服務位址必填",
         "weightInteger": "調度權重必須是整數",
         "weightMax": "調度權重不能超過 {{max}}"
-      }
+      },
+      "refreshToken": "重新整理權杖",
+      "refreshTokenHint": "選填。閘道簽發的是短期存取權杖，提供重新整理權杖後可透過 /api/web/auth/v1/refresh 自動續期，無需重新網頁登入。",
+      "refreshTokenCreatePlaceholder": "貼上重新整理權杖（選填）",
+      "refreshTokenEditPlaceholder": "留空表示保留目前重新整理權杖",
+      "showRefreshToken": "顯示重新整理權杖",
+      "hideRefreshToken": "隱藏重新整理權杖"
     },
     "delete": {
       "title": "刪除資源",

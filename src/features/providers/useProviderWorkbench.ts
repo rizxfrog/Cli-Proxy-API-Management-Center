@@ -28,6 +28,7 @@ import {
   kimiToResource,
   vertexToResource,
   xaiToResource,
+  xiaohuanxiongToResource,
 } from './adapters';
 import { PROVIDER_BRAND_ORDER } from './descriptors';
 import { buildThinkingFromLevels } from './thinkingLevels';
@@ -165,6 +166,7 @@ const buildProviderKeyConfig = (
     | 'xai'
     | 'codebuddyCn'
     | 'codebuddyAi'
+    | 'xiaohuanxiong'
     | 'claude'
     | 'vertex',
   input: ProviderEntryFormInput,
@@ -187,6 +189,15 @@ const buildProviderKeyConfig = (
     disableCooling: input.disableCooling === true,
     authIndex: existing?.authIndex,
   };
+  if (brand === 'xiaohuanxiong') {
+    const refreshToken = input.refreshToken?.trim();
+    // Preserve the stored token when the field is left blank on edit, mirroring
+    // how apiKey falls back to the existing value. GeminiKeyConfig has no
+    // refreshToken, so narrow the union first.
+    const existingRefreshToken =
+      existing && 'refreshToken' in existing ? existing.refreshToken : undefined;
+    next.refreshToken = refreshToken || existingRefreshToken || undefined;
+  }
   if ((brand === 'codex' || brand === 'xai') && input.websockets !== undefined) {
     next.websockets = input.websockets;
   }
@@ -407,6 +418,11 @@ export const buildProviderGroups = (config: Config): ProviderGroup[] =>
       case 'codebuddyAi':
         resources = (config.codebuddyAiApiKeys ?? []).map((item, index) =>
           codebuddyAiToResource(item, index)
+        );
+        break;
+      case 'xiaohuanxiong':
+        resources = (config.xiaohuanxiongApiKeys ?? []).map((item, index) =>
+          xiaohuanxiongToResource(item, index)
         );
         break;
       case 'claude':
@@ -678,6 +694,10 @@ export function useProviderWorkbench(): UseProviderWorkbenchResult {
           await providersApi.createCodeBuddyAIConfig(
             buildProviderKeyConfig('codebuddyAi', input) as ProviderKeyConfig
           );
+        } else if (brand === 'xiaohuanxiong') {
+          await providersApi.createXiaohuanxiongConfig(
+            buildProviderKeyConfig('xiaohuanxiong', input) as ProviderKeyConfig
+          );
         } else if (brand === 'claude') {
           await providersApi.createClaudeConfig(
             buildProviderKeyConfig('claude', input) as ProviderKeyConfig
@@ -752,6 +772,13 @@ export function useProviderWorkbench(): UseProviderWorkbenchResult {
             selector.baseUrl,
             buildProviderKeyConfig('codebuddyAi', input, existing) as ProviderKeyConfig
           );
+        } else if (brand === 'xiaohuanxiong' && selector.brand === 'xiaohuanxiong') {
+          const existing = resource.raw as ProviderKeyConfig;
+          await providersApi.updateXiaohuanxiongConfig(
+            selector.apiKey,
+            selector.baseUrl,
+            buildProviderKeyConfig('xiaohuanxiong', input, existing) as ProviderKeyConfig
+          );
         } else if (brand === 'claude' && selector.brand === 'claude') {
           const existing = resource.raw as ProviderKeyConfig;
           await providersApi.updateClaudeConfig(
@@ -817,6 +844,10 @@ export function useProviderWorkbench(): UseProviderWorkbenchResult {
           await providersApi.deleteCodeBuddyAIConfig(sel.apiKey, sel.baseUrl);
           const next = (config?.codebuddyAiApiKeys ?? []).filter((_, i) => i !== sel.index);
           updateConfigValue('codebuddy-ai-api-key', next);
+        } else if (sel.brand === 'xiaohuanxiong') {
+          await providersApi.deleteXiaohuanxiongConfig(sel.apiKey, sel.baseUrl);
+          const next = (config?.xiaohuanxiongApiKeys ?? []).filter((_, i) => i !== sel.index);
+          updateConfigValue('xiaohuanxiong-api-key', next);
         } else if (sel.brand === 'claude') {
           await providersApi.deleteClaudeConfig(sel.apiKey, sel.baseUrl);
           const next = (config?.claudeApiKeys ?? []).filter((_, i) => i !== sel.index);

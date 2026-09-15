@@ -29,6 +29,7 @@ export interface Config {
   xaiApiKeys?: ProviderKeyConfig[];
   codebuddyCnApiKeys?: ProviderKeyConfig[];
   codebuddyAiApiKeys?: ProviderKeyConfig[];
+  xiaohuanxiongApiKeys?: ProviderKeyConfig[];
   claudeApiKeys?: ProviderKeyConfig[];
   vertexApiKeys?: ProviderKeyConfig[];
   openaiCompatibility?: OpenAIProviderConfig[];
@@ -53,6 +54,7 @@ export type RawConfigSection =
   | 'codex-api-key'
   | 'xai-api-key'
   | 'codebuddy-cn-api-key'
+  | 'xiaohuanxiong-api-key'
   | 'codebuddy-ai-api-key'
   | 'claude-api-key'
   | 'vertex-api-key'

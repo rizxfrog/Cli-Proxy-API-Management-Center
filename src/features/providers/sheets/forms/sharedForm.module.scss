@@ -266,6 +266,13 @@
   }
 }
 
+.hint {
+  margin: 6px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-text-muted, #6b7280);
+}
+
 .fieldRow {
   display: grid;
   grid-template-columns: 1fr 1fr;

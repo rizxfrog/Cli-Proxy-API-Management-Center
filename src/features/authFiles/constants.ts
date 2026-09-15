@@ -14,6 +14,7 @@ import iconKimiLight from '@/assets/icons/kimi-light.svg';
 import iconQwen from '@/assets/icons/qwen.svg';
 import iconTrae from '@/assets/icons/trae.png';
 import iconVertex from '@/assets/icons/vertex.svg';
+import iconXiaohuanxiong from '@/assets/icons/xiaohuanxiong.svg';
 import type { AuthFileItem, ResolvedTheme, ThemeColors } from '@/types';
 import { normalizeOAuthProviderKey } from '@/utils/providerKeys';
 import { parseTimestamp } from '@/utils/timestamp';
@@ -78,6 +79,7 @@ export { TYPE_COLORS } from '@/utils/quota';
 
 export const AUTH_FILE_ICONS: Record<string, AuthFileIconAsset> = {
   antigravity: iconAntigravity,
+  xiaohuanxiong: iconXiaohuanxiong,
   trae: iconTrae,
   aistudio: iconGemini,
   claude: iconClaude,

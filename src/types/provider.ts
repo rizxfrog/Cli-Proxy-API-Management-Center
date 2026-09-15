@@ -42,6 +42,11 @@ export interface GeminiKeyConfig {
 
 export interface ProviderKeyConfig {
   apiKey: string;
+  /**
+   * Xiaohuanxiong only. Enables automatic access-token rotation; the gateway
+   * issues short-lived JWT access tokens alongside a long-lived refresh token.
+   */
+  refreshToken?: string;
   priority?: number;
   weight?: number;
   prefix?: string;

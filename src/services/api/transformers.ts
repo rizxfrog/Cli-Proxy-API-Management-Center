@@ -130,6 +130,9 @@ const normalizeProviderKeyConfig = (item: unknown): ProviderKeyConfig | null => 
   if (!trimmed) return null;
 
   const config: ProviderKeyConfig = { apiKey: trimmed };
+  const refreshToken = record?.['refresh-token'];
+  const refreshTokenTrimmed = typeof refreshToken === 'string' ? refreshToken.trim() : '';
+  if (refreshTokenTrimmed) config.refreshToken = refreshTokenTrimmed;
   const weight = readCredentialWeight(record?.weight);
   if (weight !== undefined) config.weight = weight;
   const priority = record?.priority;
@@ -381,6 +384,13 @@ export const normalizeConfigResponse = (raw: unknown): Config => {
   const codebuddyAiList = raw['codebuddy-ai-api-key'];
   if (Array.isArray(codebuddyAiList)) {
     config.codebuddyAiApiKeys = codebuddyAiList
+      .map((item) => normalizeProviderKeyConfig(item))
+      .filter(Boolean) as ProviderKeyConfig[];
+  }
+
+  const xiaohuanxiongList = raw['xiaohuanxiong-api-key'];
+  if (Array.isArray(xiaohuanxiongList)) {
+    config.xiaohuanxiongApiKeys = xiaohuanxiongList
       .map((item) => normalizeProviderKeyConfig(item))
       .filter(Boolean) as ProviderKeyConfig[];
   }

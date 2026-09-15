@@ -18,7 +18,8 @@ export type ProviderBrand =
   | 'apikeyFun'
   | 'fennoAI'
   | 'qiniuCloud'
-  | 'kimi';
+  | 'kimi'
+  | 'xiaohuanxiong';
 
 export type SponsorProviderBrand = 'apikeyFun' | 'fennoAI' | 'qiniuCloud' | 'kimi';
 
@@ -35,6 +36,7 @@ export type ProviderResourceSelector =
   | { brand: 'xai'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'codebuddyCn'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'codebuddyAi'; apiKey: string; baseUrl?: string; index: number }
+  | { brand: 'xiaohuanxiong'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'claude'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'vertex'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'openaiCompatibility'; name: string; index: number }
@@ -178,6 +180,8 @@ export interface CloakInput {
 export interface ProviderEntryFormInput {
   /** OpenAI 创建时只在 apiKeyEntries 中传 */
   apiKey: string;
+  /** Xiaohuanxiong only: enables automatic access-token rotation. */
+  refreshToken?: string;
   /** OpenAI 必填,其余 brand 不展示 */
   name: string;
   baseUrl: string;

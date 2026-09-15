@@ -404,7 +404,8 @@
     "quota_refresh_single": "Обновить квоту",
     "quota_refresh_hint": "Обновить квоту только для этих учётных данных",
     "quota_refresh_success": "Квота для \"{{name}}\" обновлена",
-    "quota_refresh_failed": "Не удалось обновить квоту для \"{{name}}\": {{message}}"
+    "quota_refresh_failed": "Не удалось обновить квоту для \"{{name}}\": {{message}}",
+    "filter_xiaohuanxiong": "Xiaohuanxiong (Raccoon)"
   },
   "antigravity_subscription": {
     "plan_unknown": "Неизвестно",
@@ -900,7 +901,18 @@
     "iflow_oauth_status_error": "Ошибка аутентификации:",
     "iflow_oauth_start_error": "Не удалось запустить iFlow OAuth:",
     "iflow_oauth_polling_error": "Не удалось проверить статус аутентификации:",
-    "remote_access_disabled": "Этот способ входа недоступен при удалённом доступе. Подключитесь с localhost."
+    "remote_access_disabled": "Этот способ входа недоступен при удалённом доступе. Подключитесь с localhost.",
+    "xiaohuanxiong_oauth_title": "Xiaohuanxiong (SenseTime Raccoon) OAuth",
+    "xiaohuanxiong_oauth_button": "Войти в Xiaohuanxiong",
+    "xiaohuanxiong_oauth_hint": "Войдите на сайте Xiaohuanxiong. Страница перенаправит на ссылку office-raccoon://, которую браузер не может передать прокси, поэтому скопируйте полный адрес из адресной строки и вставьте его ниже в течение пяти минут.",
+    "xiaohuanxiong_oauth_url_label": "Ссылка авторизации:",
+    "xiaohuanxiong_copy_link": "Копировать ссылку",
+    "xiaohuanxiong_open_link": "Открыть ссылку",
+    "xiaohuanxiong_oauth_status_waiting": "Ожидание вставленной ссылки обратного вызова…",
+    "xiaohuanxiong_oauth_status_success": "Аутентификация успешна!",
+    "xiaohuanxiong_oauth_status_error": "Ошибка аутентификации:",
+    "xiaohuanxiong_oauth_start_error": "Не удалось запустить OAuth Xiaohuanxiong:",
+    "xiaohuanxiong_oauth_polling_error": "Не удалось проверить статус аутентификации:"
   },
   "stats": {
     "success": "Успех",
@@ -1662,7 +1674,8 @@
       "apikeyFun": "APIKEY.FUN",
       "fennoAI": "FennoAI",
       "qiniuCloud": "Qiniu Cloud",
-      "kimi": "Kimi"
+      "kimi": "Kimi",
+      "xiaohuanxiong": "Xiaohuanxiong (Raccoon)"
     },
     "table": {
       "key": "Ключ",
@@ -1848,7 +1861,13 @@
         "baseUrlRequired": "Base URL обязателен",
         "weightInteger": "Вес планирования должен быть целым числом",
         "weightMax": "Вес планирования не может превышать {{max}}"
-      }
+      },
+      "refreshToken": "Токен обновления",
+      "refreshTokenHint": "Необязательно. Шлюз выдаёт краткоживущие токены доступа, поэтому токен обновления включает автоматическую ротацию через /api/web/auth/v1/refresh без повторного входа в браузере.",
+      "refreshTokenCreatePlaceholder": "Вставьте токен обновления (необязательно)",
+      "refreshTokenEditPlaceholder": "Оставьте пустым, чтобы сохранить текущий токен обновления",
+      "showRefreshToken": "Показать токен обновления",
+      "hideRefreshToken": "Скрыть токен обновления"
     },
     "delete": {
       "title": "Удалить ресурс",

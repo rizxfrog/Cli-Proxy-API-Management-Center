@@ -30,6 +30,10 @@ export const TYPE_COLORS: Record<string, TypeColorSet> = {
     light: { bg: '#e8f4ff', text: '#155e9b' },
     dark: { bg: '#123b5d', text: '#8dc9f5' },
   },
+  xiaohuanxiong: {
+    light: { bg: '#ece9fb', text: '#4b3aa8' },
+    dark: { bg: '#2f2670', text: '#b7aef2' },
+  },
   kimi: {
     light: { bg: '#dce8ff', text: '#0560cf' },
     dark: { bg: '#003880', text: '#70b5ff' },
