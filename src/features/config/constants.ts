@@ -122,6 +122,7 @@ export const FIELD_VALUE_KEYS: Record<string, readonly string[]> = {
   debug: ['debug'],
   commercialMode: ['commercialMode'],
   loggingToFile: ['loggingToFile'],
+  metricsEnabled: ['metricsEnabled'],
   logsMaxTotalSizeMb: ['logsMaxTotalSizeMb'],
   errorLogsMaxFiles: ['errorLogsMaxFiles'],
   redisUsageQueueRetentionSeconds: ['redisUsageQueueRetentionSeconds'],

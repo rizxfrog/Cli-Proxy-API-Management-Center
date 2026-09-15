@@ -46,6 +46,15 @@ export function SectionLogging({
             />
           </FieldAnchor>
           <LoggingToFileToggle values={values} disabled={disabled} onChange={onChange} />
+          <FieldAnchor fieldId="metricsEnabled">
+            <ToggleRow
+              title={t('config_management.visual.sections.system.metrics_enabled')}
+              description={t('config_management.visual.sections.system.metrics_enabled_desc')}
+              checked={values.metricsEnabled}
+              disabled={disabled}
+              onChange={(metricsEnabled) => onChange({ metricsEnabled })}
+            />
+          </FieldAnchor>
         </FieldGrid>
 
         <FieldGrid>

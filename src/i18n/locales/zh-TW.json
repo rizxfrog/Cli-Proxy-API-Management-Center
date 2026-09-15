@@ -1123,6 +1123,8 @@
           "commercial_mode_desc": "停用高開銷中介軟體以支援高並行",
           "logging_to_file": "寫入記錄檔",
           "logging_to_file_desc": "將記錄儲存到檔案",
+          "metrics_enabled": "啟用 Prometheus 監控",
+          "metrics_enabled_desc": "重新啟動後開放受保護的 /metrics 介面。請在後端環境中設定 CLIPROXY_METRICS_TOKEN。",
           "plugins_enabled": "啟用插件系統",
           "plugins_enabled_desc": "啟用標準動態庫插件載入；具體插件實例仍在插件管理頁啟停",
           "plugin_store_sources": "第三方插件源",

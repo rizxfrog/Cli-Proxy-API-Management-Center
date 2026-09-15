@@ -238,6 +238,13 @@ export const CONFIG_FIELD_SEARCH_INDEX: ConfigFieldSearchEntry[] = [
     yamlKeys: ['logging-to-file'],
   },
   {
+    fieldId: 'metricsEnabled',
+    sectionId: 'logging',
+    labelKey: L('sections.system.metrics_enabled'),
+    hintKey: L('sections.system.metrics_enabled_desc'),
+    yamlKeys: ['metrics-enabled'],
+  },
+  {
     fieldId: 'logsMaxTotalSizeMb',
     sectionId: 'logging',
     labelKey: L('sections.system.logs_max_size'),

@@ -1097,6 +1097,8 @@
           "commercial_mode_desc": "禁用高开销中间件以支持高并发",
           "logging_to_file": "写入日志文件",
           "logging_to_file_desc": "将日志保存到文件",
+          "metrics_enabled": "启用 Prometheus 监控",
+          "metrics_enabled_desc": "重启后开放受保护的 /metrics 接口。请在后端环境中设置 CLIPROXY_METRICS_TOKEN。",
           "plugins_enabled": "启用插件系统",
           "plugins_enabled_desc": "启用标准动态库插件加载；具体插件实例仍在插件管理页启停",
           "plugin_store_sources": "第三方插件源",

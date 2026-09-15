@@ -1099,6 +1099,8 @@
           "commercial_mode_desc": "Disable high-overhead middleware to support high concurrency",
           "logging_to_file": "Log to File",
           "logging_to_file_desc": "Save logs to files",
+          "metrics_enabled": "Enable Prometheus Metrics",
+          "metrics_enabled_desc": "Expose the protected /metrics endpoint after restart. Set CLIPROXY_METRICS_TOKEN in the backend environment.",
           "plugins_enabled": "Enable Plugin System",
           "plugins_enabled_desc": "Enable standard dynamic-library plugin loading; individual plugin instances are still managed on the Plugins page",
           "plugin_store_sources": "Third-party Plugin Sources",

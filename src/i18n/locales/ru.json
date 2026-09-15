@@ -1102,6 +1102,8 @@
           "commercial_mode_desc": "Отключить тяжёлое промежуточное ПО для поддержки высокой нагрузки",
           "logging_to_file": "Журналировать в файл",
           "logging_to_file_desc": "Сохранять журналы в файлы",
+          "metrics_enabled": "Включить метрики Prometheus",
+          "metrics_enabled_desc": "После перезапуска открыть защищённый endpoint /metrics. Укажите CLIPROXY_METRICS_TOKEN в окружении backend.",
           "plugins_enabled": "Включить систему плагинов",
           "plugins_enabled_desc": "Включает загрузку стандартных dynamic-library плагинов; отдельные экземпляры управляются на странице плагинов",
           "plugin_store_sources": "Сторонние источники плагинов",
