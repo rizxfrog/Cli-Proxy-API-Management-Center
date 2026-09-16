@@ -15,6 +15,7 @@ import codebuddyLogo from '@/assets/icons/codebuddy.svg';
 import kimiLightLogo from '@/assets/icons/kimi-light.svg';
 import kimiDarkLogo from '@/assets/icons/kimi-dark.svg';
 import xiaohuanxiongLogo from '@/assets/icons/xiaohuanxiong.svg';
+import codeArtsLogo from '@/assets/icons/codearts.svg';
 import type { ProviderBrand } from './types';
 
 export interface ProviderBrandLogo {
@@ -42,6 +43,7 @@ export const PROVIDER_LOGOS: Record<ProviderBrandLogoKey, ProviderBrandLogo> = {
   fennoAI: { src: fennoAILogo, transparent: true },
   qiniuCloud: { src: qiniuCloudLogo, transparent: true },
   xiaohuanxiong: { src: xiaohuanxiongLogo },
+  codearts: { src: codeArtsLogo },
   kimi: {
     src: kimiDarkLogo,
     darkSrc: kimiLightLogo,

@@ -34,6 +34,10 @@ export const TYPE_COLORS: Record<string, TypeColorSet> = {
     light: { bg: '#ece9fb', text: '#4b3aa8' },
     dark: { bg: '#2f2670', text: '#b7aef2' },
   },
+  codearts: {
+    light: { bg: '#fde7e9', text: '#a8071a' },
+    dark: { bg: '#5c0f16', text: '#ffb3b8' },
+  },
   kimi: {
     light: { bg: '#dce8ff', text: '#0560cf' },
     dark: { bg: '#003880', text: '#70b5ff' },

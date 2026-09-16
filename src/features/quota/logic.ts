@@ -6,6 +6,7 @@
 import type { AuthFileItem } from '@/types';
 import { ANTIGRAVITY_CONFIG } from './providers/antigravity/data';
 import { CLAUDE_CONFIG } from './providers/claude/data';
+import { CODEARTS_CONFIG } from './providers/codearts/data';
 import { CODEBUDDY_CONFIG } from './providers/codebuddy/data';
 import { CODEX_CONFIG } from './providers/codex/data';
 import { DEVIN_CONFIG } from './providers/devin/data';
@@ -18,6 +19,7 @@ import { QUOTA_TAB_ORDER, type QuotaSortMode, type QuotaTabId } from './constant
 const QUOTA_FILTER_MAP: Record<QuotaProviderType, (file: AuthFileItem) => boolean> = {
   antigravity: ANTIGRAVITY_CONFIG.filterFn,
   claude: CLAUDE_CONFIG.filterFn,
+  codearts: CODEARTS_CONFIG.filterFn,
   codebuddy: CODEBUDDY_CONFIG.filterFn,
   codex: CODEX_CONFIG.filterFn,
   devin: DEVIN_CONFIG.filterFn,

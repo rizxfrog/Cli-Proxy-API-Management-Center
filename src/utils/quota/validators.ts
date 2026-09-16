@@ -40,6 +40,10 @@ export function isCodeBuddyFile(file: AuthFileItem): boolean {
   return provider === 'codebuddy-cn' || provider === 'codebuddy-ai';
 }
 
+export function isCodeArtsFile(file: AuthFileItem): boolean {
+  return resolveAuthProvider(file) === 'codearts';
+}
+
 export function isCodeBuddyAiFile(file: AuthFileItem): boolean {
   return resolveAuthProvider(file) === 'codebuddy-ai';
 }

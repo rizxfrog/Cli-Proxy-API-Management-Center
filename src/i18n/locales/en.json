@@ -402,7 +402,8 @@
     "quota_refresh_hint": "Refresh quota only for this credential",
     "quota_refresh_success": "Quota refreshed for \"{{name}}\"",
     "quota_refresh_failed": "Failed to refresh quota for \"{{name}}\": {{message}}",
-    "filter_xiaohuanxiong": "Xiaohuanxiong (Raccoon)"
+    "filter_xiaohuanxiong": "Xiaohuanxiong (Raccoon)",
+    "filter_codearts": "CodeArts (Huawei)"
   },
   "antigravity_subscription": {
     "plan_unknown": "Unknown",
@@ -909,7 +910,18 @@
     "xiaohuanxiong_oauth_status_success": "Authentication succeeded!",
     "xiaohuanxiong_oauth_status_error": "Authentication failed:",
     "xiaohuanxiong_oauth_start_error": "Failed to start Xiaohuanxiong OAuth:",
-    "xiaohuanxiong_oauth_polling_error": "Failed to check authentication status:"
+    "xiaohuanxiong_oauth_polling_error": "Failed to check authentication status:",
+    "codearts_oauth_title": "CodeArts (Huawei Cloud) OAuth",
+    "codearts_oauth_button": "Sign in to CodeArts",
+    "codearts_oauth_hint": "Sign in on the CodeArts portal. The page redirects to a 127.0.0.1 loopback URL owned by the desktop client, so copy the full address from the address bar and paste it below within five minutes.",
+    "codearts_oauth_url_label": "Authorization link:",
+    "codearts_copy_link": "Copy link",
+    "codearts_open_link": "Open link",
+    "codearts_oauth_status_waiting": "Waiting for the pasted callback link...",
+    "codearts_oauth_status_success": "Authentication succeeded!",
+    "codearts_oauth_status_error": "Authentication failed:",
+    "codearts_oauth_start_error": "Failed to start CodeArts OAuth:",
+    "codearts_oauth_polling_error": "Failed to check authentication status:"
   },
   "stats": {
     "success": "Success",
@@ -1683,7 +1695,8 @@
       "fennoAI": "FennoAI",
       "qiniuCloud": "Qiniu Cloud",
       "kimi": "Kimi",
-      "xiaohuanxiong": "Xiaohuanxiong (Raccoon)"
+      "xiaohuanxiong": "Xiaohuanxiong (Raccoon)",
+      "codearts": "CodeArts (Huawei)"
     },
     "table": {
       "key": "Key",
@@ -1875,7 +1888,20 @@
       "refreshTokenCreatePlaceholder": "Paste the refresh token (optional)",
       "refreshTokenEditPlaceholder": "Leave empty to keep the current refresh token",
       "showRefreshToken": "Show refresh token",
-      "hideRefreshToken": "Hide refresh token"
+      "hideRefreshToken": "Hide refresh token",
+      "secretKey": "Secret access key",
+      "secretKeyHint": "The temporary Huawei Cloud secret access key (secret_access_key) returned by the OAuth login flow. CodeArts signs every request with it.",
+      "secretKeyCreatePlaceholder": "Paste the secret access key",
+      "secretKeyEditPlaceholder": "Leave empty to keep the current secret key",
+      "showSecretKey": "Show secret key",
+      "hideSecretKey": "Hide secret key",
+      "securityToken": "Security token",
+      "securityTokenHint": "The temporary Huawei Cloud security token (X-Security-Token). Required when the credential is session-based; leave empty for a permanent AK/SK pair.",
+      "securityTokenCreatePlaceholder": "Paste the security token (optional)",
+      "securityTokenEditPlaceholder": "Leave empty to keep the current security token",
+      "showSecurityToken": "Show security token",
+      "hideSecurityToken": "Hide security token",
+      "codeartsRefreshTokenHint": "Optional. Enables automatic rotation of the temporary AK/SK/security-token triple through Huawei Cloud STS."
     },
     "delete": {
       "title": "Delete resource",
@@ -1971,5 +1997,23 @@
     "success": "Qwen Web account saved.",
     "manage": "Manage authentication files",
     "failed": "Unable to save this session. Check the Cookie/token or email and password, and confirm that your server can reach Qwen. Complete any account activation or CAPTCHA on chat.qwen.ai, then import the session. This requires a backend with Web login support."
+  },
+  "codearts_quota": {
+    "title": "CodeArts Quota",
+    "empty_title": "No CodeArts Auth Files",
+    "empty_desc": "Sign in to Huawei Cloud CodeArts to view remaining credits.",
+    "idle": "Click here to refresh quota",
+    "loading": "Loading quota...",
+    "load_failed": "Failed to load quota: {{message}}",
+    "missing_auth_index": "Auth file missing auth_index",
+    "empty_data": "No quota data available",
+    "invalid_credential": "CodeArts credential is invalid or expired",
+    "quota_error": "CodeArts quota query error",
+    "no_package": "Connected, but no quota package found.",
+    "plan_label": "Billing",
+    "plan_credits": "Credits billing",
+    "total_credits": "Total credits",
+    "daily_tokens": "Daily tokens",
+    "monthly_tokens": "Monthly tokens"
   }
 }

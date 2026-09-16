@@ -15,6 +15,7 @@ import iconQwen from '@/assets/icons/qwen.svg';
 import iconTrae from '@/assets/icons/trae.png';
 import iconVertex from '@/assets/icons/vertex.svg';
 import iconXiaohuanxiong from '@/assets/icons/xiaohuanxiong.svg';
+import iconCodeArts from '@/assets/icons/codearts.svg';
 import type { AuthFileItem, ResolvedTheme, ThemeColors } from '@/types';
 import { normalizeOAuthProviderKey } from '@/utils/providerKeys';
 import { parseTimestamp } from '@/utils/timestamp';
@@ -72,6 +73,8 @@ export const AUTH_FILE_MANUAL_REFRESH_PROVIDERS = new Set([
   'codex',
   'kimi',
   'xai',
+  // CodeArts rotates a temporary Huawei Cloud credential triple.
+  'codearts',
 ]);
 
 // 标签类型颜色配置：权威版本在 @/utils/quota/constants.ts，此处仅转发
@@ -80,6 +83,7 @@ export { TYPE_COLORS } from '@/utils/quota';
 export const AUTH_FILE_ICONS: Record<string, AuthFileIconAsset> = {
   antigravity: iconAntigravity,
   xiaohuanxiong: iconXiaohuanxiong,
+  codearts: iconCodeArts,
   trae: iconTrae,
   aistudio: iconGemini,
   claude: iconClaude,

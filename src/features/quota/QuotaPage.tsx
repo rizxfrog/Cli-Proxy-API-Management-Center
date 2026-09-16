@@ -135,6 +135,7 @@ export function QuotaPage() {
   // than crashing at runtime.
   const antigravityQuota = useQuotaStore((state) => state.antigravityQuota);
   const claudeQuota = useQuotaStore((state) => state.claudeQuota);
+  const codeArtsQuota = useQuotaStore((state) => state.codeArtsQuota);
   const codebuddyQuota = useQuotaStore((state) => state.codebuddyQuota);
   const codexQuota = useQuotaStore((state) => state.codexQuota);
   const devinQuota = useQuotaStore((state) => state.devinQuota);
@@ -158,6 +159,7 @@ export function QuotaPage() {
       ({
         antigravity: antigravityQuota,
         claude: claudeQuota,
+        codearts: codeArtsQuota,
         codebuddy: codebuddyQuota,
         codex: codexQuota,
         devin: { ...devinSnapshots, ...devinQuota },
@@ -168,6 +170,7 @@ export function QuotaPage() {
     [
       antigravityQuota,
       claudeQuota,
+      codeArtsQuota,
       codebuddyQuota,
       codexQuota,
       devinQuota,

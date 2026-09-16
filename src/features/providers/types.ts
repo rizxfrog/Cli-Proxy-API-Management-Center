@@ -19,7 +19,8 @@ export type ProviderBrand =
   | 'fennoAI'
   | 'qiniuCloud'
   | 'kimi'
-  | 'xiaohuanxiong';
+  | 'xiaohuanxiong'
+  | 'codearts';
 
 export type SponsorProviderBrand = 'apikeyFun' | 'fennoAI' | 'qiniuCloud' | 'kimi';
 
@@ -37,6 +38,7 @@ export type ProviderResourceSelector =
   | { brand: 'codebuddyCn'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'codebuddyAi'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'xiaohuanxiong'; apiKey: string; baseUrl?: string; index: number }
+  | { brand: 'codearts'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'claude'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'vertex'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'openaiCompatibility'; name: string; index: number }
@@ -182,6 +184,10 @@ export interface ProviderEntryFormInput {
   apiKey: string;
   /** Xiaohuanxiong only: enables automatic access-token rotation. */
   refreshToken?: string;
+  /** CodeArts only: the Huawei Cloud secret access key of the temporary triple. */
+  secretKey?: string;
+  /** CodeArts only: the Huawei Cloud security token (X-Security-Token). */
+  securityToken?: string;
   /** OpenAI 必填,其余 brand 不展示 */
   name: string;
   baseUrl: string;

@@ -67,6 +67,7 @@ function providerKeyToResource(
     | 'codebuddyCn'
     | 'codebuddyAi'
     | 'xiaohuanxiong'
+    | 'codearts'
     | 'claude'
     | 'vertex',
   config: GeminiKeyConfig | ProviderKeyConfig,
@@ -145,6 +146,10 @@ export function xiaohuanxiongToResource(
   index: number
 ): ProviderResource {
   return providerKeyToResource('xiaohuanxiong', config, index);
+}
+
+export function codeArtsToResource(config: ProviderKeyConfig, index: number): ProviderResource {
+  return providerKeyToResource('codearts', config, index);
 }
 
 export function claudeToResource(config: ProviderKeyConfig, index: number): ProviderResource {

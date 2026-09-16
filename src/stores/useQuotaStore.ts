@@ -7,6 +7,7 @@ import { getQuotaCacheFileName } from '@/utils/quota/identity';
 import type {
   AntigravityQuotaState,
   ClaudeQuotaState,
+  CodeArtsQuotaState,
   CodeBuddyQuotaState,
   CodexQuotaState,
   DevinQuotaState,
@@ -22,6 +23,7 @@ interface QuotaStoreState {
   fileGenerations: Record<string, number>;
   antigravityQuota: Record<string, AntigravityQuotaState>;
   claudeQuota: Record<string, ClaudeQuotaState>;
+  codeArtsQuota: Record<string, CodeArtsQuotaState>;
   codebuddyQuota: Record<string, CodeBuddyQuotaState>;
   codexQuota: Record<string, CodexQuotaState>;
   devinQuota: Record<string, DevinQuotaState>;
@@ -30,6 +32,7 @@ interface QuotaStoreState {
   xaiQuota: Record<string, XaiQuotaState>;
   setAntigravityQuota: (updater: QuotaUpdater<Record<string, AntigravityQuotaState>>) => void;
   setClaudeQuota: (updater: QuotaUpdater<Record<string, ClaudeQuotaState>>) => void;
+  setCodeArtsQuota: (updater: QuotaUpdater<Record<string, CodeArtsQuotaState>>) => void;
   setCodebuddyQuota: (updater: QuotaUpdater<Record<string, CodeBuddyQuotaState>>) => void;
   setCodexQuota: (updater: QuotaUpdater<Record<string, CodexQuotaState>>) => void;
   setDevinQuota: (updater: QuotaUpdater<Record<string, DevinQuotaState>>) => void;
@@ -51,6 +54,7 @@ export const useQuotaStore = create<QuotaStoreState>((set) => ({
   fileGenerations: {},
   antigravityQuota: {},
   claudeQuota: {},
+  codeArtsQuota: {},
   codebuddyQuota: {},
   codexQuota: {},
   devinQuota: {},
@@ -64,6 +68,10 @@ export const useQuotaStore = create<QuotaStoreState>((set) => ({
   setClaudeQuota: (updater) =>
     set((state) => ({
       claudeQuota: resolveUpdater(updater, state.claudeQuota),
+    })),
+  setCodeArtsQuota: (updater) =>
+    set((state) => ({
+      codeArtsQuota: resolveUpdater(updater, state.codeArtsQuota),
     })),
   setCodebuddyQuota: (updater) =>
     set((state) => ({
@@ -111,6 +119,7 @@ export const useQuotaStore = create<QuotaStoreState>((set) => ({
           fileGenerations,
           antigravityQuota: omitNames(state.antigravityQuota),
           claudeQuota: omitNames(state.claudeQuota),
+          codeArtsQuota: omitNames(state.codeArtsQuota),
           codebuddyQuota: omitNames(state.codebuddyQuota),
           codexQuota: omitNames(state.codexQuota),
           devinQuota: omitNames(state.devinQuota),
@@ -124,6 +133,7 @@ export const useQuotaStore = create<QuotaStoreState>((set) => ({
         fileGenerations: {},
         antigravityQuota: {},
         claudeQuota: {},
+        codeArtsQuota: {},
         codebuddyQuota: {},
         codexQuota: {},
         devinQuota: {},

@@ -125,7 +125,7 @@ export function collectQuotaRowInstants(
     return collectRows(buckets, 'bucket');
   }
 
-  if (provider === 'kimi' || provider === 'codebuddy' || provider === 'trae') {
+  if (provider === 'kimi' || provider === 'codebuddy' || provider === 'trae' || provider === 'codearts') {
     return collectRows((quota as { rows?: WindowLike[] }).rows ?? [], 'row');
   }
 

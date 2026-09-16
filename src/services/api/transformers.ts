@@ -133,6 +133,14 @@ const normalizeProviderKeyConfig = (item: unknown): ProviderKeyConfig | null => 
   const refreshToken = record?.['refresh-token'];
   const refreshTokenTrimmed = typeof refreshToken === 'string' ? refreshToken.trim() : '';
   if (refreshTokenTrimmed) config.refreshToken = refreshTokenTrimmed;
+  // CodeArts stores a Huawei Cloud AK/SK/security-token triple instead of a
+  // single bearer key.
+  const secretKey = record?.['secret-key'];
+  const secretKeyTrimmed = typeof secretKey === 'string' ? secretKey.trim() : '';
+  if (secretKeyTrimmed) config.secretKey = secretKeyTrimmed;
+  const securityToken = record?.['security-token'];
+  const securityTokenTrimmed = typeof securityToken === 'string' ? securityToken.trim() : '';
+  if (securityTokenTrimmed) config.securityToken = securityTokenTrimmed;
   const weight = readCredentialWeight(record?.weight);
   if (weight !== undefined) config.weight = weight;
   const priority = record?.priority;
@@ -391,6 +399,13 @@ export const normalizeConfigResponse = (raw: unknown): Config => {
   const xiaohuanxiongList = raw['xiaohuanxiong-api-key'];
   if (Array.isArray(xiaohuanxiongList)) {
     config.xiaohuanxiongApiKeys = xiaohuanxiongList
+      .map((item) => normalizeProviderKeyConfig(item))
+      .filter(Boolean) as ProviderKeyConfig[];
+  }
+
+  const codeartsList = raw['codearts-api-key'];
+  if (Array.isArray(codeartsList)) {
+    config.codeartsApiKeys = codeartsList
       .map((item) => normalizeProviderKeyConfig(item))
       .filter(Boolean) as ProviderKeyConfig[];
   }

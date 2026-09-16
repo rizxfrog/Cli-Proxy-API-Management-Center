@@ -400,7 +400,8 @@
     "quota_refresh_hint": "仅刷新该认证文件的额度",
     "quota_refresh_success": "已刷新 \"{{name}}\" 的额度",
     "quota_refresh_failed": "刷新 \"{{name}}\" 的额度失败：{{message}}",
-    "filter_xiaohuanxiong": "商汤小浣熊"
+    "filter_xiaohuanxiong": "商汤小浣熊",
+    "filter_codearts": "华为云 CodeArts"
   },
   "antigravity_subscription": {
     "plan_unknown": "未知",
@@ -907,7 +908,18 @@
     "xiaohuanxiong_oauth_status_success": "认证成功！",
     "xiaohuanxiong_oauth_status_error": "认证失败：",
     "xiaohuanxiong_oauth_start_error": "启动商汤小浣熊 OAuth 失败：",
-    "xiaohuanxiong_oauth_polling_error": "检查认证状态失败："
+    "xiaohuanxiong_oauth_polling_error": "检查认证状态失败：",
+    "codearts_oauth_title": "华为云 CodeArts OAuth",
+    "codearts_oauth_button": "登录华为云 CodeArts",
+    "codearts_oauth_hint": "在 CodeArts 门户完成登录。页面会跳转到桌面客户端持有的 127.0.0.1 回环地址，浏览器无法直接交给代理，请复制地址栏中的完整链接并在五分钟内提交到下方。",
+    "codearts_oauth_url_label": "授权链接：",
+    "codearts_copy_link": "复制链接",
+    "codearts_open_link": "打开链接",
+    "codearts_oauth_status_waiting": "等待粘贴回调链接…",
+    "codearts_oauth_status_success": "认证成功！",
+    "codearts_oauth_status_error": "认证失败：",
+    "codearts_oauth_start_error": "启动华为云 CodeArts OAuth 失败：",
+    "codearts_oauth_polling_error": "检查认证状态失败："
   },
   "stats": {
     "success": "成功",
@@ -1681,7 +1693,8 @@
       "fennoAI": "FennoAI",
       "qiniuCloud": "七牛云",
       "kimi": "Kimi",
-      "xiaohuanxiong": "商汤小浣熊"
+      "xiaohuanxiong": "商汤小浣熊",
+      "codearts": "华为云 CodeArts"
     },
     "table": {
       "key": "密钥",
@@ -1873,7 +1886,20 @@
       "refreshTokenCreatePlaceholder": "粘贴刷新令牌（可选）",
       "refreshTokenEditPlaceholder": "留空表示保留当前刷新令牌",
       "showRefreshToken": "显示刷新令牌",
-      "hideRefreshToken": "隐藏刷新令牌"
+      "hideRefreshToken": "隐藏刷新令牌",
+      "secretKey": "秘密访问密钥",
+      "secretKeyHint": "OAuth 登录流程返回的华为云临时秘密访问密钥（secret_access_key），CodeArts 使用它对每个请求签名。",
+      "secretKeyCreatePlaceholder": "粘贴秘密访问密钥",
+      "secretKeyEditPlaceholder": "留空表示保留当前秘密密钥",
+      "showSecretKey": "显示秘密密钥",
+      "hideSecretKey": "隐藏秘密密钥",
+      "securityToken": "安全令牌",
+      "securityTokenHint": "华为云临时安全令牌（X-Security-Token）。会话凭证必填；永久 AK/SK 可留空。",
+      "securityTokenCreatePlaceholder": "粘贴安全令牌（可选）",
+      "securityTokenEditPlaceholder": "留空表示保留当前安全令牌",
+      "showSecurityToken": "显示安全令牌",
+      "hideSecurityToken": "隐藏安全令牌",
+      "codeartsRefreshTokenHint": "可选。通过华为云 STS 自动轮换临时 AK/SK/安全令牌三元组。"
     },
     "delete": {
       "title": "删除资源",
@@ -1969,5 +1995,23 @@
     "success": "Qwen Web 账号已保存。",
     "manage": "管理认证文件",
     "failed": "未能保存会话。请检查 Cookie/Token 或邮箱密码，并确认服务器能够访问 Qwen。如需账号激活或验证码，请先在 chat.qwen.ai 完成后导入会话。后端必须支持 Web登录功能。"
+  },
+  "codearts_quota": {
+    "title": "CodeArts 额度",
+    "empty_title": "没有 CodeArts 凭证",
+    "empty_desc": "登录华为云 CodeArts 后即可查看剩余积分。",
+    "idle": "点击此处刷新额度",
+    "loading": "正在加载额度…",
+    "load_failed": "额度加载失败：{{message}}",
+    "missing_auth_index": "凭证缺少 auth_index",
+    "empty_data": "暂无额度数据",
+    "invalid_credential": "CodeArts 凭证无效或已过期",
+    "quota_error": "CodeArts 额度查询出错",
+    "no_package": "已连接，但未找到额度套餐。",
+    "plan_label": "计费",
+    "plan_credits": "积分计费",
+    "total_credits": "总积分",
+    "daily_tokens": "每日 token",
+    "monthly_tokens": "每月 token"
   }
 }

@@ -405,7 +405,8 @@
     "quota_refresh_hint": "Обновить квоту только для этих учётных данных",
     "quota_refresh_success": "Квота для \"{{name}}\" обновлена",
     "quota_refresh_failed": "Не удалось обновить квоту для \"{{name}}\": {{message}}",
-    "filter_xiaohuanxiong": "Xiaohuanxiong (Raccoon)"
+    "filter_xiaohuanxiong": "Xiaohuanxiong (Raccoon)",
+    "filter_codearts": "CodeArts (Huawei)"
   },
   "antigravity_subscription": {
     "plan_unknown": "Неизвестно",
@@ -912,7 +913,18 @@
     "xiaohuanxiong_oauth_status_success": "Аутентификация успешна!",
     "xiaohuanxiong_oauth_status_error": "Ошибка аутентификации:",
     "xiaohuanxiong_oauth_start_error": "Не удалось запустить OAuth Xiaohuanxiong:",
-    "xiaohuanxiong_oauth_polling_error": "Не удалось проверить статус аутентификации:"
+    "xiaohuanxiong_oauth_polling_error": "Не удалось проверить статус аутентификации:",
+    "codearts_oauth_title": "CodeArts (Huawei Cloud) OAuth",
+    "codearts_oauth_button": "Войти в CodeArts",
+    "codearts_oauth_hint": "Войдите на портале CodeArts. Страница перенаправляет на loopback-адрес 127.0.0.1, принадлежащий настольному клиенту, поэтому скопируйте полный адрес из адресной строки и вставьте его ниже в течение пяти минут.",
+    "codearts_oauth_url_label": "Ссылка авторизации:",
+    "codearts_copy_link": "Копировать ссылку",
+    "codearts_open_link": "Открыть ссылку",
+    "codearts_oauth_status_waiting": "Ожидание вставленной ссылки обратного вызова...",
+    "codearts_oauth_status_success": "Аутентификация прошла успешно!",
+    "codearts_oauth_status_error": "Ошибка аутентификации:",
+    "codearts_oauth_start_error": "Не удалось запустить CodeArts OAuth:",
+    "codearts_oauth_polling_error": "Не удалось проверить статус аутентификации:"
   },
   "stats": {
     "success": "Успех",
@@ -1677,7 +1689,8 @@
       "fennoAI": "FennoAI",
       "qiniuCloud": "Qiniu Cloud",
       "kimi": "Kimi",
-      "xiaohuanxiong": "Xiaohuanxiong (Raccoon)"
+      "xiaohuanxiong": "Xiaohuanxiong (Raccoon)",
+      "codearts": "CodeArts (Huawei)"
     },
     "table": {
       "key": "Ключ",
@@ -1869,7 +1882,20 @@
       "refreshTokenCreatePlaceholder": "Вставьте токен обновления (необязательно)",
       "refreshTokenEditPlaceholder": "Оставьте пустым, чтобы сохранить текущий токен обновления",
       "showRefreshToken": "Показать токен обновления",
-      "hideRefreshToken": "Скрыть токен обновления"
+      "hideRefreshToken": "Скрыть токен обновления",
+      "secretKey": "Секретный ключ доступа",
+      "secretKeyHint": "Временный секретный ключ доступа Huawei Cloud (secret_access_key), полученный при входе. CodeArts подписывает им каждый запрос.",
+      "secretKeyCreatePlaceholder": "Вставьте секретный ключ доступа",
+      "secretKeyEditPlaceholder": "Оставьте пустым, чтобы сохранить текущий ключ",
+      "showSecretKey": "Показать секретный ключ",
+      "hideSecretKey": "Скрыть секретный ключ",
+      "securityToken": "Токен безопасности",
+      "securityTokenHint": "Временный токен безопасности Huawei Cloud (X-Security-Token). Обязателен для сессионных учётных данных; для постоянной пары AK/SK можно оставить пустым.",
+      "securityTokenCreatePlaceholder": "Вставьте токен безопасности (необязательно)",
+      "securityTokenEditPlaceholder": "Оставьте пустым, чтобы сохранить текущий токен",
+      "showSecurityToken": "Показать токен безопасности",
+      "hideSecurityToken": "Скрыть токен безопасности",
+      "codeartsRefreshTokenHint": "Необязательно. Включает автоматическую ротацию временной тройки AK/SK/токен безопасности через Huawei Cloud STS."
     },
     "delete": {
       "title": "Удалить ресурс",
@@ -1965,5 +1991,23 @@
     "success": "Аккаунт Qwen Web сохранён.",
     "manage": "Управление файлами авторизации",
     "failed": "Не удалось сохранить сеанс. Проверьте Cookie/токен или email и пароль, а также доступность Qwen с сервера. Пройдите активацию или CAPTCHA на chat.qwen.ai и импортируйте сеанс. Сервер должен поддерживать веб-вход."
+  },
+  "codearts_quota": {
+    "title": "Квота CodeArts",
+    "empty_title": "Нет файлов CodeArts",
+    "empty_desc": "Войдите в Huawei Cloud CodeArts, чтобы увидеть оставшиеся кредиты.",
+    "idle": "Нажмите, чтобы обновить квоту",
+    "loading": "Загрузка квоты...",
+    "load_failed": "Не удалось загрузить квоту: {{message}}",
+    "missing_auth_index": "В файле отсутствует auth_index",
+    "empty_data": "Данные о квоте недоступны",
+    "invalid_credential": "Учётные данные CodeArts недействительны или истекли",
+    "quota_error": "Ошибка запроса квоты CodeArts",
+    "no_package": "Подключено, но пакет квоты не найден.",
+    "plan_label": "Тарификация",
+    "plan_credits": "Оплата кредитами",
+    "total_credits": "Всего кредитов",
+    "daily_tokens": "Токены в день",
+    "monthly_tokens": "Токены в месяц"
   }
 }

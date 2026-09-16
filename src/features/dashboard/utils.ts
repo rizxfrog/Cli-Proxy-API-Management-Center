@@ -17,6 +17,7 @@ const PROVIDER_LABELS: Record<string, string> = {
   iflow: 'iFlow',
   antigravity: 'Antigravity',
   xiaohuanxiong: 'Xiaohuanxiong',
+  codearts: 'CodeArts',
 };
 
 /**

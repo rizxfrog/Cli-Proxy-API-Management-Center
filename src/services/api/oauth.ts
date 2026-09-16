@@ -18,7 +18,8 @@ export type BuiltInOAuthProvider =
   | 'xai'
   | 'trae'
   | 'devin'
-  | 'xiaohuanxiong';
+  | 'xiaohuanxiong'
+  | 'codearts';
 
 export interface OAuthStartResponse {
   url: string;
@@ -111,4 +112,17 @@ export const oauthApi = {
       machine_id: machineId,
       device_id: deviceId,
     }),
+
+  /**
+   * CodeArts redirects to a loopback URL (http://127.0.0.1:<port>/oauth/callback)
+   * rather than a deep link, so the proxy never receives the authorization code
+   * directly. The dedicated endpoint binds the pasted callback to the pending
+   * session server-side and accepts the full callback URL or a bare code.
+   */
+  submitCodeArtsCallback: (state: string, redirectUrl: string, signal?: AbortSignal) =>
+    apiClient.post<OAuthCallbackResponse>(
+      '/codearts-auth-callback',
+      { state, redirect_url: redirectUrl },
+      signal ? { signal } : undefined
+    ),
 };

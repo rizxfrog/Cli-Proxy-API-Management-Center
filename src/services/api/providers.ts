@@ -38,6 +38,14 @@ const XAI_KEY_FIELDS = CODEX_KEY_FIELDS;
 const CODEBUDDY_CN_KEY_FIELDS = PROVIDER_COMMON_KEY_FIELDS;
 // Xiaohuanxiong carries refresh-token in addition to the common key fields.
 const XIAOHUANXIONG_KEY_FIELDS = [...PROVIDER_COMMON_KEY_FIELDS, 'refresh-token'] as const;
+// CodeArts carries the Huawei Cloud secret-key / security-token triple and an
+// optional refresh-token alongside the common key fields.
+const CODEARTS_KEY_FIELDS = [
+  ...PROVIDER_COMMON_KEY_FIELDS,
+  'secret-key',
+  'security-token',
+  'refresh-token',
+] as const;
 const CODEBUDDY_AI_KEY_FIELDS = PROVIDER_COMMON_KEY_FIELDS;
 const CLAUDE_KEY_FIELDS = [
   ...PROVIDER_COMMON_KEY_FIELDS,
@@ -329,6 +337,8 @@ const serializeApiKeyEntry = (entry: ApiKeyEntry) => {
 const serializeProviderKey = (config: ProviderKeyConfig) => {
   const payload: Record<string, unknown> = { 'api-key': config.apiKey };
   if (config.refreshToken?.trim()) payload['refresh-token'] = config.refreshToken.trim();
+  if (config.secretKey?.trim()) payload['secret-key'] = config.secretKey.trim();
+  if (config.securityToken?.trim()) payload['security-token'] = config.securityToken.trim();
   if (config.priority !== undefined) payload.priority = config.priority;
   if (config.weight !== undefined) payload.weight = config.weight;
   if (config.prefix?.trim()) payload.prefix = config.prefix.trim();
@@ -580,6 +590,30 @@ export const providersApi = {
 
   deleteXiaohuanxiongConfig: (apiKey: string, baseUrl?: string) =>
     apiClient.delete(`/xiaohuanxiong-api-key${buildProviderDeleteQuery(apiKey, baseUrl)}`),
+
+  createCodeArtsConfig: (config: ProviderKeyConfig) =>
+    mutateLatestProviderList('codearts-api-key', (latestItems) =>
+      appendLatestProviderRecord(latestItems, serializeProviderKey(config), (raw, payload) =>
+        mergeProviderKeyPayload(raw, payload, CODEARTS_KEY_FIELDS)
+      )
+    ),
+
+  updateCodeArtsConfig: (
+    apiKey: string,
+    baseUrl: string | undefined,
+    config: ProviderKeyConfig
+  ) =>
+    mutateLatestProviderList('codearts-api-key', (latestItems) =>
+      replaceLatestProviderRecord(
+        latestItems,
+        (record) => matchesProviderKey(record, apiKey, baseUrl),
+        serializeProviderKey(config),
+        (raw, payload) => mergeProviderKeyPayload(raw, payload, CODEARTS_KEY_FIELDS)
+      )
+    ),
+
+  deleteCodeArtsConfig: (apiKey: string, baseUrl?: string) =>
+    apiClient.delete(`/codearts-api-key${buildProviderDeleteQuery(apiKey, baseUrl)}`),
 
   createClaudeConfig: (config: ProviderKeyConfig) =>
     mutateLatestProviderList('claude-api-key', (latestItems) =>

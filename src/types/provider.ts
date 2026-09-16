@@ -47,6 +47,13 @@ export interface ProviderKeyConfig {
    * issues short-lived JWT access tokens alongside a long-lived refresh token.
    */
   refreshToken?: string;
+  /**
+   * CodeArts only. CodeArts authenticates with a temporary Huawei Cloud
+   * AK/SK/security-token triple (returned by the OAuth flow) rather than a
+   * bearer token, and signs every request with SDK-HMAC-SHA256.
+   */
+  secretKey?: string;
+  securityToken?: string;
   priority?: number;
   weight?: number;
   prefix?: string;

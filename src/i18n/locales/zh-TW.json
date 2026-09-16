@@ -400,7 +400,8 @@
     "quota_refresh_hint": "僅重新整理該驗證檔案的配額",
     "quota_refresh_success": "已重新整理「{{name}}」的配額",
     "quota_refresh_failed": "重新整理「{{name}}」的配額失敗：{{message}}",
-    "filter_xiaohuanxiong": "商湯小浣熊"
+    "filter_xiaohuanxiong": "商湯小浣熊",
+    "filter_codearts": "華為雲 CodeArts"
   },
   "antigravity_subscription": {
     "plan_unknown": "未知",
@@ -933,7 +934,18 @@
     "xiaohuanxiong_oauth_status_success": "認證成功！",
     "xiaohuanxiong_oauth_status_error": "認證失敗：",
     "xiaohuanxiong_oauth_start_error": "啟動商湯小浣熊 OAuth 失敗：",
-    "xiaohuanxiong_oauth_polling_error": "檢查認證狀態失敗："
+    "xiaohuanxiong_oauth_polling_error": "檢查認證狀態失敗：",
+    "codearts_oauth_title": "華為雲 CodeArts OAuth",
+    "codearts_oauth_button": "登入華為雲 CodeArts",
+    "codearts_oauth_hint": "在 CodeArts 入口網站完成登入。頁面會跳轉到桌面客戶端持有的 127.0.0.1 回送位址，瀏覽器無法直接交給代理，請複製網址列中的完整連結並在五分鐘內提交到下方。",
+    "codearts_oauth_url_label": "授權連結：",
+    "codearts_copy_link": "複製連結",
+    "codearts_open_link": "開啟連結",
+    "codearts_oauth_status_waiting": "等待貼上回呼連結…",
+    "codearts_oauth_status_success": "認證成功！",
+    "codearts_oauth_status_error": "認證失敗：",
+    "codearts_oauth_start_error": "啟動華為雲 CodeArts OAuth 失敗：",
+    "codearts_oauth_polling_error": "檢查認證狀態失敗："
   },
   "stats": {
     "success": "成功",
@@ -1707,7 +1719,8 @@
       "fennoAI": "FennoAI",
       "qiniuCloud": "七牛雲",
       "kimi": "Kimi",
-      "xiaohuanxiong": "商湯小浣熊"
+      "xiaohuanxiong": "商湯小浣熊",
+      "codearts": "華為雲 CodeArts"
     },
     "table": {
       "key": "金鑰",
@@ -1899,7 +1912,20 @@
       "refreshTokenCreatePlaceholder": "貼上重新整理權杖（選填）",
       "refreshTokenEditPlaceholder": "留空表示保留目前重新整理權杖",
       "showRefreshToken": "顯示重新整理權杖",
-      "hideRefreshToken": "隱藏重新整理權杖"
+      "hideRefreshToken": "隱藏重新整理權杖",
+      "secretKey": "秘密存取金鑰",
+      "secretKeyHint": "OAuth 登入流程回傳的華為雲臨時秘密存取金鑰（secret_access_key），CodeArts 使用它為每個請求簽章。",
+      "secretKeyCreatePlaceholder": "貼上秘密存取金鑰",
+      "secretKeyEditPlaceholder": "留空表示保留目前秘密金鑰",
+      "showSecretKey": "顯示秘密金鑰",
+      "hideSecretKey": "隱藏秘密金鑰",
+      "securityToken": "安全權杖",
+      "securityTokenHint": "華為雲臨時安全權杖（X-Security-Token）。工作階段憑證必填；永久 AK/SK 可留空。",
+      "securityTokenCreatePlaceholder": "貼上安全權杖（選填）",
+      "securityTokenEditPlaceholder": "留空表示保留目前安全權杖",
+      "showSecurityToken": "顯示安全權杖",
+      "hideSecurityToken": "隱藏安全權杖",
+      "codeartsRefreshTokenHint": "選填。透過華為雲 STS 自動輪換臨時 AK/SK/安全權杖三元組。"
     },
     "delete": {
       "title": "刪除資源",
@@ -1995,5 +2021,23 @@
     "success": "Qwen Web 帳號已儲存。",
     "manage": "管理認證檔案",
     "failed": "無法儲存工作階段。請檢查 Cookie/Token 或電子郵件密碼，並確認伺服器能夠存取 Qwen。如需啟用帳號或驗證碼，請先在 chat.qwen.ai 完成後匯入工作階段。後端必須支援 Web登入功能。"
+  },
+  "codearts_quota": {
+    "title": "CodeArts 額度",
+    "empty_title": "沒有 CodeArts 憑證",
+    "empty_desc": "登入華為雲 CodeArts 後即可檢視剩餘積分。",
+    "idle": "點擊此處重新整理額度",
+    "loading": "正在載入額度…",
+    "load_failed": "額度載入失敗：{{message}}",
+    "missing_auth_index": "憑證缺少 auth_index",
+    "empty_data": "暫無額度資料",
+    "invalid_credential": "CodeArts 憑證無效或已過期",
+    "quota_error": "CodeArts 額度查詢出錯",
+    "no_package": "已連線，但未找到額度套餐。",
+    "plan_label": "計費",
+    "plan_credits": "積分計費",
+    "total_credits": "總積分",
+    "daily_tokens": "每日 token",
+    "monthly_tokens": "每月 token"
   }
 }

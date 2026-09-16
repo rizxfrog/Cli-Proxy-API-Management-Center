@@ -530,3 +530,21 @@ export interface TraeQuotaState {
   error?: string;
   errorStatus?: number;
 }
+
+/** One CodeArts usage meter (aggregate balance, daily, or monthly window). */
+export interface CodeArtsQuotaRow {
+  id: string;
+  label?: string;
+  used: number;
+  total: number;
+  /** Reset instant in epoch ms; null when the window carried no expiry. */
+  resetAtMs?: number | null;
+}
+
+export interface CodeArtsQuotaState {
+  status: 'idle' | 'loading' | 'success' | 'error';
+  plan?: string | null;
+  rows: CodeArtsQuotaRow[];
+  error?: string;
+  errorStatus?: number;
+}
