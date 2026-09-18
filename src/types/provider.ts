@@ -54,6 +54,11 @@ export interface ProviderKeyConfig {
    */
   secretKey?: string;
   securityToken?: string;
+  /**
+   * Qoder CN only. Sent as the Cosy-MachineId header. The official client uses a
+   * plain UUID generated once per install; leaving it empty omits the header.
+   */
+  machineId?: string;
   priority?: number;
   weight?: number;
   prefix?: string;

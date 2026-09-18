@@ -47,6 +47,13 @@ const CODEARTS_KEY_FIELDS = [
   'refresh-token',
 ] as const;
 const CODEBUDDY_AI_KEY_FIELDS = PROVIDER_COMMON_KEY_FIELDS;
+// QoderCn carries a machine-id (Cosy-MachineId) and an optional refresh-token in
+// addition to the common key fields.
+const QODER_CN_KEY_FIELDS = [
+  ...PROVIDER_COMMON_KEY_FIELDS,
+  'machine-id',
+  'refresh-token',
+] as const;
 const CLAUDE_KEY_FIELDS = [
   ...PROVIDER_COMMON_KEY_FIELDS,
   'cloak',
@@ -339,6 +346,7 @@ const serializeProviderKey = (config: ProviderKeyConfig) => {
   if (config.refreshToken?.trim()) payload['refresh-token'] = config.refreshToken.trim();
   if (config.secretKey?.trim()) payload['secret-key'] = config.secretKey.trim();
   if (config.securityToken?.trim()) payload['security-token'] = config.securityToken.trim();
+  if (config.machineId?.trim()) payload['machine-id'] = config.machineId.trim();
   if (config.priority !== undefined) payload.priority = config.priority;
   if (config.weight !== undefined) payload.weight = config.weight;
   if (config.prefix?.trim()) payload.prefix = config.prefix.trim();
@@ -566,6 +574,26 @@ export const providersApi = {
 
   deleteCodeBuddyAIConfig: (apiKey: string, baseUrl?: string) =>
     apiClient.delete(`/codebuddy-ai-api-key${buildProviderDeleteQuery(apiKey, baseUrl)}`),
+
+  createQoderCNConfig: (config: ProviderKeyConfig) =>
+    mutateLatestProviderList('qoder-cn-api-key', (latestItems) =>
+      appendLatestProviderRecord(latestItems, serializeProviderKey(config), (raw, payload) =>
+        mergeProviderKeyPayload(raw, payload, QODER_CN_KEY_FIELDS)
+      )
+    ),
+
+  updateQoderCNConfig: (apiKey: string, baseUrl: string | undefined, config: ProviderKeyConfig) =>
+    mutateLatestProviderList('qoder-cn-api-key', (latestItems) =>
+      replaceLatestProviderRecord(
+        latestItems,
+        (record) => matchesProviderKey(record, apiKey, baseUrl),
+        serializeProviderKey(config),
+        (raw, payload) => mergeProviderKeyPayload(raw, payload, QODER_CN_KEY_FIELDS)
+      )
+    ),
+
+  deleteQoderCNConfig: (apiKey: string, baseUrl?: string) =>
+    apiClient.delete(`/qoder-cn-api-key${buildProviderDeleteQuery(apiKey, baseUrl)}`),
 
   createXiaohuanxiongConfig: (config: ProviderKeyConfig) =>
     mutateLatestProviderList('xiaohuanxiong-api-key', (latestItems) =>

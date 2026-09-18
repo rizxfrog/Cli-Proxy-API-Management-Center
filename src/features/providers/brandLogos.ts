@@ -16,6 +16,7 @@ import kimiLightLogo from '@/assets/icons/kimi-light.svg';
 import kimiDarkLogo from '@/assets/icons/kimi-dark.svg';
 import xiaohuanxiongLogo from '@/assets/icons/xiaohuanxiong.svg';
 import codeArtsLogo from '@/assets/icons/codearts.svg';
+import qoderLogo from '@/assets/icons/qoder.svg';
 import type { ProviderBrand } from './types';
 
 export interface ProviderBrandLogo {
@@ -37,6 +38,7 @@ export const PROVIDER_LOGOS: Record<ProviderBrandLogoKey, ProviderBrandLogo> = {
   xai: { src: xaiLightLogo, darkSrc: xaiDarkLogo, transparent: true },
   codebuddyCn: { src: codebuddyLogo },
   codebuddyAi: { src: codebuddyLogo },
+  qoderCn: { src: qoderLogo },
   vertex: { src: vertexLogo },
   openaiCompatibility: { src: openaiLightLogo, darkSrc: openaiDarkLogo, transparent: true },
   apikeyFun: { src: apikeyFunLogo },

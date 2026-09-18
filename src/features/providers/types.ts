@@ -12,6 +12,7 @@ export type ProviderBrand =
   | 'xai'
   | 'codebuddyCn'
   | 'codebuddyAi'
+  | 'qoderCn'
   | 'claude'
   | 'vertex'
   | 'openaiCompatibility'
@@ -37,6 +38,7 @@ export type ProviderResourceSelector =
   | { brand: 'xai'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'codebuddyCn'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'codebuddyAi'; apiKey: string; baseUrl?: string; index: number }
+  | { brand: 'qoderCn'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'xiaohuanxiong'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'codearts'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'claude'; apiKey: string; baseUrl?: string; index: number }
@@ -184,6 +186,8 @@ export interface ProviderEntryFormInput {
   apiKey: string;
   /** Xiaohuanxiong only: enables automatic access-token rotation. */
   refreshToken?: string;
+  /** Qoder CN only: the Cosy-MachineId sent with every inference request. */
+  machineId?: string;
   /** CodeArts only: the Huawei Cloud secret access key of the temporary triple. */
   secretKey?: string;
   /** CodeArts only: the Huawei Cloud security token (X-Security-Token). */

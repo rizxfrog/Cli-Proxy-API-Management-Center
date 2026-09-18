@@ -19,6 +19,7 @@ import {
   claudeToResource,
   codebuddyCnToResource,
   codebuddyAiToResource,
+  qoderCnToResource,
   codexToResource,
   fennoAIToResource,
   geminiToResource,
@@ -167,6 +168,7 @@ const buildProviderKeyConfig = (
     | 'xai'
     | 'codebuddyCn'
     | 'codebuddyAi'
+    | 'qoderCn'
     | 'xiaohuanxiong'
     | 'codearts'
     | 'claude'
@@ -206,6 +208,14 @@ const buildProviderKeyConfig = (
     const stored = existing as ProviderKeyConfig | undefined;
     next.secretKey = input.secretKey?.trim() || stored?.secretKey || undefined;
     next.securityToken = input.securityToken?.trim() || stored?.securityToken || undefined;
+    const refreshToken = input.refreshToken?.trim();
+    next.refreshToken = refreshToken || stored?.refreshToken || undefined;
+  }
+  if (brand === 'qoderCn') {
+    // The machine id is a stable per-install UUID sent as Cosy-MachineId. A blank
+    // field on edit keeps the stored value, exactly like apiKey.
+    const stored = existing as ProviderKeyConfig | undefined;
+    next.machineId = input.machineId?.trim() || stored?.machineId || undefined;
     const refreshToken = input.refreshToken?.trim();
     next.refreshToken = refreshToken || stored?.refreshToken || undefined;
   }
@@ -429,6 +439,11 @@ export const buildProviderGroups = (config: Config): ProviderGroup[] =>
       case 'codebuddyAi':
         resources = (config.codebuddyAiApiKeys ?? []).map((item, index) =>
           codebuddyAiToResource(item, index)
+        );
+        break;
+      case 'qoderCn':
+        resources = (config.qoderCnApiKeys ?? []).map((item, index) =>
+          qoderCnToResource(item, index)
         );
         break;
       case 'xiaohuanxiong':
@@ -718,6 +733,10 @@ export function useProviderWorkbench(): UseProviderWorkbenchResult {
           await providersApi.createCodeArtsConfig(
             buildProviderKeyConfig('codearts', input) as ProviderKeyConfig
           );
+        } else if (brand === 'qoderCn') {
+          await providersApi.createQoderCNConfig(
+            buildProviderKeyConfig('qoderCn', input) as ProviderKeyConfig
+          );
         } else if (brand === 'claude') {
           await providersApi.createClaudeConfig(
             buildProviderKeyConfig('claude', input) as ProviderKeyConfig
@@ -806,6 +825,13 @@ export function useProviderWorkbench(): UseProviderWorkbenchResult {
             selector.baseUrl,
             buildProviderKeyConfig('codearts', input, existing) as ProviderKeyConfig
           );
+        } else if (brand === 'qoderCn' && selector.brand === 'qoderCn') {
+          const existing = resource.raw as ProviderKeyConfig;
+          await providersApi.updateQoderCNConfig(
+            selector.apiKey,
+            selector.baseUrl,
+            buildProviderKeyConfig('qoderCn', input, existing) as ProviderKeyConfig
+          );
         } else if (brand === 'claude' && selector.brand === 'claude') {
           const existing = resource.raw as ProviderKeyConfig;
           await providersApi.updateClaudeConfig(
@@ -871,6 +897,10 @@ export function useProviderWorkbench(): UseProviderWorkbenchResult {
           await providersApi.deleteCodeBuddyAIConfig(sel.apiKey, sel.baseUrl);
           const next = (config?.codebuddyAiApiKeys ?? []).filter((_, i) => i !== sel.index);
           updateConfigValue('codebuddy-ai-api-key', next);
+        } else if (sel.brand === 'qoderCn') {
+          await providersApi.deleteQoderCNConfig(sel.apiKey, sel.baseUrl);
+          const next = (config?.qoderCnApiKeys ?? []).filter((_, i) => i !== sel.index);
+          updateConfigValue('qoder-cn-api-key', next);
         } else if (sel.brand === 'xiaohuanxiong') {
           await providersApi.deleteXiaohuanxiongConfig(sel.apiKey, sel.baseUrl);
           const next = (config?.xiaohuanxiongApiKeys ?? []).filter((_, i) => i !== sel.index);
@@ -955,6 +985,7 @@ export function useProviderWorkbench(): UseProviderWorkbenchResult {
           (brand === 'xai' && selector.brand === 'xai') ||
           (brand === 'codebuddyCn' && selector.brand === 'codebuddyCn') ||
           (brand === 'codebuddyAi' && selector.brand === 'codebuddyAi') ||
+          (brand === 'qoderCn' && selector.brand === 'qoderCn') ||
           (brand === 'claude' && selector.brand === 'claude') ||
           (brand === 'vertex' && selector.brand === 'vertex')
         ) {
@@ -971,6 +1002,8 @@ export function useProviderWorkbench(): UseProviderWorkbenchResult {
             await providersApi.updateCodeBuddyCNConfig(selector.apiKey, selector.baseUrl, next);
           } else if (selector.brand === 'codebuddyAi') {
             await providersApi.updateCodeBuddyAIConfig(selector.apiKey, selector.baseUrl, next);
+          } else if (selector.brand === 'qoderCn') {
+            await providersApi.updateQoderCNConfig(selector.apiKey, selector.baseUrl, next);
           } else if (selector.brand === 'claude') {
             await providersApi.updateClaudeConfig(selector.apiKey, selector.baseUrl, next);
           } else if (selector.brand === 'vertex') {

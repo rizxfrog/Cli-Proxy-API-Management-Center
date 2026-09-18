@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Qoder CN provider logo.
+
+  This is a neutral placeholder mark (a stylised "Q" monogram) created for the
+  Qoder CN provider entry. It intentionally uses the provider's purple accent so
+  the Workbench list stays visually distinguishable from the CodeBuddy (blue) and
+  CodeArts (red) entries. Replace with an official asset if one becomes
+  available; nothing depends on the exact artwork.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="Qoder CN">
+  <title>Qoder CN</title>
+  <defs>
+    <linearGradient id="qoderCnGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#6D28D9"/>
+    </linearGradient>
+  </defs>
+  <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#qoderCnGradient)"/>
+  <path
+    d="M16 7.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17zm0 3.4a5.1 5.1 0 1 1 0 10.2 5.1 5.1 0 0 1 0-10.2z"
+    fill="#FFFFFF"/>
+  <path d="M19.6 18.4l4.4 4.4-2.4 2.4-4.4-4.4z" fill="#FFFFFF"/>
+</svg>

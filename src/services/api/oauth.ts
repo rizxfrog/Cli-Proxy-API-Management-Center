@@ -15,6 +15,7 @@ export type BuiltInOAuthProvider =
   | 'kimi'
   | 'codebuddy-cn'
   | 'codebuddy-ai'
+  | 'qoder-cn'
   | 'xai'
   | 'trae'
   | 'devin'

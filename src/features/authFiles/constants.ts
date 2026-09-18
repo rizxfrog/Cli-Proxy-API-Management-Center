@@ -2,6 +2,7 @@ import type { TFunction } from 'i18next';
 import iconAntigravity from '@/assets/icons/antigravity.svg';
 import iconClaude from '@/assets/icons/claude.svg';
 import iconCodebuddy from '@/assets/icons/codebuddy.svg';
+import iconQoder from '@/assets/icons/qoder.svg';
 import iconCodex from '@/assets/icons/codex.svg';
 import iconDevin from '@/assets/icons/devin.svg';
 import iconDevinDark from '@/assets/icons/devin-dark.svg';
@@ -89,6 +90,7 @@ export const AUTH_FILE_ICONS: Record<string, AuthFileIconAsset> = {
   claude: iconClaude,
   'codebuddy-cn': iconCodebuddy,
   'codebuddy-ai': iconCodebuddy,
+  'qoder-cn': iconQoder,
   codex: iconCodex,
   devin: { light: iconDevin, dark: iconDevinDark },
   gemini: iconGemini,

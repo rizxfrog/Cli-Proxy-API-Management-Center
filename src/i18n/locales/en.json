@@ -919,7 +919,8 @@
     "codearts_oauth_status_success": "Authentication succeeded!",
     "codearts_oauth_status_error": "Authentication failed:",
     "codearts_oauth_start_error": "Failed to start CodeArts OAuth:",
-    "codearts_oauth_polling_error": "Failed to check authentication status:"
+    "codearts_oauth_polling_error": "Failed to check authentication status:",
+    "qoder_cn_oauth_title": "Qoder CN OAuth"
   },
   "stats": {
     "success": "Success",
@@ -1883,6 +1884,10 @@
       },
       "refreshToken": "Refresh token",
       "refreshTokenHint": "Optional. The gateway issues short-lived access tokens, so a refresh token enables automatic rotation through /api/web/auth/v1/refresh without a new browser sign-in.",
+      "machineId": "Machine ID",
+      "machineIdHint": "Optional. Sent as the Cosy-MachineId header. The official client uses a stable per-install UUID; leave empty to omit the header.",
+      "machineIdEditPlaceholder": "Leave empty to keep the current machine ID",
+      "machineIdCreatePlaceholder": "Paste the machine ID (optional)",
       "refreshTokenCreatePlaceholder": "Paste the refresh token (optional)",
       "refreshTokenEditPlaceholder": "Leave empty to keep the current refresh token",
       "showRefreshToken": "Show refresh token",

@@ -943,7 +943,8 @@
     "codearts_oauth_status_success": "認證成功！",
     "codearts_oauth_status_error": "認證失敗：",
     "codearts_oauth_start_error": "啟動華為雲 CodeArts OAuth 失敗：",
-    "codearts_oauth_polling_error": "檢查認證狀態失敗："
+    "codearts_oauth_polling_error": "檢查認證狀態失敗：",
+    "qoder_cn_oauth_title": "Qoder CN 登入"
   },
   "stats": {
     "success": "成功",
@@ -1907,6 +1908,10 @@
       },
       "refreshToken": "重新整理權杖",
       "refreshTokenHint": "選填。閘道簽發的是短期存取權杖，提供重新整理權杖後可透過 /api/web/auth/v1/refresh 自動續期，無需重新網頁登入。",
+      "machineId": "機器識別碼",
+      "machineIdHint": "選填。作為 Cosy-MachineId 請求標頭送出。官方用戶端使用每次安裝產生的固定 UUID；留空則不送出該標頭。",
+      "machineIdEditPlaceholder": "留空則保留目前機器識別碼",
+      "machineIdCreatePlaceholder": "貼上機器識別碼（選填）",
       "refreshTokenCreatePlaceholder": "貼上重新整理權杖（選填）",
       "refreshTokenEditPlaceholder": "留空表示保留目前重新整理權杖",
       "showRefreshToken": "顯示重新整理權杖",

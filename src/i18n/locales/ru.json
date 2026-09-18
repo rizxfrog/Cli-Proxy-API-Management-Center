@@ -922,7 +922,8 @@
     "codearts_oauth_status_success": "Аутентификация прошла успешно!",
     "codearts_oauth_status_error": "Ошибка аутентификации:",
     "codearts_oauth_start_error": "Не удалось запустить CodeArts OAuth:",
-    "codearts_oauth_polling_error": "Не удалось проверить статус аутентификации:"
+    "codearts_oauth_polling_error": "Не удалось проверить статус аутентификации:",
+    "qoder_cn_oauth_title": "Qoder CN OAuth"
   },
   "stats": {
     "success": "Успех",
@@ -1877,6 +1878,10 @@
       },
       "refreshToken": "Токен обновления",
       "refreshTokenHint": "Необязательно. Шлюз выдаёт краткоживущие токены доступа, поэтому токен обновления включает автоматическую ротацию через /api/web/auth/v1/refresh без повторного входа в браузере.",
+      "machineId": "Идентификатор машины",
+      "machineIdHint": "Необязательно. Отправляется в заголовке Cosy-MachineId. Официальный клиент использует постоянный UUID, созданный при установке; оставьте пустым, чтобы не отправлять заголовок.",
+      "machineIdEditPlaceholder": "Оставьте пустым, чтобы сохранить текущий идентификатор",
+      "machineIdCreatePlaceholder": "Вставьте идентификатор машины (необязательно)",
       "refreshTokenCreatePlaceholder": "Вставьте токен обновления (необязательно)",
       "refreshTokenEditPlaceholder": "Оставьте пустым, чтобы сохранить текущий токен обновления",
       "showRefreshToken": "Показать токен обновления",

@@ -141,6 +141,10 @@ const normalizeProviderKeyConfig = (item: unknown): ProviderKeyConfig | null => 
   const securityToken = record?.['security-token'];
   const securityTokenTrimmed = typeof securityToken === 'string' ? securityToken.trim() : '';
   if (securityTokenTrimmed) config.securityToken = securityTokenTrimmed;
+  // Qoder CN stores a stable per-install UUID sent as the Cosy-MachineId header.
+  const machineId = record?.['machine-id'];
+  const machineIdTrimmed = typeof machineId === 'string' ? machineId.trim() : '';
+  if (machineIdTrimmed) config.machineId = machineIdTrimmed;
   const weight = readCredentialWeight(record?.weight);
   if (weight !== undefined) config.weight = weight;
   const priority = record?.priority;
@@ -392,6 +396,13 @@ export const normalizeConfigResponse = (raw: unknown): Config => {
   const codebuddyAiList = raw['codebuddy-ai-api-key'];
   if (Array.isArray(codebuddyAiList)) {
     config.codebuddyAiApiKeys = codebuddyAiList
+      .map((item) => normalizeProviderKeyConfig(item))
+      .filter(Boolean) as ProviderKeyConfig[];
+  }
+
+  const qoderCnList = raw['qoder-cn-api-key'];
+  if (Array.isArray(qoderCnList)) {
+    config.qoderCnApiKeys = qoderCnList
       .map((item) => normalizeProviderKeyConfig(item))
       .filter(Boolean) as ProviderKeyConfig[];
   }

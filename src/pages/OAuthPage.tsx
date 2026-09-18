@@ -23,6 +23,7 @@ import iconAntigravity from '@/assets/icons/antigravity.svg';
 import iconKimiLight from '@/assets/icons/kimi-light.svg';
 import iconKimiDark from '@/assets/icons/kimi-dark.svg';
 import iconCodeBuddy from '@/assets/icons/codebuddy.svg';
+import iconQoder from '@/assets/icons/qoder.svg';
 import iconTrae from '@/assets/icons/trae.png';
 import iconXiaohuanxiong from '@/assets/icons/xiaohuanxiong.svg';
 import iconCodeArts from '@/assets/icons/codearts.svg';
@@ -109,6 +110,12 @@ const PROVIDERS: BuiltInOAuthProviderCard[] = [
     id: 'codebuddy-ai',
     titleKey: 'auth_login.codebuddy_ai_oauth_title',
     icon: iconCodeBuddy,
+  },
+  {
+    kind: 'builtin',
+    id: 'qoder-cn',
+    titleKey: 'auth_login.qoder_cn_oauth_title',
+    icon: iconQoder,
   },
   {
     kind: 'builtin',

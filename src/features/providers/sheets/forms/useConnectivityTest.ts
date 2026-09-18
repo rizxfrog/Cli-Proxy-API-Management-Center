@@ -290,11 +290,13 @@ export function useConnectivityTest(
       brand !== 'codex' &&
       brand !== 'xai' &&
       brand !== 'codebuddyCn' &&
-      brand !== 'codebuddyAi'
+      brand !== 'codebuddyAi' &&
+      brand !== 'qoderCn'
     )
       return;
 
-    const isCodeBuddyChat = brand === 'codebuddyCn' || brand === 'codebuddyAi';
+    const isCodeBuddyChat =
+      brand === 'codebuddyCn' || brand === 'codebuddyAi' || brand === 'qoderCn';
     const trimmedBase = baseUrl.trim();
     if (!trimmedBase) {
       setCodexStatus({ state: 'error', message: messages.baseUrlRequired });

@@ -63,6 +63,8 @@ const CODEBUDDY_CN_API_BASE_URL = 'https://copilot.tencent.com/v2/chat/completio
 const CODEBUDDY_AI_API_BASE_URL = 'https://www.codebuddy.ai/v2/chat/completions';
 const XIAOHUANXIONG_API_BASE_URL = 'https://xiaohuanxiong.com/api/web/llm/v2';
 const CODEARTS_API_BASE_URL = 'https://snap-access.cn-north-4.myhuaweicloud.com/api/v2';
+// The Qoder model-server origin. The executor appends /model/v1/chat/completions.
+const QODER_CN_API_BASE_URL = 'https://api2-v2.qoder.sh';
 
 const stripDisableAllRule = (list?: string[]): string[] =>
   (list ?? []).filter((s) => s.trim() !== '*');
@@ -83,7 +85,9 @@ function buildInitialForm(
     return {
       apiKey: '',
       name: '',
-      refreshToken: brand === 'xiaohuanxiong' || brand === 'codearts' ? '' : undefined,
+      refreshToken:
+        brand === 'xiaohuanxiong' || brand === 'codearts' || brand === 'qoderCn' ? '' : undefined,
+      machineId: brand === 'qoderCn' ? '' : undefined,
       secretKey: brand === 'codearts' ? '' : undefined,
       securityToken: brand === 'codearts' ? '' : undefined,
       baseUrl:
@@ -97,7 +101,9 @@ function buildInitialForm(
                 ? XIAOHUANXIONG_API_BASE_URL
                 : brand === 'codearts'
                   ? CODEARTS_API_BASE_URL
-                  : '',
+                  : brand === 'qoderCn'
+                    ? QODER_CN_API_BASE_URL
+                    : '',
       proxyUrl: '',
       prefix: '',
       disabled: false,
@@ -118,6 +124,7 @@ function buildInitialForm(
         brand === 'xai' ||
         brand === 'codebuddyCn' ||
         brand === 'codebuddyAi' ||
+        brand === 'qoderCn' ||
         brand === 'xiaohuanxiong' ||
         brand === 'codearts' ||
         isClaudeLikeBrand(brand) ||
@@ -180,6 +187,7 @@ function buildInitialForm(
     apiKey: '',
     name: '',
     refreshToken: '',
+    machineId: brand === 'qoderCn' ? '' : undefined,
     secretKey: brand === 'codearts' ? '' : undefined,
     securityToken: brand === 'codearts' ? '' : undefined,
     baseUrl: cfg.baseUrl ?? '',
@@ -223,6 +231,7 @@ function buildInitialForm(
       brand === 'xai' ||
       brand === 'codebuddyCn' ||
       brand === 'codebuddyAi' ||
+      brand === 'qoderCn' ||
       brand === 'xiaohuanxiong' ||
       brand === 'codearts' ||
       isClaudeLikeBrand(brand) ||
@@ -514,11 +523,16 @@ export function BaseProviderForm({
     brand === 'xai' ||
     brand === 'codebuddyCn' ||
     brand === 'codebuddyAi' ||
+    brand === 'qoderCn' ||
     isClaudeLikeBrand(brand) ||
     brand === 'openaiCompatibility';
   const supportsModelImage = brand === 'openaiCompatibility';
   const singleConnectivity =
-    brand === 'codex' || brand === 'xai' || brand === 'codebuddyCn' || brand === 'codebuddyAi'
+    brand === 'codex' ||
+    brand === 'xai' ||
+    brand === 'codebuddyCn' ||
+    brand === 'codebuddyAi' ||
+    brand === 'qoderCn'
       ? { status: connectivity.codexStatus, run: connectivity.runCodex }
       : brand === 'gemini' || brand === 'interactions'
         ? { status: connectivity.geminiStatus, run: connectivity.runGemini }
@@ -647,6 +661,28 @@ export function BaseProviderForm({
               </button>
             </div>
             <p className={styles.hint}>{t('providersPage.form.refreshTokenHint')}</p>
+          </div>
+        ) : null}
+
+        {brand === 'qoderCn' ? (
+          <div className={styles.field}>
+            <label className={styles.label} htmlFor={`${fid}-machineId`}>
+              {t('providersPage.form.machineId')}
+            </label>
+            <input
+              id={`${fid}-machineId`}
+              className={styles.input}
+              type="text"
+              value={form.machineId ?? ''}
+              onChange={(e) => updateField('machineId', e.target.value)}
+              placeholder={
+                mode === 'edit'
+                  ? t('providersPage.form.machineIdEditPlaceholder')
+                  : t('providersPage.form.machineIdCreatePlaceholder')
+              }
+              disabled={mutating}
+            />
+            <p className={styles.hint}>{t('providersPage.form.machineIdHint')}</p>
           </div>
         ) : null}
 
