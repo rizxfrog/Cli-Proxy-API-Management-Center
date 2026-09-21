@@ -31,8 +31,19 @@ export type AuthFileModelItem = {
 };
 export type AuthFileIconAsset = string | { light: string; dark: string };
 
+// NOTE: this union duplicates the canonical QuotaProviderType in
+// @/features/quota/providers/types. It is kept local for historical reasons and
+// has drifted (it omits 'codearts'); new providers must be added to BOTH.
 export type QuotaProviderType =
-  'antigravity' | 'claude' | 'codebuddy' | 'codex' | 'devin' | 'kimi' | 'trae' | 'xai';
+  | 'antigravity'
+  | 'claude'
+  | 'codebuddy'
+  | 'codex'
+  | 'devin'
+  | 'kimi'
+  | 'qodercn'
+  | 'trae'
+  | 'xai';
 export type AuthFileQuotaFilter = QuotaProviderType | 'all' | null;
 export type OAuthConfigLoadError = 'loading' | 'unsupported' | 'load' | null;
 
@@ -43,6 +54,7 @@ export const QUOTA_PROVIDER_TYPES = new Set<QuotaProviderType>([
   'codex',
   'devin',
   'kimi',
+  'qodercn',
   'trae',
   'xai',
 ]);

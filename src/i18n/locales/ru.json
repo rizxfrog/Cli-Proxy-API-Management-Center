@@ -323,6 +323,7 @@
     "page_size_label": "На странице",
     "filter_all": "Все",
     "filter_qwen": "Qwen",
+    "filter_qoder-cn": "Qoder CN",
     "filter_gemini": "Gemini",
     "filter_kimi": "Kimi",
     "filter_aistudio": "AIStudio",
@@ -2012,5 +2013,27 @@
     "total_credits": "Всего кредитов",
     "daily_tokens": "Токены в день",
     "monthly_tokens": "Токены в месяц"
+  },
+  "qodercn_quota": {
+    "title": "Квота Qoder CN",
+    "empty_title": "Файлы авторизации Qoder CN отсутствуют",
+    "empty_desc": "Войдите в Qoder CN, чтобы увидеть оставшиеся кредиты.",
+    "idle": "Нажмите, чтобы обновить квоту",
+    "loading": "Загрузка квоты...",
+    "load_failed": "Не удалось загрузить квоту: {{message}}",
+    "missing_auth_index": "В файле авторизации отсутствует auth_index",
+    "empty_data": "Данные по квоте отсутствуют",
+    "invalid_credential": "Учётные данные Qoder CN недействительны или истекли",
+    "quota_error": "Ошибка запроса квоты Qoder CN",
+    "no_package": "Подключено, но план квоты не найден.",
+    "plan_label": "План",
+    "status_label": "Статус",
+    "exhausted": "Квота исчерпана",
+    "row": {
+      "plan": "Кредиты плана",
+      "addon": "Пакет ресурсов",
+      "org": "Общий пул организации",
+      "pack": "Личный пакет"
+    }
   }
 }

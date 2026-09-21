@@ -44,6 +44,14 @@ export function isCodeArtsFile(file: AuthFileItem): boolean {
   return resolveAuthProvider(file) === 'codearts';
 }
 
+/**
+ * Qoder CN credentials reach the quota page as a bare `qoder-cn` provider (the
+ * auth file's `type`), matching how the provider key is registered.
+ */
+export function isQoderCNFile(file: AuthFileItem): boolean {
+  return resolveAuthProvider(file) === 'qoder-cn';
+}
+
 export function isCodeBuddyAiFile(file: AuthFileItem): boolean {
   return resolveAuthProvider(file) === 'codebuddy-ai';
 }

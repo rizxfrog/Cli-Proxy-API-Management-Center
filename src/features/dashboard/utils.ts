@@ -18,6 +18,7 @@ const PROVIDER_LABELS: Record<string, string> = {
   antigravity: 'Antigravity',
   xiaohuanxiong: 'Xiaohuanxiong',
   codearts: 'CodeArts',
+  qodercn: 'Qoder CN',
 };
 
 /**

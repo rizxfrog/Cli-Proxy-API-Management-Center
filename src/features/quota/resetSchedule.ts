@@ -51,6 +51,8 @@ export function resetCreditRowId(
 interface WindowLike {
   id?: string;
   resetAtMs?: number | null;
+  /** A resource pack's own deadline, used when `resetAtMs` is absent. */
+  expiresAtMs?: number | null;
 }
 
 interface ResetCreditLike {
@@ -65,13 +67,27 @@ export const XAI_WEEKLY_ROW_ID = 'xai:weekly';
 const isUsableMs = (value: unknown): value is number =>
   typeof value === 'number' && Number.isFinite(value);
 
+/**
+ * The instant a row recovers at.
+ *
+ * A Qoder CN resource pack carries `expiresAtMs` instead of `resetAtMs`, so the
+ * two are folded here rather than special-cased at every call site. Rows without
+ * either stay unrecoverable and are skipped.
+ */
+const rowInstant = (row: WindowLike): number | null => {
+  if (isUsableMs(row.resetAtMs)) return row.resetAtMs;
+  if (isUsableMs(row.expiresAtMs)) return row.expiresAtMs;
+  return null;
+};
+
 const collectRows = (rows: readonly WindowLike[], fallbackPrefix: string): QuotaRowInstant[] =>
   rows
-    .map((row, index): QuotaRowInstant | null =>
-      isUsableMs(row.resetAtMs)
-        ? { rowId: row.id || `${fallbackPrefix}-${index}`, atMs: row.resetAtMs, kind: 'window' }
-        : null
-    )
+    .map((row, index): QuotaRowInstant | null => {
+      const atMs = rowInstant(row);
+      return atMs === null
+        ? null
+        : { rowId: row.id || `${fallbackPrefix}-${index}`, atMs, kind: 'window' };
+    })
     .filter((instant): instant is QuotaRowInstant => instant !== null);
 
 /**
@@ -125,7 +141,7 @@ export function collectQuotaRowInstants(
     return collectRows(buckets, 'bucket');
   }
 
-  if (provider === 'kimi' || provider === 'codebuddy' || provider === 'trae' || provider === 'codearts') {
+  if (provider === 'kimi' || provider === 'codebuddy' || provider === 'trae' || provider === 'codearts' || provider === 'qodercn') {
     return collectRows((quota as { rows?: WindowLike[] }).rows ?? [], 'row');
   }
 

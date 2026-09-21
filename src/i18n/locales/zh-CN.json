@@ -318,6 +318,7 @@
     "page_size_label": "单页数量",
     "filter_all": "全部",
     "filter_qwen": "Qwen",
+    "filter_qoder-cn": "Qoder CN",
     "filter_gemini": "Gemini",
     "filter_kimi": "Kimi",
     "filter_aistudio": "AIStudio",
@@ -2016,5 +2017,27 @@
     "total_credits": "总积分",
     "daily_tokens": "每日 token",
     "monthly_tokens": "每月 token"
+  },
+  "qodercn_quota": {
+    "title": "Qoder CN 额度",
+    "empty_title": "暂无 Qoder CN 认证",
+    "empty_desc": "登录 Qoder CN 后即可查看剩余积分。",
+    "idle": "点击此处刷新额度",
+    "loading": "正在加载额度…",
+    "load_failed": "额度加载失败：{{message}}",
+    "missing_auth_index": "凭证缺少 auth_index",
+    "empty_data": "暂无额度数据",
+    "invalid_credential": "Qoder CN 凭证无效或已过期",
+    "quota_error": "Qoder CN 额度查询出错",
+    "no_package": "已连接，但未找到额度套餐。",
+    "plan_label": "套餐",
+    "status_label": "状态",
+    "exhausted": "额度已用尽",
+    "row": {
+      "plan": "套餐内 Credits",
+      "addon": "资源包",
+      "org": "组织共享资源包",
+      "pack": "个人专属资源包"
+    }
   }
 }

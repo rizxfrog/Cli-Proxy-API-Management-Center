@@ -300,6 +300,19 @@ interface CodeBuddyRowLike {
   periodHours?: number | null;
 }
 
+/**
+ * Qoder CN exposes a single credits meter, shaped like the CodeBuddy/CodeArts
+ * rows but without a labelKey (its one row label is localized in the body).
+ */
+interface QoderCNRowLike {
+  label?: string;
+  used: number;
+  total: number;
+  resetAtMs?: number | null;
+  expiresAtMs?: number | null;
+  periodHours?: number | null;
+}
+
 interface XaiBillingLike {
   periodType?: string;
   usagePercent?: number | null;
@@ -518,6 +531,33 @@ export function buildTimelineLane(input: TimelineLaneInput): TimelineLane {
     return {
       ...empty,
       anchorMs: chosen.resetAtMs ?? null,
+      periodHours: chosen.periodHours ?? null,
+      remaining: remainingOf(chosen),
+      limits: rows
+        .map((row) => ({ label: row.label ?? '', remaining: remainingOf(row) }))
+        .filter((limit): limit is TimelineLimit => limit.remaining !== null),
+    };
+  }
+
+  if (provider === 'qodercn') {
+    // Qoder CN reports raw credit counts; remaining is derived. A resource pack
+    // carries its own expiry instead of a reset instant.
+    const rows = ((quota as { rows?: QoderCNRowLike[] }).rows ?? []).filter(
+      (row) => typeof row.resetAtMs === 'number' || typeof row.expiresAtMs === 'number'
+    );
+    const chosen = pickLaneWindow(rows, maxPeriodHours);
+    if (!chosen) return empty;
+
+    const anchorOf = (row: QoderCNRowLike) =>
+      typeof row.resetAtMs === 'number' ? row.resetAtMs : (row.expiresAtMs ?? null);
+    const remainingOf = (row: QoderCNRowLike) =>
+      row.total > 0
+        ? clampPercent(Math.round(((row.total - row.used) / row.total) * 100))
+        : null;
+
+    return {
+      ...empty,
+      anchorMs: anchorOf(chosen),
       periodHours: chosen.periodHours ?? null,
       remaining: remainingOf(chosen),
       limits: rows

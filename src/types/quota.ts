@@ -548,3 +548,44 @@ export interface CodeArtsQuotaState {
   error?: string;
   errorStatus?: number;
 }
+
+// Qoder CN credits payload types.
+//
+// The proxy's /qoder-cn-quota endpoint merges two OpenAPI reads:
+//   GET /api/v2/quota/usage   -> the credit ledger (total/used/remaining)
+//   GET /api/v3/user/status   -> plan tier, user tag and the reset instant
+// Both are plain bearer-token reads; unlike the model catalog they are not
+// signature-gated.
+
+/** One Qoder CN usage meter. An account has several: the plan allowance
+ * (套餐内 Credits) and one row per resource pack (资源包). */
+export type QoderCNQuotaRowKind = 'plan' | 'addon' | 'org' | 'pack';
+
+export interface QoderCNQuotaRow {
+  id: string;
+  /** Which bucket this meter represents; drives the localized row label. */
+  kind: QoderCNQuotaRowKind;
+  /** Upstream pack name, when the pack carries one. */
+  name?: string;
+  label?: string;
+  used: number;
+  total: number;
+  /** Plan reset instant in epoch ms; null when not applicable. */
+  resetAtMs?: number | null;
+  /** A pack's own expiry in epoch ms; null when absent. */
+  expiresAtMs?: number | null;
+}
+
+export interface QoderCNQuotaState {
+  status: 'idle' | 'loading' | 'success' | 'error';
+  plan?: string | null;
+  /** Internal tier id (e.g. PLAN_TIER_FREE), shown when no display tag exists. */
+  planTier?: string | null;
+  /** Ledger denomination, "credits" on every account observed. */
+  unit?: string | null;
+  /** True when the account can no longer consume credits. */
+  exhausted?: boolean;
+  rows: QoderCNQuotaRow[];
+  error?: string;
+  errorStatus?: number;
+}

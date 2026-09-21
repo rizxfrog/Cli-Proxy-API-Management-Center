@@ -320,6 +320,7 @@
     "page_size_label": "Per page",
     "filter_all": "All",
     "filter_qwen": "Qwen",
+    "filter_qoder-cn": "Qoder CN",
     "filter_gemini": "Gemini",
     "filter_kimi": "Kimi",
     "filter_aistudio": "AIStudio",
@@ -2018,5 +2019,27 @@
     "total_credits": "Total credits",
     "daily_tokens": "Daily tokens",
     "monthly_tokens": "Monthly tokens"
+  },
+  "qodercn_quota": {
+    "title": "Qoder CN Quota",
+    "empty_title": "No Qoder CN Auth Files",
+    "empty_desc": "Sign in to Qoder CN to view remaining credits.",
+    "idle": "Click here to refresh quota",
+    "loading": "Loading quota...",
+    "load_failed": "Failed to load quota: {{message}}",
+    "missing_auth_index": "Auth file missing auth_index",
+    "empty_data": "No quota data available",
+    "invalid_credential": "Qoder CN credential is invalid or expired",
+    "quota_error": "Qoder CN quota query error",
+    "no_package": "Connected, but no quota plan found.",
+    "plan_label": "Plan",
+    "status_label": "Status",
+    "exhausted": "Quota exhausted",
+    "row": {
+      "plan": "Plan credits",
+      "addon": "Resource pack",
+      "org": "Organization pool",
+      "pack": "Dedicated pack"
+    }
   }
 }

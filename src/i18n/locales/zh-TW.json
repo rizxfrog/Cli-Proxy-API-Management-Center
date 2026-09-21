@@ -318,6 +318,7 @@
     "page_size_label": "單頁數量",
     "filter_all": "全部",
     "filter_qwen": "Qwen",
+    "filter_qoder-cn": "Qoder CN",
     "filter_gemini": "Gemini",
     "filter_kimi": "Kimi",
     "filter_aistudio": "AIStudio",
@@ -2042,5 +2043,27 @@
     "total_credits": "總積分",
     "daily_tokens": "每日 token",
     "monthly_tokens": "每月 token"
+  },
+  "qodercn_quota": {
+    "title": "Qoder CN 配額",
+    "empty_title": "暫無 Qoder CN 驗證",
+    "empty_desc": "登入 Qoder CN 後即可查看剩餘積分。",
+    "idle": "點擊此處重新整理配額",
+    "loading": "正在載入配額…",
+    "load_failed": "配額取得失敗：{{message}}",
+    "missing_auth_index": "驗證檔案缺少 auth_index",
+    "empty_data": "暫無配額資料",
+    "invalid_credential": "Qoder CN 憑證無效或已過期",
+    "quota_error": "Qoder CN 配額查詢錯誤",
+    "no_package": "已連線，但未找到配額方案。",
+    "plan_label": "方案",
+    "status_label": "狀態",
+    "exhausted": "配額已用盡",
+    "row": {
+      "plan": "套餐內 Credits",
+      "addon": "資源包",
+      "org": "組織共享資源包",
+      "pack": "個人專屬資源包"
+    }
   }
 }
