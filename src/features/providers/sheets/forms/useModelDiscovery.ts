@@ -9,6 +9,7 @@ export const MODEL_DISCOVERY_BRANDS: ReadonlyArray<ProviderBrand> = [
   'gemini',
   'interactions',
   'codex',
+  'meta',
   'xai',
   'codebuddyCn',
   'codebuddyAi',
@@ -67,11 +68,13 @@ export function useModelDiscovery(args: UseModelDiscoveryArgs): UseModelDiscover
         );
       } else if (
         brand === 'codex' ||
+        brand === 'meta' ||
         brand === 'xai' ||
         brand === 'codebuddyCn' ||
         brand === 'codebuddyAi' ||
         brand === 'qoderCn'
       ) {
+
         const key = (apiKey ?? '').trim() || (fallbackApiKey ?? '').trim();
         next = await modelsApi.fetchV1ModelsViaApiCall(
           baseUrl,

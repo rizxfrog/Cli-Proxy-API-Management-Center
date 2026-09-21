@@ -26,6 +26,7 @@ export interface Config {
   geminiApiKeys?: GeminiKeyConfig[];
   interactionsApiKeys?: GeminiKeyConfig[];
   codexApiKeys?: ProviderKeyConfig[];
+  metaApiKeys?: ProviderKeyConfig[];
   xaiApiKeys?: ProviderKeyConfig[];
   codebuddyCnApiKeys?: ProviderKeyConfig[];
   codebuddyAiApiKeys?: ProviderKeyConfig[];
@@ -54,6 +55,7 @@ export type RawConfigSection =
   | 'gemini-api-key'
   | 'interactions-api-key'
   | 'codex-api-key'
+  | 'meta-api-key'
   | 'xai-api-key'
   | 'codebuddy-cn-api-key'
   | 'xiaohuanxiong-api-key'

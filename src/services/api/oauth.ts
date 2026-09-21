@@ -20,13 +20,19 @@ export type BuiltInOAuthProvider =
   | 'trae'
   | 'devin'
   | 'xiaohuanxiong'
-  | 'codearts';
+  | 'codearts'
+  | 'meta';
+
 
 export interface OAuthStartResponse {
   url: string;
   state?: string;
   machine?: string;
   device?: string;
+  user_code?: string;
+  flow?: string;
+  expires_in?: number;
+
 }
 
 export interface OAuthCallbackResponse {

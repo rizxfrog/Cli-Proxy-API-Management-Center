@@ -58,6 +58,7 @@ const emptyApiKeyEntry = (): ApiKeyEntryInput => ({
   proxyUrl: '',
   weight: undefined,
 });
+const META_API_BASE_URL = 'https://api.meta.ai/v1';
 const XAI_API_BASE_URL = 'https://api.x.ai/v1';
 const CODEBUDDY_CN_API_BASE_URL = 'https://copilot.tencent.com/v2/chat/completions';
 const CODEBUDDY_AI_API_BASE_URL = 'https://www.codebuddy.ai/v2/chat/completions';
@@ -103,7 +104,9 @@ function buildInitialForm(
                   ? CODEARTS_API_BASE_URL
                   : brand === 'qoderCn'
                     ? QODER_CN_API_BASE_URL
-                    : '',
+                    : brand === 'meta'
+                      ? META_API_BASE_URL
+                      : '',
       proxyUrl: '',
       prefix: '',
       disabled: false,
@@ -121,6 +124,7 @@ function buildInitialForm(
       testModel:
         brand === 'openaiCompatibility' ||
         brand === 'codex' ||
+        brand === 'meta' ||
         brand === 'xai' ||
         brand === 'codebuddyCn' ||
         brand === 'codebuddyAi' ||
@@ -228,6 +232,7 @@ function buildInitialForm(
       : undefined,
     testModel:
       brand === 'codex' ||
+      brand === 'meta' ||
       brand === 'xai' ||
       brand === 'codebuddyCn' ||
       brand === 'codebuddyAi' ||
@@ -520,6 +525,7 @@ export function BaseProviderForm({
     brand === 'gemini' ||
     brand === 'interactions' ||
     brand === 'codex' ||
+    brand === 'meta' ||
     brand === 'xai' ||
     brand === 'codebuddyCn' ||
     brand === 'codebuddyAi' ||
@@ -529,6 +535,7 @@ export function BaseProviderForm({
   const supportsModelImage = brand === 'openaiCompatibility';
   const singleConnectivity =
     brand === 'codex' ||
+    brand === 'meta' ||
     brand === 'xai' ||
     brand === 'codebuddyCn' ||
     brand === 'codebuddyAi' ||
@@ -925,6 +932,7 @@ export function BaseProviderForm({
             <label className={styles.label} htmlFor={`${fid}-testModel`}>
               {t('providersPage.form.testModel')}
               {brand === 'codex' ||
+              brand === 'meta' ||
               brand === 'xai' ||
               isClaudeLikeBrand(brand) ||
               brand === 'gemini' ||

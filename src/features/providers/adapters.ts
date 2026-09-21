@@ -70,7 +70,9 @@ function providerKeyToResource(
     | 'xiaohuanxiong'
     | 'codearts'
     | 'claude'
-    | 'vertex',
+    | 'vertex'
+    | 'meta',
+
   config: GeminiKeyConfig | ProviderKeyConfig,
   index: number
 ): ProviderResource {
@@ -128,6 +130,10 @@ export function interactionsToResource(config: GeminiKeyConfig, index: number): 
 
 export function codexToResource(config: ProviderKeyConfig, index: number): ProviderResource {
   return providerKeyToResource('codex', config, index);
+}
+
+export function metaToResource(config: ProviderKeyConfig, index: number): ProviderResource {
+  return providerKeyToResource('meta', config, index);
 }
 
 export function xaiToResource(config: ProviderKeyConfig, index: number): ProviderResource {

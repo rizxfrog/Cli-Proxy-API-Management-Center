@@ -4,6 +4,7 @@ import iconClaude from '@/assets/icons/claude.svg';
 import iconCodebuddy from '@/assets/icons/codebuddy.svg';
 import iconQoder from '@/assets/icons/qoder.svg';
 import iconCodex from '@/assets/icons/codex.svg';
+import iconMeta from '@/assets/icons/meta.svg';
 import iconDevin from '@/assets/icons/devin.svg';
 import iconDevinDark from '@/assets/icons/devin-dark.svg';
 import iconGemini from '@/assets/icons/gemini.svg';
@@ -32,8 +33,8 @@ export type AuthFileModelItem = {
 export type AuthFileIconAsset = string | { light: string; dark: string };
 
 // NOTE: this union duplicates the canonical QuotaProviderType in
-// @/features/quota/providers/types. It is kept local for historical reasons and
-// has drifted (it omits 'codearts'); new providers must be added to BOTH.
+// @/features/quota/providers/types. It is kept local for historical reasons;
+// new providers must be added to BOTH.
 export type QuotaProviderType =
   | 'antigravity'
   | 'claude'
@@ -41,13 +42,16 @@ export type QuotaProviderType =
   | 'codex'
   | 'devin'
   | 'kimi'
+  | 'meta'
   | 'qodercn'
   | 'trae'
   | 'xai';
+
 export type AuthFileQuotaFilter = QuotaProviderType | 'all' | null;
 export type OAuthConfigLoadError = 'loading' | 'unsupported' | 'load' | null;
 
 export const QUOTA_PROVIDER_TYPES = new Set<QuotaProviderType>([
+  'meta',
   'antigravity',
   'claude',
   'codebuddy',
@@ -60,6 +64,7 @@ export const QUOTA_PROVIDER_TYPES = new Set<QuotaProviderType>([
 ]);
 
 export const OAUTH_PROVIDER_PRESETS = [
+  'meta',
   'vertex',
   'aistudio',
   'antigravity',
@@ -81,6 +86,7 @@ export const FALSY_TEXT_VALUES = new Set(['false', '0', 'no', 'n', 'off']);
 export const AUTH_FILE_WEBSOCKET_PROVIDERS = new Set(['codex', 'xai']);
 export const AUTH_FILE_USING_API_PROVIDERS = new Set(['xai']);
 export const AUTH_FILE_MANUAL_REFRESH_PROVIDERS = new Set([
+  'meta',
   'antigravity',
   'claude',
   'codex',
@@ -104,6 +110,7 @@ export const AUTH_FILE_ICONS: Record<string, AuthFileIconAsset> = {
   'codebuddy-ai': iconCodebuddy,
   'qoder-cn': iconQoder,
   codex: iconCodex,
+  meta: iconMeta,
   devin: { light: iconDevin, dark: iconDevinDark },
   gemini: iconGemini,
   xai: { light: iconGrok, dark: iconGrokDark },

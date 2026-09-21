@@ -13,6 +13,8 @@ import { DEVIN_CONFIG } from './providers/devin/data';
 import { KIMI_CONFIG } from './providers/kimi/data';
 import { QODERCN_CONFIG } from './providers/qodercn/data';
 import { TRAE_CONFIG } from './providers/trae/data';
+import { META_CONFIG } from './providers/meta/data';
+
 import { XAI_CONFIG } from './providers/xai/data';
 import type { QuotaProviderType } from './providers/types';
 import { QUOTA_TAB_ORDER, type QuotaSortMode, type QuotaTabId } from './constants';
@@ -27,6 +29,8 @@ const QUOTA_FILTER_MAP: Record<QuotaProviderType, (file: AuthFileItem) => boolea
   kimi: KIMI_CONFIG.filterFn,
   qodercn: QODERCN_CONFIG.filterFn,
   trae: TRAE_CONFIG.filterFn,
+  meta: META_CONFIG.filterFn,
+
   xai: XAI_CONFIG.filterFn,
 };
 
@@ -70,6 +74,17 @@ export function classifyQuotaFiles(files: AuthFileItem[]): QuotaFileEntry[] {
 export function filterEntriesByTab(entries: QuotaFileEntry[], tab: QuotaTabId): QuotaFileEntry[] {
   if (tab === 'all') return entries;
   return entries.filter((entry) => entry.type === tab);
+}
+
+/** Search public account identifiers only; account may contain an API key. */
+export function filterEntriesBySearch(entries: QuotaFileEntry[], search: string): QuotaFileEntry[] {
+  const query = search.trim().toLowerCase();
+  if (!query) return entries;
+  return entries.filter(({ file }) =>
+    [file.name, file.email].some(
+      (value) => typeof value === 'string' && value.toLowerCase().includes(query)
+    )
+  );
 }
 
 /**
