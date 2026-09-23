@@ -64,8 +64,10 @@ const CODEBUDDY_CN_API_BASE_URL = 'https://copilot.tencent.com/v2/chat/completio
 const CODEBUDDY_AI_API_BASE_URL = 'https://www.codebuddy.ai/v2/chat/completions';
 const XIAOHUANXIONG_API_BASE_URL = 'https://xiaohuanxiong.com/api/web/llm/v2';
 const CODEARTS_API_BASE_URL = 'https://snap-access.cn-north-4.myhuaweicloud.com/api/v2';
-// The Qoder model-server origin. The executor appends /model/v1/chat/completions.
-const QODER_CN_API_BASE_URL = 'https://api2-v2.qoder.sh';
+// The Qoder agent gateway origins. The executor posts the COSY-signed body to
+// {origin}/algo/api/v2/service/pro/sse/agent_chat_generation.
+const QODER_CN_API_BASE_URL = 'https://gateway.qoder.com.cn';
+const QODER_AI_API_BASE_URL = 'https://api3.qoder.sh';
 
 const stripDisableAllRule = (list?: string[]): string[] =>
   (list ?? []).filter((s) => s.trim() !== '*');
@@ -87,8 +89,12 @@ function buildInitialForm(
       apiKey: '',
       name: '',
       refreshToken:
-        brand === 'xiaohuanxiong' || brand === 'codearts' || brand === 'qoderCn' ? '' : undefined,
-      machineId: brand === 'qoderCn' ? '' : undefined,
+        brand === 'xiaohuanxiong' || brand === 'codearts'
+          ? ''
+          : brand === 'qoderCn' || brand === 'qoderAi'
+            ? ''
+            : undefined,
+      machineId: brand === 'qoderCn' || brand === 'qoderAi' ? '' : undefined,
       secretKey: brand === 'codearts' ? '' : undefined,
       securityToken: brand === 'codearts' ? '' : undefined,
       baseUrl:
@@ -104,9 +110,11 @@ function buildInitialForm(
                   ? CODEARTS_API_BASE_URL
                   : brand === 'qoderCn'
                     ? QODER_CN_API_BASE_URL
-                    : brand === 'meta'
-                      ? META_API_BASE_URL
-                      : '',
+                    : brand === 'qoderAi'
+                      ? QODER_AI_API_BASE_URL
+                      : brand === 'meta'
+                        ? META_API_BASE_URL
+                        : '',
       proxyUrl: '',
       prefix: '',
       disabled: false,
@@ -129,6 +137,7 @@ function buildInitialForm(
         brand === 'codebuddyCn' ||
         brand === 'codebuddyAi' ||
         brand === 'qoderCn' ||
+        brand === 'qoderAi' ||
         brand === 'xiaohuanxiong' ||
         brand === 'codearts' ||
         isClaudeLikeBrand(brand) ||
@@ -191,7 +200,7 @@ function buildInitialForm(
     apiKey: '',
     name: '',
     refreshToken: '',
-    machineId: brand === 'qoderCn' ? '' : undefined,
+    machineId: brand === 'qoderCn' || brand === 'qoderAi' ? '' : undefined,
     secretKey: brand === 'codearts' ? '' : undefined,
     securityToken: brand === 'codearts' ? '' : undefined,
     baseUrl: cfg.baseUrl ?? '',
@@ -237,6 +246,7 @@ function buildInitialForm(
       brand === 'codebuddyCn' ||
       brand === 'codebuddyAi' ||
       brand === 'qoderCn' ||
+      brand === 'qoderAi' ||
       brand === 'xiaohuanxiong' ||
       brand === 'codearts' ||
       isClaudeLikeBrand(brand) ||
@@ -530,6 +540,7 @@ export function BaseProviderForm({
     brand === 'codebuddyCn' ||
     brand === 'codebuddyAi' ||
     brand === 'qoderCn' ||
+    brand === 'qoderAi' ||
     isClaudeLikeBrand(brand) ||
     brand === 'openaiCompatibility';
   const supportsModelImage = brand === 'openaiCompatibility';
@@ -539,7 +550,8 @@ export function BaseProviderForm({
     brand === 'xai' ||
     brand === 'codebuddyCn' ||
     brand === 'codebuddyAi' ||
-    brand === 'qoderCn'
+    brand === 'qoderCn' ||
+    brand === 'qoderAi'
       ? { status: connectivity.codexStatus, run: connectivity.runCodex }
       : brand === 'gemini' || brand === 'interactions'
         ? { status: connectivity.geminiStatus, run: connectivity.runGemini }
@@ -671,7 +683,7 @@ export function BaseProviderForm({
           </div>
         ) : null}
 
-        {brand === 'qoderCn' ? (
+        {brand === 'qoderCn' || brand === 'qoderAi' ? (
           <div className={styles.field}>
             <label className={styles.label} htmlFor={`${fid}-machineId`}>
               {t('providersPage.form.machineId')}

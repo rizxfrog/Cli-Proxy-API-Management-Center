@@ -68,9 +68,7 @@ const ROW_KINDS: readonly QoderCNQuotaRowKind[] = ['plan', 'addon', 'org', 'pack
 const readKind = (value: unknown): QoderCNQuotaRowKind | undefined => {
   const raw = readString(value);
   if (!raw) return undefined;
-  return (ROW_KINDS as readonly string[]).includes(raw)
-    ? (raw as QoderCNQuotaRowKind)
-    : undefined;
+  return (ROW_KINDS as readonly string[]).includes(raw) ? (raw as QoderCNQuotaRowKind) : undefined;
 };
 
 /** Normalize one meter, dropping rows that carry no numeric ledger at all. */
@@ -147,8 +145,9 @@ export function parseQoderCNQuotaPayload(input: unknown): QoderCNQuotaPayload | 
 }
 
 export const qoderCnQuotaApi = {
-  fetchQuota: async (authIndex: string): Promise<QoderCNQuotaPayload> => {
-    const response = await apiClient.get<unknown>('/qoder-cn-quota', {
+  fetchQuota: async (authIndex: string, kind: 'cn' | 'ai' = 'cn'): Promise<QoderCNQuotaPayload> => {
+    const path = kind === 'ai' ? '/qoder-ai-quota' : '/qoder-cn-quota';
+    const response = await apiClient.get<unknown>(path, {
       params: { auth_index: authIndex },
     });
     const payload = parseQoderCNQuotaPayload(response);

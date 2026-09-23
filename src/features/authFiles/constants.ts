@@ -109,6 +109,7 @@ export const AUTH_FILE_ICONS: Record<string, AuthFileIconAsset> = {
   'codebuddy-cn': iconCodebuddy,
   'codebuddy-ai': iconCodebuddy,
   'qoder-cn': iconQoder,
+  'qoder-ai': iconQoder,
   codex: iconCodex,
   meta: iconMeta,
   devin: { light: iconDevin, dark: iconDevinDark },

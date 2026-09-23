@@ -14,6 +14,7 @@ export const MODEL_DISCOVERY_BRANDS: ReadonlyArray<ProviderBrand> = [
   'codebuddyCn',
   'codebuddyAi',
   'qoderCn',
+  'qoderAi',
   'claude',
   'openaiCompatibility',
 ];
@@ -72,9 +73,9 @@ export function useModelDiscovery(args: UseModelDiscoveryArgs): UseModelDiscover
         brand === 'xai' ||
         brand === 'codebuddyCn' ||
         brand === 'codebuddyAi' ||
-        brand === 'qoderCn'
+        brand === 'qoderCn' ||
+        brand === 'qoderAi'
       ) {
-
         const key = (apiKey ?? '').trim() || (fallbackApiKey ?? '').trim();
         next = await modelsApi.fetchV1ModelsViaApiCall(
           baseUrl,

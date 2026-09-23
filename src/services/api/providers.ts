@@ -48,13 +48,10 @@ const CODEARTS_KEY_FIELDS = [
   'refresh-token',
 ] as const;
 const CODEBUDDY_AI_KEY_FIELDS = PROVIDER_COMMON_KEY_FIELDS;
-// QoderCn carries a machine-id (Cosy-MachineId) and an optional refresh-token in
-// addition to the common key fields.
-const QODER_CN_KEY_FIELDS = [
-  ...PROVIDER_COMMON_KEY_FIELDS,
-  'machine-id',
-  'refresh-token',
-] as const;
+// QoderCn / QoderAi carry a machine-id (Cosy-MachineId) and an optional
+// refresh-token in addition to the common key fields.
+const QODER_CN_KEY_FIELDS = [...PROVIDER_COMMON_KEY_FIELDS, 'machine-id', 'refresh-token'] as const;
+const QODER_AI_KEY_FIELDS = QODER_CN_KEY_FIELDS;
 const CLAUDE_KEY_FIELDS = [
   ...PROVIDER_COMMON_KEY_FIELDS,
   'cloak',
@@ -571,7 +568,11 @@ export const providersApi = {
       )
     ),
 
-  updateCodeBuddyCNConfig: (apiKey: string, baseUrl: string | undefined, config: ProviderKeyConfig) =>
+  updateCodeBuddyCNConfig: (
+    apiKey: string,
+    baseUrl: string | undefined,
+    config: ProviderKeyConfig
+  ) =>
     mutateLatestProviderList('codebuddy-cn-api-key', (latestItems) =>
       replaceLatestProviderRecord(
         latestItems,
@@ -591,7 +592,11 @@ export const providersApi = {
       )
     ),
 
-  updateCodeBuddyAIConfig: (apiKey: string, baseUrl: string | undefined, config: ProviderKeyConfig) =>
+  updateCodeBuddyAIConfig: (
+    apiKey: string,
+    baseUrl: string | undefined,
+    config: ProviderKeyConfig
+  ) =>
     mutateLatestProviderList('codebuddy-ai-api-key', (latestItems) =>
       replaceLatestProviderRecord(
         latestItems,
@@ -624,6 +629,26 @@ export const providersApi = {
   deleteQoderCNConfig: (apiKey: string, baseUrl?: string) =>
     apiClient.delete(`/qoder-cn-api-key${buildProviderDeleteQuery(apiKey, baseUrl)}`),
 
+  createQoderAIConfig: (config: ProviderKeyConfig) =>
+    mutateLatestProviderList('qoder-ai-api-key', (latestItems) =>
+      appendLatestProviderRecord(latestItems, serializeProviderKey(config), (raw, payload) =>
+        mergeProviderKeyPayload(raw, payload, QODER_AI_KEY_FIELDS)
+      )
+    ),
+
+  updateQoderAIConfig: (apiKey: string, baseUrl: string | undefined, config: ProviderKeyConfig) =>
+    mutateLatestProviderList('qoder-ai-api-key', (latestItems) =>
+      replaceLatestProviderRecord(
+        latestItems,
+        (record) => matchesProviderKey(record, apiKey, baseUrl),
+        serializeProviderKey(config),
+        (raw, payload) => mergeProviderKeyPayload(raw, payload, QODER_AI_KEY_FIELDS)
+      )
+    ),
+
+  deleteQoderAIConfig: (apiKey: string, baseUrl?: string) =>
+    apiClient.delete(`/qoder-ai-api-key${buildProviderDeleteQuery(apiKey, baseUrl)}`),
+
   createXiaohuanxiongConfig: (config: ProviderKeyConfig) =>
     mutateLatestProviderList('xiaohuanxiong-api-key', (latestItems) =>
       appendLatestProviderRecord(latestItems, serializeProviderKey(config), (raw, payload) =>
@@ -655,11 +680,7 @@ export const providersApi = {
       )
     ),
 
-  updateCodeArtsConfig: (
-    apiKey: string,
-    baseUrl: string | undefined,
-    config: ProviderKeyConfig
-  ) =>
+  updateCodeArtsConfig: (apiKey: string, baseUrl: string | undefined, config: ProviderKeyConfig) =>
     mutateLatestProviderList('codearts-api-key', (latestItems) =>
       replaceLatestProviderRecord(
         latestItems,

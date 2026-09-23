@@ -414,6 +414,13 @@ export const normalizeConfigResponse = (raw: unknown): Config => {
       .filter(Boolean) as ProviderKeyConfig[];
   }
 
+  const qoderAiList = raw['qoder-ai-api-key'];
+  if (Array.isArray(qoderAiList)) {
+    config.qoderAiApiKeys = qoderAiList
+      .map((item) => normalizeProviderKeyConfig(item))
+      .filter(Boolean) as ProviderKeyConfig[];
+  }
+
   const xiaohuanxiongList = raw['xiaohuanxiong-api-key'];
   if (Array.isArray(xiaohuanxiongList)) {
     config.xiaohuanxiongApiKeys = xiaohuanxiongList

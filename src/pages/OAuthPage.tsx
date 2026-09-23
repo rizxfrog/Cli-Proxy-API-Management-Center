@@ -127,6 +127,12 @@ const PROVIDERS: BuiltInOAuthProviderCard[] = [
   },
   {
     kind: 'builtin',
+    id: 'qoder-ai',
+    titleKey: 'auth_login.qoder_ai_oauth_title',
+    icon: iconQoder,
+  },
+  {
+    kind: 'builtin',
     id: 'anthropic',
     titleKey: 'auth_login.anthropic_oauth_title',
     icon: iconClaude,

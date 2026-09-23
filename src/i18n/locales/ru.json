@@ -324,6 +324,7 @@
     "filter_all": "Все",
     "filter_qwen": "Qwen",
     "filter_qoder-cn": "Qoder CN",
+    "filter_qoder-ai": "Qoder AI",
     "filter_gemini": "Gemini",
     "filter_kimi": "Kimi",
     "filter_aistudio": "AIStudio",
@@ -332,7 +333,6 @@
     "filter_codebuddy-cn": "CodeBuddy CN",
     "filter_codebuddy-ai": "CodeBuddy AI",
     "filter_meta": "Muse (Meta)",
-
     "filter_devin": "Devin",
     "filter_antigravity": "Antigravity",
     "filter_xai": "xAI",
@@ -967,7 +967,18 @@
     "codearts_oauth_status_error": "Ошибка аутентификации:",
     "codearts_oauth_start_error": "Не удалось запустить CodeArts OAuth:",
     "codearts_oauth_polling_error": "Не удалось проверить статус аутентификации:",
-    "qoder_cn_oauth_title": "Qoder CN OAuth"
+    "qoder_cn_oauth_title": "Qoder CN OAuth",
+    "qoder_ai_oauth_title": "Qoder AI OAuth",
+    "qoder_ai_oauth_button": "Войти через Qoder AI",
+    "qoder_ai_oauth_hint": "Войдите в Qoder AI (международная версия) через авторизацию устройства в браузере. Файлы авторизации будут получены и сохранены автоматически.",
+    "qoder_ai_oauth_url_label": "URL авторизации:",
+    "qoder_ai_open_link": "Открыть ссылку",
+    "qoder_ai_copy_link": "Скопировать ссылку",
+    "qoder_ai_oauth_status_waiting": "Ожидание аутентификации...",
+    "qoder_ai_oauth_status_success": "Аутентификация успешна!",
+    "qoder_ai_oauth_status_error": "Ошибка аутентификации:",
+    "qoder_ai_oauth_start_error": "Не удалось запустить Qoder AI OAuth:",
+    "qoder_ai_oauth_polling_error": "Не удалось проверить статус аутентификации:"
   },
   "stats": {
     "success": "Успех",

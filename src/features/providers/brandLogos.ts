@@ -41,6 +41,7 @@ export const PROVIDER_LOGOS: Record<ProviderBrandLogoKey, ProviderBrandLogo> = {
   codebuddyCn: { src: codebuddyLogo },
   codebuddyAi: { src: codebuddyLogo },
   qoderCn: { src: qoderLogo },
+  qoderAi: { src: qoderLogo },
   vertex: { src: vertexLogo },
   openaiCompatibility: { src: openaiLightLogo, darkSrc: openaiDarkLogo, transparent: true },
   apikeyFun: { src: apikeyFunLogo },

@@ -292,12 +292,16 @@ export function useConnectivityTest(
       brand !== 'xai' &&
       brand !== 'codebuddyCn' &&
       brand !== 'codebuddyAi' &&
-      brand !== 'qoderCn'
+      brand !== 'qoderCn' &&
+      brand !== 'qoderAi'
     )
       return;
 
     const isCodeBuddyChat =
-      brand === 'codebuddyCn' || brand === 'codebuddyAi' || brand === 'qoderCn';
+      brand === 'codebuddyCn' ||
+      brand === 'codebuddyAi' ||
+      brand === 'qoderCn' ||
+      brand === 'qoderAi';
     const trimmedBase = baseUrl.trim();
     if (!trimmedBase) {
       setCodexStatus({ state: 'error', message: messages.baseUrlRequired });

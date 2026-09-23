@@ -321,6 +321,7 @@
     "filter_all": "All",
     "filter_qwen": "Qwen",
     "filter_qoder-cn": "Qoder CN",
+    "filter_qoder-ai": "Qoder AI",
     "filter_gemini": "Gemini",
     "filter_kimi": "Kimi",
     "filter_aistudio": "AIStudio",
@@ -329,7 +330,6 @@
     "filter_codebuddy-cn": "CodeBuddy CN",
     "filter_codebuddy-ai": "CodeBuddy AI",
     "filter_meta": "Muse (Meta)",
-
     "filter_devin": "Devin",
     "filter_antigravity": "Antigravity",
     "filter_xai": "xAI",
@@ -964,7 +964,18 @@
     "codearts_oauth_status_error": "Authentication failed:",
     "codearts_oauth_start_error": "Failed to start CodeArts OAuth:",
     "codearts_oauth_polling_error": "Failed to check authentication status:",
-    "qoder_cn_oauth_title": "Qoder CN OAuth"
+    "qoder_cn_oauth_title": "Qoder CN OAuth",
+    "qoder_ai_oauth_title": "Qoder AI OAuth",
+    "qoder_ai_oauth_button": "Log in with Qoder AI",
+    "qoder_ai_oauth_hint": "Log in to Qoder AI (international) through browser device authorization. Authentication files are obtained and saved automatically.",
+    "qoder_ai_oauth_url_label": "Authorization URL:",
+    "qoder_ai_open_link": "Open Link",
+    "qoder_ai_copy_link": "Copy Link",
+    "qoder_ai_oauth_status_waiting": "Waiting for authentication...",
+    "qoder_ai_oauth_status_success": "Authentication successful!",
+    "qoder_ai_oauth_status_error": "Authentication failed:",
+    "qoder_ai_oauth_start_error": "Failed to start Qoder AI OAuth:",
+    "qoder_ai_oauth_polling_error": "Failed to check authentication status:"
   },
   "stats": {
     "success": "Success",

@@ -16,13 +16,13 @@ export type BuiltInOAuthProvider =
   | 'codebuddy-cn'
   | 'codebuddy-ai'
   | 'qoder-cn'
+  | 'qoder-ai'
   | 'xai'
   | 'trae'
   | 'devin'
   | 'xiaohuanxiong'
   | 'codearts'
   | 'meta';
-
 
 export interface OAuthStartResponse {
   url: string;
@@ -32,7 +32,6 @@ export interface OAuthStartResponse {
   user_code?: string;
   flow?: string;
   expires_in?: number;
-
 }
 
 export interface OAuthCallbackResponse {
@@ -107,12 +106,7 @@ export const oauthApi = {
    * so its callback is submitted through a dedicated endpoint that parses the
    * full browser URL (refreshToken / userInfo / userJwt) server-side.
    */
-  submitTraeCallback: (
-    state: string,
-    redirectUrl: string,
-    machineId?: string,
-    deviceId?: string
-  ) =>
+  submitTraeCallback: (state: string, redirectUrl: string, machineId?: string, deviceId?: string) =>
     apiClient.post<{ status: 'ok'; uid?: string; path?: string }>('/trae-auth-callback', {
       state,
       redirect_url: redirectUrl,

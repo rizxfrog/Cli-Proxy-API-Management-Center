@@ -319,6 +319,7 @@
     "filter_all": "全部",
     "filter_qwen": "Qwen",
     "filter_qoder-cn": "Qoder CN",
+    "filter_qoder-ai": "Qoder AI",
     "filter_gemini": "Gemini",
     "filter_kimi": "Kimi",
     "filter_aistudio": "AIStudio",
@@ -327,7 +328,6 @@
     "filter_codebuddy-cn": "CodeBuddy CN",
     "filter_codebuddy-ai": "CodeBuddy AI",
     "filter_meta": "Muse (Meta)",
-
     "filter_devin": "Devin",
     "filter_antigravity": "Antigravity",
     "filter_xai": "xAI",
@@ -988,7 +988,18 @@
     "codearts_oauth_status_error": "認證失敗：",
     "codearts_oauth_start_error": "啟動華為雲 CodeArts OAuth 失敗：",
     "codearts_oauth_polling_error": "檢查認證狀態失敗：",
-    "qoder_cn_oauth_title": "Qoder CN 登入"
+    "qoder_cn_oauth_title": "Qoder CN 登入",
+    "qoder_ai_oauth_title": "Qoder AI 登入",
+    "qoder_ai_oauth_button": "使用 Qoder AI 登入",
+    "qoder_ai_oauth_hint": "透過瀏覽器裝置授權登入 Qoder AI（國際版），完成後將自動取得並儲存驗證檔案。",
+    "qoder_ai_oauth_url_label": "授權連結:",
+    "qoder_ai_open_link": "開啟連結",
+    "qoder_ai_copy_link": "複製連結",
+    "qoder_ai_oauth_status_waiting": "等待驗證中...",
+    "qoder_ai_oauth_status_success": "驗證成功！",
+    "qoder_ai_oauth_status_error": "驗證失敗:",
+    "qoder_ai_oauth_start_error": "啟動 Qoder AI OAuth 失敗:",
+    "qoder_ai_oauth_polling_error": "檢查驗證狀態失敗:"
   },
   "stats": {
     "success": "成功",

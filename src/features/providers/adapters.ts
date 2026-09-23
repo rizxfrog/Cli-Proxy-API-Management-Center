@@ -67,6 +67,7 @@ function providerKeyToResource(
     | 'codebuddyCn'
     | 'codebuddyAi'
     | 'qoderCn'
+    | 'qoderAi'
     | 'xiaohuanxiong'
     | 'codearts'
     | 'claude'
@@ -150,6 +151,10 @@ export function codebuddyAiToResource(config: ProviderKeyConfig, index: number):
 
 export function qoderCnToResource(config: ProviderKeyConfig, index: number): ProviderResource {
   return providerKeyToResource('qoderCn', config, index);
+}
+
+export function qoderAiToResource(config: ProviderKeyConfig, index: number): ProviderResource {
+  return providerKeyToResource('qoderAi', config, index);
 }
 
 export function xiaohuanxiongToResource(

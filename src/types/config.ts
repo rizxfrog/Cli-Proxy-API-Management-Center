@@ -31,6 +31,7 @@ export interface Config {
   codebuddyCnApiKeys?: ProviderKeyConfig[];
   codebuddyAiApiKeys?: ProviderKeyConfig[];
   qoderCnApiKeys?: ProviderKeyConfig[];
+  qoderAiApiKeys?: ProviderKeyConfig[];
   xiaohuanxiongApiKeys?: ProviderKeyConfig[];
   codeartsApiKeys?: ProviderKeyConfig[];
   claudeApiKeys?: ProviderKeyConfig[];
@@ -62,6 +63,7 @@ export type RawConfigSection =
   | 'codearts-api-key'
   | 'codebuddy-ai-api-key'
   | 'qoder-cn-api-key'
+  | 'qoder-ai-api-key'
   | 'claude-api-key'
   | 'vertex-api-key'
   | 'openai-compatibility'

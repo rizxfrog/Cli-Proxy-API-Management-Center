@@ -52,6 +52,16 @@ export function isQoderCNFile(file: AuthFileItem): boolean {
   return resolveAuthProvider(file) === 'qoder-cn';
 }
 
+/**
+ * Qoder AI credentials reach the quota page as a bare `qoder-ai` provider (the
+ * auth file's `type`), matching how the provider key is registered. The quota
+ * payload shape is identical to Qoder CN (the backend merges the same OpenAPI
+ * reads from the international origin).
+ */
+export function isQoderAIFile(file: AuthFileItem): boolean {
+  return resolveAuthProvider(file) === 'qoder-ai';
+}
+
 export function isCodeBuddyAiFile(file: AuthFileItem): boolean {
   return resolveAuthProvider(file) === 'codebuddy-ai';
 }
