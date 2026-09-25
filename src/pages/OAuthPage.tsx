@@ -330,6 +330,18 @@ const resolveCallbackUrl = (provider: string, input: string, state?: string): st
   return buildXaiCallbackUrl(input, state);
 };
 
+// Providers whose callback input differs enough from the generic loopback story
+// to need their own label, hint, and placeholder copy.
+const DEDICATED_CALLBACK_COPY = new Set<string>(['xai', 'devin', 'xiaohuanxiong']);
+
+const callbackTextKey = (
+  provider: string,
+  suffix: 'label' | 'hint' | 'placeholder'
+): string =>
+  DEDICATED_CALLBACK_COPY.has(provider)
+    ? `auth_login.${provider.replace(/-/g, '_')}_callback_${suffix}`
+    : `auth_login.oauth_callback_${suffix}`;
+
 export function OAuthPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -611,7 +623,9 @@ export function OAuthPage() {
         t(
           provider === 'xai'
             ? 'auth_login.xai_callback_required'
-            : 'auth_login.oauth_callback_required'
+            : provider === 'xiaohuanxiong'
+              ? 'auth_login.xiaohuanxiong_callback_required'
+              : 'auth_login.oauth_callback_required'
         ),
         'warning'
       );
@@ -878,18 +892,8 @@ export function OAuthPage() {
           {canSubmitCallback && (
             <div className={styles.callbackSection}>
               <Input
-                label={t(
-                  provider.id === 'xai'
-                    ? 'auth_login.xai_callback_label'
-                    : 'auth_login.oauth_callback_label'
-                )}
-                hint={t(
-                  provider.id === 'xai'
-                    ? 'auth_login.xai_callback_hint'
-                    : provider.id === 'devin'
-                      ? 'auth_login.devin_callback_hint'
-                      : 'auth_login.oauth_callback_hint'
-                )}
+                label={t(callbackTextKey(provider.id, 'label'))}
+                hint={t(callbackTextKey(provider.id, 'hint'))}
                 disabled={
                   provider.id === 'devin' && (state.cancelling || state.status !== 'waiting')
                 }
@@ -901,13 +905,7 @@ export function OAuthPage() {
                     callbackError: undefined,
                   })
                 }
-                placeholder={t(
-                  provider.id === 'xai'
-                    ? 'auth_login.xai_callback_placeholder'
-                    : provider.id === 'devin'
-                      ? 'auth_login.devin_callback_placeholder'
-                      : 'auth_login.oauth_callback_placeholder'
-                )}
+                placeholder={t(callbackTextKey(provider.id, 'placeholder'))}
               />
               <div className={styles.callbackActions}>
                 <Button

@@ -1,4 +1,6 @@
 import { describe, expect, test } from 'bun:test';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { MemoryRouter } from 'react-router-dom';
@@ -9,6 +11,11 @@ import en from '@/i18n/locales/en.json';
 import zhCN from '@/i18n/locales/zh-CN.json';
 import zhTW from '@/i18n/locales/zh-TW.json';
 import ru from '@/i18n/locales/ru.json';
+
+const oauthPage = readFileSync(
+  join(import.meta.dir, '..', 'src', 'pages', 'OAuthPage.tsx'),
+  'utf8'
+);
 
 const i18n = createInstance();
 await i18n.init({ lng: 'en', resources: { en: { translation: en } } });
@@ -41,6 +48,32 @@ describe('Xiaohuanxiong OAuth login UI', () => {
       // instruction stays actionable after translation.
       expect(locale.auth_login.xiaohuanxiong_oauth_hint).toContain('office-raccoon://');
     }
+  });
+
+  test('advertises both accepted callback formats in every language', () => {
+    // The backend accepts the office-raccoon:// deep link and a bare one-time
+    // code, so the copy must offer both instead of implying a URL is required.
+    for (const locale of [en, zhCN, zhTW, ru]) {
+      const hints = locale.auth_login as Record<string, string>;
+      // The deep link is the canonical form and must appear in the hint.
+      expect(hints.xiaohuanxiong_callback_hint).toContain('office-raccoon://');
+      // The placeholder is the canonical spot that spells out both formats.
+      const placeholder = hints.xiaohuanxiong_callback_placeholder;
+      expect(placeholder).toContain('office-raccoon://');
+      expect(placeholder).toContain('code');
+    }
+    // The paste field for Xiaohuanxiong must use its own copy rather than the
+    // generic http://localhost:... loopback hint.
+    const copyBlock = oauthPage.slice(
+      oauthPage.indexOf('const DEDICATED_CALLBACK_COPY'),
+      oauthPage.indexOf('const callbackTextKey')
+    );
+    expect(copyBlock).toContain("'xiaohuanxiong'");
+    expect(oauthPage).toContain("callbackTextKey(provider.id, 'label')");
+    expect(oauthPage).toContain("callbackTextKey(provider.id, 'hint')");
+    expect(oauthPage).toContain("callbackTextKey(provider.id, 'placeholder')");
+    // The empty-input warning must name the two accepted formats too.
+    expect(oauthPage).toContain('xiaohuanxiong_callback_required');
   });
 });
 
