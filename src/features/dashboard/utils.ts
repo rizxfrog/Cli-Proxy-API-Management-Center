@@ -21,6 +21,7 @@ const PROVIDER_LABELS: Record<string, string> = {
   codearts: 'CodeArts',
   qodercn: 'Qoder CN',
   qoderai: 'Qoder AI',
+  cline: 'Cline',
 };
 
 /**

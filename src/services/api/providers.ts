@@ -52,6 +52,8 @@ const CODEBUDDY_AI_KEY_FIELDS = PROVIDER_COMMON_KEY_FIELDS;
 // refresh-token in addition to the common key fields.
 const QODER_CN_KEY_FIELDS = [...PROVIDER_COMMON_KEY_FIELDS, 'machine-id', 'refresh-token'] as const;
 const QODER_AI_KEY_FIELDS = QODER_CN_KEY_FIELDS;
+// Cline carries an optional WorkOS refresh-token in addition to the common key fields.
+const CLINE_KEY_FIELDS = [...PROVIDER_COMMON_KEY_FIELDS, 'refresh-token'] as const;
 const CLAUDE_KEY_FIELDS = [
   ...PROVIDER_COMMON_KEY_FIELDS,
   'cloak',
@@ -648,6 +650,26 @@ export const providersApi = {
 
   deleteQoderAIConfig: (apiKey: string, baseUrl?: string) =>
     apiClient.delete(`/qoder-ai-api-key${buildProviderDeleteQuery(apiKey, baseUrl)}`),
+
+  createClineConfig: (config: ProviderKeyConfig) =>
+    mutateLatestProviderList('cline-api-key', (latestItems) =>
+      appendLatestProviderRecord(latestItems, serializeProviderKey(config), (raw, payload) =>
+        mergeProviderKeyPayload(raw, payload, CLINE_KEY_FIELDS)
+      )
+    ),
+
+  updateClineConfig: (apiKey: string, baseUrl: string | undefined, config: ProviderKeyConfig) =>
+    mutateLatestProviderList('cline-api-key', (latestItems) =>
+      replaceLatestProviderRecord(
+        latestItems,
+        (record) => matchesProviderKey(record, apiKey, baseUrl),
+        serializeProviderKey(config),
+        (raw, payload) => mergeProviderKeyPayload(raw, payload, CLINE_KEY_FIELDS)
+      )
+    ),
+
+  deleteClineConfig: (apiKey: string, baseUrl?: string) =>
+    apiClient.delete(`/cline-api-key${buildProviderDeleteQuery(apiKey, baseUrl)}`),
 
   createXiaohuanxiongConfig: (config: ProviderKeyConfig) =>
     mutateLatestProviderList('xiaohuanxiong-api-key', (latestItems) =>

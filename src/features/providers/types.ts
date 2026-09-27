@@ -15,6 +15,7 @@ export type ProviderBrand =
   | 'codebuddyAi'
   | 'qoderCn'
   | 'qoderAi'
+  | 'cline'
   | 'claude'
   | 'vertex'
   | 'openaiCompatibility'
@@ -43,6 +44,7 @@ export type ProviderResourceSelector =
   | { brand: 'codebuddyAi'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'qoderCn'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'qoderAi'; apiKey: string; baseUrl?: string; index: number }
+  | { brand: 'cline'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'xiaohuanxiong'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'codearts'; apiKey: string; baseUrl?: string; index: number }
   | { brand: 'claude'; apiKey: string; baseUrl?: string; index: number }

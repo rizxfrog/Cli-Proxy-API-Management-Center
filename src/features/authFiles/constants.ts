@@ -18,6 +18,7 @@ import iconTrae from '@/assets/icons/trae.png';
 import iconVertex from '@/assets/icons/vertex.svg';
 import iconXiaohuanxiong from '@/assets/icons/xiaohuanxiong.svg';
 import iconCodeArts from '@/assets/icons/codearts.svg';
+import iconCline from '@/assets/icons/cline.png';
 import type { AuthFileItem, ResolvedTheme, ThemeColors } from '@/types';
 import { normalizeOAuthProviderKey } from '@/utils/providerKeys';
 import { parseTimestamp } from '@/utils/timestamp';
@@ -110,6 +111,7 @@ export const AUTH_FILE_ICONS: Record<string, AuthFileIconAsset> = {
   'codebuddy-ai': iconCodebuddy,
   'qoder-cn': iconQoder,
   'qoder-ai': iconQoder,
+  cline: iconCline,
   codex: iconCodex,
   meta: iconMeta,
   devin: { light: iconDevin, dark: iconDevinDark },

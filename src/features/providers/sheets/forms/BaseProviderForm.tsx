@@ -68,6 +68,9 @@ const CODEARTS_API_BASE_URL = 'https://snap-access.cn-north-4.myhuaweicloud.com/
 // {origin}/algo/api/v2/service/pro/sse/agent_chat_generation.
 const QODER_CN_API_BASE_URL = 'https://gateway.qoder.com.cn';
 const QODER_AI_API_BASE_URL = 'https://api3.qoder.sh';
+// Cline's OpenAI-compatible gateway base URL. The executor appends
+// "/chat/completions", so no path suffix belongs here.
+const CLINE_API_BASE_URL = 'https://api.cline.bot/api/v1';
 
 const stripDisableAllRule = (list?: string[]): string[] =>
   (list ?? []).filter((s) => s.trim() !== '*');
@@ -89,7 +92,7 @@ function buildInitialForm(
       apiKey: '',
       name: '',
       refreshToken:
-        brand === 'xiaohuanxiong' || brand === 'codearts'
+        brand === 'xiaohuanxiong' || brand === 'codearts' || brand === 'cline'
           ? ''
           : brand === 'qoderCn' || brand === 'qoderAi'
             ? ''
@@ -112,9 +115,11 @@ function buildInitialForm(
                     ? QODER_CN_API_BASE_URL
                     : brand === 'qoderAi'
                       ? QODER_AI_API_BASE_URL
-                      : brand === 'meta'
-                        ? META_API_BASE_URL
-                        : '',
+                      : brand === 'cline'
+                        ? CLINE_API_BASE_URL
+                        : brand === 'meta'
+                          ? META_API_BASE_URL
+                          : '',
       proxyUrl: '',
       prefix: '',
       disabled: false,
@@ -138,6 +143,7 @@ function buildInitialForm(
         brand === 'codebuddyAi' ||
         brand === 'qoderCn' ||
         brand === 'qoderAi' ||
+        brand === 'cline' ||
         brand === 'xiaohuanxiong' ||
         brand === 'codearts' ||
         isClaudeLikeBrand(brand) ||
@@ -247,6 +253,7 @@ function buildInitialForm(
       brand === 'codebuddyAi' ||
       brand === 'qoderCn' ||
       brand === 'qoderAi' ||
+      brand === 'cline' ||
       brand === 'xiaohuanxiong' ||
       brand === 'codearts' ||
       isClaudeLikeBrand(brand) ||
@@ -541,6 +548,7 @@ export function BaseProviderForm({
     brand === 'codebuddyAi' ||
     brand === 'qoderCn' ||
     brand === 'qoderAi' ||
+    brand === 'cline' ||
     isClaudeLikeBrand(brand) ||
     brand === 'openaiCompatibility';
   const supportsModelImage = brand === 'openaiCompatibility';
@@ -551,7 +559,8 @@ export function BaseProviderForm({
     brand === 'codebuddyCn' ||
     brand === 'codebuddyAi' ||
     brand === 'qoderCn' ||
-    brand === 'qoderAi'
+    brand === 'qoderAi' ||
+    brand === 'cline'
       ? { status: connectivity.codexStatus, run: connectivity.runCodex }
       : brand === 'gemini' || brand === 'interactions'
         ? { status: connectivity.geminiStatus, run: connectivity.runGemini }
@@ -637,7 +646,7 @@ export function BaseProviderForm({
           </div>
         ) : null}
 
-        {brand === 'xiaohuanxiong' ? (
+        {brand === 'xiaohuanxiong' || brand === 'cline' ? (
           <div className={styles.field}>
             <label className={styles.label} htmlFor={`${fid}-refreshToken`}>
               {t('providersPage.form.refreshToken')}

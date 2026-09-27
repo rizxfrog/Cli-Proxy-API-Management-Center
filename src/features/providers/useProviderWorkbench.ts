@@ -19,6 +19,7 @@ import {
   claudeToResource,
   codebuddyCnToResource,
   codebuddyAiToResource,
+  clineToResource,
   qoderCnToResource,
   qoderAiToResource,
   codexToResource,
@@ -172,6 +173,7 @@ const buildProviderKeyConfig = (
     | 'codebuddyAi'
     | 'qoderCn'
     | 'qoderAi'
+    | 'cline'
     | 'xiaohuanxiong'
     | 'codearts'
     | 'claude'
@@ -221,6 +223,13 @@ const buildProviderKeyConfig = (
     // field on edit keeps the stored value, exactly like apiKey.
     const stored = existing as ProviderKeyConfig | undefined;
     next.machineId = input.machineId?.trim() || stored?.machineId || undefined;
+    const refreshToken = input.refreshToken?.trim();
+    next.refreshToken = refreshToken || stored?.refreshToken || undefined;
+  }
+  if (brand === 'cline') {
+    // Cline uses the WorkOS refresh token to rotate the short-lived access token.
+    // A blank field on edit keeps the stored value, exactly like apiKey.
+    const stored = existing as ProviderKeyConfig | undefined;
     const refreshToken = input.refreshToken?.trim();
     next.refreshToken = refreshToken || stored?.refreshToken || undefined;
   }
@@ -457,6 +466,11 @@ export const buildProviderGroups = (config: Config): ProviderGroup[] =>
       case 'qoderAi':
         resources = (config.qoderAiApiKeys ?? []).map((item, index) =>
           qoderAiToResource(item, index)
+        );
+        break;
+      case 'cline':
+        resources = (config.clineApiKeys ?? []).map((item, index) =>
+          clineToResource(item, index)
         );
         break;
       case 'xiaohuanxiong':
@@ -758,6 +772,10 @@ export function useProviderWorkbench(): UseProviderWorkbenchResult {
           await providersApi.createQoderAIConfig(
             buildProviderKeyConfig('qoderAi', input) as ProviderKeyConfig
           );
+        } else if (brand === 'cline') {
+          await providersApi.createClineConfig(
+            buildProviderKeyConfig('cline', input) as ProviderKeyConfig
+          );
         } else if (brand === 'claude') {
           await providersApi.createClaudeConfig(
             buildProviderKeyConfig('claude', input) as ProviderKeyConfig
@@ -867,6 +885,13 @@ export function useProviderWorkbench(): UseProviderWorkbenchResult {
             selector.baseUrl,
             buildProviderKeyConfig('qoderAi', input, existing) as ProviderKeyConfig
           );
+        } else if (brand === 'cline' && selector.brand === 'cline') {
+          const existing = resource.raw as ProviderKeyConfig;
+          await providersApi.updateClineConfig(
+            selector.apiKey,
+            selector.baseUrl,
+            buildProviderKeyConfig('cline', input, existing) as ProviderKeyConfig
+          );
         } else if (brand === 'claude' && selector.brand === 'claude') {
           const existing = resource.raw as ProviderKeyConfig;
           await providersApi.updateClaudeConfig(
@@ -944,6 +969,10 @@ export function useProviderWorkbench(): UseProviderWorkbenchResult {
           await providersApi.deleteQoderAIConfig(sel.apiKey, sel.baseUrl);
           const next = (config?.qoderAiApiKeys ?? []).filter((_, i) => i !== sel.index);
           updateConfigValue('qoder-ai-api-key', next);
+        } else if (sel.brand === 'cline') {
+          await providersApi.deleteClineConfig(sel.apiKey, sel.baseUrl);
+          const next = (config?.clineApiKeys ?? []).filter((_, i) => i !== sel.index);
+          updateConfigValue('cline-api-key', next);
         } else if (sel.brand === 'xiaohuanxiong') {
           await providersApi.deleteXiaohuanxiongConfig(sel.apiKey, sel.baseUrl);
           const next = (config?.xiaohuanxiongApiKeys ?? []).filter((_, i) => i !== sel.index);
@@ -1031,6 +1060,7 @@ export function useProviderWorkbench(): UseProviderWorkbenchResult {
           (brand === 'codebuddyAi' && selector.brand === 'codebuddyAi') ||
           (brand === 'qoderCn' && selector.brand === 'qoderCn') ||
           (brand === 'qoderAi' && selector.brand === 'qoderAi') ||
+          (brand === 'cline' && selector.brand === 'cline') ||
           (brand === 'claude' && selector.brand === 'claude') ||
           (brand === 'vertex' && selector.brand === 'vertex')
         ) {
@@ -1053,6 +1083,8 @@ export function useProviderWorkbench(): UseProviderWorkbenchResult {
             await providersApi.updateQoderCNConfig(selector.apiKey, selector.baseUrl, next);
           } else if (selector.brand === 'qoderAi') {
             await providersApi.updateQoderAIConfig(selector.apiKey, selector.baseUrl, next);
+          } else if (selector.brand === 'cline') {
+            await providersApi.updateClineConfig(selector.apiKey, selector.baseUrl, next);
           } else if (selector.brand === 'claude') {
             await providersApi.updateClaudeConfig(selector.apiKey, selector.baseUrl, next);
           } else if (selector.brand === 'vertex') {

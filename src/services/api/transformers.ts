@@ -421,6 +421,13 @@ export const normalizeConfigResponse = (raw: unknown): Config => {
       .filter(Boolean) as ProviderKeyConfig[];
   }
 
+  const clineList = raw['cline-api-key'];
+  if (Array.isArray(clineList)) {
+    config.clineApiKeys = clineList
+      .map((item) => normalizeProviderKeyConfig(item))
+      .filter(Boolean) as ProviderKeyConfig[];
+  }
+
   const xiaohuanxiongList = raw['xiaohuanxiong-api-key'];
   if (Array.isArray(xiaohuanxiongList)) {
     config.xiaohuanxiongApiKeys = xiaohuanxiongList

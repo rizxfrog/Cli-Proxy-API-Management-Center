@@ -18,6 +18,7 @@ export type BuiltInOAuthProvider =
   | 'codebuddy-ai'
   | 'qoder-cn'
   | 'qoder-ai'
+  | 'cline'
   | 'xai'
   | 'trae'
   | 'devin'
@@ -124,6 +125,19 @@ export const oauthApi = {
   submitCodeArtsCallback: (state: string, redirectUrl: string, signal?: AbortSignal) =>
     apiClient.post<OAuthCallbackResponse>(
       '/codearts-auth-callback',
+      { state, redirect_url: redirectUrl },
+      signal ? { signal } : undefined
+    ),
+
+  /**
+   * Cline forces a 127.0.0.1 loopback callback_url and embeds the credential
+   * bundle (accessToken/refreshToken) as a base64 document in the pasted code,
+   * so its callback is submitted through a dedicated endpoint that parses the
+   * full browser URL or bare code server-side.
+   */
+  submitClineCallback: (state: string, redirectUrl: string, signal?: AbortSignal) =>
+    apiClient.post<OAuthCallbackResponse>(
+      '/cline-auth-callback',
       { state, redirect_url: redirectUrl },
       signal ? { signal } : undefined
     ),

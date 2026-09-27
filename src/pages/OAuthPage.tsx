@@ -27,6 +27,7 @@ import iconAntigravity from '@/assets/icons/antigravity.svg';
 import iconKimiLight from '@/assets/icons/kimi-light.svg';
 import iconKimiDark from '@/assets/icons/kimi-dark.svg';
 import iconCodeBuddy from '@/assets/icons/codebuddy.svg';
+import iconCline from '@/assets/icons/cline.png';
 import iconQoder from '@/assets/icons/qoder.svg';
 import iconTrae from '@/assets/icons/trae.png';
 import iconXiaohuanxiong from '@/assets/icons/xiaohuanxiong.svg';
@@ -142,6 +143,12 @@ const PROVIDERS: BuiltInOAuthProviderCard[] = [
   },
   {
     kind: 'builtin',
+    id: 'cline',
+    titleKey: 'auth_login.cline_oauth_title',
+    icon: iconCline,
+  },
+  {
+    kind: 'builtin',
     id: 'anthropic',
     titleKey: 'auth_login.anthropic_oauth_title',
     icon: iconClaude,
@@ -198,6 +205,9 @@ const CALLBACK_SUPPORTED = new Set<string>([
   // CodeArts redirects to a 127.0.0.1 loopback URL owned by the desktop client,
   // so the proxy never receives the code; the user pastes the callback URL.
   'codearts',
+  // Cline forces a 127.0.0.1 loopback callback_url and embeds the credential
+  // bundle in the pasted code, so the user pastes the callback URL.
+  'cline',
 ]);
 const XAI_CALLBACK_URL = 'http://127.0.0.1:56121/callback';
 const SUCCESS_RESET_DELAY_MS = 5000;
@@ -672,6 +682,19 @@ export function OAuthPage() {
         // submit the already-parsed code and let the dedicated endpoint bind it
         // to this pending session.
         await oauthApi.submitCodeArtsCallback(
+          states[provider]?.state || '',
+          redirectUrl,
+          attempt.signal
+        );
+        if (!attempt.isCurrent()) return;
+        updateProviderState(provider, { callbackSubmitting: false, callbackStatus: 'success' });
+        showNotification(t('auth_login.oauth_callback_success'), 'success');
+        return;
+      }
+      if (provider === 'cline') {
+        // Cline forces a loopback callback_url, so submit the pasted URL/code
+        // and let the dedicated endpoint parse the embedded credential bundle.
+        await oauthApi.submitClineCallback(
           states[provider]?.state || '',
           redirectUrl,
           attempt.signal

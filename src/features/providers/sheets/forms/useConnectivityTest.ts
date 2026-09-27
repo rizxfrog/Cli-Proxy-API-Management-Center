@@ -293,7 +293,8 @@ export function useConnectivityTest(
       brand !== 'codebuddyCn' &&
       brand !== 'codebuddyAi' &&
       brand !== 'qoderCn' &&
-      brand !== 'qoderAi'
+      brand !== 'qoderAi' &&
+      brand !== 'cline'
     )
       return;
 
@@ -301,7 +302,8 @@ export function useConnectivityTest(
       brand === 'codebuddyCn' ||
       brand === 'codebuddyAi' ||
       brand === 'qoderCn' ||
-      brand === 'qoderAi';
+      brand === 'qoderAi' ||
+      brand === 'cline';
     const trimmedBase = baseUrl.trim();
     if (!trimmedBase) {
       setCodexStatus({ state: 'error', message: messages.baseUrlRequired });

@@ -17,6 +17,7 @@ import kimiLightLogo from '@/assets/icons/kimi-light.svg';
 import kimiDarkLogo from '@/assets/icons/kimi-dark.svg';
 import xiaohuanxiongLogo from '@/assets/icons/xiaohuanxiong.svg';
 import codeArtsLogo from '@/assets/icons/codearts.svg';
+import clineLogo from '@/assets/icons/cline.png';
 import qoderLogo from '@/assets/icons/qoder.svg';
 import type { ProviderBrand } from './types';
 
@@ -49,6 +50,7 @@ export const PROVIDER_LOGOS: Record<ProviderBrandLogoKey, ProviderBrandLogo> = {
   qiniuCloud: { src: qiniuCloudLogo, transparent: true },
   xiaohuanxiong: { src: xiaohuanxiongLogo },
   codearts: { src: codeArtsLogo },
+  cline: { src: clineLogo },
   kimi: {
     src: kimiDarkLogo,
     darkSrc: kimiLightLogo,

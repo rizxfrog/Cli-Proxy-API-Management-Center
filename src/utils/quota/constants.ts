@@ -38,6 +38,10 @@ export const TYPE_COLORS: Record<string, TypeColorSet> = {
     light: { bg: '#fde7e9', text: '#a8071a' },
     dark: { bg: '#5c0f16', text: '#ffb3b8' },
   },
+  cline: {
+    light: { bg: '#e6f4f1', text: '#0f766e' },
+    dark: { bg: '#0b3d39', text: '#5eead4' },
+  },
   meta: {
     light: { bg: '#e3f2fd', text: '#1565c0' },
     dark: { bg: '#0d47a1', text: '#64b5f6' },
