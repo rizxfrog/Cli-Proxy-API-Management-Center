@@ -25,6 +25,7 @@ import {
   IconSidebarOauth,
   IconSidebarPlugins,
   IconSidebarProviders,
+  IconModelCluster,
   IconSidebarQuickStart,
   IconSidebarQuota,
   IconSidebarStore,
@@ -57,6 +58,7 @@ const sidebarIcons: Record<string, ReactNode> = {
   dashboard: <IconSidebarDashboard size={18} />,
   quickStart: <IconSidebarQuickStart size={18} />,
   aiProviders: <IconSidebarProviders size={18} />,
+  models: <IconModelCluster size={18} />,
   authFiles: <IconSidebarAuthFiles size={18} />,
   oauth: <IconSidebarOauth size={18} />,
   quota: <IconSidebarQuota size={18} />,
@@ -617,6 +619,12 @@ export function MainLayout() {
           icon: sidebarIcons.aiProviders,
         },
         {
+          path: '/models',
+          labelKey: 'nav.models',
+          metaKey: 'nav_meta.models',
+          icon: sidebarIcons.models,
+        },
+        {
           path: '/auth-files',
           labelKey: 'nav.auth_files',
           metaKey: 'nav_meta.auth_files',
@@ -821,6 +829,8 @@ export function MainLayout() {
 
   const isMac = useMemo(() => {
     if (typeof navigator === 'undefined') return false;
+    // SAFETY: userAgentData is a newer Chromium-only property missing from lib.dom;
+    // both fields are optional and read defensively, so the shape only widens the type.
     const platform =
       (navigator as unknown as { userAgentData?: { platform?: string } }).userAgentData?.platform ||
       navigator.platform ||

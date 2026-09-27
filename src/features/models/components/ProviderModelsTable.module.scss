@@ -1,0 +1,100 @@
+@use '../../../styles/mixins' as *;
+
+/* 模型表：模型 ID 用 mono，来源与可用性各自成色 */
+
+.modelId {
+  font-family: $font-mono;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+
+.providerName {
+  margin-top: 3px;
+  font-family: $font-mono;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--text-tertiary);
+}
+
+.displayName {
+  margin-top: 3px;
+  font-size: 12px;
+  color: var(--text-tertiary);
+  overflow-wrap: anywhere;
+}
+
+.spec {
+  margin-top: 3px;
+  font-family: $font-mono;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-quaternary);
+}
+
+/* 来源：小药丸，色只区分「谁定义的」 */
+.source {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: $radius-full;
+  font-size: 11.5px;
+  font-weight: 550;
+  line-height: 1.6;
+  white-space: nowrap;
+  background: color-mix(in srgb, var(--text-primary) 6%, transparent);
+  color: var(--text-secondary);
+}
+.sourceDefault,
+.sourceConfigured {
+  background: color-mix(in srgb, var(--text-primary) 6%, transparent);
+  color: var(--text-secondary);
+}
+
+.sourceRuntime {
+  background: color-mix(in srgb, var(--text-primary) 6%, transparent);
+  color: var(--text-tertiary);
+}
+
+.sourceCustom,
+.sourceOverride {
+  background: var(--primary-10);
+  color: var(--text-primary);
+}
+
+.sourceUnavailable {
+  background: var(--warning-bg);
+  color: var(--warning-text);
+}
+
+.readOnlyValue {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.availabilityGood {
+  font-family: $font-mono;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--viz-success);
+}
+
+.availabilityWarn {
+  font-family: $font-mono;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--amber-text);
+}
+
+.availabilityMuted {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.rowActions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2px;
+}

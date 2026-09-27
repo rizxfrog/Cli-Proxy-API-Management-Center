@@ -1,0 +1,32 @@
+@use '../../../styles/mixins' as *;
+
+/* 状态带：错误用告警色，pending 用中性信息色（不是成功态） */
+
+.error,
+.pending {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.error {
+  color: var(--danger-color);
+  background: var(--bg-error-light);
+  border: 1px solid var(--warning-border);
+}
+
+.pending {
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+}
+
+.icon {
+  flex-shrink: 0;
+  margin-top: 1.5px;
+}
