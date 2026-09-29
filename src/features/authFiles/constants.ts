@@ -19,6 +19,7 @@ import iconVertex from '@/assets/icons/vertex.svg';
 import iconXiaohuanxiong from '@/assets/icons/xiaohuanxiong.svg';
 import iconCodeArts from '@/assets/icons/codearts.svg';
 import iconCline from '@/assets/icons/cline.png';
+import iconMinimax from '@/assets/icons/minimax.svg';
 import type { AuthFileItem, ResolvedTheme, ThemeColors } from '@/types';
 import { normalizeOAuthProviderKey } from '@/utils/providerKeys';
 import { parseTimestamp } from '@/utils/timestamp';
@@ -74,6 +75,8 @@ export const OAUTH_PROVIDER_PRESETS = [
   'codex',
   'devin',
   'kimi',
+  'minimax',
+  'minimax-cn',
 ];
 
 const OAUTH_PROVIDER_EXCLUDES = new Set(['all', 'unknown', 'empty']);
@@ -95,6 +98,9 @@ export const AUTH_FILE_MANUAL_REFRESH_PROVIDERS = new Set([
   'xai',
   // CodeArts rotates a temporary Huawei Cloud credential triple.
   'codearts',
+  // MiniMax Code rotates the OAuth access token from the stored refresh token.
+  'minimax',
+  'minimax-cn',
 ]);
 
 // 标签类型颜色配置：权威版本在 @/utils/quota/constants.ts，此处仅转发
@@ -109,6 +115,8 @@ export const AUTH_FILE_ICONS: Record<string, AuthFileIconAsset> = {
   claude: iconClaude,
   'codebuddy-cn': iconCodebuddy,
   'codebuddy-ai': iconCodebuddy,
+  'minimax': iconMinimax,
+  'minimax-cn': iconMinimax,
   'qoder-cn': iconQoder,
   'qoder-ai': iconQoder,
   cline: iconCline,

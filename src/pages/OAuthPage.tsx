@@ -27,6 +27,7 @@ import iconAntigravity from '@/assets/icons/antigravity.svg';
 import iconKimiLight from '@/assets/icons/kimi-light.svg';
 import iconKimiDark from '@/assets/icons/kimi-dark.svg';
 import iconCodeBuddy from '@/assets/icons/codebuddy.svg';
+import iconMinimax from '@/assets/icons/minimax.svg';
 import iconCline from '@/assets/icons/cline.png';
 import iconQoder from '@/assets/icons/qoder.svg';
 import iconTrae from '@/assets/icons/trae.png';
@@ -128,6 +129,18 @@ const PROVIDERS: BuiltInOAuthProviderCard[] = [
     id: 'codebuddy-ai',
     titleKey: 'auth_login.codebuddy_ai_oauth_title',
     icon: iconCodeBuddy,
+  },
+  {
+    kind: 'builtin',
+    id: 'minimax',
+    titleKey: 'auth_login.minimax_oauth_title',
+    icon: iconMinimax,
+  },
+  {
+    kind: 'builtin',
+    id: 'minimax-cn',
+    titleKey: 'auth_login.minimax_cn_oauth_title',
+    icon: iconMinimax,
   },
   {
     kind: 'builtin',

@@ -22,6 +22,8 @@ const PROVIDER_LABELS: Record<string, string> = {
   qodercn: 'Qoder CN',
   qoderai: 'Qoder AI',
   cline: 'Cline',
+  minimax: 'MiniMax Code',
+  'minimax-cn': 'MiniMax Code (CN)',
 };
 
 /**
