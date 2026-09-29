@@ -2242,5 +2242,28 @@
       "org": "组织共享资源包",
       "pack": "个人专属资源包"
     }
+  },
+  "minimax_quota": {
+    "title": "MiniMax Code 额度",
+    "empty_title": "暂无 MiniMax Code 认证",
+    "empty_desc": "登录 MiniMax Code 后即可查看套餐用量。",
+    "idle": "点击此处刷新额度",
+    "loading": "正在加载额度…",
+    "load_failed": "额度加载失败：{{message}}",
+    "missing_auth_index": "凭证缺少 auth_index",
+    "empty_data": "暂无额度数据",
+    "invalid_credential": "MiniMax Code 凭证无效或已过期",
+    "quota_error": "MiniMax Code 额度查询出错",
+    "not_subscribed": "该账号未开通套餐。",
+    "plan_label": "套餐",
+    "credits_label": "积分",
+    "plan_expires": "到期",
+    "unlimited": "不限量",
+    "unavailable": "不可用",
+    "reset_unknown": "暂无重置时间",
+    "window": {
+      "five_hour": "5 小时窗口",
+      "weekly": "每周窗口"
+    }
   }
 }

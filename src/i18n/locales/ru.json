@@ -2238,5 +2238,28 @@
       "org": "Общий пул организации",
       "pack": "Личный пакет"
     }
+  },
+  "minimax_quota": {
+    "title": "Квота MiniMax Code",
+    "empty_title": "Нет файлов авторизации MiniMax Code",
+    "empty_desc": "Войдите в MiniMax Code, чтобы увидеть использование плана.",
+    "idle": "Нажмите, чтобы обновить квоту",
+    "loading": "Загрузка квоты...",
+    "load_failed": "Не удалось загрузить квоту: {{message}}",
+    "missing_auth_index": "В файле авторизации отсутствует auth_index",
+    "empty_data": "Данные по квоте отсутствуют",
+    "invalid_credential": "Учётные данные MiniMax Code недействительны или истекли",
+    "quota_error": "Ошибка запроса квоты MiniMax Code",
+    "not_subscribed": "У этой учётной записи нет активного плана.",
+    "plan_label": "План",
+    "credits_label": "Кредиты",
+    "plan_expires": "Истекает",
+    "unlimited": "Без ограничений",
+    "unavailable": "Недоступно",
+    "reset_unknown": "Сброс не запланирован",
+    "window": {
+      "five_hour": "Окно 5 часов",
+      "weekly": "Недельное окно"
+    }
   }
 }

@@ -2268,5 +2268,28 @@
       "org": "組織共享資源包",
       "pack": "個人專屬資源包"
     }
+  },
+  "minimax_quota": {
+    "title": "MiniMax Code 額度",
+    "empty_title": "暫無 MiniMax Code 認證",
+    "empty_desc": "登入 MiniMax Code 後即可檢視方案用量。",
+    "idle": "點擊此處重新整理額度",
+    "loading": "正在載入額度…",
+    "load_failed": "額度載入失敗：{{message}}",
+    "missing_auth_index": "憑證缺少 auth_index",
+    "empty_data": "暫無額度資料",
+    "invalid_credential": "MiniMax Code 憑證無效或已過期",
+    "quota_error": "MiniMax Code 額度查詢出錯",
+    "not_subscribed": "此帳號未開通方案。",
+    "plan_label": "方案",
+    "credits_label": "積分",
+    "plan_expires": "到期",
+    "unlimited": "不限量",
+    "unavailable": "無法使用",
+    "reset_unknown": "暫無重設時間",
+    "window": {
+      "five_hour": "5 小時視窗",
+      "weekly": "每週視窗"
+    }
   }
 }

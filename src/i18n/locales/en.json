@@ -2244,5 +2244,28 @@
       "org": "Organization pool",
       "pack": "Dedicated pack"
     }
+  },
+  "minimax_quota": {
+    "title": "MiniMax Code Quota",
+    "empty_title": "No MiniMax Code Auth Files",
+    "empty_desc": "Sign in to MiniMax Code to view coding-plan usage.",
+    "idle": "Click here to refresh quota",
+    "loading": "Loading quota...",
+    "load_failed": "Failed to load quota: {{message}}",
+    "missing_auth_index": "Auth file missing auth_index",
+    "empty_data": "No quota data available",
+    "invalid_credential": "MiniMax Code credential is invalid or expired",
+    "quota_error": "MiniMax Code quota query error",
+    "not_subscribed": "This account has no active coding plan.",
+    "plan_label": "Plan",
+    "credits_label": "Credits",
+    "plan_expires": "Expires",
+    "unlimited": "Unlimited",
+    "unavailable": "Unavailable",
+    "reset_unknown": "No reset scheduled",
+    "window": {
+      "five_hour": "5-hour window",
+      "weekly": "Weekly window"
+    }
   }
 }

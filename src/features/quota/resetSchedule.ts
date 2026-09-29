@@ -145,6 +145,15 @@ export function collectQuotaRowInstants(
     return collectRows((quota as { rows?: WindowLike[] }).rows ?? [], 'row');
   }
 
+  if (provider === 'minimax') {
+    // A window carries its own reset instant; an unlimited window has none and
+    // therefore never contributes a recovery event.
+    const windows = ((quota as { windows?: WindowLike[] }).windows ?? [])
+      .filter((window) => typeof window.resetAtMs === 'number')
+      .map((window) => ({ ...window, id: window.id ?? 'window' }));
+    return collectRows(windows, 'window');
+  }
+
   if (provider === 'meta') {
     const windows =
       (

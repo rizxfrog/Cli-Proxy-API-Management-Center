@@ -8,6 +8,7 @@ export const QUOTA_TAB_ORDER: readonly QuotaProviderType[] = [
   'codebuddy',
   'codearts',
   'qodercn',
+  'minimax',
   'trae',
   'xai',
   'kimi',

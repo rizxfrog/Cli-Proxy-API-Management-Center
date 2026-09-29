@@ -12,6 +12,7 @@ import type {
   CodexQuotaState,
   DevinQuotaState,
   KimiQuotaState,
+  MinimaxQuotaState,
   QoderCNQuotaState,
   TraeQuotaState,
   MetaQuotaState,
@@ -31,6 +32,7 @@ interface QuotaStoreState {
   codexQuota: Record<string, CodexQuotaState>;
   devinQuota: Record<string, DevinQuotaState>;
   kimiQuota: Record<string, KimiQuotaState>;
+  minimaxQuota: Record<string, MinimaxQuotaState>;
   qoderCNQuota: Record<string, QoderCNQuotaState>;
   traeQuota: Record<string, TraeQuotaState>;
   metaQuota: Record<string, MetaQuotaState>;
@@ -43,6 +45,7 @@ interface QuotaStoreState {
   setCodexQuota: (updater: QuotaUpdater<Record<string, CodexQuotaState>>) => void;
   setDevinQuota: (updater: QuotaUpdater<Record<string, DevinQuotaState>>) => void;
   setKimiQuota: (updater: QuotaUpdater<Record<string, KimiQuotaState>>) => void;
+  setMinimaxQuota: (updater: QuotaUpdater<Record<string, MinimaxQuotaState>>) => void;
   setQoderCNQuota: (updater: QuotaUpdater<Record<string, QoderCNQuotaState>>) => void;
   setTraeQuota: (updater: QuotaUpdater<Record<string, TraeQuotaState>>) => void;
   setMetaQuota: (updater: QuotaUpdater<Record<string, MetaQuotaState>>) => void;
@@ -68,6 +71,7 @@ export const useQuotaStore = create<QuotaStoreState>((set) => ({
   codexQuota: {},
   devinQuota: {},
   kimiQuota: {},
+  minimaxQuota: {},
   qoderCNQuota: {},
   traeQuota: {},
   metaQuota: {},
@@ -100,6 +104,10 @@ export const useQuotaStore = create<QuotaStoreState>((set) => ({
   setKimiQuota: (updater) =>
     set((state) => ({
       kimiQuota: resolveUpdater(updater, state.kimiQuota),
+    })),
+  setMinimaxQuota: (updater) =>
+    set((state) => ({
+      minimaxQuota: resolveUpdater(updater, state.minimaxQuota),
     })),
   setQoderCNQuota: (updater) =>
     set((state) => ({
@@ -143,6 +151,7 @@ export const useQuotaStore = create<QuotaStoreState>((set) => ({
           codexQuota: omitNames(state.codexQuota),
           devinQuota: omitNames(state.devinQuota),
           kimiQuota: omitNames(state.kimiQuota),
+          minimaxQuota: omitNames(state.minimaxQuota),
           qoderCNQuota: omitNames(state.qoderCNQuota),
           traeQuota: omitNames(state.traeQuota),
           metaQuota: omitNames(state.metaQuota),
@@ -160,6 +169,7 @@ export const useQuotaStore = create<QuotaStoreState>((set) => ({
         codexQuota: {},
         devinQuota: {},
         kimiQuota: {},
+        minimaxQuota: {},
         qoderCNQuota: {},
         traeQuota: {},
         metaQuota: {},

@@ -12,6 +12,7 @@ import { CODEX_CONFIG } from './providers/codex/data';
 import { DEVIN_CONFIG } from './providers/devin/data';
 import { KIMI_CONFIG } from './providers/kimi/data';
 import { QODERCN_CONFIG } from './providers/qodercn/data';
+import { MINIMAX_CONFIG } from './providers/minimax/data';
 import { TRAE_CONFIG } from './providers/trae/data';
 import { META_CONFIG } from './providers/meta/data';
 
@@ -27,6 +28,7 @@ const QUOTA_FILTER_MAP: Record<QuotaProviderType, (file: AuthFileItem) => boolea
   codex: CODEX_CONFIG.filterFn,
   devin: DEVIN_CONFIG.filterFn,
   kimi: KIMI_CONFIG.filterFn,
+  minimax: MINIMAX_CONFIG.filterFn,
   qodercn: QODERCN_CONFIG.filterFn,
   trae: TRAE_CONFIG.filterFn,
   meta: META_CONFIG.filterFn,

@@ -44,6 +44,7 @@ export type QuotaProviderType =
   | 'codex'
   | 'devin'
   | 'kimi'
+  | 'minimax'
   | 'meta'
   | 'qodercn'
   | 'trae'
@@ -60,6 +61,7 @@ export const QUOTA_PROVIDER_TYPES = new Set<QuotaProviderType>([
   'codex',
   'devin',
   'kimi',
+  'minimax',
   'qodercn',
   'trae',
   'xai',

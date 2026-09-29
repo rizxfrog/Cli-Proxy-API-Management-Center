@@ -612,3 +612,33 @@ export interface QoderCNQuotaState {
   error?: string;
   errorStatus?: number;
 }
+
+// MiniMax Code coding-plan quota payload types.
+//
+// The proxy's /minimax-quota endpoint resolves the credential by auth_index,
+// refreshes a stale access token once, and reads the account membership plus the
+// open-platform coding-plan windows. The plan meters a 5-hour rolling window and
+// a weekly window; a window the plan does not cap reports unlimited.
+
+/** Window kind, mirroring the backend's MinimaxQuotaWindow.Kind. */
+export type MinimaxQuotaWindowKind = 'five_hour' | 'weekly';
+
+export interface MinimaxQuotaWindow {
+  id: MinimaxQuotaWindowKind;
+  remainingPercent: number | null;
+  resetAtMs: number | null;
+  periodHours: number;
+  unlimited: boolean;
+}
+
+export interface MinimaxQuotaState {
+  status: 'idle' | 'loading' | 'success' | 'error';
+  plan?: string | null;
+  expiresAtMs?: number | null;
+  creditBalance?: string | null;
+  /** True when the account has no active coding plan. */
+  notSubscribed?: boolean;
+  windows: MinimaxQuotaWindow[];
+  error?: string;
+  errorStatus?: number;
+}

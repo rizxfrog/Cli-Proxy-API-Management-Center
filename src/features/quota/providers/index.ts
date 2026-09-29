@@ -29,6 +29,8 @@ import { KIMI_CONFIG } from './kimi/data';
 import { KimiQuotaBody } from './kimi/KimiQuotaBody';
 import { QODERCN_CONFIG } from './qodercn/data';
 import { QoderCNQuotaBody } from './qodercn/QoderCNQuotaBody';
+import { MINIMAX_CONFIG } from './minimax/data';
+import { MinimaxQuotaBody } from './minimax/MinimaxQuotaBody';
 import { TRAE_CONFIG } from './trae/data';
 import { TraeQuotaBody } from './trae/TraeQuotaBody';
 import { XAI_CONFIG } from './xai/data';
@@ -68,6 +70,7 @@ export const QUOTA_ADAPTERS: Record<QuotaProviderType, QuotaAdapter> = {
   devin: { ...DEVIN_CONFIG, Body: DevinQuotaBody } as unknown as QuotaAdapter,
   kimi: { ...KIMI_CONFIG, Body: KimiQuotaBody } as unknown as QuotaAdapter,
   qodercn: { ...QODERCN_CONFIG, Body: QoderCNQuotaBody } as unknown as QuotaAdapter,
+  minimax: { ...MINIMAX_CONFIG, Body: MinimaxQuotaBody } as unknown as QuotaAdapter,
   trae: { ...TRAE_CONFIG, Body: TraeQuotaBody } as unknown as QuotaAdapter,
   meta: { ...META_CONFIG, Body: MetaQuotaBody } as unknown as QuotaAdapter,
 

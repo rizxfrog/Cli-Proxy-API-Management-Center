@@ -271,6 +271,8 @@ interface WindowLike {
   id?: string;
   label?: string;
   usedPercent?: number | null;
+  /** MiniMax Code reports a remaining percentage directly. */
+  remainingPercent?: number | null;
   resetAtMs?: number | null;
   periodHours?: number | null;
 }
@@ -570,6 +572,34 @@ export function buildTimelineLane(input: TimelineLaneInput): TimelineLane {
       remaining: remainingOf(chosen),
       limits: rows
         .map((row) => ({ label: row.label ?? '', remaining: remainingOf(row) }))
+        .filter((limit): limit is TimelineLimit => limit.remaining !== null),
+    };
+  }
+
+  if (provider === 'minimax') {
+    // MiniMax Code reports remaining percentages directly; an unlimited window
+    // carries no number and contributes no limit, but a bounded window does.
+    const windows = ((quota as { windows?: WindowLike[] }).windows ?? []).filter(
+      (window) => typeof window.resetAtMs === 'number'
+    );
+    const chosen = pickLaneWindow(windows, maxPeriodHours);
+    if (!chosen) return empty;
+
+    const remainingOf = (window: WindowLike) =>
+      typeof window.remainingPercent === 'number'
+        ? clampPercent(window.remainingPercent)
+        : null;
+
+    return {
+      ...empty,
+      anchorMs: chosen.resetAtMs ?? null,
+      periodHours: chosen.periodHours ?? null,
+      remaining: remainingOf(chosen),
+      limits: windows
+        .map((window) => ({
+          label: window.label ?? window.id ?? '',
+          remaining: remainingOf(window),
+        }))
         .filter((limit): limit is TimelineLimit => limit.remaining !== null),
     };
   }

@@ -15,6 +15,7 @@ import type {
   CodexQuotaState,
   DevinQuotaState,
   KimiQuotaState,
+  MinimaxQuotaState,
   QoderCNQuotaState,
   TraeQuotaState,
   MetaQuotaState,
@@ -32,6 +33,7 @@ export type QuotaProviderType =
   | 'codex'
   | 'devin'
   | 'kimi'
+  | 'minimax'
   | 'qodercn'
   | 'trae'
   | 'xai'
@@ -47,6 +49,7 @@ export interface QuotaStore {
   codexQuota: Record<string, CodexQuotaState>;
   devinQuota: Record<string, DevinQuotaState>;
   kimiQuota: Record<string, KimiQuotaState>;
+  minimaxQuota: Record<string, MinimaxQuotaState>;
   qoderCNQuota: Record<string, QoderCNQuotaState>;
   traeQuota: Record<string, TraeQuotaState>;
   metaQuota: Record<string, MetaQuotaState>;
@@ -59,6 +62,7 @@ export interface QuotaStore {
   setCodexQuota: (updater: QuotaUpdater<Record<string, CodexQuotaState>>) => void;
   setDevinQuota: (updater: QuotaUpdater<Record<string, DevinQuotaState>>) => void;
   setKimiQuota: (updater: QuotaUpdater<Record<string, KimiQuotaState>>) => void;
+  setMinimaxQuota: (updater: QuotaUpdater<Record<string, MinimaxQuotaState>>) => void;
   setQoderCNQuota: (updater: QuotaUpdater<Record<string, QoderCNQuotaState>>) => void;
   setTraeQuota: (updater: QuotaUpdater<Record<string, TraeQuotaState>>) => void;
   setMetaQuota: (updater: QuotaUpdater<Record<string, MetaQuotaState>>) => void;

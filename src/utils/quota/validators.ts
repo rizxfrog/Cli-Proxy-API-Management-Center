@@ -45,6 +45,15 @@ export function isCodeArtsFile(file: AuthFileItem): boolean {
 }
 
 /**
+ * MiniMax Code credentials reach the quota page as the auth file's `type`
+ * (`minimax` or `minimax-cn`), matching how the provider key is registered.
+ */
+export function isMinimaxFile(file: AuthFileItem): boolean {
+  const provider = resolveAuthProvider(file);
+  return provider === 'minimax' || provider === 'minimax-cn';
+}
+
+/**
  * Qoder CN credentials reach the quota page as a bare `qoder-cn` provider (the
  * auth file's `type`), matching how the provider key is registered.
  */
