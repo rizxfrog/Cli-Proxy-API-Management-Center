@@ -16,6 +16,7 @@ export type AuthFileType =
   | 'meta'
   | 'antigravity'
   | 'xai'
+  | 'floatboat'
   | 'iflow'
   | 'vertex'
   | 'empty'

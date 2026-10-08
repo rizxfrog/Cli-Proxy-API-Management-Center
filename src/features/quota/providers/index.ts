@@ -20,6 +20,8 @@ import { CodeBuddyQuotaBody } from './codebuddy/CodeBuddyQuotaBody';
 import { CODEARTS_CONFIG } from './codearts/data';
 import { CodeArtsQuotaBody } from './codearts/CodeArtsQuotaBody';
 import { DEVIN_CONFIG } from './devin/data';
+import { FLOATBOAT_CONFIG } from './floatboat/data';
+import { FloatboatQuotaBody } from './floatboat/FloatboatQuotaBody';
 import { DevinQuotaBody } from './devin/DevinQuotaBody'
 import { CODEX_CONFIG } from './codex/data';
 import { CodexQuotaBody } from './codex/CodexQuotaBody';
@@ -69,6 +71,7 @@ export const QUOTA_ADAPTERS: Record<QuotaProviderType, QuotaAdapter> = {
   codearts: { ...CODEARTS_CONFIG, Body: CodeArtsQuotaBody } as unknown as QuotaAdapter,
   codex: { ...CODEX_CONFIG, Body: CodexQuotaBody } as unknown as QuotaAdapter,
   devin: { ...DEVIN_CONFIG, Body: DevinQuotaBody } as unknown as QuotaAdapter,
+  floatboat: { ...FLOATBOAT_CONFIG, Body: FloatboatQuotaBody } as unknown as QuotaAdapter,
   kimi: { ...KIMI_CONFIG, Body: KimiQuotaBody } as unknown as QuotaAdapter,
   qodercn: { ...QODERCN_CONFIG, Body: QoderCNQuotaBody } as unknown as QuotaAdapter,
   minimax: { ...MINIMAX_CONFIG, Body: MinimaxQuotaBody } as unknown as QuotaAdapter,

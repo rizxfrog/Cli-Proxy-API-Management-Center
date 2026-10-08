@@ -11,6 +11,7 @@ import type {
   CodeBuddyQuotaState,
   CodexQuotaState,
   DevinQuotaState,
+  FloatboatQuotaState,
   KimiQuotaState,
   MinimaxQuotaState,
   QoderCNQuotaState,
@@ -38,6 +39,7 @@ interface QuotaStoreState {
   metaQuota: Record<string, MetaQuotaState>;
 
   xaiQuota: Record<string, XaiQuotaState>;
+  floatboatQuota: Record<string, FloatboatQuotaState>;
   setAntigravityQuota: (updater: QuotaUpdater<Record<string, AntigravityQuotaState>>) => void;
   setClaudeQuota: (updater: QuotaUpdater<Record<string, ClaudeQuotaState>>) => void;
   setCodeArtsQuota: (updater: QuotaUpdater<Record<string, CodeArtsQuotaState>>) => void;
@@ -51,6 +53,7 @@ interface QuotaStoreState {
   setMetaQuota: (updater: QuotaUpdater<Record<string, MetaQuotaState>>) => void;
 
   setXaiQuota: (updater: QuotaUpdater<Record<string, XaiQuotaState>>) => void;
+  setFloatboatQuota: (updater: QuotaUpdater<Record<string, FloatboatQuotaState>>) => void;
   clearQuotaCache: (names?: string[]) => void;
 }
 
@@ -77,6 +80,7 @@ export const useQuotaStore = create<QuotaStoreState>((set) => ({
   metaQuota: {},
 
   xaiQuota: {},
+  floatboatQuota: {},
   setAntigravityQuota: (updater) =>
     set((state) => ({
       antigravityQuota: resolveUpdater(updater, state.antigravityQuota),
@@ -124,6 +128,10 @@ export const useQuotaStore = create<QuotaStoreState>((set) => ({
     set((state) => ({
       xaiQuota: resolveUpdater(updater, state.xaiQuota),
     })),
+  setFloatboatQuota: (updater) =>
+    set((state) => ({
+      floatboatQuota: resolveUpdater(updater, state.floatboatQuota),
+    })),
   clearQuotaCache: (names) =>
     set((state) => {
       if (names) {
@@ -157,6 +165,7 @@ export const useQuotaStore = create<QuotaStoreState>((set) => ({
           metaQuota: omitNames(state.metaQuota),
 
           xaiQuota: omitNames(state.xaiQuota),
+          floatboatQuota: omitNames(state.floatboatQuota),
         };
       }
       return {
@@ -175,6 +184,7 @@ export const useQuotaStore = create<QuotaStoreState>((set) => ({
         metaQuota: {},
 
         xaiQuota: {},
+        floatboatQuota: {},
       };
     }),
 }));

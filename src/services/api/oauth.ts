@@ -26,7 +26,8 @@ export type BuiltInOAuthProvider =
   | 'devin'
   | 'xiaohuanxiong'
   | 'codearts'
-  | 'meta';
+  | 'meta'
+  | 'floatboat';
 
 export interface OAuthStartResponse {
   url: string;

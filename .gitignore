@@ -35,3 +35,4 @@ settings.local.json
 *.sln
 *.sw?
 /build.sh
+/.run/run_cpa.run.xml

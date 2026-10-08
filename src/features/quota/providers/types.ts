@@ -14,6 +14,7 @@ import type {
   CodeBuddyQuotaState,
   CodexQuotaState,
   DevinQuotaState,
+  FloatboatQuotaState,
   KimiQuotaState,
   MinimaxQuotaState,
   QoderCNQuotaState,
@@ -32,6 +33,7 @@ export type QuotaProviderType =
   | 'codebuddy'
   | 'codex'
   | 'devin'
+  | 'floatboat'
   | 'kimi'
   | 'minimax'
   | 'qodercn'
@@ -48,6 +50,7 @@ export interface QuotaStore {
   codebuddyQuota: Record<string, CodeBuddyQuotaState>;
   codexQuota: Record<string, CodexQuotaState>;
   devinQuota: Record<string, DevinQuotaState>;
+  floatboatQuota: Record<string, FloatboatQuotaState>;
   kimiQuota: Record<string, KimiQuotaState>;
   minimaxQuota: Record<string, MinimaxQuotaState>;
   qoderCNQuota: Record<string, QoderCNQuotaState>;
@@ -61,6 +64,7 @@ export interface QuotaStore {
   setCodebuddyQuota: (updater: QuotaUpdater<Record<string, CodeBuddyQuotaState>>) => void;
   setCodexQuota: (updater: QuotaUpdater<Record<string, CodexQuotaState>>) => void;
   setDevinQuota: (updater: QuotaUpdater<Record<string, DevinQuotaState>>) => void;
+  setFloatboatQuota: (updater: QuotaUpdater<Record<string, FloatboatQuotaState>>) => void;
   setKimiQuota: (updater: QuotaUpdater<Record<string, KimiQuotaState>>) => void;
   setMinimaxQuota: (updater: QuotaUpdater<Record<string, MinimaxQuotaState>>) => void;
   setQoderCNQuota: (updater: QuotaUpdater<Record<string, QoderCNQuotaState>>) => void;

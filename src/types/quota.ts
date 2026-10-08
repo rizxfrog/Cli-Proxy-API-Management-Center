@@ -666,3 +666,23 @@ export interface MinimaxQuotaState {
   error?: string;
   errorStatus?: number;
 }
+
+// FloatBoat (aoe.chat) quota: the inference gateway's measured allowance.
+// These are the gateway's own billing reads, not the credential's login-time
+// snapshot and not scheduler cooldown state.
+export interface FloatboatQuotaState {
+  status: 'idle' | 'loading' | 'success' | 'error';
+  currency?: string;
+  hardLimit?: number;
+  used?: number;
+  remaining?: number;
+  /**
+   * False when either gateway billing read failed: an unknown balance must
+   * never be rendered as zero or as unlimited.
+   */
+  remainingKnown?: boolean;
+  hasActiveSubscription?: boolean;
+  groups?: string[];
+  error?: string;
+  errorStatus?: number;
+}

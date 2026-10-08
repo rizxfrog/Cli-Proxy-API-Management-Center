@@ -614,6 +614,25 @@
     "unknown": "Unknown",
     "remaining": "{{percent}}% remaining"
   },
+  "floatboat_quota": {
+    "title": "FloatBoat Quota",
+    "empty_title": "No FloatBoat credentials",
+    "empty_desc": "Sign in to FloatBoat (aoe.chat) to view remaining quota.",
+    "idle": "Click to query FloatBoat quota",
+    "loading": "Querying FloatBoat quota…",
+    "load_failed": "Failed to query quota: {{message}}",
+    "missing_auth_index": "Auth file missing auth_index",
+    "empty_data": "No quota data available",
+    "invalid_credential": "The FloatBoat credential was rejected. Sign in again.",
+    "quota_error": "Could not read the FloatBoat gateway quota.",
+    "plan_label": "Plan",
+    "plan_free": "Free",
+    "plan_subscribed": "Subscribed",
+    "balance_row": "Remaining balance",
+    "spent_row": "Spent",
+    "groups_row": "Groups",
+    "remaining_unknown": "Unknown (not measured)"
+  },
   "kimi_quota": {
     "title": "Kimi Quota",
     "empty_title": "No Kimi Auth Files",
@@ -1157,7 +1176,21 @@
     "qoder_ai_oauth_status_success": "Authentication successful!",
     "qoder_ai_oauth_status_error": "Authentication failed:",
     "qoder_ai_oauth_start_error": "Failed to start Qoder AI OAuth:",
-    "qoder_ai_oauth_polling_error": "Failed to check authentication status:"
+    "qoder_ai_oauth_polling_error": "Failed to check authentication status:",
+    "floatboat_oauth_title": "FloatBoat OAuth",
+    "floatboat_oauth_hint": "Sign in on the FloatBoat (aoe.chat) page. It redirects to an aoe:// deep link owned by the desktop app, so copy the full address from the address bar and paste it below.",
+    "floatboat_oauth_button": "Sign in to FloatBoat",
+    "floatboat_oauth_url_label": "Authorization link:",
+    "floatboat_oauth_polling_error": "Failed to check authentication status:",
+    "floatboat_oauth_start_error": "Failed to start FloatBoat login:",
+    "floatboat_oauth_status_error": "Authentication failed:",
+    "floatboat_oauth_status_success": "Authentication succeeded!",
+    "floatboat_oauth_status_waiting": "Waiting for the pasted callback link...",
+    "floatboat_copy_link": "Copy link",
+    "floatboat_open_link": "Open link",
+    "floatboat_callback_label": "Callback URL",
+    "floatboat_callback_hint": "After signing in, the browser redirects to an aoe:// address. Copy that full URL from the address bar and paste it here.",
+    "floatboat_callback_placeholder": "aoe://auth/callback?code=...&state=..."
   },
   "stats": {
     "success": "Success",

@@ -33,6 +33,7 @@ import iconQoder from '@/assets/icons/qoder.svg';
 import iconTrae from '@/assets/icons/trae.png';
 import iconXiaohuanxiong from '@/assets/icons/xiaohuanxiong.svg';
 import iconCodeArts from '@/assets/icons/codearts.svg';
+import iconFloatboat from '@/assets/icons/floatboat.svg';
 import iconVertex from '@/assets/icons/vertex.svg';
 import iconGrok from '@/assets/icons/grok.svg';
 import iconGrokDark from '@/assets/icons/grok-dark.svg';
@@ -202,6 +203,12 @@ const PROVIDERS: BuiltInOAuthProviderCard[] = [
     titleKey: 'auth_login.codearts_oauth_title',
     icon: iconCodeArts,
   },
+  {
+    kind: 'builtin',
+    id: 'floatboat',
+    titleKey: 'auth_login.floatboat_oauth_title',
+    icon: iconFloatboat,
+  },
 ];
 
 const BUILTIN_PROVIDER_IDS = new Set<string>(PROVIDERS.map((provider) => provider.id));
@@ -221,6 +228,9 @@ const CALLBACK_SUPPORTED = new Set<string>([
   // Cline forces a 127.0.0.1 loopback callback_url and embeds the credential
   // bundle in the pasted code, so the user pastes the callback URL.
   'cline',
+  // FloatBoat returns the code on the desktop app's aoe:// deep link, which the
+  // proxy cannot receive, so the user pastes the callback URL.
+  'floatboat',
 ]);
 const XAI_CALLBACK_URL = 'http://127.0.0.1:56121/callback';
 const SUCCESS_RESET_DELAY_MS = 5000;
@@ -355,7 +365,14 @@ const resolveCallbackUrl = (provider: string, input: string, state?: string): st
 
 // Providers whose callback input differs enough from the generic loopback story
 // to need their own label, hint, and placeholder copy.
-const DEDICATED_CALLBACK_COPY = new Set<string>(['xai', 'devin', 'xiaohuanxiong']);
+const DEDICATED_CALLBACK_COPY = new Set<string>([
+  'xai',
+  'devin',
+  'xiaohuanxiong',
+  // FloatBoat lands on an aoe:// deep link the proxy cannot receive; the card
+  // needs provider-specific paste guidance.
+  'floatboat',
+]);
 
 const callbackTextKey = (
   provider: string,

@@ -81,6 +81,14 @@ export function isTraeFile(file: AuthFileItem): boolean {
   return resolveAuthProvider(file) === 'trae';
 }
 
+/**
+ * FloatBoat credentials reach the quota page as a bare `floatboat` provider
+ * (the auth file's `type`), matching how the provider key is registered.
+ */
+export function isFloatboatFile(file: AuthFileItem): boolean {
+  return resolveAuthProvider(file) === 'floatboat';
+}
+
 export function isDisabledAuthFile(file: AuthFileItem): boolean {
   const raw = (file as { disabled?: unknown }).disabled;
   if (typeof raw === 'boolean') return raw;

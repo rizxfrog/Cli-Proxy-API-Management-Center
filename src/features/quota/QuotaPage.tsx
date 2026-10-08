@@ -143,6 +143,7 @@ export function QuotaPage() {
   const traeQuota = useQuotaStore((state) => state.traeQuota);
   const metaQuota = useQuotaStore((state) => state.metaQuota);
   const xaiQuota = useQuotaStore((state) => state.xaiQuota);
+  const floatboatQuota = useQuotaStore((state) => state.floatboatQuota);
 
   const quotaByType = useMemo<Record<QuotaProviderType, Record<string, QuotaCardState>>>(
     () => ({
@@ -152,6 +153,7 @@ export function QuotaPage() {
       codebuddy: codebuddyQuota,
       codex: codexQuota,
       devin: devinQuota,
+      floatboat: floatboatQuota,
       kimi: kimiQuota,
       meta: metaQuota,
       minimax: minimaxQuota,
@@ -166,6 +168,7 @@ export function QuotaPage() {
       codebuddyQuota,
       codexQuota,
       devinQuota,
+      floatboatQuota,
       kimiQuota,
       metaQuota,
       minimaxQuota,

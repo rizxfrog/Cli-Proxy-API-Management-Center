@@ -612,6 +612,25 @@
     "unknown": "未知",
     "remaining": "剩餘 {{percent}}%"
   },
+  "floatboat_quota": {
+    "title": "FloatBoat 額度",
+    "empty_title": "尚無 FloatBoat 憑證",
+    "empty_desc": "登入 FloatBoat（aoe.chat）後可檢視剩餘額度。",
+    "idle": "點擊查詢 FloatBoat 額度",
+    "loading": "正在查詢 FloatBoat 額度…",
+    "load_failed": "查詢額度失敗：{{message}}",
+    "missing_auth_index": "認證檔案缺少 auth_index",
+    "empty_data": "尚無額度資料",
+    "invalid_credential": "FloatBoat 憑證已失效，請重新登入。",
+    "quota_error": "無法讀取 FloatBoat 閘道額度。",
+    "plan_label": "方案",
+    "plan_free": "免費",
+    "plan_subscribed": "已訂閱",
+    "balance_row": "剩餘額度",
+    "spent_row": "已消耗",
+    "groups_row": "分組",
+    "remaining_unknown": "未知（尚未計量）"
+  },
   "kimi_quota": {
     "title": "Kimi 配額",
     "empty_title": "暫無 Kimi 驗證",
@@ -1181,7 +1200,21 @@
     "qoder_ai_oauth_status_success": "驗證成功！",
     "qoder_ai_oauth_status_error": "驗證失敗:",
     "qoder_ai_oauth_start_error": "啟動 Qoder AI OAuth 失敗:",
-    "qoder_ai_oauth_polling_error": "檢查驗證狀態失敗:"
+    "qoder_ai_oauth_polling_error": "檢查驗證狀態失敗:",
+    "floatboat_oauth_title": "FloatBoat OAuth",
+    "floatboat_oauth_hint": "在 FloatBoat（aoe.chat）頁面完成登入。頁面會跳轉到桌面客戶端註冊的 aoe:// 深鏈，瀏覽器無法直接交給代理，請複製網址列中的完整位址並提交到下方。",
+    "floatboat_oauth_button": "登入 FloatBoat",
+    "floatboat_oauth_url_label": "授權連結：",
+    "floatboat_oauth_polling_error": "檢查認證狀態失敗：",
+    "floatboat_oauth_start_error": "啟動 FloatBoat 登入失敗：",
+    "floatboat_oauth_status_error": "認證失敗：",
+    "floatboat_oauth_status_success": "認證成功！",
+    "floatboat_oauth_status_waiting": "等待貼上回呼連結…",
+    "floatboat_copy_link": "複製連結",
+    "floatboat_open_link": "開啟連結",
+    "floatboat_callback_label": "回調 URL",
+    "floatboat_callback_hint": "登入後瀏覽器會跳轉到 aoe:// 位址，請複製網址列中的完整連結並貼上到此处。",
+    "floatboat_callback_placeholder": "aoe://auth/callback?code=...&state=..."
   },
   "stats": {
     "success": "成功",
