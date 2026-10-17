@@ -15,6 +15,7 @@ export const QUOTA_TAB_ORDER: readonly QuotaProviderType[] = [
   'devin',
   'meta',
   'floatboat',
+  'xiaohuanxiong',
   'lobsterai-server',
 ];
 

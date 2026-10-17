@@ -14,6 +14,7 @@ export * from './version';
 export * from './models';
 export * from './metaQuota';
 export * from './floatboatQuota';
+export * from './xiaohuanxiongQuota';
 export * from './lobsteraiServerQuota';
 export * from './plugins';
 export * from './transformers';

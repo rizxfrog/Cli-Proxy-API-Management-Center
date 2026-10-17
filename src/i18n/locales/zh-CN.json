@@ -682,6 +682,24 @@
     "unknown": "未知",
     "remaining": "剩余 {{percent}}%"
   },
+  "xiaohuanxiong_quota": {
+    "title": "商汤小浣熊额度",
+    "empty_title": "暂无小浣熊凭证",
+    "empty_desc": "登录商汤小浣熊后可查看积分余额。",
+    "idle": "点击查询小浣熊积分",
+    "loading": "正在查询小浣熊积分…",
+    "load_failed": "查询积分失败：{{message}}",
+    "missing_auth_index": "认证文件缺少 auth_index",
+    "empty_data": "暂无积分数据",
+    "invalid_credential": "小浣熊凭证已失效，请重新登录。",
+    "quota_error": "无法读取小浣熊积分。",
+    "available": "可用积分",
+    "daily": "每日积分",
+    "monthly": "每月积分",
+    "reward": "奖励积分",
+    "topup": "充值积分",
+    "enterprise": "企业充值积分"
+  },
   "floatboat_quota": {
     "title": "FloatBoat 额度",
     "empty_title": "暂无 FloatBoat 凭证",

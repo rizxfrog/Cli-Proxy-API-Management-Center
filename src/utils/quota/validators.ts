@@ -89,6 +89,10 @@ export function isFloatboatFile(file: AuthFileItem): boolean {
   return resolveAuthProvider(file) === 'floatboat';
 }
 
+export function isXiaohuanxiongFile(file: AuthFileItem): boolean {
+  return resolveAuthProvider(file) === 'xiaohuanxiong';
+}
+
 export function isLobsteraiServerFile(file: AuthFileItem): boolean {
   return resolveAuthProvider(file) === 'lobsterai-server';
 }

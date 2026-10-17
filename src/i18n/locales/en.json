@@ -684,6 +684,24 @@
     "unknown": "Unknown",
     "remaining": "{{percent}}% remaining"
   },
+  "xiaohuanxiong_quota": {
+    "title": "Xiaohuanxiong Points",
+    "empty_title": "No Xiaohuanxiong credentials",
+    "empty_desc": "Sign in to Xiaohuanxiong to view your points.",
+    "idle": "Click to check Xiaohuanxiong points",
+    "loading": "Checking Xiaohuanxiong points…",
+    "load_failed": "Could not check points: {{message}}",
+    "missing_auth_index": "Auth file missing auth_index",
+    "empty_data": "No points data available",
+    "invalid_credential": "The Xiaohuanxiong credential expired. Sign in again.",
+    "quota_error": "Could not read Xiaohuanxiong points.",
+    "available": "Available points",
+    "daily": "Daily points",
+    "monthly": "Monthly points",
+    "reward": "Reward points",
+    "topup": "Top-up points",
+    "enterprise": "Enterprise top-up points"
+  },
   "floatboat_quota": {
     "title": "FloatBoat Quota",
     "empty_title": "No FloatBoat credentials",

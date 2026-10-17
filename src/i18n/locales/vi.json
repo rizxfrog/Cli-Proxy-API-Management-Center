@@ -684,6 +684,24 @@
     "unknown": "Không rõ",
     "remaining": "Còn lại {{percent}}%"
   },
+  "xiaohuanxiong_quota": {
+    "title": "Điểm Xiaohuanxiong",
+    "empty_title": "Chưa có thông tin đăng nhập Xiaohuanxiong",
+    "empty_desc": "Đăng nhập để xem số điểm.",
+    "idle": "Kiểm tra điểm",
+    "loading": "Đang kiểm tra điểm…",
+    "load_failed": "Không thể kiểm tra điểm: {{message}}",
+    "missing_auth_index": "Tệp xác thực thiếu auth_index",
+    "empty_data": "Chưa có dữ liệu điểm",
+    "invalid_credential": "Thông tin đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
+    "quota_error": "Không thể đọc điểm.",
+    "available": "Điểm khả dụng",
+    "daily": "Điểm hằng ngày",
+    "monthly": "Điểm hằng tháng",
+    "reward": "Điểm thưởng",
+    "topup": "Điểm nạp",
+    "enterprise": "Điểm nạp doanh nghiệp"
+  },
   "floatboat_quota": {
     "title": "Quota FloatBoat",
     "empty_title": "Không có credential FloatBoat",

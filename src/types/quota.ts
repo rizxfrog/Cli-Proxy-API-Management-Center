@@ -690,6 +690,19 @@ export interface FloatboatQuotaState {
   errorStatus?: number;
 }
 
+export interface XiaohuanxiongQuotaState {
+  status: 'idle' | 'loading' | 'success' | 'error';
+  available_points?: number;
+  daily_points?: number;
+  monthly_points?: number;
+  reward_points?: number;
+  topup_points?: number;
+  enterprise_topup_points?: number;
+  total_chargeable_points?: number;
+  error?: string;
+  errorStatus?: number;
+}
+
 // LobsterAI (NetEase/Youdao) quota: the account backend's credit/plan snapshot.
 //
 // The backend reports a credit balance and the read-only state of its daily

@@ -15,13 +15,13 @@ import type {
   CodexQuotaState,
   DevinQuotaState,
   FloatboatQuotaState,
+  XiaohuanxiongQuotaState,
   KimiQuotaState,
   LobsteraiServerQuotaState,
   MinimaxQuotaState,
   QoderCNQuotaState,
   TraeQuotaState,
   MetaQuotaState,
-
   XaiQuotaState,
 } from '@/types';
 
@@ -35,6 +35,7 @@ export type QuotaProviderType =
   | 'codex'
   | 'devin'
   | 'floatboat'
+  | 'xiaohuanxiong'
   | 'lobsterai-server'
   | 'kimi'
   | 'minimax'
@@ -42,7 +43,6 @@ export type QuotaProviderType =
   | 'trae'
   | 'xai'
   | 'meta';
-
 
 /** useQuotaStore 的结构契约（storeSelector/storeSetter 依赖）。 */
 export interface QuotaStore {
@@ -53,6 +53,7 @@ export interface QuotaStore {
   codexQuota: Record<string, CodexQuotaState>;
   devinQuota: Record<string, DevinQuotaState>;
   floatboatQuota: Record<string, FloatboatQuotaState>;
+  xiaohuanxiongQuota: Record<string, XiaohuanxiongQuotaState>;
   lobsteraiServerQuota: Record<string, LobsteraiServerQuotaState>;
   kimiQuota: Record<string, KimiQuotaState>;
   minimaxQuota: Record<string, MinimaxQuotaState>;
@@ -68,7 +69,10 @@ export interface QuotaStore {
   setCodexQuota: (updater: QuotaUpdater<Record<string, CodexQuotaState>>) => void;
   setDevinQuota: (updater: QuotaUpdater<Record<string, DevinQuotaState>>) => void;
   setFloatboatQuota: (updater: QuotaUpdater<Record<string, FloatboatQuotaState>>) => void;
-  setLobsteraiServerQuota: (updater: QuotaUpdater<Record<string, LobsteraiServerQuotaState>>) => void;
+  setXiaohuanxiongQuota: (updater: QuotaUpdater<Record<string, XiaohuanxiongQuotaState>>) => void;
+  setLobsteraiServerQuota: (
+    updater: QuotaUpdater<Record<string, LobsteraiServerQuotaState>>
+  ) => void;
   setKimiQuota: (updater: QuotaUpdater<Record<string, KimiQuotaState>>) => void;
   setMinimaxQuota: (updater: QuotaUpdater<Record<string, MinimaxQuotaState>>) => void;
   setQoderCNQuota: (updater: QuotaUpdater<Record<string, QoderCNQuotaState>>) => void;

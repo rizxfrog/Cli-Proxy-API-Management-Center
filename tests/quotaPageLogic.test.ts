@@ -78,6 +78,7 @@ describe('buildTabCounts', () => {
       devin: 0,
       meta: 0,
       floatboat: 0,
+      xiaohuanxiong: 0,
       'lobsterai-server': 0,
     });
   });

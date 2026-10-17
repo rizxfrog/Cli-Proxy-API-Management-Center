@@ -687,6 +687,24 @@
     "unknown": "Неизвестно",
     "remaining": "Осталось {{percent}}%"
   },
+  "xiaohuanxiong_quota": {
+    "title": "Баллы Xiaohuanxiong",
+    "empty_title": "Нет учётных данных Xiaohuanxiong",
+    "empty_desc": "Войдите, чтобы посмотреть баланс баллов.",
+    "idle": "Проверить баллы",
+    "loading": "Проверка баллов…",
+    "load_failed": "Не удалось проверить баллы: {{message}}",
+    "missing_auth_index": "В файле авторизации отсутствует auth_index",
+    "empty_data": "Нет данных о баллах",
+    "invalid_credential": "Срок действия учётных данных истёк. Войдите снова.",
+    "quota_error": "Не удалось получить баллы.",
+    "available": "Доступные баллы",
+    "daily": "Ежедневные баллы",
+    "monthly": "Ежемесячные баллы",
+    "reward": "Бонусные баллы",
+    "topup": "Пополненные баллы",
+    "enterprise": "Корпоративные баллы"
+  },
   "floatboat_quota": {
     "title": "Квота FloatBoat",
     "empty_title": "Нет учётных данных FloatBoat",
