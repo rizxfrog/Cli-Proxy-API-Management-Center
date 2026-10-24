@@ -511,7 +511,8 @@
     "filter_codearts": "華為雲 CodeArts",
     "filter_minimax": "MiniMax Code",
     "filter_minimax-cn": "MiniMax Code（國內版）",
-    "filter_loomy": "Loomy"
+    "filter_loomy": "Loomy",
+    "filter_airjelly": "AirJelly"
   },
   "antigravity_subscription": {
     "plan_unknown": "未知",
@@ -1318,7 +1319,29 @@
     "loomy_oauth_status_success": "登入成功！",
     "loomy_oauth_status_error": "登入失敗：",
     "loomy_oauth_start_error": "發送驗證碼失敗：",
-    "loomy_resend_code": "重新取得"
+    "loomy_resend_code": "重新取得",
+    "airjelly_oauth_title": "AirJelly Lite 登入",
+    "airjelly_oauth_hint": "使用 Google OAuth 授權後貼上本機回呼網址，也可使用電子郵件與密碼登入。",
+    "airjelly_oauth_button": "使用 Google 登入",
+    "airjelly_oauth_status_waiting": "等待 Google 授權…",
+    "airjelly_oauth_status_success": "AirJelly 登入成功！",
+    "airjelly_oauth_status_error": "AirJelly 登入失敗：",
+    "airjelly_oauth_start_error": "無法開始 Google 登入：",
+    "airjelly_copy_link": "複製連結",
+    "airjelly_open_link": "開啟連結",
+    "airjelly_callback_label": "回呼網址",
+    "airjelly_callback_hint": "從瀏覽器網址列複製完整的 http://localhost:19877/?code=... 網址。",
+    "airjelly_callback_placeholder": "http://localhost:19877/?code=...",
+    "airjelly_email": "電子郵件",
+    "airjelly_password": "密碼",
+    "airjelly_password_login": "電子郵件登入",
+    "airjelly_missing_login": "請輸入電子郵件與密碼。",
+    "airjelly_signup": "電子郵件註冊",
+    "airjelly_signup_code": "電子郵件驗證碼",
+    "airjelly_signup_verify": "驗證並登入",
+    "airjelly_signup_resend": "重發驗證碼",
+    "airjelly_signup_check_email": "請查看電子郵件並輸入驗證碼。",
+    "airjelly_missing_code": "請輸入電子郵件與驗證碼。"
   },
   "stats": {
     "success": "成功",
@@ -2825,5 +2848,20 @@
     "daily_row": "每日贈送",
     "daily_consumed_row": "今日已消耗",
     "daily_hint": "每日贈送額度按業務日發放，消耗後不回補。"
+  },
+  "airjelly_quota": {
+    "title": "AirJelly 額度",
+    "empty_title": "沒有 AirJelly 憑證",
+    "empty_desc": "登入後查看 AirJelly 點數。",
+    "idle": "點擊查詢 AirJelly 額度",
+    "loading": "正在查詢 AirJelly 額度…",
+    "load_failed": "查詢額度失敗：{{message}}",
+    "missing_auth_index": "缺少 auth_index",
+    "empty_data": "沒有額度資料",
+    "total": "剩餘總額",
+    "daily": "每日",
+    "monthly": "每月",
+    "permanent": "永久",
+    "plan": "方案"
   }
 }

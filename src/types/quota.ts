@@ -711,6 +711,20 @@ export interface LoomyQuotaState {
   errorStatus?: number;
 }
 
+export interface AirJellyQuotaState {
+  status: 'idle' | 'loading' | 'success' | 'error';
+  plan?: string;
+  subscriptionStatus?: string;
+  dailyRemaining?: number;
+  dailyLimit?: number;
+  monthlyRemaining?: number;
+  monthlyLimit?: number;
+  permanentRemaining?: number;
+  totalRemaining?: number;
+  error?: string;
+  errorStatus?: number;
+}
+
 // LobsterAI (NetEase/Youdao) quota: the account backend's credit/plan snapshot.
 //
 // The backend reports a credit balance and the read-only state of its daily

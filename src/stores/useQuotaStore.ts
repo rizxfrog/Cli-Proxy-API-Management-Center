@@ -15,6 +15,7 @@ import type {
   KimiQuotaState,
   LobsteraiServerQuotaState,
   LoomyQuotaState,
+  AirJellyQuotaState,
   MinimaxQuotaState,
   QoderCNQuotaState,
   TraeQuotaState,
@@ -44,6 +45,7 @@ interface QuotaStoreState {
   floatboatQuota: Record<string, FloatboatQuotaState>;
   lobsteraiServerQuota: Record<string, LobsteraiServerQuotaState>;
   loomyQuota: Record<string, LoomyQuotaState>;
+  airJellyQuota: Record<string, AirJellyQuotaState>;
   setAntigravityQuota: (updater: QuotaUpdater<Record<string, AntigravityQuotaState>>) => void;
   setClaudeQuota: (updater: QuotaUpdater<Record<string, ClaudeQuotaState>>) => void;
   setCodeArtsQuota: (updater: QuotaUpdater<Record<string, CodeArtsQuotaState>>) => void;
@@ -60,6 +62,7 @@ interface QuotaStoreState {
   setFloatboatQuota: (updater: QuotaUpdater<Record<string, FloatboatQuotaState>>) => void;
   setLobsteraiServerQuota: (updater: QuotaUpdater<Record<string, LobsteraiServerQuotaState>>) => void;
   setLoomyQuota: (updater: QuotaUpdater<Record<string, LoomyQuotaState>>) => void;
+  setAirJellyQuota: (updater: QuotaUpdater<Record<string, AirJellyQuotaState>>) => void;
   clearQuotaCache: (names?: string[]) => void;
 }
 
@@ -89,6 +92,7 @@ export const useQuotaStore = create<QuotaStoreState>((set) => ({
   floatboatQuota: {},
   lobsteraiServerQuota: {},
   loomyQuota: {},
+  airJellyQuota: {},
   setAntigravityQuota: (updater) =>
     set((state) => ({
       antigravityQuota: resolveUpdater(updater, state.antigravityQuota),
@@ -148,6 +152,8 @@ export const useQuotaStore = create<QuotaStoreState>((set) => ({
     set((state) => ({
       loomyQuota: resolveUpdater(updater, state.loomyQuota),
     })),
+  setAirJellyQuota: (updater) =>
+    set((state) => ({ airJellyQuota: resolveUpdater(updater, state.airJellyQuota) })),
   clearQuotaCache: (names) =>
     set((state) => {
       if (names) {
@@ -184,6 +190,7 @@ export const useQuotaStore = create<QuotaStoreState>((set) => ({
           floatboatQuota: omitNames(state.floatboatQuota),
           lobsteraiServerQuota: omitNames(state.lobsteraiServerQuota),
           loomyQuota: omitNames(state.loomyQuota),
+          airJellyQuota: omitNames(state.airJellyQuota),
         };
       }
       return {
@@ -205,6 +212,7 @@ export const useQuotaStore = create<QuotaStoreState>((set) => ({
         floatboatQuota: {},
         lobsteraiServerQuota: {},
         loomyQuota: {},
+        airJellyQuota: {},
       };
     }),
 }));

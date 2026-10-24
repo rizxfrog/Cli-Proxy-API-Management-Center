@@ -511,7 +511,8 @@
     "filter_codearts": "华为云 CodeArts",
     "filter_minimax": "MiniMax Code",
     "filter_minimax-cn": "MiniMax Code（国内版）",
-    "filter_loomy": "Loomy"
+    "filter_loomy": "Loomy",
+    "filter_airjelly": "AirJelly"
   },
   "antigravity_subscription": {
     "plan_unknown": "未知",
@@ -1292,7 +1293,29 @@
     "loomy_oauth_status_success": "登录成功！",
     "loomy_oauth_status_error": "登录失败：",
     "loomy_oauth_start_error": "发送验证码失败：",
-    "loomy_resend_code": "重新获取"
+    "loomy_resend_code": "重新获取",
+    "airjelly_oauth_title": "AirJelly Lite 登录",
+    "airjelly_oauth_hint": "使用 Google OAuth 授权后粘贴本机回调链接，也可使用邮箱密码登录。",
+    "airjelly_oauth_button": "使用 Google 登录",
+    "airjelly_oauth_status_waiting": "等待 Google 授权…",
+    "airjelly_oauth_status_success": "AirJelly 登录成功！",
+    "airjelly_oauth_status_error": "AirJelly 登录失败：",
+    "airjelly_oauth_start_error": "无法启动 Google 登录：",
+    "airjelly_copy_link": "复制链接",
+    "airjelly_open_link": "打开链接",
+    "airjelly_callback_label": "回调链接",
+    "airjelly_callback_hint": "从浏览器地址栏复制完整的 http://localhost:19877/?code=... 链接。",
+    "airjelly_callback_placeholder": "http://localhost:19877/?code=...",
+    "airjelly_email": "邮箱",
+    "airjelly_password": "密码",
+    "airjelly_password_login": "邮箱登录",
+    "airjelly_missing_login": "请输入邮箱和密码。",
+    "airjelly_signup": "邮箱注册",
+    "airjelly_signup_code": "邮箱验证码",
+    "airjelly_signup_verify": "验证并登录",
+    "airjelly_signup_resend": "重发验证码",
+    "airjelly_signup_check_email": "请查看邮箱并输入验证码。",
+    "airjelly_missing_code": "请输入邮箱和验证码。"
   },
   "stats": {
     "success": "成功",
@@ -2799,5 +2822,20 @@
     "daily_row": "每日赠送",
     "daily_consumed_row": "今日已消耗",
     "daily_hint": "每日赠送额度按业务日发放，消耗后不回补。"
+  },
+  "airjelly_quota": {
+    "title": "AirJelly 额度",
+    "empty_title": "没有 AirJelly 凭证",
+    "empty_desc": "登录后查看 AirJelly 积分。",
+    "idle": "点击查询 AirJelly 额度",
+    "loading": "正在查询 AirJelly 额度…",
+    "load_failed": "查询额度失败：{{message}}",
+    "missing_auth_index": "缺少 auth_index",
+    "empty_data": "暂无额度数据",
+    "total": "剩余总额",
+    "daily": "每日",
+    "monthly": "每月",
+    "permanent": "永久",
+    "plan": "套餐"
   }
 }

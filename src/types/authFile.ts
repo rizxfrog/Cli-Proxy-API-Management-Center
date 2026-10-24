@@ -19,6 +19,7 @@ export type AuthFileType =
   | 'floatboat'
   | 'lobsterai-server'
   | 'loomy'
+  | 'airjelly'
   | 'iflow'
   | 'vertex'
   | 'empty'

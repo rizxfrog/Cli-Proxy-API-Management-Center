@@ -101,6 +101,10 @@ export function isLoomyFile(file: AuthFileItem): boolean {
   return resolveAuthProvider(file) === 'loomy';
 }
 
+export function isAirJellyFile(file: AuthFileItem): boolean {
+  return resolveAuthProvider(file) === 'airjelly';
+}
+
 export function isDisabledAuthFile(file: AuthFileItem): boolean {
   const raw = (file as { disabled?: unknown }).disabled;
   if (typeof raw === 'boolean') return raw;

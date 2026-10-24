@@ -19,6 +19,7 @@ import iconVertex from '@/assets/icons/vertex.svg';
 import iconXiaohuanxiong from '@/assets/icons/xiaohuanxiong.svg';
 import iconCodeArts from '@/assets/icons/codearts.svg';
 import iconLoomy from '@/assets/icons/loomy.svg';
+import iconAirJelly from '@/assets/icons/airjelly.svg';
 import iconCline from '@/assets/icons/cline.png';
 import iconMinimax from '@/assets/icons/minimax.svg';
 import type { AuthFileItem, ResolvedTheme, ThemeColors } from '@/types';
@@ -49,7 +50,8 @@ export type QuotaProviderType =
   | 'meta'
   | 'qodercn'
   | 'trae'
-  | 'xai';
+  | 'xai'
+  | 'airjelly';
 
 export type AuthFileQuotaFilter = QuotaProviderType | 'all' | null;
 export type OAuthConfigLoadError = 'loading' | 'unsupported' | 'load' | null;
@@ -66,6 +68,7 @@ export const QUOTA_PROVIDER_TYPES = new Set<QuotaProviderType>([
   'qodercn',
   'trae',
   'xai',
+  'airjelly',
 ]);
 
 export const OAUTH_PROVIDER_PRESETS = [
@@ -80,6 +83,7 @@ export const OAUTH_PROVIDER_PRESETS = [
   'kimi',
   'minimax',
   'minimax-cn',
+  'airjelly',
 ];
 
 const OAUTH_PROVIDER_EXCLUDES = new Set(['all', 'unknown', 'empty']);
@@ -104,6 +108,7 @@ export const AUTH_FILE_MANUAL_REFRESH_PROVIDERS = new Set([
   // MiniMax Code rotates the OAuth access token from the stored refresh token.
   'minimax',
   'minimax-cn',
+  'airjelly',
 ]);
 
 // 标签类型颜色配置：权威版本在 @/utils/quota/constants.ts，此处仅转发
@@ -114,6 +119,7 @@ export const AUTH_FILE_ICONS: Record<string, AuthFileIconAsset> = {
   xiaohuanxiong: iconXiaohuanxiong,
   codearts: iconCodeArts,
   loomy: iconLoomy,
+  airjelly: iconAirJelly,
   trae: iconTrae,
   aistudio: iconGemini,
   claude: iconClaude,

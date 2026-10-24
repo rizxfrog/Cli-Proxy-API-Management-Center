@@ -59,6 +59,7 @@ export function AuthFileQuotaSection(props: AuthFileQuotaSectionProps) {
     if (quotaType === 'meta') return state.metaQuota[cacheKey] as QuotaCardState | undefined;
 
     if (quotaType === 'xai') return state.xaiQuota[cacheKey] as QuotaCardState | undefined;
+    if (quotaType === 'airjelly') return state.airJellyQuota[cacheKey] as QuotaCardState | undefined;
     return assertNever(quotaType);
   });
   const quota = storedQuota;

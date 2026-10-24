@@ -70,6 +70,10 @@ export const TYPE_COLORS: Record<string, TypeColorSet> = {
     light: { bg: '#e8f1ff', text: '#1a4fbf' },
     dark: { bg: '#12305f', text: '#9cc4ff' },
   },
+  airjelly: {
+    light: { bg: '#e5f0ff', text: '#2b70d6' },
+    dark: { bg: '#14335e', text: '#91beff' },
+  },
   vertex: {
     light: { bg: '#e4edfd', text: '#2b5fbc' },
     dark: { bg: '#1a3d80', text: '#89b3f7' },

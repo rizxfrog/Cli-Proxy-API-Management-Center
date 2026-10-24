@@ -16,6 +16,7 @@ export * from './metaQuota';
 export * from './floatboatQuota';
 export * from './lobsteraiServerQuota';
 export * from './loomy';
+export * from './airjelly';
 export * from './plugins';
 export * from './transformers';
 export * from './vertex';

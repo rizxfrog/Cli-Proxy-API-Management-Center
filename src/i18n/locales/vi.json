@@ -513,7 +513,8 @@
     "filter_codearts": "CodeArts (Huawei Cloud)",
     "filter_minimax": "MiniMax Code",
     "filter_minimax-cn": "MiniMax Code (Trung Quốc)",
-    "filter_loomy": "Loomy"
+    "filter_loomy": "Loomy",
+    "filter_airjelly": "AirJelly"
   },
   "antigravity_subscription": {
     "plan_unknown": "Không rõ",
@@ -1294,7 +1295,29 @@
     "loomy_oauth_status_success": "Xác thực thành công!",
     "loomy_oauth_status_error": "Xác thực thất bại:",
     "loomy_oauth_start_error": "Không gửi được mã:",
-    "loomy_resend_code": "Gửi lại mã"
+    "loomy_resend_code": "Gửi lại mã",
+    "airjelly_oauth_title": "AirJelly Lite sign in",
+    "airjelly_oauth_hint": "Use Google OAuth and paste the localhost callback URL, or sign in with email and password.",
+    "airjelly_oauth_button": "Sign in with Google",
+    "airjelly_oauth_status_waiting": "Waiting for Google authorization…",
+    "airjelly_oauth_status_success": "AirJelly sign-in succeeded!",
+    "airjelly_oauth_status_error": "AirJelly sign-in failed:",
+    "airjelly_oauth_start_error": "Could not start Google sign-in:",
+    "airjelly_copy_link": "Copy link",
+    "airjelly_open_link": "Open link",
+    "airjelly_callback_label": "Callback URL",
+    "airjelly_callback_hint": "Paste the complete http://localhost:19877/?code=... URL from the browser address bar.",
+    "airjelly_callback_placeholder": "http://localhost:19877/?code=...",
+    "airjelly_email": "Email",
+    "airjelly_password": "Password",
+    "airjelly_password_login": "Sign in with email",
+    "airjelly_missing_login": "Enter email and password.",
+    "airjelly_signup": "Register with email",
+    "airjelly_signup_code": "Email verification code",
+    "airjelly_signup_verify": "Verify and sign in",
+    "airjelly_signup_resend": "Resend code",
+    "airjelly_signup_check_email": "Check your email for a verification code.",
+    "airjelly_missing_code": "Enter your email and verification code."
   },
   "stats": {
     "success": "Thành công",
@@ -2807,5 +2830,20 @@
     "daily_row": "Hạn mức hằng ngày",
     "daily_consumed_row": "Đã dùng hôm nay",
     "daily_hint": "Hạn mức hằng ngày được cấp theo ngày làm việc và không hoàn lại sau khi dùng."
+  },
+  "airjelly_quota": {
+    "title": "AirJelly quota",
+    "empty_title": "No AirJelly credentials",
+    "empty_desc": "Sign in to view AirJelly credits.",
+    "idle": "Click to query AirJelly quota",
+    "loading": "Querying AirJelly quota…",
+    "load_failed": "Could not query quota: {{message}}",
+    "missing_auth_index": "Missing auth_index",
+    "empty_data": "No quota data",
+    "total": "Total remaining",
+    "daily": "Daily",
+    "monthly": "Monthly",
+    "permanent": "Permanent",
+    "plan": "Plan"
   }
 }
