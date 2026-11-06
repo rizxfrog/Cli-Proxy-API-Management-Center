@@ -1295,8 +1295,6 @@ function getNextDirtyFields(
       'maxRetryCredentials',
       'maxRetryInterval',
       'wsAuth',
-      'quotaSwitchProject',
-      'quotaSwitchPreviewModel',
       'quotaAntigravityCredits',
       'routingStrategy',
       'routingSessionAffinity',
@@ -1523,7 +1521,6 @@ function parseVisualValuesFromYaml(yamlContent: string): VisualConfigValues {
   const v8ObservabilityUsage = asRecord(v8Observability?.['usage']);
   const tls = asRecord(v8Server?.['tls']);
   const remoteManagement = asRecord(parsed['management']);
-  const quotaExceeded = asRecord(parsed['quota-exceeded']);
   const routing = asRecord(parsed.routing);
   const payload = asRecord(v8Requests?.['payload']);
   const streaming = asRecord(v8Requests?.['streaming']);
@@ -1622,12 +1619,6 @@ function parseVisualValuesFromYaml(yamlContent: string): VisualConfigValues {
         ? codexHeaderDefaults['beta-features']
         : '',
 
-    quotaSwitchProject: Boolean(
-      quotaExceeded?.['switch-project'] ?? DEFAULT_VISUAL_VALUES.quotaSwitchProject
-    ),
-    quotaSwitchPreviewModel: Boolean(
-      quotaExceeded?.['switch-preview-model'] ?? DEFAULT_VISUAL_VALUES.quotaSwitchPreviewModel
-    ),
     quotaAntigravityCredits: Boolean(antigravity?.['antigravity-credits'] ?? false),
 
     routingStrategy: parseRoutingStrategy(routing?.strategy),
@@ -2094,25 +2085,12 @@ export function useVisualConfig() {
           deleteIfMapEmpty(doc, ['oauth', 'providers', 'codex', 'header-defaults']);
         }
 
-        const quotaDirty =
-          dirtyFields.has('quotaSwitchProject') ||
-          dirtyFields.has('quotaSwitchPreviewModel') ||
-          dirtyFields.has('quotaAntigravityCredits');
-        if (quotaDirty) {
-          ensureMapInDoc(doc, ['quota-exceeded']);
-          if (dirtyFields.has('quotaSwitchProject')) {
-            doc.setIn(['quota-exceeded', 'switch-project'], values.quotaSwitchProject);
-          }
-          if (dirtyFields.has('quotaSwitchPreviewModel')) {
-            doc.setIn(['quota-exceeded', 'switch-preview-model'], values.quotaSwitchPreviewModel);
-          }
-          if (dirtyFields.has('quotaAntigravityCredits')) {
-            doc.setIn(
-              ['oauth', 'providers', 'antigravity', 'antigravity-credits'],
-              values.quotaAntigravityCredits
-            );
-          }
-          deleteIfMapEmpty(doc, ['quota-exceeded']);
+        if (dirtyFields.has('quotaAntigravityCredits')) {
+          ensureMapInDoc(doc, ['oauth', 'providers', 'antigravity']);
+          doc.setIn(
+            ['oauth', 'providers', 'antigravity', 'antigravity-credits'],
+            values.quotaAntigravityCredits
+          );
         }
 
         const routingDirty =

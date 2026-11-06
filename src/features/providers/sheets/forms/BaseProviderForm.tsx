@@ -21,7 +21,8 @@ import { hasDisableAllModelsRule } from '@/components/providers/utils';
 import type { GeminiKeyConfig, OpenAIProviderConfig, ProviderKeyConfig } from '@/types';
 import type { ModelInfo } from '@/utils/models';
 import { PROVIDER_DESCRIPTORS } from '../../descriptors';
-import { mergeDiscoveredModels } from '../../modelEntries';
+import { removeModelAt } from '../../modelEntries';
+import { syncDiscoveredModels } from '../../discoverySelection';
 import type {
   ApiKeyEntryInput,
   ModelEntryInput,
@@ -404,9 +405,8 @@ export function BaseProviderForm({
     setDiscoveryOpen(false);
   };
 
-  const applyDiscoveredModels = (incoming: ModelInfo[]) => {
-    if (!incoming.length) return;
-    setForm((prev) => ({ ...prev, models: mergeDiscoveredModels(prev.models, incoming) }));
+  const applyDiscoveredModels = (picked: ModelInfo[], catalog: ModelInfo[]) => {
+    setForm((prev) => ({ ...prev, models: syncDiscoveredModels(prev.models, picked, catalog) }));
   };
 
   const updateField = <K extends keyof ProviderEntryFormInput>(
@@ -558,10 +558,7 @@ export function BaseProviderForm({
   };
 
   const removeModelEntry = (idx: number) => {
-    updateField(
-      'models',
-      modelsList.filter((_, i) => i !== idx)
-    );
+    updateField('models', removeModelAt(modelsList, idx));
   };
 
   return (
@@ -1145,9 +1142,7 @@ export function BaseProviderForm({
                 hasFetched={discovery.hasFetched}
                 existingNames={existingModelNames}
                 mutating={mutating}
-                onApply={(names) => {
-                  applyDiscoveredModels(names);
-                }}
+                onApply={applyDiscoveredModels}
                 onReload={() => void discovery.fetch()}
                 onClose={closeDiscovery}
               />
@@ -1158,7 +1153,7 @@ export function BaseProviderForm({
               supportsImage={supportsModelImage}
               supportsThinking
               mutating={mutating}
-              removeDisabled={modelsList.length <= 1}
+              removeDisabled={false}
               onUpdate={updateModelEntry}
               onAdd={() => updateField('models', [...modelsList, emptyModel()])}
               onRemove={removeModelEntry}

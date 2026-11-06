@@ -61,7 +61,18 @@ const normalizeProviderForManagementPath = (provider: string): string => {
   return key === 'anthropic' ? 'claude' : key;
 };
 
+export interface SiwcBindResponse {
+  status: 'ok';
+  url: string;
+  state: string;
+  flow: 'siwc_bind';
+  expires_in: number;
+}
+
 export const oauthApi = {
+  startSiwcBind: (name: string, signal?: AbortSignal) =>
+    apiClient.post<SiwcBindResponse>('/oauth/siwc/bind', { name }, signal ? { signal } : undefined),
+
   startAuth: (provider: string, signal?: AbortSignal) => {
     const providerKey = normalizeProviderForManagementPath(provider);
     const params: Record<string, string | boolean> = { provider: providerKey };
@@ -148,3 +159,12 @@ export const oauthApi = {
       signal ? { signal } : undefined
     ),
 };
+
+/** Start and cleanup must use the same connection, even after the dialog closes. */
+export function captureSiwcBindingApi() {
+  const client = apiClient.captureConnection();
+  return {
+    start: (name: string) => client.post<SiwcBindResponse>('/oauth/siwc/bind', { name }),
+    cancel: (state: string) => client.delete('/oauth/session', { params: { state } }),
+  };
+}

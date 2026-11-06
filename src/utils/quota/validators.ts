@@ -39,7 +39,9 @@ export function isXaiFile(file: AuthFileItem): boolean {
 
 export function isCodeBuddyFile(file: AuthFileItem): boolean {
   const provider = resolveAuthProvider(file);
-  return provider === 'codebuddy-cn' || provider === 'codebuddy-ai';
+  // The quota card tab id is 'codebuddy'; regional credentials arrive as
+  // codebuddy-cn / codebuddy-ai. All three render the same card.
+  return provider === 'codebuddy' || provider === 'codebuddy-cn' || provider === 'codebuddy-ai';
 }
 
 export function isCodeArtsFile(file: AuthFileItem): boolean {
@@ -57,10 +59,12 @@ export function isMinimaxFile(file: AuthFileItem): boolean {
 
 /**
  * Qoder CN credentials reach the quota page as a bare `qoder-cn` provider (the
- * auth file's `type`), matching how the provider key is registered.
+ * auth file's `type`), matching how the provider key is registered. The quota
+ * card tab id `qodercn` (shared with Qoder AI) is accepted as an alias.
  */
 export function isQoderCNFile(file: AuthFileItem): boolean {
-  return resolveAuthProvider(file) === 'qoder-cn';
+  const provider = resolveAuthProvider(file);
+  return provider === 'qoder-cn' || provider === 'qodercn';
 }
 
 /**
@@ -99,6 +103,40 @@ export function isLobsteraiServerFile(file: AuthFileItem): boolean {
  */
 export function isLoomyFile(file: AuthFileItem): boolean {
   return resolveAuthProvider(file) === 'loomy';
+}
+
+/**
+ * Providers rendered by a dedicated built-in quota card. These are exactly the
+ * quota tab ids (minus 'plugin'); the card filters accept the regional
+ * provider variants, e.g. the `qodercn` card covers qoder-cn + qoder-ai and
+ * `minimax` covers minimax + minimax-cn.
+ */
+export const BUILT_IN_QUOTA_PROVIDERS: ReadonlySet<string> = new Set([
+  'antigravity',
+  'claude',
+  'codex',
+  'devin',
+  'kimi',
+  'meta',
+  'xai',
+  'codebuddy',
+  'codearts',
+  'qodercn',
+  'minimax',
+  'trae',
+  'floatboat',
+  'lobsterai-server',
+  'loomy',
+]);
+
+/**
+ * Generic plugin quota card for providers without a built-in card. Built-in cards win even
+ * when a plugin also advertises quota for the same provider.
+ */
+export function isPluginQuotaFile(file: AuthFileItem): boolean {
+  if (BUILT_IN_QUOTA_PROVIDERS.has(resolveAuthProvider(file))) return false;
+  const supported = file.supportsQuota ?? file['supports_quota'];
+  return supported === true || supported === 'true' || supported === '1';
 }
 
 export function isDisabledAuthFile(file: AuthFileItem): boolean {

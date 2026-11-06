@@ -18,7 +18,7 @@ import { QODERCN_CONFIG } from './providers/qodercn/data';
 import { MINIMAX_CONFIG } from './providers/minimax/data';
 import { TRAE_CONFIG } from './providers/trae/data';
 import { META_CONFIG } from './providers/meta/data';
-
+import { PLUGIN_CONFIG } from './providers/plugin/data';
 import { XAI_CONFIG } from './providers/xai/data';
 import type { QuotaProviderType } from './providers/types';
 import { QUOTA_TAB_ORDER, type QuotaSortMode, type QuotaTabId } from './constants';
@@ -38,7 +38,7 @@ const QUOTA_FILTER_MAP: Record<QuotaProviderType, (file: AuthFileItem) => boolea
   qodercn: QODERCN_CONFIG.filterFn,
   trae: TRAE_CONFIG.filterFn,
   meta: META_CONFIG.filterFn,
-
+  plugin: PLUGIN_CONFIG.filterFn,
   xai: XAI_CONFIG.filterFn,
 };
 
@@ -61,7 +61,9 @@ export function canRefreshQuotaAfterList(
 }
 
 export const resolveQuotaProviderType = (file: AuthFileItem): QuotaProviderType | null =>
-  QUOTA_TAB_ORDER.find((type) => QUOTA_FILTER_MAP[type](file)) ?? null;
+  PLUGIN_CONFIG.filterFn(file)
+    ? 'plugin'
+    : (QUOTA_TAB_ORDER.find((type) => QUOTA_FILTER_MAP[type](file)) ?? null);
 
 /**
  * 把文件列表归类为额度条目：不支持额度或已停用的文件被过滤，

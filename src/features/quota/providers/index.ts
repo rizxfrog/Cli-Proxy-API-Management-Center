@@ -39,6 +39,8 @@ import { MINIMAX_CONFIG } from './minimax/data';
 import { MinimaxQuotaBody } from './minimax/MinimaxQuotaBody';
 import { TRAE_CONFIG } from './trae/data';
 import { TraeQuotaBody } from './trae/TraeQuotaBody';
+import { PLUGIN_CONFIG } from './plugin/data';
+import { PluginQuotaBody } from './plugin/PluginQuotaBody';
 import { XAI_CONFIG } from './xai/data';
 import { XaiQuotaBody } from './xai/XaiQuotaBody';
 
@@ -83,7 +85,7 @@ export const QUOTA_ADAPTERS: Record<QuotaProviderType, QuotaAdapter> = {
   minimax: { ...MINIMAX_CONFIG, Body: MinimaxQuotaBody } as unknown as QuotaAdapter,
   trae: { ...TRAE_CONFIG, Body: TraeQuotaBody } as unknown as QuotaAdapter,
   meta: { ...META_CONFIG, Body: MetaQuotaBody } as unknown as QuotaAdapter,
-
+  plugin: { ...PLUGIN_CONFIG, Body: PluginQuotaBody } as unknown as QuotaAdapter,
   xai: { ...XAI_CONFIG, Body: XaiQuotaBody } as unknown as QuotaAdapter,
 };
 

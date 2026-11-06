@@ -6,8 +6,9 @@ import { AuthFilesPage } from '@/features/authFiles/AuthFilesPage';
 import { AuthFilesOAuthExcludedEditPage } from '@/pages/AuthFilesOAuthExcludedEditPage';
 import { AuthFilesOAuthModelAliasEditPage } from '@/pages/AuthFilesOAuthModelAliasEditPage';
 import { WebLoginPage } from '@/features/webLogin/WebLoginPage';
-import { OAuthPage } from '@/pages/OAuthPage';
+import { OAuthPage } from '@/features/oauth/OAuthPage';
 import { QuotaPage } from '@/features/quota/QuotaPage';
+import { RoutingPage } from '@/features/routing/RoutingPage';
 import { PluginResourcePage } from '@/features/plugins/PluginResourcePage';
 import { PluginsPage } from '@/features/plugins/PluginsPage';
 import { PluginStorePage } from '@/features/plugins/PluginStorePage';
@@ -32,6 +33,7 @@ const createMainRoutes = (supportsPlugin: boolean) => [
   { path: '/auth-files/oauth-model-alias', element: <AuthFilesOAuthModelAliasEditPage /> },
   { path: '/oauth', element: <OAuthPage /> },
   { path: '/web-login', element: <WebLoginPage /> },
+  { path: '/routing', element: <RoutingPage /> },
   { path: '/quota', element: <QuotaPage /> },
   ...(supportsPlugin
     ? [

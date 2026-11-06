@@ -16,7 +16,8 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { MemoryRouter } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
 import { createInstance } from 'i18next';
-import { OAuthPage } from '@/pages/OAuthPage';
+import { OAuthPage } from '@/features/oauth/OAuthPage';
+import { OAUTH_PROVIDERS } from '@/features/oauth/providers';
 import en from '@/i18n/locales/en.json';
 import zhCN from '@/i18n/locales/zh-CN.json';
 import zhTW from '@/i18n/locales/zh-TW.json';
@@ -40,21 +41,32 @@ const renderPage = () =>
   );
 
 describe('Loomy login UI', () => {
-  test('renders the SMS form and no raw i18n keys', () => {
+  test('is registered as an SMS-flow provider', () => {
+    const loomy = OAUTH_PROVIDERS.find((provider) => provider.id === 'loomy');
+    expect(loomy).toMatchObject({ flow: 'sms', titleKey: 'auth_login.loomy_oauth_title' });
+  });
+
+  test('renders the tile and caption without raw i18n keys', () => {
     const markup = renderPage();
-    expect(markup).toContain('Loomy (讯飞) OAuth');
-    expect(markup).toContain('Phone number');
-    expect(markup).toContain('Send code');
+    expect(markup).toContain('Loomy');
+    expect(markup).toContain(en.auth_login.method_sms);
     expect(markup).not.toContain('auth_login.loomy_');
   });
 
   test('the card posts to the SMS endpoints, not the shared auth-url contract', () => {
-    const page = read('src/pages/OAuthPage.tsx');
-    expect(page).toContain('loomyApi.requestSMSCode');
-    expect(page).toContain('loomyApi.login');
+    const hook = read('src/features/oauth/hooks/useOAuthFlows.ts');
+    expect(hook).toContain('loomyApi.requestSMSCode');
+    expect(hook).toContain('loomyApi.login');
     // The shared URL flow would send provider=loomy to /oauth/auth-url, which the
     // backend answers with a redirect to the SMS endpoints.
-    expect(page).toContain("if (provider === 'loomy')");
+    expect(hook).toContain("if (provider === 'loomy')");
+  });
+
+  test('the dialog renders the two SMS steps and no URL/callback affordances', () => {
+    const dialog = read('src/features/oauth/components/OAuthFlowDialog.tsx');
+    expect(dialog).toContain('SmsBody');
+    expect(dialog).toContain('phone_label');
+    expect(dialog).toContain('send_code');
   });
 
   test('the API module uses the dedicated endpoints and never returns a session', () => {

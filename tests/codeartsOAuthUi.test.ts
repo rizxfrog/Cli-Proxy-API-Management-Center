@@ -4,7 +4,9 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { MemoryRouter } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
 import { createInstance } from 'i18next';
-import { OAuthPage } from '@/pages/OAuthPage';
+import { OAuthPage } from '@/features/oauth/OAuthPage';
+import { OAuthFlowDialog } from '@/features/oauth/components/OAuthFlowDialog';
+import { OAUTH_PROVIDERS, supportsManualCallback } from '@/features/oauth/providers';
 import en from '@/i18n/locales/en.json';
 import zhCN from '@/i18n/locales/zh-CN.json';
 import zhTW from '@/i18n/locales/zh-TW.json';
@@ -13,21 +15,61 @@ import ru from '@/i18n/locales/ru.json';
 const i18n = createInstance();
 await i18n.init({ lng: 'en', resources: { en: { translation: en } } });
 
+const renderPage = () =>
+  renderToStaticMarkup(
+    createElement(
+      I18nextProvider,
+      { i18n },
+      createElement(MemoryRouter, null, createElement(OAuthPage))
+    )
+  );
+
+// The gallery page only renders tiles (label + caption); the sign-in button and
+// the loopback paste hint live in the per-provider flow dialog, so they are
+// asserted against the idle dialog view rendered directly.
+const renderDialog = () => {
+  const card = OAUTH_PROVIDERS.find((provider) => provider.id === 'codearts');
+  return renderToStaticMarkup(
+    createElement(
+      I18nextProvider,
+      { i18n },
+      createElement(OAuthFlowDialog, {
+        open: true,
+        providerId: 'codearts',
+        heading: {
+          title: en.auth_login.codearts_oauth_title,
+          caption: en.auth_login.method_browser,
+          icon: '',
+        },
+        state: {},
+        text: (suffix: string) => i18n.t(`auth_login.codearts_${suffix}`),
+        supportsCallback: card ? supportsManualCallback(card) : false,
+        onStart: () => {},
+        onCancel: () => {},
+        onCallbackChange: () => {},
+        onCallbackSubmit: () => {},
+        onViewAuthFiles: () => {},
+        onClose: () => {},
+      })
+    )
+  );
+};
+
 describe('CodeArts OAuth login UI', () => {
-  test('renders a built-in login card with English copy and no raw i18n keys', () => {
-    const markup = renderToStaticMarkup(
-      createElement(
-        I18nextProvider,
-        { i18n },
-        createElement(MemoryRouter, null, createElement(OAuthPage))
-      )
-    );
+  test('renders the tile and caption without raw i18n keys', () => {
+    const markup = renderPage();
     expect(markup).toContain('CodeArts');
+    expect(markup).toContain(en.auth_login.method_browser);
+    expect(markup).not.toContain('auth_login.codearts_');
+  });
+
+  test('the dialog offers sign-in with the loopback paste hint', () => {
+    const markup = renderDialog();
     expect(markup).toContain('Sign in to CodeArts');
     // The hint must tell the user to paste the loopback callback URL, since the
     // browser cannot deliver it to the proxy.
     expect(markup).toContain('127.0.0.1');
-    expect(markup).not.toContain('auth_login.codearts_');
+    expect(markup).not.toContain('auth_login.');
   });
 
   test('supplies every CodeArts label in all four languages', () => {

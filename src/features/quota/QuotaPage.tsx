@@ -142,29 +142,32 @@ export function QuotaPage() {
   const qoderCNQuota = useQuotaStore((state) => state.qoderCNQuota);
   const traeQuota = useQuotaStore((state) => state.traeQuota);
   const metaQuota = useQuotaStore((state) => state.metaQuota);
+  const pluginQuota = useQuotaStore((state) => state.pluginQuota);
   const xaiQuota = useQuotaStore((state) => state.xaiQuota);
   const floatboatQuota = useQuotaStore((state) => state.floatboatQuota);
   const lobsteraiServerQuota = useQuotaStore((state) => state.lobsteraiServerQuota);
   const loomyQuota = useQuotaStore((state) => state.loomyQuota);
 
   const quotaByType = useMemo<Record<QuotaProviderType, Record<string, QuotaCardState>>>(
-    () => ({
-      antigravity: antigravityQuota,
-      claude: claudeQuota,
-      codearts: codeArtsQuota,
-      codebuddy: codebuddyQuota,
-      codex: codexQuota,
-      devin: devinQuota,
-      floatboat: floatboatQuota,
-      'lobsterai-server': lobsteraiServerQuota,
-      loomy: loomyQuota,
-      kimi: kimiQuota,
-      meta: metaQuota,
-      minimax: minimaxQuota,
-      qodercn: qoderCNQuota,
-      trae: traeQuota,
-      xai: xaiQuota,
-    }),
+    () =>
+      ({
+        antigravity: antigravityQuota,
+        claude: claudeQuota,
+        codearts: codeArtsQuota,
+        codebuddy: codebuddyQuota,
+        codex: codexQuota,
+        devin: devinQuota,
+        floatboat: floatboatQuota,
+        'lobsterai-server': lobsteraiServerQuota,
+        loomy: loomyQuota,
+        kimi: kimiQuota,
+        meta: metaQuota,
+        minimax: minimaxQuota,
+        plugin: pluginQuota,
+        qodercn: qoderCNQuota,
+        trae: traeQuota,
+        xai: xaiQuota,
+      }) as unknown as Record<QuotaProviderType, Record<string, QuotaCardState>>,
     [
       antigravityQuota,
       claudeQuota,
@@ -178,6 +181,7 @@ export function QuotaPage() {
       kimiQuota,
       metaQuota,
       minimaxQuota,
+      pluginQuota,
       qoderCNQuota,
       traeQuota,
       xaiQuota,

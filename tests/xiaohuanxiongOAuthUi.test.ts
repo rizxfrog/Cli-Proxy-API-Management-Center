@@ -6,35 +6,75 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { MemoryRouter } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
 import { createInstance } from 'i18next';
-import { OAuthPage } from '@/pages/OAuthPage';
+import { OAuthPage } from '@/features/oauth/OAuthPage';
+import { OAuthFlowDialog } from '@/features/oauth/components/OAuthFlowDialog';
+import { OAUTH_PROVIDERS, supportsManualCallback } from '@/features/oauth/providers';
 import en from '@/i18n/locales/en.json';
 import zhCN from '@/i18n/locales/zh-CN.json';
 import zhTW from '@/i18n/locales/zh-TW.json';
 import ru from '@/i18n/locales/ru.json';
 
-const oauthPage = readFileSync(
-  join(import.meta.dir, '..', 'src', 'pages', 'OAuthPage.tsx'),
-  'utf8'
-);
+const repoRoot = join(import.meta.dir, '..');
+const read = (relativePath: string) => readFileSync(join(repoRoot, relativePath), 'utf8');
 
 const i18n = createInstance();
 await i18n.init({ lng: 'en', resources: { en: { translation: en } } });
 
+const renderPage = () =>
+  renderToStaticMarkup(
+    createElement(
+      I18nextProvider,
+      { i18n },
+      createElement(MemoryRouter, null, createElement(OAuthPage))
+    )
+  );
+
+// The gallery page only renders tiles (label + caption); the sign-in button and
+// the deep-link paste hint live in the per-provider flow dialog, so they are
+// asserted against the idle dialog view rendered directly.
+const renderDialog = () => {
+  const card = OAUTH_PROVIDERS.find((provider) => provider.id === 'xiaohuanxiong');
+  return renderToStaticMarkup(
+    createElement(
+      I18nextProvider,
+      { i18n },
+      createElement(OAuthFlowDialog, {
+        open: true,
+        providerId: 'xiaohuanxiong',
+        heading: {
+          title: en.auth_login.xiaohuanxiong_oauth_title,
+          caption: en.auth_login.method_browser,
+          icon: '',
+        },
+        state: {},
+        text: (suffix: string) => i18n.t(`auth_login.xiaohuanxiong_${suffix}`),
+        supportsCallback: card ? supportsManualCallback(card) : false,
+        onStart: () => {},
+        onCancel: () => {},
+        onCallbackChange: () => {},
+        onCallbackSubmit: () => {},
+        onViewAuthFiles: () => {},
+        onClose: () => {},
+      })
+    )
+  );
+};
+
 describe('Xiaohuanxiong OAuth login UI', () => {
-  test('renders a built-in login card with English copy and no raw i18n keys', () => {
-    const markup = renderToStaticMarkup(
-      createElement(
-        I18nextProvider,
-        { i18n },
-        createElement(MemoryRouter, null, createElement(OAuthPage))
-      )
-    );
+  test('renders the tile and caption without raw i18n keys', () => {
+    const markup = renderPage();
     expect(markup).toContain('Xiaohuanxiong');
+    expect(markup).toContain(en.auth_login.method_browser);
+    expect(markup).not.toContain('auth_login.xiaohuanxiong_');
+  });
+
+  test('the dialog offers sign-in with the deep-link paste hint', () => {
+    const markup = renderDialog();
     expect(markup).toContain('Sign in to Xiaohuanxiong');
     // The hint must tell the user to paste the deep link, since the browser
     // cannot deliver office-raccoon:// to the proxy.
     expect(markup).toContain('office-raccoon://');
-    expect(markup).not.toContain('auth_login.xiaohuanxiong_');
+    expect(markup).not.toContain('auth_login.');
   });
 
   test('supplies every Xiaohuanxiong label in all four languages', () => {
@@ -63,17 +103,21 @@ describe('Xiaohuanxiong OAuth login UI', () => {
       expect(placeholder).toContain('code');
     }
     // The paste field for Xiaohuanxiong must use its own copy rather than the
-    // generic http://localhost:... loopback hint.
-    const copyBlock = oauthPage.slice(
-      oauthPage.indexOf('const DEDICATED_CALLBACK_COPY'),
-      oauthPage.indexOf('const callbackTextKey')
+    // generic http://localhost:... loopback hint. The dedicated-copy registry
+    // lives in the flows hook, and the dialog resolves its label/hint/
+    // placeholder through it.
+    const hook = read('src/features/oauth/hooks/useOAuthFlows.ts');
+    const copyBlock = hook.slice(
+      hook.indexOf('const DEDICATED_CALLBACK_COPY'),
+      hook.indexOf('export const callbackTextKey')
     );
     expect(copyBlock).toContain("'xiaohuanxiong'");
-    expect(oauthPage).toContain("callbackTextKey(provider.id, 'label')");
-    expect(oauthPage).toContain("callbackTextKey(provider.id, 'hint')");
-    expect(oauthPage).toContain("callbackTextKey(provider.id, 'placeholder')");
+    const dialog = read('src/features/oauth/components/OAuthFlowDialog.tsx');
+    expect(dialog).toContain("callbackTextKey(providerId, 'label')");
+    expect(dialog).toContain("callbackTextKey(providerId, 'hint')");
+    expect(dialog).toContain("callbackTextKey(providerId, 'placeholder')");
     // The empty-input warning must name the two accepted formats too.
-    expect(oauthPage).toContain('xiaohuanxiong_callback_required');
+    expect(hook).toContain('xiaohuanxiong_callback_required');
   });
 });
 

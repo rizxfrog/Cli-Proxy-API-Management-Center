@@ -17,6 +17,7 @@ export const QUOTA_TAB_ORDER: readonly QuotaProviderType[] = [
   'floatboat',
   'lobsterai-server',
   'loomy',
+  'plugin',
 ];
 
 export type QuotaTabId = 'all' | QuotaProviderType;
