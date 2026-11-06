@@ -13,13 +13,18 @@ function getVersion(): string {
   }
 
   // 2. Try git tag
-  try {
-    const gitTag = execSync('git describe --tags --exact-match 2>/dev/null || git describe --tags 2>/dev/null || echo ""', { encoding: 'utf8' }).trim();
-    if (gitTag) {
-      return gitTag;
+  for (const args of [['describe', '--tags', '--exact-match'], ['describe', '--tags']]) {
+    try {
+      const gitTag = execSync(`git ${args.join(' ')}`, {
+        encoding: 'utf8',
+        stdio: ['ignore', 'pipe', 'ignore'],
+      }).trim();
+      if (gitTag) {
+        return gitTag;
+      }
+    } catch {
+      // Git not available, no tags, or not on a tagged commit
     }
-  } catch {
-    // Git not available or no tags
   }
 
   // 3. Fall back to package.json version
@@ -35,8 +40,14 @@ function getVersion(): string {
   return 'dev';
 }
 
+// Vite resolves entry ids through realpath, but `root` defaults to process.cwd().
+// When the checkout is reached through a directory junction/symlink those disagree and
+// `path.relative(root, id)` produces a "../" fileName that Rollup refuses to emit.
+const projectRoot = fs.realpathSync.native(__dirname);
+
 // https://vitejs.dev/config/
 export default defineConfig({
+  root: projectRoot,
   server: {
     proxy: {
       '/v0/management': {
@@ -56,7 +67,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src')
+      '@': path.resolve(projectRoot, './src'),
     }
   },
   css: {
