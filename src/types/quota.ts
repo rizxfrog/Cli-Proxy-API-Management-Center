@@ -743,6 +743,19 @@ export interface FloatboatQuotaState {
   errorStatus?: number;
 }
 
+export interface XiaohuanxiongQuotaState {
+  status: 'idle' | 'loading' | 'success' | 'error';
+  available_points?: number;
+  daily_points?: number;
+  monthly_points?: number;
+  reward_points?: number;
+  topup_points?: number;
+  enterprise_topup_points?: number;
+  total_chargeable_points?: number;
+  error?: string;
+  errorStatus?: number;
+}
+
 // Loomy (讯飞 Loomy) quota: the account's two points pools.
 //
 // Loomy keeps a permanent pool and a daily allowance that does not refill after

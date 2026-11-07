@@ -86,6 +86,7 @@ describe('buildTabCounts', () => {
       devin: 0,
       meta: 0,
       floatboat: 0,
+      xiaohuanxiong: 0,
       'lobsterai-server': 0,
       loomy: 0,
       plugin: 0,

@@ -12,6 +12,7 @@ import type {
   CodexQuotaState,
   DevinQuotaState,
   FloatboatQuotaState,
+  XiaohuanxiongQuotaState,
   KimiQuotaState,
   LobsteraiServerQuotaState,
   LoomyQuotaState,
@@ -42,6 +43,7 @@ interface QuotaStoreState {
   pluginQuota: Record<string, PluginQuotaState>;
   xaiQuota: Record<string, XaiQuotaState>;
   floatboatQuota: Record<string, FloatboatQuotaState>;
+  xiaohuanxiongQuota: Record<string, XiaohuanxiongQuotaState>;
   lobsteraiServerQuota: Record<string, LobsteraiServerQuotaState>;
   loomyQuota: Record<string, LoomyQuotaState>;
   setAntigravityQuota: (updater: QuotaUpdater<Record<string, AntigravityQuotaState>>) => void;
@@ -58,6 +60,7 @@ interface QuotaStoreState {
   setPluginQuota: (updater: QuotaUpdater<Record<string, PluginQuotaState>>) => void;
   setXaiQuota: (updater: QuotaUpdater<Record<string, XaiQuotaState>>) => void;
   setFloatboatQuota: (updater: QuotaUpdater<Record<string, FloatboatQuotaState>>) => void;
+  setXiaohuanxiongQuota: (updater: QuotaUpdater<Record<string, XiaohuanxiongQuotaState>>) => void;
   setLobsteraiServerQuota: (updater: QuotaUpdater<Record<string, LobsteraiServerQuotaState>>) => void;
   setLoomyQuota: (updater: QuotaUpdater<Record<string, LoomyQuotaState>>) => void;
   clearQuotaCache: (names?: string[]) => void;
@@ -87,6 +90,7 @@ export const useQuotaStore = create<QuotaStoreState>((set) => ({
   pluginQuota: {},
   xaiQuota: {},
   floatboatQuota: {},
+  xiaohuanxiongQuota: {},
   lobsteraiServerQuota: {},
   loomyQuota: {},
   setAntigravityQuota: (updater) =>
@@ -169,6 +173,10 @@ export const useQuotaStore = create<QuotaStoreState>((set) => ({
     set((state) => ({
       floatboatQuota: resolveUpdater(updater, state.floatboatQuota),
     })),
+  setXiaohuanxiongQuota: (updater) =>
+    set((state) => ({
+      xiaohuanxiongQuota: resolveUpdater(updater, state.xiaohuanxiongQuota),
+    })),
   setLobsteraiServerQuota: (updater) =>
     set((state) => ({
       lobsteraiServerQuota: resolveUpdater(updater, state.lobsteraiServerQuota),
@@ -211,6 +219,7 @@ export const useQuotaStore = create<QuotaStoreState>((set) => ({
           pluginQuota: omitNames(state.pluginQuota),
           xaiQuota: omitNames(state.xaiQuota),
           floatboatQuota: omitNames(state.floatboatQuota),
+          xiaohuanxiongQuota: omitNames(state.xiaohuanxiongQuota),
           lobsteraiServerQuota: omitNames(state.lobsteraiServerQuota),
           loomyQuota: omitNames(state.loomyQuota),
         };
@@ -232,6 +241,7 @@ export const useQuotaStore = create<QuotaStoreState>((set) => ({
         pluginQuota: {},
         xaiQuota: {},
         floatboatQuota: {},
+        xiaohuanxiongQuota: {},
         lobsteraiServerQuota: {},
         loomyQuota: {},
       };

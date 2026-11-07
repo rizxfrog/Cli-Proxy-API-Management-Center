@@ -2733,6 +2733,24 @@
     "groups_row": "Gruplar",
     "remaining_unknown": "Bilinmiyor (Ölçülmedi)"
   },
+  "xiaohuanxiong_quota": {
+    "title": "Xiaohuanxiong Puanları",
+    "empty_title": "Xiaohuanxiong Kimlik Bilgisi Yok",
+    "empty_desc": "Puanlarınızı Görmek için Xiaohuanxiong Hesabına Giriş Yap.",
+    "idle": "Xiaohuanxiong Puanlarını Sormak için Tıkla",
+    "loading": "Xiaohuanxiong Puanları Sorgulanıyor…",
+    "load_failed": "Puanlar Sorgulanamadı: {{message}}",
+    "missing_auth_index": "Kimlik Dosyasında auth_index Eksik",
+    "empty_data": "Kullanılabilir Puan Verisi Yok",
+    "invalid_credential": "Xiaohuanxiong Kimlik Bilgisinin Süresi Doldu. Yeniden Giriş Yap.",
+    "quota_error": "Xiaohuanxiong Puanları Okunamadı.",
+    "available": "Kullanılabilir Puanlar",
+    "daily": "Günlük Puanlar",
+    "monthly": "Aylık Puanlar",
+    "reward": "Ödül Puanları",
+    "topup": "Yükleme Puanları",
+    "enterprise": "Kurumsal Yükleme Puanları"
+  },
   "trae_quota": {
     "title": "TRAE SOLO CN Kotası",
     "empty_title": "TRAE Kimlik Dosyası Yok",

@@ -49,6 +49,7 @@ export type QuotaProviderType =
   | 'kimi'
   | 'lobsterai-server'
   | 'loomy'
+  | 'xiaohuanxiong'
   | 'meta'
   | 'minimax'
   | 'plugin'
@@ -75,6 +76,7 @@ export const QUOTA_PROVIDER_TYPES = new Set<QuotaProviderType>([
   'qodercn',
   'trae',
   'xai',
+  'xiaohuanxiong',
 ]);
 
 export const OAUTH_PROVIDER_PRESETS = [

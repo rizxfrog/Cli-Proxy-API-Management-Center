@@ -145,6 +145,7 @@ export function QuotaPage() {
   const pluginQuota = useQuotaStore((state) => state.pluginQuota);
   const xaiQuota = useQuotaStore((state) => state.xaiQuota);
   const floatboatQuota = useQuotaStore((state) => state.floatboatQuota);
+  const xiaohuanxiongQuota = useQuotaStore((state) => state.xiaohuanxiongQuota);
   const lobsteraiServerQuota = useQuotaStore((state) => state.lobsteraiServerQuota);
   const loomyQuota = useQuotaStore((state) => state.loomyQuota);
 
@@ -158,6 +159,7 @@ export function QuotaPage() {
         codex: codexQuota,
         devin: devinQuota,
         floatboat: floatboatQuota,
+        xiaohuanxiong: xiaohuanxiongQuota,
         'lobsterai-server': lobsteraiServerQuota,
         loomy: loomyQuota,
         kimi: kimiQuota,
@@ -176,6 +178,7 @@ export function QuotaPage() {
       codexQuota,
       devinQuota,
       floatboatQuota,
+      xiaohuanxiongQuota,
       lobsteraiServerQuota,
       loomyQuota,
       kimiQuota,

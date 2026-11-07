@@ -622,6 +622,24 @@
     "remaining": "剩餘 {{percent}}%",
     "window_duration_hours": "{{hours}} 小時限額"
   },
+  "xiaohuanxiong_quota": {
+    "title": "商湯小浣熊額度",
+    "empty_title": "暫無小浣熊憑證",
+    "empty_desc": "登入商湯小浣熊後可查看積分餘額。",
+    "idle": "點擊查詢小浣熊積分",
+    "loading": "正在查詢小浣熊積分…",
+    "load_failed": "查詢積分失敗：{{message}}",
+    "missing_auth_index": "認證檔案缺少 auth_index",
+    "empty_data": "暫無積分資料",
+    "invalid_credential": "小浣熊憑證已失效，請重新登入。",
+    "quota_error": "無法讀取小浣熊積分。",
+    "available": "可用積分",
+    "daily": "每日積分",
+    "monthly": "每月積分",
+    "reward": "獎勵積分",
+    "topup": "儲值積分",
+    "enterprise": "企業儲值積分"
+  },
   "kimi_quota": {
     "title": "Kimi 配額",
     "empty_title": "暫無 Kimi 驗證",

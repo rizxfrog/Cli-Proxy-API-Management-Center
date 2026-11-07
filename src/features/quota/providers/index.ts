@@ -24,9 +24,11 @@ import { FLOATBOAT_CONFIG } from './floatboat/data';
 import { FloatboatQuotaBody } from './floatboat/FloatboatQuotaBody';
 import { LOOMY_CONFIG } from './loomy/data';
 import { LoomyQuotaBody } from './loomy/LoomyQuotaBody';
+import { XIAOHUANXIONG_CONFIG } from './xiaohuanxiong/data';
+import { XiaohuanxiongQuotaBody } from './xiaohuanxiong/XiaohuanxiongQuotaBody';
 import { LOBSTERAI_SERVER_CONFIG } from './lobsteraiserver/data';
 import { LobsteraiServerQuotaBody } from './lobsteraiserver/LobsteraiServerQuotaBody';
-import { DevinQuotaBody } from './devin/DevinQuotaBody'
+import { DevinQuotaBody } from './devin/DevinQuotaBody';
 import { CODEX_CONFIG } from './codex/data';
 import { CodexQuotaBody } from './codex/CodexQuotaBody';
 import { META_CONFIG } from './meta/data';
@@ -78,6 +80,7 @@ export const QUOTA_ADAPTERS: Record<QuotaProviderType, QuotaAdapter> = {
   codex: { ...CODEX_CONFIG, Body: CodexQuotaBody } as unknown as QuotaAdapter,
   devin: { ...DEVIN_CONFIG, Body: DevinQuotaBody } as unknown as QuotaAdapter,
   floatboat: { ...FLOATBOAT_CONFIG, Body: FloatboatQuotaBody } as unknown as QuotaAdapter,
+  xiaohuanxiong: { ...XIAOHUANXIONG_CONFIG, Body: XiaohuanxiongQuotaBody } as unknown as QuotaAdapter,
   'lobsterai-server': { ...LOBSTERAI_SERVER_CONFIG, Body: LobsteraiServerQuotaBody } as unknown as QuotaAdapter,
   loomy: { ...LOOMY_CONFIG, Body: LoomyQuotaBody } as unknown as QuotaAdapter,
   kimi: { ...KIMI_CONFIG, Body: KimiQuotaBody } as unknown as QuotaAdapter,

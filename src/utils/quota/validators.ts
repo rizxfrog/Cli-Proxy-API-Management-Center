@@ -93,6 +93,10 @@ export function isFloatboatFile(file: AuthFileItem): boolean {
   return resolveAuthProvider(file) === 'floatboat';
 }
 
+export function isXiaohuanxiongFile(file: AuthFileItem): boolean {
+  return resolveAuthProvider(file) === 'xiaohuanxiong';
+}
+
 export function isLobsteraiServerFile(file: AuthFileItem): boolean {
   return resolveAuthProvider(file) === 'lobsterai-server';
 }
@@ -125,6 +129,7 @@ export const BUILT_IN_QUOTA_PROVIDERS: ReadonlySet<string> = new Set([
   'minimax',
   'trae',
   'floatboat',
+  'xiaohuanxiong',
   'lobsterai-server',
   'loomy',
 ]);
