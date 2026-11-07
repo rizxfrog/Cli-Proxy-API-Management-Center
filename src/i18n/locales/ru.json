@@ -458,7 +458,8 @@
     "filter_loomy": "Loomy",
     "use_siwc_label": "Использовать SIWC (use_siwc)",
     "use_siwc_hint": "Использовать привязанные учётные данные SIWC. Выключение отключает SIWC, сохраняя данные привязки. Перед включением выполните привязку.",
-    "filter_airjelly": "AirJelly"
+    "filter_airjelly": "AirJelly",
+    "filter_dumate": "Dumate"
   },
   "antigravity_subscription": {
     "plan_unknown": "Неизвестно",

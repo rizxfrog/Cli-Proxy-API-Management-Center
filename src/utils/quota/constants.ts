@@ -74,6 +74,10 @@ export const TYPE_COLORS: Record<string, TypeColorSet> = {
     light: { bg: '#e5f0ff', text: '#2b70d6' },
     dark: { bg: '#14335e', text: '#91beff' },
   },
+  dumate: {
+    light: { bg: '#e8eaff', text: '#3f4bb8' },
+    dark: { bg: '#1f2560', text: '#a8b1f5' },
+  },
   vertex: {
     light: { bg: '#e4edfd', text: '#2b5fbc' },
     dark: { bg: '#1a3d80', text: '#89b3f7' },

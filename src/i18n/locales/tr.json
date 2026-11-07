@@ -455,7 +455,8 @@
     "filter_minimax": "MiniMax Code",
     "filter_minimax-cn": "MiniMax Code (CN)",
     "filter_loomy": "Loomy",
-    "filter_airjelly": "AirJelly"
+    "filter_airjelly": "AirJelly",
+    "filter_dumate": "Dumate"
   },
   "antigravity_subscription": {
     "plan_unknown": "Bilinmiyor",

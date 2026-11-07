@@ -455,7 +455,8 @@
     "filter_loomy": "Loomy",
     "use_siwc_label": "Sử dụng SIWC (use_siwc)",
     "use_siwc_hint": "Sử dụng thông tin xác thực SIWC đã liên kết khi bật. Tắt chỉ vô hiệu hóa SIWC và giữ nguyên dữ liệu liên kết. Hoàn tất liên kết trước khi bật.",
-    "filter_airjelly": "AirJelly"
+    "filter_airjelly": "AirJelly",
+    "filter_dumate": "Dumate"
   },
   "antigravity_subscription": {
     "plan_unknown": "Không rõ",

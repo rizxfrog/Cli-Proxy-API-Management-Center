@@ -453,7 +453,8 @@
     "filter_loomy": "Loomy",
     "use_siwc_label": "使用 SIWC（use_siwc）",
     "use_siwc_hint": "启用后使用已绑定的 SIWC 凭证。关闭仅停用 SIWC，不会删除绑定数据；启用前请先完成绑定。",
-    "filter_airjelly": "AirJelly"
+    "filter_airjelly": "AirJelly",
+    "filter_dumate": "百度搭子"
   },
   "antigravity_subscription": {
     "plan_unknown": "未知",

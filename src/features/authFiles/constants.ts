@@ -22,6 +22,7 @@ import iconLoomy from '@/assets/icons/loomy.svg';
 import iconAirJelly from '@/assets/icons/airjelly.svg';
 import iconCline from '@/assets/icons/cline.png';
 import iconMinimax from '@/assets/icons/minimax.svg';
+import iconDumate from '@/assets/icons/dumate.png';
 import type { AuthFileItem, ResolvedTheme, ThemeColors } from '@/types';
 import { normalizeOAuthProviderKey } from '@/utils/providerKeys';
 import { parseTimestamp } from '@/utils/timestamp';
@@ -131,6 +132,7 @@ export const AUTH_FILE_ICONS: Record<string, AuthFileIconAsset> = {
   codearts: iconCodeArts,
   loomy: iconLoomy,
   airjelly: iconAirJelly,
+  dumate: iconDumate,
   trae: iconTrae,
   aistudio: iconGemini,
   claude: iconClaude,

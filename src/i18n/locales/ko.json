@@ -455,7 +455,8 @@
     "filter_loomy": "Loomy",
     "use_siwc_label": "SIWC 사용 (use_siwc)",
     "use_siwc_hint": "활성화하면 연결된 SIWC 자격 증명을 사용합니다. 끄면 SIWC만 비활성화되며 연결 데이터는 유지됩니다. 활성화하기 전에 연결을 완료하세요.",
-    "filter_airjelly": "AirJelly"
+    "filter_airjelly": "AirJelly",
+    "filter_dumate": "Dumate"
   },
   "antigravity_subscription": {
     "plan_unknown": "알 수 없음",

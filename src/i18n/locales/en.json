@@ -455,7 +455,8 @@
     "filter_loomy": "Loomy",
     "use_siwc_label": "Use SIWC (use_siwc)",
     "use_siwc_hint": "Use the bound SIWC credential when enabled. Turning this off only disables SIWC and preserves binding data. Complete binding before enabling.",
-    "filter_airjelly": "AirJelly"
+    "filter_airjelly": "AirJelly",
+    "filter_dumate": "Dumate"
   },
   "antigravity_subscription": {
     "plan_unknown": "Unknown",
