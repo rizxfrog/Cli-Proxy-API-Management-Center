@@ -30,7 +30,8 @@ export type BuiltInOAuthProvider =
   | 'floatboat'
   | 'lobsterai-server'
   /** Phone SMS code login; unlike the others it has no URL-based start. */
-  | 'loomy';
+  | 'loomy'
+  | 'airjelly';
 
 export interface OAuthStartResponse {
   url: string;

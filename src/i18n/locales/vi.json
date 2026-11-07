@@ -454,7 +454,8 @@
     "filter_minimax-cn": "MiniMax Code (Trung Quốc)",
     "filter_loomy": "Loomy",
     "use_siwc_label": "Sử dụng SIWC (use_siwc)",
-    "use_siwc_hint": "Sử dụng thông tin xác thực SIWC đã liên kết khi bật. Tắt chỉ vô hiệu hóa SIWC và giữ nguyên dữ liệu liên kết. Hoàn tất liên kết trước khi bật."
+    "use_siwc_hint": "Sử dụng thông tin xác thực SIWC đã liên kết khi bật. Tắt chỉ vô hiệu hóa SIWC và giữ nguyên dữ liệu liên kết. Hoàn tất liên kết trước khi bật.",
+    "filter_airjelly": "AirJelly"
   },
   "antigravity_subscription": {
     "plan_unknown": "Không rõ",
@@ -1112,7 +1113,29 @@
     "restart_login": "Bắt đầu lại",
     "success_saved_hint": "Đã lưu credential — quản lý trong File xác thực.",
     "sign_up_prompt": "Chưa có tài khoản?",
-    "copied": "Đã sao chép"
+    "copied": "Đã sao chép",
+    "airjelly_oauth_title": "AirJelly Lite sign in",
+    "airjelly_oauth_hint": "Use Google OAuth and paste the localhost callback URL, or sign in with email and password.",
+    "airjelly_oauth_button": "Sign in with Google",
+    "airjelly_oauth_status_waiting": "Waiting for Google authorization…",
+    "airjelly_oauth_status_success": "AirJelly sign-in succeeded!",
+    "airjelly_oauth_status_error": "AirJelly sign-in failed:",
+    "airjelly_oauth_start_error": "Could not start Google sign-in:",
+    "airjelly_copy_link": "Copy link",
+    "airjelly_open_link": "Open link",
+    "airjelly_callback_label": "Callback URL",
+    "airjelly_callback_hint": "Paste the complete http://localhost:19877/?code=... URL from the browser address bar.",
+    "airjelly_callback_placeholder": "http://localhost:19877/?code=...",
+    "airjelly_email": "Email",
+    "airjelly_password": "Password",
+    "airjelly_password_login": "Sign in with email",
+    "airjelly_missing_login": "Enter email and password.",
+    "airjelly_signup": "Register with email",
+    "airjelly_signup_code": "Email verification code",
+    "airjelly_signup_verify": "Verify and sign in",
+    "airjelly_signup_resend": "Resend code",
+    "airjelly_signup_check_email": "Check your email for a verification code.",
+    "airjelly_missing_code": "Enter your email and verification code."
   },
   "stats": {
     "success": "Thành công",
@@ -3029,5 +3052,20 @@
     "error": "Liên kết thất bại. Hãy bắt đầu lại.",
     "unsupported": "Máy chủ này không hỗ trợ liên kết SIWC.",
     "expired": "Phiên liên kết đã hết hạn. Hãy bắt đầu lại."
+  },
+  "airjelly_quota": {
+    "title": "AirJelly quota",
+    "empty_title": "No AirJelly credentials",
+    "empty_desc": "Sign in to view AirJelly credits.",
+    "idle": "Click to query AirJelly quota",
+    "loading": "Querying AirJelly quota…",
+    "load_failed": "Could not query quota: {{message}}",
+    "missing_auth_index": "Missing auth_index",
+    "empty_data": "No quota data",
+    "total": "Total remaining",
+    "daily": "Daily",
+    "monthly": "Monthly",
+    "permanent": "Permanent",
+    "plan": "Plan"
   }
 }

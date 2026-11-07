@@ -26,6 +26,8 @@ import { LOOMY_CONFIG } from './loomy/data';
 import { LoomyQuotaBody } from './loomy/LoomyQuotaBody';
 import { XIAOHUANXIONG_CONFIG } from './xiaohuanxiong/data';
 import { XiaohuanxiongQuotaBody } from './xiaohuanxiong/XiaohuanxiongQuotaBody';
+import { AIRJELLY_CONFIG } from './airjelly/data';
+import { AirJellyQuotaBody } from './airjelly/AirJellyQuotaBody';
 import { LOBSTERAI_SERVER_CONFIG } from './lobsteraiserver/data';
 import { LobsteraiServerQuotaBody } from './lobsteraiserver/LobsteraiServerQuotaBody';
 import { DevinQuotaBody } from './devin/DevinQuotaBody';
@@ -83,6 +85,7 @@ export const QUOTA_ADAPTERS: Record<QuotaProviderType, QuotaAdapter> = {
   xiaohuanxiong: { ...XIAOHUANXIONG_CONFIG, Body: XiaohuanxiongQuotaBody } as unknown as QuotaAdapter,
   'lobsterai-server': { ...LOBSTERAI_SERVER_CONFIG, Body: LobsteraiServerQuotaBody } as unknown as QuotaAdapter,
   loomy: { ...LOOMY_CONFIG, Body: LoomyQuotaBody } as unknown as QuotaAdapter,
+  airjelly: { ...AIRJELLY_CONFIG, Body: AirJellyQuotaBody } as unknown as QuotaAdapter,
   kimi: { ...KIMI_CONFIG, Body: KimiQuotaBody } as unknown as QuotaAdapter,
   qodercn: { ...QODERCN_CONFIG, Body: QoderCNQuotaBody } as unknown as QuotaAdapter,
   minimax: { ...MINIMAX_CONFIG, Body: MinimaxQuotaBody } as unknown as QuotaAdapter,

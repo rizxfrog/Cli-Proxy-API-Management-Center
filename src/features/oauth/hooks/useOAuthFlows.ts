@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuthStore, useNotificationStore } from '@/stores';
-import { loomyApi, oauthApi, pluginsApi } from '@/services/api';
+import { airJellyApi, loomyApi, oauthApi, pluginsApi } from '@/services/api';
 import { getErrorMessage, isRecord } from '@/utils/helpers';
 import { notifyAuthFilesChanged } from '@/features/authFiles/authFilesEvents';
 import { createOAuthAttempts, type OAuthAttempt } from '../oauthAttempts';
@@ -39,6 +39,14 @@ export interface ProviderFlowState {
   code?: string;
   /** Loomy SMS flow: the send step is in flight. */
   smsBusy?: boolean;
+  /** AirJelly email/password flow: the account being signed in or registered. */
+  email?: string;
+  /** AirJelly email/password flow: the password typed for login or signup. */
+  password?: string;
+  /** AirJelly signup flow: the emailed verification code. */
+  signupCode?: string;
+  /** AirJelly signup flow: confirmation is required before the credential exists. */
+  signupPending?: boolean;
 }
 
 interface UseOAuthFlowsOptions {
@@ -67,6 +75,8 @@ export const DEDICATED_CALLBACK_COPY: ReadonlySet<string> = new Set([
   // LobsterAI lands on a loopback callback the remote browser cannot hand to
   // the proxy.
   'lobsterai-server',
+  // AirJelly pastes the desktop client's localhost callback URL.
+  'airjelly',
 ]);
 
 export const callbackTextKey = (
@@ -201,6 +211,10 @@ export function useOAuthFlows({ providerCards, isFocused }: UseOAuthFlowsOptions
       callbackStatus: undefined,
       callbackError: undefined,
       callbackValidation: undefined,
+      email: undefined,
+      password: undefined,
+      signupCode: undefined,
+      signupPending: undefined,
     });
     // 后台完成时磁贴短暂显示「已添加」；对话框开着则保留成功页，关闭时再清。
     resetAttempt.schedule(() => {
@@ -295,6 +309,37 @@ export function useOAuthFlows({ providerCards, isFocused }: UseOAuthFlowsOptions
     // Loomy has no URL-based start: its card runs the SMS steps instead.
     if (provider === 'loomy') {
       await sendLoomyCode(provider);
+      return;
+    }
+    // AirJelly starts its Google OAuth session on a dedicated endpoint and is
+    // completed by the pasted callback, so no status polling runs.
+    if (provider === 'airjelly') {
+      const attempt = attempts.current.begin(provider);
+      updateProviderState(provider, {
+        url: undefined,
+        state: undefined,
+        status: 'waiting',
+        polling: false,
+        error: undefined,
+        callbackUrl: '',
+        callbackStatus: undefined,
+        callbackError: undefined,
+        callbackValidation: undefined,
+      });
+      try {
+        const res = await airJellyApi.startOAuth();
+        if (!attempt.isCurrent()) return;
+        updateProviderState(provider, { url: res.url, state: res.state });
+      } catch (err: unknown) {
+        if (!attempt.isCurrent()) return;
+        const message = getErrorMessage(err);
+        updateProviderState(provider, { status: 'error', error: message });
+        notify(
+          provider,
+          `${providerText(provider, 'oauth_start_error')}${message ? ` ${message}` : ''}`,
+          'error'
+        );
+      }
       return;
     }
     const attempt = attempts.current.begin(provider);
@@ -426,6 +471,15 @@ export function useOAuthFlows({ providerCards, isFocused }: UseOAuthFlowsOptions
       return;
     }
     try {
+      if (provider === 'airjelly') {
+        // The dedicated endpoint binds the pasted localhost callback to the
+        // pending Google session and completes the login synchronously.
+        await airJellyApi.completeOAuth(states[provider]?.state || '', redirectUrl);
+        if (!attempt.isCurrent()) return;
+        completeProviderAuth(provider);
+        notify(provider, providerText(provider, 'oauth_status_success'), 'success');
+        return;
+      }
       await oauthApi.submitCallback(provider, redirectUrl, attempt.signal);
       if (!attempt.isCurrent()) return;
       updateProviderState(provider, { callbackSubmitting: false, callbackStatus: 'success' });
@@ -540,6 +594,126 @@ export function useOAuthFlows({ providerCards, isFocused }: UseOAuthFlowsOptions
   const setSmsCode = (provider: string, value: string) => {
     updateProviderState(provider, { code: value, callbackError: undefined });
   };
+  /**
+   * AirJelly email/password login. The backend exchanges the credentials and
+   * stores the auth file itself, so the login completes synchronously.
+   */
+  const loginAirJellyPassword = async (provider: string) => {
+    const email = (states[provider]?.email || '').trim();
+    const password = states[provider]?.password || '';
+    if (!email || !password) {
+      notify(provider, t('auth_login.airjelly_missing_login'), 'warning');
+      return;
+    }
+    const attempt = attempts.current.begin(provider);
+    updateProviderState(provider, { polling: true, error: undefined, status: 'waiting' });
+    try {
+      await airJellyApi.login(email, password);
+      if (!attempt.isCurrent()) return;
+      completeProviderAuth(provider);
+      notify(provider, t('auth_login.airjelly_oauth_status_success'), 'success');
+    } catch (err: unknown) {
+      if (!attempt.isCurrent()) return;
+      updateProviderState(provider, {
+        polling: false,
+        status: 'error',
+        error: getErrorMessage(err),
+      });
+    }
+  };
+
+  /** AirJelly email registration; may pause for an emailed confirmation code. */
+  const signupAirJelly = async (provider: string) => {
+    const email = (states[provider]?.email || '').trim();
+    const password = states[provider]?.password || '';
+    if (!email || !password) {
+      notify(provider, t('auth_login.airjelly_missing_login'), 'warning');
+      return;
+    }
+    const attempt = attempts.current.begin(provider);
+    updateProviderState(provider, { polling: true, error: undefined, status: 'waiting' });
+    try {
+      const result = await airJellyApi.signup(email, password);
+      if (!attempt.isCurrent()) return;
+      if (result.status === 'confirmation_required') {
+        updateProviderState(provider, {
+          polling: false,
+          status: undefined,
+          error: undefined,
+          signupPending: true,
+          password: '',
+        });
+        notify(provider, t('auth_login.airjelly_signup_check_email'), 'success');
+      } else {
+        completeProviderAuth(provider);
+        notify(provider, t('auth_login.airjelly_oauth_status_success'), 'success');
+      }
+    } catch (err: unknown) {
+      if (!attempt.isCurrent()) return;
+      updateProviderState(provider, {
+        polling: false,
+        status: 'error',
+        error: getErrorMessage(err),
+      });
+    }
+  };
+
+  /** AirJelly signup step 2: confirm the emailed code, which completes sign-in. */
+  const verifyAirJellySignup = async (provider: string) => {
+    const email = (states[provider]?.email || '').trim();
+    const code = (states[provider]?.signupCode || '').trim();
+    if (!email || !code) {
+      notify(provider, t('auth_login.airjelly_missing_code'), 'warning');
+      return;
+    }
+    const attempt = attempts.current.begin(provider);
+    updateProviderState(provider, { polling: true, error: undefined });
+    try {
+      await airJellyApi.verifySignup(email, code);
+      if (!attempt.isCurrent()) return;
+      completeProviderAuth(provider);
+      notify(provider, t('auth_login.airjelly_oauth_status_success'), 'success');
+    } catch (err: unknown) {
+      if (!attempt.isCurrent()) return;
+      updateProviderState(provider, {
+        polling: false,
+        status: 'error',
+        error: getErrorMessage(err),
+      });
+    }
+  };
+
+  const resendAirJellySignupCode = async (provider: string) => {
+    const email = (states[provider]?.email || '').trim();
+    if (!email) return;
+    const attempt = attempts.current.begin(provider);
+    updateProviderState(provider, { polling: true, error: undefined });
+    try {
+      await airJellyApi.resendSignupCode(email);
+      if (!attempt.isCurrent()) return;
+      updateProviderState(provider, { polling: false });
+      notify(provider, t('auth_login.airjelly_signup_check_email'), 'success');
+    } catch (err: unknown) {
+      if (!attempt.isCurrent()) return;
+      updateProviderState(provider, {
+        polling: false,
+        status: 'error',
+        error: getErrorMessage(err),
+      });
+    }
+  };
+
+  const setAirJellyEmail = (provider: string, value: string) => {
+    updateProviderState(provider, { email: value });
+  };
+
+  const setAirJellyPassword = (provider: string, value: string) => {
+    updateProviderState(provider, { password: value });
+  };
+
+  const setAirJellySignupCode = (provider: string, value: string) => {
+    updateProviderState(provider, { signupCode: value });
+  };
 
   /** 关闭对话框时收起成功页，磁贴回到可再次登录的初始态。 */
   const dismissSuccess = (provider: string) => {
@@ -557,6 +731,13 @@ export function useOAuthFlows({ providerCards, isFocused }: UseOAuthFlowsOptions
     setCallbackInput,
     sendLoomyCode,
     submitLoomyCode,
+    loginAirJellyPassword,
+    signupAirJelly,
+    verifyAirJellySignup,
+    resendAirJellySignupCode,
+    setAirJellyEmail,
+    setAirJellyPassword,
+    setAirJellySignupCode,
     setSmsPhone,
     setSmsCode,
     dismissSuccess,

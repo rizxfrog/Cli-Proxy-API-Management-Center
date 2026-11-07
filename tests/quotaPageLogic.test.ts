@@ -89,6 +89,7 @@ describe('buildTabCounts', () => {
       xiaohuanxiong: 0,
       'lobsterai-server': 0,
       loomy: 0,
+      airjelly: 0,
       plugin: 0,
     });
   });

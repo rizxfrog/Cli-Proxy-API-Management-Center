@@ -253,6 +253,24 @@ export function OAuthPage() {
                 }
               : undefined
           }
+          airjelly={
+            dialogCard.kind === 'builtin' && dialogCard.id === 'airjelly'
+              ? {
+                  email: flows.states[dialogCard.id]?.email ?? '',
+                  password: flows.states[dialogCard.id]?.password ?? '',
+                  signupCode: flows.states[dialogCard.id]?.signupCode ?? '',
+                  signupPending: flows.states[dialogCard.id]?.signupPending,
+                  busy: flows.states[dialogCard.id]?.polling,
+                  onEmailChange: (value) => flows.setAirJellyEmail(dialogCard.id, value),
+                  onPasswordChange: (value) => flows.setAirJellyPassword(dialogCard.id, value),
+                  onSignupCodeChange: (value) => flows.setAirJellySignupCode(dialogCard.id, value),
+                  onPasswordLogin: () => void flows.loginAirJellyPassword(dialogCard.id),
+                  onSignup: () => void flows.signupAirJelly(dialogCard.id),
+                  onVerify: () => void flows.verifyAirJellySignup(dialogCard.id),
+                  onResend: () => void flows.resendAirJellySignupCode(dialogCard.id),
+                }
+              : undefined
+          }
           onStart={() => void flows.startAuth(dialogCard.id)}
           onCancel={() => void flows.cancelAuth(dialogCard.id)}
           onCallbackChange={(value) => flows.setCallbackInput(dialogCard.id, value)}

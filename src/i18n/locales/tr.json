@@ -454,7 +454,8 @@
     "filter_codearts": "CodeArts (Huawei)",
     "filter_minimax": "MiniMax Code",
     "filter_minimax-cn": "MiniMax Code (CN)",
-    "filter_loomy": "Loomy"
+    "filter_loomy": "Loomy",
+    "filter_airjelly": "AirJelly"
   },
   "antigravity_subscription": {
     "plan_unknown": "Bilinmiyor",
@@ -1151,7 +1152,29 @@
     "restart_login": "Baştan Başla",
     "success_saved_hint": "Kimlik Bilgisi Kaydedildi. Kimlik Dosyalarında Yönet.",
     "sign_up_prompt": "Henüz Hesap Yok Mu?",
-    "copied": "Kopyalandı"
+    "copied": "Kopyalandı",
+    "airjelly_oauth_title": "AirJelly Lite Girişi",
+    "airjelly_oauth_hint": "Google OAuth Kullanıp Yerel Geri Dönüş URL'sini Yapıştırın veya E-posta ve Şifreyle Giriş Yapın.",
+    "airjelly_oauth_button": "Google ile Giriş Yap",
+    "airjelly_oauth_status_waiting": "Google Yetkilendirmesi Bekleniyor…",
+    "airjelly_oauth_status_success": "AirJelly Girişi Başarılı!",
+    "airjelly_oauth_status_error": "AirJelly Girişi Başarısız:",
+    "airjelly_oauth_start_error": "Google Girişi Başlatılamadı:",
+    "airjelly_copy_link": "Bağlantıyı Kopyala",
+    "airjelly_open_link": "Bağlantıyı Aç",
+    "airjelly_callback_label": "Geri Dönüş URL'si",
+    "airjelly_callback_hint": "Tarayıcı Adres Çubuğundaki Tam http://localhost:19877/?code=... URL'sini Yapıştırın.",
+    "airjelly_callback_placeholder": "http://localhost:19877/?code=...",
+    "airjelly_email": "E-posta",
+    "airjelly_password": "Şifre",
+    "airjelly_password_login": "E-postayla Giriş Yap",
+    "airjelly_missing_login": "E-posta ve Şifre Girin.",
+    "airjelly_signup": "E-postayla Kaydol",
+    "airjelly_signup_code": "E-posta Doğrulama Kodu",
+    "airjelly_signup_verify": "Doğrula ve Giriş Yap",
+    "airjelly_signup_resend": "Kodu Yeniden Gönder",
+    "airjelly_signup_check_email": "Doğrulama Kodu İçin E-postanızı Kontrol Edin.",
+    "airjelly_missing_code": "E-posta ve Doğrulama Kodunuzu Girin."
   },
   "stats": {
     "success": "Başarılı",
@@ -3023,5 +3046,20 @@
     "error": "Bağlama Başarısız Oldu. Lütfen Yeniden Başla.",
     "unsupported": "Bu Arka Uç SIWC Bağlamayı Desteklemiyor.",
     "expired": "Bağlama Oturumunun Süresi Doldu. Lütfen Yeniden Başla."
+  },
+  "airjelly_quota": {
+    "title": "AirJelly Kotası",
+    "empty_title": "AirJelly Kimlik Bilgisi Yok",
+    "empty_desc": "AirJelly Kredilerini Görmek İçin Giriş Yapın.",
+    "idle": "AirJelly Kotasını Sorgulamak İçin Tıklayın",
+    "loading": "AirJelly Kotası Sorgulanıyor…",
+    "load_failed": "Kota Sorgulanamadı: {{message}}",
+    "missing_auth_index": "auth_index Eksik",
+    "empty_data": "Kota Verisi Yok",
+    "total": "Kalan Toplam",
+    "daily": "Günlük",
+    "monthly": "Aylık",
+    "permanent": "Kalıcı",
+    "plan": "Plan"
   }
 }

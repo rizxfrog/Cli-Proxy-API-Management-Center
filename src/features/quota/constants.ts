@@ -18,6 +18,7 @@ export const QUOTA_TAB_ORDER: readonly QuotaProviderType[] = [
   'xiaohuanxiong',
   'lobsterai-server',
   'loomy',
+  'airjelly',
   'plugin',
 ];
 

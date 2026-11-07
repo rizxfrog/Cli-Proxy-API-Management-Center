@@ -42,6 +42,23 @@ export interface SmsFlow {
   onSubmit: () => void;
 }
 
+export interface AirJellyFlow {
+  email: string;
+  password: string;
+  signupCode: string;
+  /** 邮箱注册已提交，等待验证码确认。 */
+  signupPending?: boolean;
+  /** 邮箱/密码登录或注册请求进行中。 */
+  busy?: boolean;
+  onEmailChange: (value: string) => void;
+  onPasswordChange: (value: string) => void;
+  onSignupCodeChange: (value: string) => void;
+  onPasswordLogin: () => void;
+  onSignup: () => void;
+  onVerify: () => void;
+  onResend: () => void;
+}
+
 export interface OAuthFlowDialogProps {
   open: boolean;
   providerId: string;
@@ -54,6 +71,8 @@ export interface OAuthFlowDialogProps {
   sponsor?: { url: string; label: string };
   /** Loomy 专属：手机号 + 短信验证码两步流程，替代 URL/回调步骤。 */
   sms?: SmsFlow;
+  /** AirJelly 专属：Google OAuth 步骤之外的邮箱/密码登录与注册表单。 */
+  airjelly?: AirJellyFlow;
   onStart: () => void;
   onCancel: () => void;
   onCallbackChange: (value: string) => void;
@@ -129,6 +148,7 @@ function FlowBody(props: OAuthFlowDialogProps & { view: Exclude<FlowView, 'succe
             {view === 'failed' ? t('auth_login.restart_login') : text('oauth_button')}
           </button>
         </div>
+        {props.airjelly && <AirJellyForm airjelly={props.airjelly} />}
       </div>
     );
   }
@@ -164,6 +184,7 @@ function FlowBody(props: OAuthFlowDialogProps & { view: Exclude<FlowView, 'succe
         )}
         {props.supportsCallback && <CallbackStep {...props} />}
       </ol>
+      {props.airjelly && <AirJellyForm airjelly={props.airjelly} />}
     </div>
   );
 }
@@ -312,9 +333,9 @@ function CallbackStep({
 
 function SmsBody(props: OAuthFlowDialogProps) {
   const { state, text, sms } = props;
-  if (!sms) return null;
   const phoneId = useId();
   const codeId = useId();
+  if (!sms) return null;
   return (
     <div className={styles.stack}>
       <ProviderHint text={text} />
@@ -376,6 +397,99 @@ function SmsBody(props: OAuthFlowDialogProps) {
                   <IconLoader2 size={14} className={styles.spinning} aria-hidden="true" />
                 )}
                 {text('submit')}
+              </button>
+            </div>
+          </Step>
+        )}
+      </ol>
+    </div>
+  );
+}
+
+/** AirJelly 邮箱/密码登录与注册表单，附在 Google OAuth 步骤之后。 */
+function AirJellyForm({ airjelly }: Pick<OAuthFlowDialogProps, 'airjelly'>) {
+  const { t } = useTranslation();
+  const emailId = useId();
+  const passwordId = useId();
+  const codeId = useId();
+  if (!airjelly) return null;
+  return (
+    <div className={styles.stack}>
+      <ol className={styles.steps}>
+        <Step title={t('auth_login.airjelly_email')} titleFor={emailId}>
+          <input
+            id={emailId}
+            className={`input ${styles.callbackInput}`}
+            type="email"
+            value={airjelly.email}
+            onChange={(event) => airjelly.onEmailChange(event.target.value)}
+            autoComplete="email"
+            disabled={airjelly.busy}
+          />
+        </Step>
+        <Step title={t('auth_login.airjelly_password')} titleFor={passwordId}>
+          <input
+            id={passwordId}
+            className={`input ${styles.callbackInput}`}
+            type="password"
+            value={airjelly.password}
+            onChange={(event) => airjelly.onPasswordChange(event.target.value)}
+            autoComplete="current-password"
+            disabled={airjelly.busy}
+          />
+          <div className={styles.callbackRow}>
+            <button
+              type="button"
+              className={styles.secondary}
+              onClick={airjelly.onPasswordLogin}
+              disabled={airjelly.busy}
+            >
+              {airjelly.busy && (
+                <IconLoader2 size={14} className={styles.spinning} aria-hidden="true" />
+              )}
+              {t('auth_login.airjelly_password_login')}
+            </button>
+            <button
+              type="button"
+              className={styles.secondary}
+              onClick={airjelly.onSignup}
+              disabled={airjelly.busy}
+            >
+              {t('auth_login.airjelly_signup')}
+            </button>
+          </div>
+        </Step>
+        {airjelly.signupPending && (
+          <Step title={t('auth_login.airjelly_signup_code')} titleFor={codeId}>
+            <p className={styles.stepHint}>{t('auth_login.airjelly_signup_check_email')}</p>
+            <input
+              id={codeId}
+              className={`input ${styles.callbackInput}`}
+              value={airjelly.signupCode}
+              onChange={(event) => airjelly.onSignupCodeChange(event.target.value)}
+              inputMode="numeric"
+              autoComplete="one-time-code"
+              disabled={airjelly.busy}
+            />
+            <div className={styles.callbackRow}>
+              <button
+                type="button"
+                className={styles.primary}
+                onClick={airjelly.onVerify}
+                disabled={airjelly.busy}
+              >
+                {airjelly.busy && (
+                  <IconLoader2 size={14} className={styles.spinning} aria-hidden="true" />
+                )}
+                {t('auth_login.airjelly_signup_verify')}
+              </button>
+              <button
+                type="button"
+                className={styles.secondary}
+                onClick={airjelly.onResend}
+                disabled={airjelly.busy}
+              >
+                {t('auth_login.airjelly_signup_resend')}
               </button>
             </div>
           </Step>

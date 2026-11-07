@@ -109,6 +109,10 @@ export function isLoomyFile(file: AuthFileItem): boolean {
   return resolveAuthProvider(file) === 'loomy';
 }
 
+export function isAirJellyFile(file: AuthFileItem): boolean {
+  return resolveAuthProvider(file) === 'airjelly';
+}
+
 /**
  * Providers rendered by a dedicated built-in quota card. These are exactly the
  * quota tab ids (minus 'plugin'); the card filters accept the regional
@@ -132,6 +136,7 @@ export const BUILT_IN_QUOTA_PROVIDERS: ReadonlySet<string> = new Set([
   'xiaohuanxiong',
   'lobsterai-server',
   'loomy',
+  'airjelly',
 ]);
 
 /**

@@ -452,7 +452,8 @@
     "filter_minimax-cn": "MiniMax Code（國內版）",
     "filter_loomy": "Loomy",
     "use_siwc_label": "使用 SIWC（use_siwc）",
-    "use_siwc_hint": "啟用後使用已綁定的 SIWC 憑證。關閉僅停用 SIWC，不會刪除綁定資料；啟用前請先完成綁定。"
+    "use_siwc_hint": "啟用後使用已綁定的 SIWC 憑證。關閉僅停用 SIWC，不會刪除綁定資料；啟用前請先完成綁定。",
+    "filter_airjelly": "AirJelly"
   },
   "antigravity_subscription": {
     "plan_unknown": "未知",
@@ -1182,7 +1183,29 @@
     "sign_up_prompt": "還沒有帳號？",
     "copied": "已複製",
     "login_another_account": "登入另一個帳號",
-    "view_auth_files": "查看驗證檔案"
+    "view_auth_files": "查看驗證檔案",
+    "airjelly_oauth_title": "AirJelly Lite 登入",
+    "airjelly_oauth_hint": "使用 Google OAuth 授權後貼上本機回呼網址，也可使用電子郵件與密碼登入。",
+    "airjelly_oauth_button": "使用 Google 登入",
+    "airjelly_oauth_status_waiting": "等待 Google 授權…",
+    "airjelly_oauth_status_success": "AirJelly 登入成功！",
+    "airjelly_oauth_status_error": "AirJelly 登入失敗：",
+    "airjelly_oauth_start_error": "無法開始 Google 登入：",
+    "airjelly_copy_link": "複製連結",
+    "airjelly_open_link": "開啟連結",
+    "airjelly_callback_label": "回呼網址",
+    "airjelly_callback_hint": "從瀏覽器網址列複製完整的 http://localhost:19877/?code=... 網址。",
+    "airjelly_callback_placeholder": "http://localhost:19877/?code=...",
+    "airjelly_email": "電子郵件",
+    "airjelly_password": "密碼",
+    "airjelly_password_login": "電子郵件登入",
+    "airjelly_missing_login": "請輸入電子郵件與密碼。",
+    "airjelly_signup": "電子郵件註冊",
+    "airjelly_signup_code": "電子郵件驗證碼",
+    "airjelly_signup_verify": "驗證並登入",
+    "airjelly_signup_resend": "重發驗證碼",
+    "airjelly_signup_check_email": "請查看電子郵件並輸入驗證碼。",
+    "airjelly_missing_code": "請輸入電子郵件與驗證碼。"
   },
   "stats": {
     "success": "成功",
@@ -3049,5 +3072,20 @@
     "error": "綁定失敗，請重新開始。",
     "unsupported": "目前後端不支援 SIWC 綁定。",
     "expired": "綁定工作階段已過期，請重新開始。"
+  },
+  "airjelly_quota": {
+    "title": "AirJelly 額度",
+    "empty_title": "沒有 AirJelly 憑證",
+    "empty_desc": "登入後查看 AirJelly 點數。",
+    "idle": "點擊查詢 AirJelly 額度",
+    "loading": "正在查詢 AirJelly 額度…",
+    "load_failed": "查詢額度失敗：{{message}}",
+    "missing_auth_index": "缺少 auth_index",
+    "empty_data": "沒有額度資料",
+    "total": "剩餘總額",
+    "daily": "每日",
+    "monthly": "每月",
+    "permanent": "永久",
+    "plan": "方案"
   }
 }

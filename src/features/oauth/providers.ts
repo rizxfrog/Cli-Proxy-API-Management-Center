@@ -26,6 +26,7 @@ import iconCodeArts from '@/assets/icons/codearts.svg';
 import iconFloatboat from '@/assets/icons/floatboat.svg';
 import iconLobsteraiServer from '@/assets/icons/lobsterai.svg';
 import iconLoomy from '@/assets/icons/loomy.svg';
+import iconAirJelly from '@/assets/icons/airjelly.svg';
 
 export type ThemedIcon = string | { light: string; dark: string };
 
@@ -242,6 +243,14 @@ export const OAUTH_PROVIDERS: BuiltInOAuthProviderCard[] = [
     icon: iconLoomy,
     flow: 'sms',
   },
+  {
+    kind: 'builtin',
+    id: 'airjelly',
+    label: 'AirJelly',
+    titleKey: 'auth_login.airjelly_oauth_title',
+    icon: iconAirJelly,
+    flow: 'browser',
+  },
 ];
 
 const BUILTIN_PROVIDER_IDS = new Set<string>(OAUTH_PROVIDERS.map((provider) => provider.id));
@@ -270,6 +279,9 @@ export const CALLBACK_SUPPORTED = new Set<string>([
   // the proxy's own loopback port is unreachable from a remote operator's
   // browser, so the user pastes the callback URL.
   'lobsterai-server',
+  // AirJelly lands on the desktop client's localhost:19877 callback, so the
+  // user pastes the final callback URL.
+  'airjelly',
 ]);
 
 export const supportsManualCallback = (provider: OAuthProviderCard): boolean =>
