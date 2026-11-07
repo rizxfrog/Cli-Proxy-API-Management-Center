@@ -3068,5 +3068,24 @@
     "monthly": "Monthly",
     "permanent": "Permanent",
     "plan": "Plan"
+  },
+  "dumate_quota": {
+    "title": "Hạn mức Dumate",
+    "empty_title": "Không có thông tin xác thực Dumate",
+    "empty_desc": "Xuất thông tin xác thực khi ứng dụng Dumate đang chạy để xem số điểm.",
+    "idle": "Nhấn để truy vấn điểm Dumate",
+    "loading": "Đang truy vấn điểm Dumate…",
+    "load_failed": "Truy vấn hạn mức thất bại: {{message}}",
+    "missing_auth_index": "Tệp xác thực thiếu auth_index",
+    "empty_data": "Không có dữ liệu hạn mức",
+    "invalid_credential": "Cookie console Dumate đã bị từ chối. Hãy xuất lại thông tin xác thực.",
+    "quota_error": "Không đọc được số điểm Dumate.",
+    "total_row": "Điểm khả dụng",
+    "subscription_row": "Điểm gói đăng ký",
+    "bonus_row": "Điểm tặng",
+    "used_row": "Đã dùng",
+    "expires_hint": "Điểm hết hạn vào {{time}}",
+    "throttled_hint": "Đang bị giới hạn: {{reason}}",
+    "throttled_unknown": "không có lý do"
   }
 }

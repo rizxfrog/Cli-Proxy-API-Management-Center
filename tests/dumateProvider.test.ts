@@ -50,10 +50,10 @@ describe('Dumate provider', () => {
     expect(color).not.toEqual(TYPE_COLORS.unknown);
   });
 
-  test('stays out of quota and refresh registries it cannot serve', () => {
-    // The Dumate backend exposes no quota source, so it must not advertise a
-    // quota tab.
-    expect(QUOTA_PROVIDER_TYPES.has('dumate' as never)).toBe(false);
+  test('registers a quota tab but stays out of the refresh registry', () => {
+    // The points wallet is a real measured balance read through the console, so
+    // the provider belongs to the built-in quota cards.
+    expect(QUOTA_PROVIDER_TYPES.has('dumate' as never)).toBe(true);
     // The exported credential is static: no refresh lead is registered, so a
     // manual-refresh action would have nothing to rotate.
     expect(AUTH_FILE_MANUAL_REFRESH_PROVIDERS.has('dumate')).toBe(false);

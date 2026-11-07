@@ -3062,5 +3062,24 @@
     "monthly": "Monthly",
     "permanent": "Permanent",
     "plan": "Plan"
+  },
+  "dumate_quota": {
+    "title": "Dumate Quota",
+    "empty_title": "No Dumate credentials",
+    "empty_desc": "Export a credential while the Dumate client is running to view its points wallet.",
+    "idle": "Click to query Dumate points",
+    "loading": "Querying Dumate points…",
+    "load_failed": "Failed to query quota: {{message}}",
+    "missing_auth_index": "Auth file missing auth_index",
+    "empty_data": "No quota data available",
+    "invalid_credential": "The Dumate console cookie was rejected. Re-export the credential.",
+    "quota_error": "Could not read the Dumate points wallet.",
+    "total_row": "Available points",
+    "subscription_row": "Plan points",
+    "bonus_row": "Bonus points",
+    "used_row": "Points used",
+    "expires_hint": "Points expire at {{time}}",
+    "throttled_hint": "Rate limited: {{reason}}",
+    "throttled_unknown": "reason not reported"
   }
 }

@@ -68,6 +68,7 @@ export function AuthFileQuotaSection(props: AuthFileQuotaSectionProps) {
     if (quotaType === 'xiaohuanxiong')
       return state.xiaohuanxiongQuota[cacheKey] as QuotaCardState | undefined;
     if (quotaType === 'airjelly') return state.airJellyQuota[cacheKey] as QuotaCardState | undefined;
+    if (quotaType === 'dumate') return state.dumateQuota[cacheKey] as QuotaCardState | undefined;
     return assertNever(quotaType);
   });
   const retainedClaudeUsage =

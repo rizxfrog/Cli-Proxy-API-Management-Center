@@ -16,6 +16,7 @@ export * from './metaQuota';
 export * from './floatboatQuota';
 export * from './xiaohuanxiongQuota';
 export * from './lobsteraiServerQuota';
+export * from './dumateQuota';
 export * from './loomy';
 export * from './airjelly';
 export * from './plugins';

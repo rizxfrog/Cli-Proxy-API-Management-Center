@@ -149,6 +149,7 @@ export function QuotaPage() {
   const lobsteraiServerQuota = useQuotaStore((state) => state.lobsteraiServerQuota);
   const loomyQuota = useQuotaStore((state) => state.loomyQuota);
   const airJellyQuota = useQuotaStore((state) => state.airJellyQuota);
+  const dumateQuota = useQuotaStore((state) => state.dumateQuota);
 
   const quotaByType = useMemo<Record<QuotaProviderType, Record<string, QuotaCardState>>>(
     () =>
@@ -164,6 +165,7 @@ export function QuotaPage() {
         'lobsterai-server': lobsteraiServerQuota,
         loomy: loomyQuota,
         airjelly: airJellyQuota,
+        dumate: dumateQuota,
         kimi: kimiQuota,
         meta: metaQuota,
         minimax: minimaxQuota,
@@ -184,6 +186,7 @@ export function QuotaPage() {
       lobsteraiServerQuota,
       loomyQuota,
       airJellyQuota,
+      dumateQuota,
       kimiQuota,
       metaQuota,
       minimaxQuota,

@@ -3088,5 +3088,24 @@
     "monthly": "每月",
     "permanent": "永久",
     "plan": "方案"
+  },
+  "dumate_quota": {
+    "title": "DuMate 積分",
+    "empty_title": "沒有 DuMate 憑證",
+    "empty_desc": "在 DuMate 客戶端執行時匯出憑證，即可查看積分餘額。",
+    "idle": "點擊查詢 DuMate 積分",
+    "loading": "正在查詢 DuMate 積分…",
+    "load_failed": "查詢積分失敗：{{message}}",
+    "missing_auth_index": "認證檔案缺少 auth_index",
+    "empty_data": "暫無積分資料",
+    "invalid_credential": "DuMate 控制台 Cookie 已被拒絕，請重新匯出憑證。",
+    "quota_error": "無法讀取 DuMate 積分餘額。",
+    "total_row": "可用積分",
+    "subscription_row": "訂閱積分",
+    "bonus_row": "贈送積分",
+    "used_row": "已消耗",
+    "expires_hint": "積分將於 {{time}} 到期",
+    "throttled_hint": "被限流：{{reason}}",
+    "throttled_unknown": "未提供原因"
   }
 }

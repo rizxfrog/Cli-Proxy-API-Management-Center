@@ -3056,5 +3056,24 @@
     "monthly": "Monthly",
     "permanent": "Permanent",
     "plan": "Plan"
+  },
+  "dumate_quota": {
+    "title": "Квота Dumate",
+    "empty_title": "Нет учётных данных Dumate",
+    "empty_desc": "Экспортируйте учётные данные при запущенном клиенте Dumate, чтобы увидеть баланс баллов.",
+    "idle": "Нажмите, чтобы запросить баллы Dumate",
+    "loading": "Запрос баллов Dumate…",
+    "load_failed": "Не удалось запросить квоту: {{message}}",
+    "missing_auth_index": "В файле учётных данных нет auth_index",
+    "empty_data": "Нет данных о квоте",
+    "invalid_credential": "Cookie консоли Dumate отклонён. Экспортируйте учётные данные заново.",
+    "quota_error": "Не удалось прочитать баланс баллов Dumate.",
+    "total_row": "Доступно баллов",
+    "subscription_row": "Баллы подписки",
+    "bonus_row": "Бонусные баллы",
+    "used_row": "Израсходовано",
+    "expires_hint": "Баллы истекают {{time}}",
+    "throttled_hint": "Ограничение скорости: {{reason}}",
+    "throttled_unknown": "причина не указана"
   }
 }

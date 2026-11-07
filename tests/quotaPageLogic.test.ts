@@ -90,6 +90,7 @@ describe('buildTabCounts', () => {
       'lobsterai-server': 0,
       loomy: 0,
       airjelly: 0,
+      dumate: 0,
       plugin: 0,
     });
   });

@@ -3062,5 +3062,24 @@
     "monthly": "Monthly",
     "permanent": "Permanent",
     "plan": "Plan"
+  },
+  "dumate_quota": {
+    "title": "Dumate 할당량",
+    "empty_title": "Dumate 자격 증명 없음",
+    "empty_desc": "Dumate 클라이언트가 실행 중일 때 자격 증명을 내보내면 포인트를 볼 수 있습니다.",
+    "idle": "Dumate 포인트를 조회하려면 클릭하세요",
+    "loading": "Dumate 포인트 조회 중…",
+    "load_failed": "할당량 조회 실패: {{message}}",
+    "missing_auth_index": "인증 파일에 auth_index가 없습니다",
+    "empty_data": "할당량 데이터가 없습니다",
+    "invalid_credential": "Dumate 콘솔 쿠키가 거부되었습니다. 자격 증명을 다시 내보내세요.",
+    "quota_error": "Dumate 포인트를 읽을 수 없습니다.",
+    "total_row": "사용 가능 포인트",
+    "subscription_row": "구독 포인트",
+    "bonus_row": "보너스 포인트",
+    "used_row": "사용한 포인트",
+    "expires_hint": "포인트는 {{time}}에 만료됩니다",
+    "throttled_hint": "속도 제한: {{reason}}",
+    "throttled_unknown": "사유 없음"
   }
 }

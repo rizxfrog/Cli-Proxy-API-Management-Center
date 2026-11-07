@@ -3060,5 +3060,24 @@
     "monthly": "每月",
     "permanent": "永久",
     "plan": "套餐"
+  },
+  "dumate_quota": {
+    "title": "DuMate 积分",
+    "empty_title": "没有 DuMate 凭据",
+    "empty_desc": "在 DuMate 客户端运行时导出凭据，即可查看积分余额。",
+    "idle": "点击查询 DuMate 积分",
+    "loading": "正在查询 DuMate 积分…",
+    "load_failed": "查询积分失败：{{message}}",
+    "missing_auth_index": "认证文件缺少 auth_index",
+    "empty_data": "暂无积分数据",
+    "invalid_credential": "DuMate 控制台 Cookie 已被拒绝，请重新导出凭据。",
+    "quota_error": "无法读取 DuMate 积分余额。",
+    "total_row": "可用积分",
+    "subscription_row": "订阅积分",
+    "bonus_row": "赠送积分",
+    "used_row": "已消耗",
+    "expires_hint": "积分将于 {{time}} 到期",
+    "throttled_hint": "被限流：{{reason}}",
+    "throttled_unknown": "未提供原因"
   }
 }

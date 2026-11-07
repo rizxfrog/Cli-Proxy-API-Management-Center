@@ -3062,5 +3062,24 @@
     "monthly": "Aylık",
     "permanent": "Kalıcı",
     "plan": "Plan"
+  },
+  "dumate_quota": {
+    "title": "Dumate Kotası",
+    "empty_title": "Dumate kimlik bilgisi yok",
+    "empty_desc": "Puan cüzdanını görmek için Dumate istemcisi çalışırken kimlik bilgisini dışa aktarın.",
+    "idle": "Dumate puanlarını sorgulamak için tıklayın",
+    "loading": "Dumate puanları sorgulanıyor…",
+    "load_failed": "Kota sorgulanamadı: {{message}}",
+    "missing_auth_index": "Kimlik dosyasında auth_index yok",
+    "empty_data": "Kota verisi yok",
+    "invalid_credential": "Dumate konsol çerezi reddedildi. Kimlik bilgisini yeniden dışa aktarın.",
+    "quota_error": "Dumate puan cüzdanı okunamadı.",
+    "total_row": "Kullanılabilir puan",
+    "subscription_row": "Abonelik puanı",
+    "bonus_row": "Bonus puan",
+    "used_row": "Kullanılan puan",
+    "expires_hint": "Puanlar {{time}} tarihinde sona erer",
+    "throttled_hint": "Hız sınırı: {{reason}}",
+    "throttled_unknown": "neden bildirilmedi"
   }
 }

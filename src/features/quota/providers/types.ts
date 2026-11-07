@@ -20,6 +20,7 @@ import type {
   LobsteraiServerQuotaState,
   LoomyQuotaState,
   AirJellyQuotaState,
+  DumateQuotaState,
   MinimaxQuotaState,
   QoderCNQuotaState,
   TraeQuotaState,
@@ -42,6 +43,7 @@ export type QuotaProviderType =
   | 'lobsterai-server'
   | 'loomy'
   | 'airjelly'
+  | 'dumate'
   | 'kimi'
   | 'minimax'
   | 'plugin'
@@ -63,6 +65,7 @@ export interface QuotaStore {
   lobsteraiServerQuota: Record<string, LobsteraiServerQuotaState>;
   loomyQuota: Record<string, LoomyQuotaState>;
   airJellyQuota: Record<string, AirJellyQuotaState>;
+  dumateQuota: Record<string, DumateQuotaState>;
   kimiQuota: Record<string, KimiQuotaState>;
   minimaxQuota: Record<string, MinimaxQuotaState>;
   qoderCNQuota: Record<string, QoderCNQuotaState>;
@@ -81,6 +84,7 @@ export interface QuotaStore {
   setLobsteraiServerQuota: (updater: QuotaUpdater<Record<string, LobsteraiServerQuotaState>>) => void;
   setLoomyQuota: (updater: QuotaUpdater<Record<string, LoomyQuotaState>>) => void;
   setAirJellyQuota: (updater: QuotaUpdater<Record<string, AirJellyQuotaState>>) => void;
+  setDumateQuota: (updater: QuotaUpdater<Record<string, DumateQuotaState>>) => void;
   setKimiQuota: (updater: QuotaUpdater<Record<string, KimiQuotaState>>) => void;
   setMinimaxQuota: (updater: QuotaUpdater<Record<string, MinimaxQuotaState>>) => void;
   setQoderCNQuota: (updater: QuotaUpdater<Record<string, QoderCNQuotaState>>) => void;

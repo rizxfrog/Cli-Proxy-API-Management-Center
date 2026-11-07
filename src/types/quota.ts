@@ -791,6 +791,30 @@ export interface AirJellyQuotaState {
   errorStatus?: number;
 }
 
+// Dumate (百度搭子) quota: the points wallet from the Baidu Cloud console.
+//
+// The wallet is measured in points, not tokens, and is authorized by the console
+// cookie carried in the credential. Only two bucket families are summed: the plan
+// subscription and every granted or event bonus. The console has further package
+// types that no observed account has produced, so `availablePoints` stays the
+// console's own total and any additional family would show up as a difference
+// rather than being folded into a wrong row. A value the console did not report
+// stays absent instead of defaulting to zero.
+export interface DumateQuotaState {
+  status: 'idle' | 'loading' | 'success' | 'error';
+  availablePoints?: number;
+  usedPoints?: number;
+  subscriptionPoints?: number;
+  bonusPoints?: number;
+  isSubscribed?: boolean;
+  throttled?: boolean;
+  throttleReason?: string;
+  /** Unix seconds of the soonest bucket expiry; absent when none is reported. */
+  expiresAt?: number;
+  error?: string;
+  errorStatus?: number;
+}
+
 // LobsterAI (NetEase/Youdao) quota: the account backend's credit/plan snapshot.
 //
 // The backend reports a credit balance and the read-only state of its daily
