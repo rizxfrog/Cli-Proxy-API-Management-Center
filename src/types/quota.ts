@@ -817,11 +817,14 @@ export interface DumateQuotaState {
 
 // LobsterAI (NetEase/Youdao) quota: the account backend's credit/plan snapshot.
 //
-// The backend reports a credit balance and the read-only state of its daily
-// check-in activity. This is neither usage accounting nor scheduler cooldown,
-// and the proxy never claims the check-in reward on the account's behalf.
-// A balance the backend did not report stays unknown: `creditsKnown` is false
-// and the card renders "--" rather than a fabricated zero or "unlimited".
+// The backend exposes two credit reads and they are not interchangeable:
+// `credits` is the free-tier bucket from /api/user/quota, which the desktop
+// client's low-credit purchase gate watches, while `totalCredits` is the
+// account's own total from /api/user/profile-summary, which the client's account
+// menu renders. This is neither usage accounting nor scheduler cooldown. A
+// balance the backend did not report stays unknown: the corresponding `*Known`
+// flag is false and the card renders "--" rather than a fabricated zero or
+// "unlimited".
 export interface LobsteraiServerQuotaActivity {
   /** True when a check-in / credit activity slot is currently open. */
   available: boolean;
@@ -833,15 +836,42 @@ export interface LobsteraiServerQuotaActivity {
   placement?: string;
   /** Raw read-only activity context payload, when any. */
   context?: Record<string, unknown>;
+  /** The activity's own "already claimed today" flag. */
+  claimedToday?: boolean;
+  /** Days already claimed in the activity. */
+  claimedDays?: number;
+  /** Credits the activity granted so far. */
+  claimedCredits?: number;
+}
+
+/** One credit bucket behind the account total. */
+export interface LobsteraiServerCreditPackage {
+  /** Machine group code (e.g. "subscription", "campaign"). */
+  type?: string;
+  /** Localized bucket name. */
+  label?: string;
+  /** Bucket name in English when the backend provides one. */
+  labelEn?: string;
+  /** Remaining amount in this bucket. */
+  creditsRemaining: number;
+  /** Backend expiry string; empty when the bucket never expires. */
+  expiresAt?: string;
 }
 
 export interface LobsteraiServerQuotaState {
   status: 'idle' | 'loading' | 'success' | 'error';
   subscriptionStatus?: string;
+  /** Free-tier bucket from /api/user/quota, not the account total. */
   credits?: number;
-  /** False when the backend omitted the credit balance. */
+  /** False when the backend omitted the free-tier balance. */
   creditsKnown?: boolean;
   purchasedCredits?: number;
+  /** The account's own credit total from /api/user/profile-summary. */
+  totalCredits?: number;
+  /** False when the backend omitted the total. */
+  totalCreditsKnown?: boolean;
+  /** The buckets behind totalCredits. */
+  creditPackages?: LobsteraiServerCreditPackage[];
   activity?: LobsteraiServerQuotaActivity;
   error?: string;
   errorStatus?: number;

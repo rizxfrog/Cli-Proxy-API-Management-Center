@@ -2908,13 +2908,18 @@
     "plan_free": "免費",
     "plan_subscribed": "已訂閱",
     "plan_unknown": "未知",
-    "credits_row": "積分",
+    "credits_row": "免費額度積分",
     "credits_unknown": "未知（未回報）",
     "purchased_row": "已購積分",
     "checkin_row": "每日簽到",
     "checkin_available": "可簽到",
     "checkin_none": "不可用",
-    "checkin_hint": "請在 LobsterAI 桌面客戶端內領取簽到獎勵，代理不會代為簽到。"
+    "checkin_hint": "僅在為該帳號啟用簽到排程後，代理才會代為簽到；本頁不會觸發領取。",
+    "total_row": "積分總額",
+    "package_row": "積分包",
+    "package_expires": "{{date}} 到期",
+    "checkin_claimed": "今日已簽到",
+    "checkin_days": "累計簽到 {{count}} 天"
   },
   "loomy_quota": {
     "title": "Loomy 額度",

@@ -2876,13 +2876,18 @@
     "plan_free": "Бесплатный",
     "plan_subscribed": "Подписка",
     "plan_unknown": "Неизвестно",
-    "credits_row": "Кредиты",
+    "credits_row": "Кредиты бесплатного уровня",
     "credits_unknown": "Неизвестно (не сообщено)",
     "purchased_row": "Купленные",
     "checkin_row": "Ежедневная отметка",
     "checkin_available": "Доступна",
     "checkin_none": "Недоступна",
-    "checkin_hint": "Получите награду за отметку в настольном приложении LobsterAI; прокси не делает это за вас."
+    "checkin_hint": "Прокси получает награду только когда для этого аккаунта включён планировщик отметок; эта страница не запускает получение.",
+    "total_row": "Всего кредитов",
+    "package_row": "Пакет кредитов",
+    "package_expires": "Истекает {{date}}",
+    "checkin_claimed": "Отмечено сегодня",
+    "checkin_days": "Отмечено дней: {{count}}"
   },
   "loomy_quota": {
     "title": "Квота Loomy",

@@ -2,21 +2,30 @@
  * LobsterAI (NetEase/Youdao) quota data layer.
  * React-free / SCSS-free -- consumed directly by tests.
  *
- * The backend reports a credit balance and the read-only state of its daily
- * check-in activity through the proxy's dedicated /lobsterai-server-quota
- * endpoint. Three quantities are deliberately kept apart and must not be
- * conflated:
- *   1. this credit/plan snapshot (the backend's own read),
- *   2. usage accounting (tokens for a single request), and
- *   3. scheduler cooldown, which is local routing state and not a balance.
+ * The backend reports two credit reads plus the state of its daily check-in
+ * activity through the proxy's dedicated /lobsterai-server-quota endpoint. They
+ * are kept apart because they answer different questions:
+ *   1. `credits` -- the free-tier bucket from /api/user/quota, which the desktop
+ *      client's low-credit purchase gate watches;
+ *   2. `totalCredits` -- the account's own total from /api/user/profile-summary,
+ *      which is what the client's account menu renders, with `creditPackages`
+ *      as its breakdown;
+ *   3. usage accounting (tokens for a single request) and scheduler cooldown
+ *      (local routing state) are separate concerns and not balances at all.
  *
- * A balance the backend did not report stays unknown: `creditsKnown` is false
- * and the card renders "--" rather than zero or "unlimited". The activity field
- * is observation only -- the proxy never claims the check-in reward.
+ * Reading only (1) understates an account whose credits also include activity
+ * and daily-login grants, which live in (2) -- the two must not be conflated.
+ * A balance the backend did not report stays unknown: its `*Known` flag is false
+ * and the card renders "--" rather than zero or "unlimited".
  */
 
 import type { TFunction } from 'i18next';
-import type { AuthFileItem, LobsteraiServerQuotaState, LobsteraiServerQuotaActivity } from '@/types';
+import type {
+  AuthFileItem,
+  LobsteraiServerCreditPackage,
+  LobsteraiServerQuotaState,
+  LobsteraiServerQuotaActivity,
+} from '@/types';
 import {
   lobsteraiServerQuotaApi,
   type LobsteraiServerQuotaPayload,
@@ -30,15 +39,18 @@ export type LobsteraiServerQuotaData = {
   credits: number;
   creditsKnown: boolean;
   purchasedCredits: number;
+  totalCredits: number;
+  totalCreditsKnown: boolean;
+  creditPackages: LobsteraiServerCreditPackage[];
   activity: LobsteraiServerQuotaActivity;
 };
 
 /**
  * Map the management payload to the view model.
  *
- * `credits_known` is honoured rather than inferred from the amount: the backend
- * omits it when the account has no measured balance, and fabrication here would
- * show a healthy balance for an account that was never measured.
+ * The `*_known` flags are honoured rather than inferred from the amount: the
+ * backend omits them when the account has no measured value, and fabrication
+ * here would show a healthy balance for an account that was never measured.
  */
 export function buildLobsteraiServerQuotaData(
   payload: LobsteraiServerQuotaPayload
@@ -48,12 +60,24 @@ export function buildLobsteraiServerQuotaData(
     credits: payload.credits ?? 0,
     creditsKnown: payload.credits_known === true,
     purchasedCredits: payload.purchased_credits ?? 0,
+    totalCredits: payload.total_credits ?? 0,
+    totalCreditsKnown: payload.total_credits_known === true,
+    creditPackages: (payload.credit_packages ?? []).map((item) => ({
+      type: item.type,
+      label: item.label,
+      labelEn: item.label_en,
+      creditsRemaining: item.credits_remaining,
+      expiresAt: item.expires_at,
+    })),
     activity: {
       available: payload.activity_available === true,
       code: payload.activity_code,
       template: payload.activity_template,
       placement: payload.activity_placement,
       context: payload.activity_context,
+      claimedToday: payload.claimed_today === true,
+      claimedDays: payload.claimed_days,
+      claimedCredits: payload.claimed_credits,
     },
   };
 }

@@ -2888,13 +2888,18 @@
     "plan_free": "Miễn phí",
     "plan_subscribed": "Đã đăng ký",
     "plan_unknown": "Không rõ",
-    "credits_row": "Tín dụng",
+    "credits_row": "Tín dụng gói miễn phí",
     "credits_unknown": "Không rõ (chưa báo cáo)",
     "purchased_row": "Đã mua",
     "checkin_row": "Điểm danh hằng ngày",
     "checkin_available": "Khả dụng",
     "checkin_none": "Không khả dụng",
-    "checkin_hint": "Hãy nhận thưởng điểm danh trong ứng dụng LobsterAI; proxy không nhận thay bạn."
+    "checkin_hint": "Proxy chỉ nhận thưởng điểm danh khi bộ lập lịch điểm danh được bật cho tài khoản này; trang này không kích hoạt nhận thưởng.",
+    "total_row": "Tổng tín dụng",
+    "package_row": "Gói tín dụng",
+    "package_expires": "Hết hạn {{date}}",
+    "checkin_claimed": "Đã điểm danh hôm nay",
+    "checkin_days": "Đã điểm danh {{count}} ngày"
   },
   "loomy_quota": {
     "title": "Hạn mức Loomy",

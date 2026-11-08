@@ -2882,13 +2882,18 @@
     "plan_free": "Free",
     "plan_subscribed": "Subscribed",
     "plan_unknown": "Unknown",
-    "credits_row": "Credits",
+    "credits_row": "Free-tier credits",
     "credits_unknown": "Unknown (not reported)",
     "purchased_row": "Purchased",
     "checkin_row": "Daily check-in",
     "checkin_available": "Available",
     "checkin_none": "Not available",
-    "checkin_hint": "Claim the check-in reward in the LobsterAI desktop app; the proxy never claims it for you."
+    "checkin_hint": "The proxy claims the check-in only when the check-in scheduler is enabled for this account; nothing on this page can trigger a claim.",
+    "total_row": "Total credits",
+    "package_row": "Credit package",
+    "package_expires": "Expires {{date}}",
+    "checkin_claimed": "Claimed today",
+    "checkin_days": "{{count}} days claimed"
   },
   "loomy_quota": {
     "title": "Loomy Quota",

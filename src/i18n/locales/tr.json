@@ -2989,13 +2989,18 @@
     "plan_free": "Ücretsiz",
     "plan_subscribed": "Abonelikli",
     "plan_unknown": "Bilinmiyor",
-    "credits_row": "Krediler",
+    "credits_row": "Ücretsiz katman kredisi",
     "credits_unknown": "Bilinmiyor (Bildirim Yok)",
     "purchased_row": "Satın Alınan",
     "checkin_row": "Günlük Katılım",
     "checkin_available": "Kullanılabilir",
     "checkin_none": "Kullanılamaz",
-    "checkin_hint": "Katılım Ödülünü LobsterAI Masaüstü Uygulamasında Al; Arka Uç Onu Senin Yerine Asla Almaz."
+    "checkin_hint": "Proxy bunu yalnızca bu hesap için katılım zamanlayıcısı etkinleştirildiğinde alır; bu sayfa alımı tetiklemez.",
+    "total_row": "Toplam kredi",
+    "package_row": "Kredi paketi",
+    "package_expires": "{{date}} tarihinde sona erer",
+    "checkin_claimed": "Bugün alındı",
+    "checkin_days": "{{count}} gün alındı"
   },
   "loomy_quota": {
     "title": "Loomy Kotası",

@@ -2880,13 +2880,18 @@
     "plan_free": "免费",
     "plan_subscribed": "已订阅",
     "plan_unknown": "未知",
-    "credits_row": "积分",
+    "credits_row": "免费额度积分",
     "credits_unknown": "未知（未上报）",
     "purchased_row": "已购积分",
     "checkin_row": "每日签到",
     "checkin_available": "可签到",
     "checkin_none": "不可用",
-    "checkin_hint": "请在 LobsterAI 桌面客户端内领取签到奖励，代理不会代为签到。"
+    "checkin_hint": "仅当为该账号启用签到调度后，代理才会代为签到；本页不会触发领取。",
+    "total_row": "积分总额",
+    "package_row": "积分包",
+    "package_expires": "{{date}} 到期",
+    "checkin_claimed": "今日已签到",
+    "checkin_days": "累计签到 {{count}} 天"
   },
   "loomy_quota": {
     "title": "Loomy 额度",
