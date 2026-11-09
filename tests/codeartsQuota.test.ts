@@ -125,3 +125,59 @@ describe('CodeArts quota wiring', () => {
     }
   });
 });
+
+describe('credit ledger reads', () => {
+  /**
+   * Captured from the live account on 2026-11-10: the Trial package has a
+   * credit ledger, and every bucket is zero because nothing has been granted.
+   * That is a real answer, not a failed read.
+   */
+  const zeroLedger = () => ({
+    channel: '',
+    total_quota: 0,
+    total_balance: 0,
+    used_amount: 0,
+    daily_token_limit: 1,
+    daily_tokens_used: 0,
+    monthly_token_limit: 0,
+    monthly_tokens_used: 0,
+    expire_time: 0,
+    credits_known: true,
+    package: 'Trial',
+    spec_code: 'codearts.agent.individual.trial',
+  });
+
+  test('keeps an all-zero ledger instead of discarding it', () => {
+    const parsed = parseCodeArtsQuotaPayload(zeroLedger());
+    expect(parsed).not.toBeNull();
+    expect(parsed?.credits_known).toBe(true);
+    expect(parsed?.package).toBe('Trial');
+  });
+
+  test('still rejects a body that proves nothing', () => {
+    expect(parseCodeArtsQuotaPayload({ channel: 'codearts' })).toBeNull();
+    expect(parseCodeArtsQuotaPayload({ channel: 'codearts', credits_known: false })).toBeNull();
+  });
+
+  test('renders a zero-credit package as a real row rather than an empty page', () => {
+    const rows = buildCodeArtsQuotaRows(zeroLedger() as never, t);
+    const total = rows.find((row) => row.id === 'total');
+    expect(total).toBeDefined();
+    expect(total?.total).toBe(0);
+    expect(total?.used).toBe(0);
+  });
+
+  test('names the subscription the credits belong to', () => {
+    const parsed = parseCodeArtsQuotaPayload(zeroLedger());
+    expect(parsed?.spec_code).toBe('codearts.agent.individual.trial');
+  });
+
+  test('keeps the generic billing label when the ledger did not answer', () => {
+    const parsed = parseCodeArtsQuotaPayload({
+      total_quota: 100,
+      total_balance: 40,
+    });
+    expect(parsed?.package).toBeUndefined();
+    expect(parsed?.credits_known).toBe(false);
+  });
+});

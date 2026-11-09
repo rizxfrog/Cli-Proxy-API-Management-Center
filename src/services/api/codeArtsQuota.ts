@@ -22,6 +22,18 @@ export interface CodeArtsQuotaPayload {
   monthly_token_limit?: number;
   monthly_tokens_used?: number;
   expire_time?: number;
+  /**
+   * True when the figures came from the credit ledger. A package that has spent
+   * its credits reports all zeros, so this flag is what separates "no credits
+   * left" from "the ledger could not be read".
+   */
+  credits_known?: boolean;
+  /** Credit expiring inside the current window. */
+  expiring_amount?: number;
+  /** Subscription name, e.g. "Trial". */
+  package?: string;
+  /** Upstream package code, e.g. "codearts.agent.individual.trial". */
+  spec_code?: string;
 }
 
 const readInt = (value: unknown): number | null => {
@@ -38,8 +50,11 @@ export function parseCodeArtsQuotaPayload(input: unknown): CodeArtsQuotaPayload 
   if (!isRecord(input)) return null;
   const total = readInt(input.total_quota);
   const balance = readInt(input.total_balance);
-  // A payload with neither quota nor balance carries no usable information.
-  if (total === null && balance === null) return null;
+  const creditsKnown = input.credits_known === true;
+  // A payload with neither quota nor balance carries no usable information --
+  // unless the ledger answered, in which case an all-zero package is a real
+  // answer and must be rendered as such.
+  if (total === null && balance === null && !creditsKnown) return null;
   return {
     channel: typeof input.channel === 'string' ? input.channel : undefined,
     total_quota: total ?? undefined,
@@ -50,6 +65,10 @@ export function parseCodeArtsQuotaPayload(input: unknown): CodeArtsQuotaPayload 
     monthly_token_limit: readInt(input.monthly_token_limit) ?? undefined,
     monthly_tokens_used: readInt(input.monthly_tokens_used) ?? undefined,
     expire_time: readInt(input.expire_time) ?? undefined,
+    credits_known: creditsKnown,
+    expiring_amount: readInt(input.expiring_amount) ?? undefined,
+    package: typeof input.package === 'string' && input.package.trim() !== '' ? input.package : undefined,
+    spec_code: typeof input.spec_code === 'string' && input.spec_code.trim() !== '' ? input.spec_code : undefined,
   };
 }
 

@@ -30,14 +30,19 @@ const statusOf = (error: unknown): number | undefined => {
 /** Build the usage meters from the balance payload, skipping empty windows. */
 export function buildCodeArtsQuotaRows(payload: CodeArtsQuotaPayload, t: TFunction): CodeArtsQuotaRow[] {
   const rows: CodeArtsQuotaRow[] = [];
+  const creditsKnown = payload.credits_known === true;
 
-  if (typeof payload.total_quota === 'number' && payload.total_quota > 0) {
-    const used = payload.used_amount ?? Math.max(0, payload.total_quota - (payload.total_balance ?? 0));
+  // A package with no credits granted (or all of them spent) reports zero. That
+  // is a real answer from the ledger, so it still needs a row: without one the
+  // page would say "no quota package found" and hide the actual state.
+  if (creditsKnown || (typeof payload.total_quota === 'number' && payload.total_quota > 0)) {
+    const total = payload.total_quota ?? 0;
+    const used = payload.used_amount ?? Math.max(0, total - (payload.total_balance ?? 0));
     rows.push({
       id: 'total',
       label: t('codearts_quota.total_credits'),
       used,
-      total: payload.total_quota,
+      total,
       resetAtMs: payload.expire_time && payload.expire_time > 0 ? payload.expire_time : null,
     });
   }
@@ -93,7 +98,10 @@ const fetchCodeArtsQuota = async (file: AuthFileItem, t: TFunction): Promise<Cod
     throw new Error(t('codearts_quota.no_package'));
   }
 
-  return { plan: t('codearts_quota.plan_credits'), rows };
+  // The ledger reports which subscription the credits belong to; showing it is
+  // more useful than a generic label, and it explains an all-zero balance.
+  const plan = payload.package ?? (payload.credits_known ? null : t('codearts_quota.plan_credits'));
+  return { plan, rows };
 };
 
 export const CODEARTS_CONFIG: QuotaProviderData<CodeArtsQuotaState, CodeArtsQuotaData> = {
