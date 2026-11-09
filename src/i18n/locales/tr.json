@@ -2699,10 +2699,12 @@
       "waiting": "Kaydedildi, Etki Etmesi Bekleniyor.",
       "effective": "Kaydedildi ve Geçerli.",
       "delayed": "Kaydedildi, Ancak Uygulama Henüz Onaylanmadı. Arka Ucu ve Çalışma Zamanı Durumunu Kontrol Et.",
-      "failed": "Kaydetme Başarısız. Hatayı İncele ve Yeniden Dene."
+      "failed": "Kaydetme Başarısız. Hatayı İncele ve Yeniden Dene.",
+      "invalid": "Kaydedilmedi. Önce işaretli değeri düzeltin."
     },
     "validation": {
       "timezone_required": "Bir IANA Saat Dilimi Gir, ör. Asia/Shanghai.",
+      "timezone_invalid": "Bu saat dilimi yok. Asia/Shanghai gibi bir IANA adı kullanın; küçük harf ve kısaltmalar reddedilir.",
       "window_invalid": "Başlangıcı Bitişten Önce Olan Aynı Günlük Bir Pencere Gir. H:MM Kullan; 24:00 Yalnızca Bitiş Olarak İzin Verilir.",
       "header_invalid": "Satır Sonu İçermeyen Geçerli HTTP Üst Bilgi Adları ve Değerleri Gir. Kullanılmayan Satırları Kaldır.",
       "header_duplicate": "Üst Bilgi Adları, Büyük/Küçük Harf Gözetmeksizin Benzersiz Olmalı.",

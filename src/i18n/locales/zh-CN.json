@@ -2608,10 +2608,12 @@
       "waiting": "已保存，等待生效。",
       "effective": "已保存并生效。",
       "delayed": "已保存，但尚未确认生效，请检查后端及运行状态。",
-      "failed": "保存失败，请检查错误后重试。"
+      "failed": "保存失败，请检查错误后重试。",
+      "invalid": "未保存。请先修正标出的取值。"
     },
     "validation": {
       "timezone_required": "请输入 IANA 时区，例如 Asia/Shanghai。",
+      "timezone_invalid": "时区不存在。请输入 IANA 名称，例如 Asia/Shanghai；小写和缩写形式会被拒绝。",
       "window_invalid": "请输入开始早于结束的同日窗口，格式为 H:MM；仅结束值允许 24:00。",
       "header_invalid": "请输入合法 HTTP 头名及不含换行的头值，并删除未使用的行。",
       "header_duplicate": "请求头名称不能重复，不区分大小写。",

@@ -2610,10 +2610,12 @@
       "waiting": "Saved, waiting to take effect.",
       "effective": "Saved and effective.",
       "delayed": "Saved, but application is not confirmed yet. Check the backend and runtime status.",
-      "failed": "Save failed. Review the error and try again."
+      "failed": "Save failed. Review the error and try again.",
+      "invalid": "Not saved. Fix the highlighted value first."
     },
     "validation": {
       "timezone_required": "Enter an IANA timezone, such as Asia/Shanghai.",
+      "timezone_invalid": "That timezone does not exist. Pick an IANA name such as Asia/Shanghai; lowercase and abbreviated forms are rejected.",
       "window_invalid": "Enter a same-day window with start before end. Use H:MM; 24:00 is allowed only as the end.",
       "header_invalid": "Enter valid HTTP header names and values without line breaks. Remove unused rows.",
       "header_duplicate": "Header names must be unique, ignoring case.",

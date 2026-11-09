@@ -2636,10 +2636,12 @@
       "waiting": "已儲存，等待生效。",
       "effective": "已儲存並生效。",
       "delayed": "已儲存，但尚未確認生效，請檢查後端與執行狀態。",
-      "failed": "儲存失敗，請檢查錯誤後重試。"
+      "failed": "儲存失敗，請檢查錯誤後重試。",
+      "invalid": "未儲存。請先修正標出的取值。"
     },
     "validation": {
       "timezone_required": "請輸入 IANA 時區，例如 Asia/Shanghai。",
+      "timezone_invalid": "時區不存在。請輸入 IANA 名稱，例如 Asia/Shanghai；小寫與縮寫形式會被拒絕。",
       "window_invalid": "請輸入開始早於結束的同日範圍，格式為 H:MM；僅結束值允許 24:00。",
       "header_invalid": "請輸入合法 HTTP 標頭名稱及不含換行的值，並刪除未使用的列。",
       "header_duplicate": "標頭名稱不能重複，不區分大小寫。",

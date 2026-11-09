@@ -32,7 +32,7 @@ interface Session {
   config: Record<string, CheckinProviderConfig>;
 }
 
-type SaveState = 'idle' | 'saving' | 'waiting' | 'effective' | 'delayed' | 'failed';
+type SaveState = 'idle' | 'saving' | 'waiting' | 'effective' | 'delayed' | 'failed' | 'invalid';
 
 const ACCOUNT_STATES: Record<string, true> = {
   success: true,
@@ -126,7 +126,9 @@ function ProviderPanel({
     const validation = validateDraft(draft, capability);
     if (validation) {
       setError(t(`auto_checkin.validation.${validation}`));
-      setSaveState('failed');
+      // Nothing was sent, so this is not a save failure: reporting one would
+      // blame the backend for a value the form rejected locally.
+      setSaveState('invalid');
       return;
     }
     const value = serializeDraft(draft);

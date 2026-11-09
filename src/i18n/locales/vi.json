@@ -2616,10 +2616,12 @@
       "waiting": "Đã lưu, đang chờ áp dụng.",
       "effective": "Đã lưu và áp dụng.",
       "delayed": "Đã lưu nhưng chưa xác nhận áp dụng. Hãy kiểm tra máy chủ và trạng thái thực thi.",
-      "failed": "Lưu thất bại. Hãy kiểm tra lỗi và thử lại."
+      "failed": "Lưu thất bại. Hãy kiểm tra lỗi và thử lại.",
+      "invalid": "Chưa lưu. Hãy sửa giá trị được đánh dấu trước."
     },
     "validation": {
       "timezone_required": "Nhập múi giờ IANA, ví dụ Asia/Shanghai.",
+      "timezone_invalid": "Múi giờ này không tồn tại. Dùng tên IANA như Asia/Shanghai; chữ thường và dạng viết tắt bị từ chối.",
       "window_invalid": "Nhập khung giờ trong cùng ngày, bắt đầu trước kết thúc, theo H:MM. Chỉ cho phép 24:00 ở thời điểm kết thúc.",
       "header_invalid": "Nhập tên HTTP header hợp lệ và giá trị không chứa xuống dòng. Xóa các hàng không dùng.",
       "header_duplicate": "Tên header phải duy nhất, không phân biệt chữ hoa chữ thường.",
