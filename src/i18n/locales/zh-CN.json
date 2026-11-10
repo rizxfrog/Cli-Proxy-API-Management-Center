@@ -2634,6 +2634,214 @@
       "idle": "空闲"
     }
   },
+  "scheduled_tasks": {
+    "title": "定时任务",
+    "nav_meta": "定时发送 HTTP 请求",
+    "description": "分组用于容纳任务，分组或任务各自可带触发器。任务是由代理进程按定时器发送的任意 HTTP 请求，不参与路由、模型目录或额度统计。打开本页不会执行任何请求。",
+    "memory_hint": "运行状态（下次运行、上次结果、最近记录）仅保存在内存中，重启后清空。进程停止期间错过的执行不会补跑。",
+    "unsupported": "当前后端不支持定时任务。请升级后端后再使用本页。",
+    "load_failed": "无法加载定时任务。请刷新后重试。",
+    "status_failed": "运行状态刷新失败。当前显示的是上次成功刷新的结果，轮询会继续重试。",
+    "not_configured": {
+      "title": "调度器未配置",
+      "body": "请将配置项 automation.schedule.dir 指向一个目录以启用定时任务。该值为空时功能关闭：调度器不会启动、不会读取任何文件、也不存在任何任务，本页并非表示“没有任务”。",
+      "hint": "该目录会在首次写入时创建，且代理进程必须对其有写权限。"
+    },
+    "status": {
+      "scheduler": "调度器",
+      "running": "运行中",
+      "stopped": "已停止",
+      "counts": "定义数量",
+      "count_values": "{{groups}} 个分组 · {{tasks}} 个任务 · {{enabled}} 个已启用",
+      "dir": "目录",
+      "dir_unset": "未设置",
+      "server_time": "服务器时间"
+    },
+    "empty": {
+      "title": "还没有任务分组",
+      "description": "先创建一个分组来容纳定时任务，然后逐个添加任务，或批量粘贴 curl 命令。"
+    },
+    "group": {
+      "create": "新建分组",
+      "saved": "分组已保存。",
+      "deleted": "分组已删除。",
+      "disabled": "已禁用",
+      "import_curl": "从 curl 添加",
+      "no_tasks": "该分组还没有任务。",
+      "per_task": "没有分组触发器时，每个任务各自定时。",
+      "trigger": "分组触发器："
+    },
+    "task": {
+      "create": "添加任务",
+      "saved": "任务已保存。",
+      "deleted": "任务已删除。",
+      "disabled": "已禁用",
+      "run_now": "立即运行",
+      "run_now_label": "立即运行 {{name}}",
+      "edit_label": "编辑 {{name}}",
+      "delete_label": "删除 {{name}}",
+      "inherited": "继承分组触发器（{{value}}）。",
+      "manual_only": "无触发器：仅手动运行。",
+      "run_finished": "{{name}}：{{status}}。"
+    },
+    "runtime": {
+      "unavailable": "暂无运行状态。",
+      "next_run": "下次运行：",
+      "not_scheduled": "未排程",
+      "last_run": "上次运行：",
+      "last_status": "上次状态",
+      "counts": "已运行 {{runs}} 次，失败 {{failures}} 次",
+      "history": "最近记录（{{count}}）",
+      "duration_none": "—",
+      "duration_ms": "{{value}} 毫秒",
+      "duration_s": "{{value}} 秒",
+      "snippet_truncated": "（已截断）",
+      "status_never": "从未运行",
+      "status_success": "成功",
+      "status_failed": "失败",
+      "status_skipped": "已跳过",
+      "status_other": "{{status}}"
+    },
+    "source": {
+      "group": "分组触发器",
+      "task": "任务触发器",
+      "none": "无触发器"
+    },
+    "trigger": {
+      "none": "无触发器",
+      "fixed_rate": "每 {{value}}",
+      "fixed_delay": "上次运行结束后 {{value}}",
+      "cron": "Cron {{value}}",
+      "inherit_hint": "留空即继承分组触发器（{{value}}）。",
+      "manual_hint": "没有触发器时，该任务仅手动运行。",
+      "hint": {
+        "fixed_rate": "按固定间隔触发，从启用时刻起算，不考虑单次运行耗时。",
+        "fixed_delay": "上次运行结束后再等待该间隔。",
+        "cron": "五个字段：分 时 日 月 周。"
+      }
+    },
+    "trigger_type": {
+      "none": "无触发器",
+      "fixed_rate": "固定间隔",
+      "fixed_delay": "运行后延迟",
+      "cron": "Cron 表达式"
+    },
+    "body_mode": {
+      "none": "无请求体",
+      "body": "原始请求体",
+      "form": "表单字段"
+    },
+    "field": {
+      "id": "ID",
+      "id_hint_new": "字母、数字、点、短横线和下划线；同时用作文件名。",
+      "id_hint_locked": "创建后 ID 不可修改。",
+      "name": "名称",
+      "description": "描述",
+      "enabled": "启用",
+      "group_enabled": "启用该分组",
+      "task_enabled": "启用该任务",
+      "trigger": "触发器",
+      "trigger_type": "触发器类型",
+      "trigger_value": "触发器取值",
+      "method": "方法",
+      "url": "地址",
+      "url_placeholder": "https://example.com/api",
+      "headers": "请求头",
+      "header_name": "第 {{number}} 个请求头名称",
+      "header_value": "第 {{number}} 个请求头值",
+      "remove_header": "删除第 {{number}} 个请求头",
+      "add_header": "添加请求头",
+      "body_mode": "请求体",
+      "body": "请求体内容",
+      "form": "表单字段",
+      "form_hint": "以 application/x-www-form-urlencoded 发送，每次运行都会重新构建。",
+      "form_name": "第 {{number}} 个表单字段名称",
+      "form_value": "第 {{number}} 个表单字段值",
+      "remove_form": "删除第 {{number}} 个表单字段",
+      "add_form": "添加字段",
+      "timeout": "超时（毫秒）",
+      "timeout_hint": "范围 1–600000；curl 无法表达该值，因此始终以表单为准。",
+      "follow_redirects": "跟随重定向"
+    },
+    "error": {
+      "id_required": "请输入 ID。",
+      "id_pattern": "仅使用字母、数字、点、短横线和下划线，并以字母或数字开头（最长 64 个字符）。",
+      "name_required": "请输入名称。",
+      "name_too_long": "名称最长 200 个字符。",
+      "description_too_long": "描述最长 1000 个字符。",
+      "trigger_value_required": "请输入触发器取值。",
+      "duration_invalid": "请使用 Go 时长，例如 30s、5m 或 1h30m。",
+      "duration_positive": "间隔必须大于零。",
+      "cron_required": "请输入 Cron 表达式。",
+      "cron_field_count": "Cron 表达式必须正好包含五个字段。",
+      "cron_field": "请检查 Cron 字段：取值、区间和步长都必须在其范围内。",
+      "header_name_invalid": "请输入不含空格的合法 HTTP 请求头名称。",
+      "header_line_break": "请求头值不能包含换行符。",
+      "header_duplicate": "请求头名称必须唯一（不区分大小写）。",
+      "form_name_required": "每个表单字段都需要名称。",
+      "form_name_invalid": "表单字段名称不能包含换行符。",
+      "method_required": "请输入 HTTP 方法。",
+      "method_invalid": "请使用 GET、POST 之类的 HTTP 令牌。",
+      "url_required": "请输入 URL。",
+      "url_invalid": "请使用以 http:// 或 https:// 开头的绝对地址。",
+      "timeout_range": "超时必须是 1–600000 之间的整数毫秒值。",
+      "save_failed": "保存失败。请查看错误后重试。",
+      "delete_failed": "删除失败，定义未变更。",
+      "run_failed": "无法启动该任务。",
+      "batch_skip": "后端拒绝了该任务：{{reason}}"
+    },
+    "json_error": {
+      "json_syntax": "JSON 无效：{{detail}}",
+      "json_shape": "JSON 必须是包含 id、name、enabled、schedule 和 request 的对象。",
+      "json_field": "JSON 中的字段未知或取值无效：{{detail}}"
+    },
+    "editor": {
+      "tabs_label": "任务编辑器选项卡",
+      "tab": {
+        "form": "表单",
+        "curl": "curl",
+        "json": "JSON"
+      },
+      "curl_hint": "粘贴一条 curl 命令并切换选项卡即可应用到表单，或直接编辑由当前任务生成的命令。仅会应用 curl 能表达的字段，名称、启用状态、超时和触发器以表单为准。",
+      "curl_reset": "由表单生成",
+      "curl_empty": "请先粘贴一条 curl 命令。",
+      "curl_multiple": "该选项卡只编辑一个任务，但文本包含 {{count}} 条命令。多个命令请使用分组里的批量 curl 导入。",
+      "curl_failed": "无法解析该命令。",
+      "json_hint": "这里的 JSON 使用面板的 camelCase 模型；保存时由 API 转换为后端字段名。切换选项卡会把文本应用到草稿。",
+      "json_reset": "由表单生成",
+      "parsing": "解析中…"
+    },
+    "import": {
+      "title": "从 curl 向 {{name}} 添加任务",
+      "hint": "粘贴一条或多条 curl 命令，可用空行、分号或 && 分隔。每条命令会生成一个任务。解析过程不会执行任何请求。",
+      "label": "curl 命令",
+      "submit": "解析并添加",
+      "added": "已添加 {{count}} 个任务。",
+      "nothing": "无法从该文本生成任何任务。",
+      "failed": "无法导入这些命令。",
+      "skipped_title": "被后端跳过：",
+      "rejected_title": "解析时被拒绝：",
+      "command_number": "第 {{number}} 条命令",
+      "reason": {
+        "empty": "没有可解析的命令。",
+        "rejected_by_server": "无法解析："
+      }
+    },
+    "confirm": {
+      "delete_group_title": "删除分组",
+      "delete_group": "删除分组“{{name}}”及其中的全部任务？此操作无法撤销。",
+      "delete_task_title": "删除任务",
+      "delete_task": "删除任务“{{name}}”？此操作无法撤销。"
+    },
+    "task_editor": {
+      "create_title": "新建任务",
+      "edit_title": "编辑任务"
+    },
+    "group_editor": {
+      "create_title": "新建分组",
+      "edit_title": "编辑分组"
+    }
+  },
   "codebuddy_quota": {
     "title": "CodeBuddy CN 额度",
     "empty_title": "暂无 CodeBuddy CN 认证",

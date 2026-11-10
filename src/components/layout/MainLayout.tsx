@@ -31,6 +31,7 @@ import {
   IconSidebarRouting,
   IconSidebarStore,
   IconSidebarSystem,
+  IconTimer,
   IconChevronDown,
 } from '@/components/ui/icons';
 import { INLINE_LOGO_JPEG } from '@/assets/logoInline';
@@ -68,6 +69,7 @@ const sidebarIcons: Record<string, ReactNode> = {
   plugins: <IconSidebarPlugins size={18} />,
   pluginStore: <IconSidebarStore size={18} />,
   config: <IconSidebarConfig size={18} />,
+  scheduledTasks: <IconTimer size={18} />,
   logs: <IconSidebarLogs size={18} />,
   system: <IconSidebarSystem size={18} />,
 };
@@ -693,6 +695,12 @@ export function MainLayout() {
           labelKey: 'auto_checkin.title',
           metaKey: 'auto_checkin.nav_meta',
           icon: sidebarIcons.quota,
+        },
+        {
+          path: '/scheduled-tasks',
+          labelKey: 'scheduled_tasks.title',
+          metaKey: 'scheduled_tasks.nav_meta',
+          icon: sidebarIcons.scheduledTasks,
         },
         ...(supportsPlugin
           ? [

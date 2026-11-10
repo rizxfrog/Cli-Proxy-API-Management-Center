@@ -2642,6 +2642,214 @@
       "idle": "Rảnh"
     }
   },
+  "scheduled_tasks": {
+    "title": "Tác vụ theo lịch",
+    "nav_meta": "Yêu cầu HTTP theo lịch",
+    "description": "Nhóm chứa các tác vụ, và mỗi nhóm hoặc tác vụ có một bộ kích hoạt. Tác vụ là yêu cầu HTTP tùy ý do proxy tự gửi theo bộ hẹn giờ; chúng không tham gia định tuyến, danh mục mô hình hay tính hạn mức. Mở trang này không chạy gì cả.",
+    "memory_hint": "Trạng thái chạy (lần chạy kế tiếp, kết quả gần nhất, lịch sử gần đây) chỉ lưu trong bộ nhớ và bị xóa khi khởi động lại. Các lần chạy bị lỡ khi tiến trình dừng sẽ không được chạy bù.",
+    "unsupported": "Phần backend này không hỗ trợ tác vụ theo lịch. Hãy nâng cấp backend để dùng trang này.",
+    "load_failed": "Không tải được tác vụ theo lịch. Hãy làm mới để thử lại.",
+    "status_failed": "Không làm mới được trạng thái chạy. Giá trị hiển thị là từ lần làm mới thành công trước đó; hệ thống sẽ tiếp tục thử lại.",
+    "not_configured": {
+      "title": "Bộ lập lịch chưa được cấu hình",
+      "body": "Hãy trỏ khóa cấu hình automation.schedule.dir tới một thư mục để bật tác vụ theo lịch. Giá trị rỗng sẽ tắt tính năng: bộ lập lịch không khởi động, không đọc tệp nào và không có tác vụ nào — trang này không có nghĩa là “không có tác vụ”.",
+      "hint": "Thư mục được tạo ở lần ghi đầu tiên và tiến trình proxy phải có quyền ghi vào đó."
+    },
+    "status": {
+      "scheduler": "Bộ lập lịch",
+      "running": "Đang chạy",
+      "stopped": "Đã dừng",
+      "counts": "Định nghĩa",
+      "count_values": "{{groups}} nhóm · {{tasks}} tác vụ · {{enabled}} đang bật",
+      "dir": "Thư mục",
+      "dir_unset": "chưa đặt",
+      "server_time": "Giờ máy chủ"
+    },
+    "empty": {
+      "title": "Chưa có nhóm tác vụ",
+      "description": "Hãy tạo một nhóm để chứa tác vụ theo lịch, rồi thêm từng tác vụ hoặc dán hàng loạt lệnh curl."
+    },
+    "group": {
+      "create": "Nhóm mới",
+      "saved": "Đã lưu nhóm.",
+      "deleted": "Đã xóa nhóm.",
+      "disabled": "Đã tắt",
+      "import_curl": "Thêm từ curl",
+      "no_tasks": "Nhóm này chưa có tác vụ nào.",
+      "per_task": "Không có bộ kích hoạt nhóm thì mỗi tác vụ tự định lịch.",
+      "trigger": "Bộ kích hoạt nhóm:"
+    },
+    "task": {
+      "create": "Thêm tác vụ",
+      "saved": "Đã lưu tác vụ.",
+      "deleted": "Đã xóa tác vụ.",
+      "disabled": "Đã tắt",
+      "run_now": "Chạy ngay",
+      "run_now_label": "Chạy {{name}} ngay",
+      "edit_label": "Sửa {{name}}",
+      "delete_label": "Xóa {{name}}",
+      "inherited": "Kế thừa bộ kích hoạt nhóm ({{value}}).",
+      "manual_only": "Không có bộ kích hoạt: chỉ chạy thủ công.",
+      "run_finished": "{{name}}: {{status}}."
+    },
+    "runtime": {
+      "unavailable": "Chưa có trạng thái chạy.",
+      "next_run": "Lần chạy kế tiếp:",
+      "not_scheduled": "không theo lịch",
+      "last_run": "Lần chạy gần nhất:",
+      "last_status": "Trạng thái gần nhất",
+      "counts": "{{runs}} lần chạy, {{failures}} lần lỗi",
+      "history": "Lịch sử gần đây ({{count}})",
+      "duration_none": "—",
+      "duration_ms": "{{value}} ms",
+      "duration_s": "{{value}} giây",
+      "snippet_truncated": "(đã cắt bớt)",
+      "status_never": "Chưa chạy",
+      "status_success": "Thành công",
+      "status_failed": "Thất bại",
+      "status_skipped": "Đã bỏ qua",
+      "status_other": "{{status}}"
+    },
+    "source": {
+      "group": "Bộ kích hoạt nhóm",
+      "task": "Bộ kích hoạt tác vụ",
+      "none": "Không có bộ kích hoạt"
+    },
+    "trigger": {
+      "none": "Không có bộ kích hoạt",
+      "fixed_rate": "Mỗi {{value}}",
+      "fixed_delay": "{{value}} sau khi lần chạy trước kết thúc",
+      "cron": "Cron {{value}}",
+      "inherit_hint": "Để trống sẽ kế thừa bộ kích hoạt nhóm ({{value}}).",
+      "manual_hint": "Không có bộ kích hoạt thì tác vụ chỉ chạy thủ công.",
+      "hint": {
+        "fixed_rate": "Kích hoạt theo khoảng thời gian cố định, tính từ lúc bật, bất kể một lần chạy kéo dài bao lâu.",
+        "fixed_delay": "Chờ hết khoảng thời gian sau khi lần chạy trước kết thúc.",
+        "cron": "Năm trường: phút giờ ngày-trong-tháng tháng thứ-trong-tuần."
+      }
+    },
+    "trigger_type": {
+      "none": "Không có bộ kích hoạt",
+      "fixed_rate": "Khoảng cố định",
+      "fixed_delay": "Trễ sau khi chạy",
+      "cron": "Biểu thức cron"
+    },
+    "body_mode": {
+      "none": "Không có nội dung",
+      "body": "Nội dung thô",
+      "form": "Các trường biểu mẫu"
+    },
+    "field": {
+      "id": "ID",
+      "id_hint_new": "Chữ cái, chữ số, dấu chấm, gạch ngang và gạch dưới; đồng thời là tên tệp.",
+      "id_hint_locked": "Không thể đổi ID sau khi tạo.",
+      "name": "Tên",
+      "description": "Mô tả",
+      "enabled": "Bật",
+      "group_enabled": "Bật nhóm này",
+      "task_enabled": "Bật tác vụ này",
+      "trigger": "Bộ kích hoạt",
+      "trigger_type": "Loại bộ kích hoạt",
+      "trigger_value": "Giá trị bộ kích hoạt",
+      "method": "Phương thức",
+      "url": "URL",
+      "url_placeholder": "https://example.com/api",
+      "headers": "Tiêu đề",
+      "header_name": "Tên tiêu đề {{number}}",
+      "header_value": "Giá trị tiêu đề {{number}}",
+      "remove_header": "Xóa tiêu đề {{number}}",
+      "add_header": "Thêm tiêu đề",
+      "body_mode": "Nội dung",
+      "body": "Nội dung yêu cầu",
+      "form": "Các trường biểu mẫu",
+      "form_hint": "Được gửi dưới dạng application/x-www-form-urlencoded và dựng lại ở mỗi lần chạy.",
+      "form_name": "Tên trường biểu mẫu {{number}}",
+      "form_value": "Giá trị trường biểu mẫu {{number}}",
+      "remove_form": "Xóa trường biểu mẫu {{number}}",
+      "add_form": "Thêm trường",
+      "timeout": "Thời gian chờ (ms)",
+      "timeout_hint": "Từ 1 đến 600000; curl không biểu diễn được nên giá trị luôn lấy từ biểu mẫu.",
+      "follow_redirects": "Đi theo chuyển hướng"
+    },
+    "error": {
+      "id_required": "Hãy nhập ID.",
+      "id_pattern": "Dùng chữ cái, chữ số, dấu chấm, gạch ngang hoặc gạch dưới, bắt đầu bằng chữ cái hoặc chữ số (tối đa 64 ký tự).",
+      "name_required": "Hãy nhập tên.",
+      "name_too_long": "Tên tối đa 200 ký tự.",
+      "description_too_long": "Mô tả tối đa 1000 ký tự.",
+      "trigger_value_required": "Hãy nhập giá trị bộ kích hoạt.",
+      "duration_invalid": "Dùng khoảng thời gian Go như 30s, 5m hoặc 1h30m.",
+      "duration_positive": "Khoảng thời gian phải lớn hơn 0.",
+      "cron_required": "Hãy nhập biểu thức cron.",
+      "cron_field_count": "Biểu thức cron phải có đúng năm trường.",
+      "cron_field": "Kiểm tra các trường cron: giá trị, khoảng và bước phải nằm trong phạm vi.",
+      "header_name_invalid": "Hãy nhập tên tiêu đề HTTP hợp lệ, không có dấu cách.",
+      "header_line_break": "Giá trị tiêu đề không được chứa ký tự xuống dòng.",
+      "header_duplicate": "Tên tiêu đề phải duy nhất, không phân biệt chữ hoa chữ thường.",
+      "form_name_required": "Mỗi trường biểu mẫu đều cần tên.",
+      "form_name_invalid": "Tên trường biểu mẫu không được chứa ký tự xuống dòng.",
+      "method_required": "Hãy nhập phương thức HTTP.",
+      "method_invalid": "Dùng token HTTP như GET hoặc POST.",
+      "url_required": "Hãy nhập URL.",
+      "url_invalid": "Dùng URL tuyệt đối http:// hoặc https://.",
+      "timeout_range": "Thời gian chờ phải là số nguyên mili giây từ 1 đến 600000.",
+      "save_failed": "Không lưu được. Hãy xem lỗi và thử lại.",
+      "delete_failed": "Không xóa được. Định nghĩa vẫn giữ nguyên.",
+      "run_failed": "Không khởi chạy được tác vụ.",
+      "batch_skip": "Backend đã từ chối tác vụ này: {{reason}}"
+    },
+    "json_error": {
+      "json_syntax": "JSON không hợp lệ: {{detail}}",
+      "json_shape": "JSON phải là một đối tượng có id, name, enabled, schedule và request.",
+      "json_field": "Giá trị không xác định hoặc không hợp lệ trong JSON: {{detail}}"
+    },
+    "editor": {
+      "tabs_label": "Các tab của trình sửa tác vụ",
+      "tab": {
+        "form": "Biểu mẫu",
+        "curl": "curl",
+        "json": "JSON"
+      },
+      "curl_hint": "Dán một lệnh curl rồi chuyển tab để áp dụng vào biểu mẫu, hoặc sửa lệnh được dựng từ tác vụ hiện tại. Chỉ những gì curl biểu diễn được mới áp dụng, nên tên, trạng thái bật, thời gian chờ và bộ kích hoạt vẫn lấy từ biểu mẫu.",
+      "curl_reset": "Dựng từ biểu mẫu",
+      "curl_empty": "Hãy dán một lệnh curl trước.",
+      "curl_multiple": "Tab này chỉ sửa một tác vụ, nhưng văn bản có {{count}} lệnh. Với nhiều lệnh, hãy dùng nhập curl hàng loạt trong nhóm.",
+      "curl_failed": "Không phân tích được lệnh.",
+      "json_hint": "JSON ở đây dùng mô hình camelCase của panel; khi lưu, API sẽ đổi sang tên trường của backend. Chuyển tab sẽ áp dụng văn bản vào bản nháp.",
+      "json_reset": "Dựng từ biểu mẫu",
+      "parsing": "Đang phân tích…"
+    },
+    "import": {
+      "title": "Thêm tác vụ vào {{name}} từ curl",
+      "hint": "Dán một hoặc nhiều lệnh curl, phân tách bằng dòng trống, dấu chấm phẩy hoặc &&. Mỗi lệnh thành một tác vụ. Quá trình phân tích không chạy gì cả.",
+      "label": "Lệnh curl",
+      "submit": "Phân tích và thêm",
+      "added": "Đã thêm {{count}} tác vụ.",
+      "nothing": "Không dựng được tác vụ nào từ văn bản này.",
+      "failed": "Không nhập được các lệnh.",
+      "skipped_title": "Bị backend bỏ qua:",
+      "rejected_title": "Bị từ chối khi phân tích:",
+      "command_number": "Lệnh {{number}}",
+      "reason": {
+        "empty": "Không có lệnh để phân tích.",
+        "rejected_by_server": "Không phân tích được:"
+      }
+    },
+    "confirm": {
+      "delete_group_title": "Xóa nhóm",
+      "delete_group": "Xóa nhóm “{{name}}” và mọi tác vụ trong đó? Không thể hoàn tác.",
+      "delete_task_title": "Xóa tác vụ",
+      "delete_task": "Xóa tác vụ “{{name}}”? Không thể hoàn tác."
+    },
+    "task_editor": {
+      "create_title": "Tác vụ mới",
+      "edit_title": "Sửa tác vụ"
+    },
+    "group_editor": {
+      "create_title": "Nhóm mới",
+      "edit_title": "Sửa nhóm"
+    }
+  },
   "codebuddy_quota": {
     "title": "Quota CodeBuddy CN",
     "empty_title": "Không có credential CodeBuddy CN",

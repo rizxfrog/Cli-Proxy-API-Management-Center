@@ -1,0 +1,152 @@
+.tabs {
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tab {
+  border: 0;
+  background: none;
+  cursor: pointer;
+  padding: 8px 12px 10px;
+  border-radius: 8px 8px 0 0;
+  font-size: 13px;
+  font-weight: 550;
+  color: var(--text-secondary);
+  transition: color var(--dur-hover, 200ms) var(--ease-out-strong, ease-out);
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: -2px;
+  }
+}
+
+.tabActive {
+  color: var(--text-primary);
+  font-weight: 650;
+  box-shadow: inset 0 -2px 0 0 var(--text-primary);
+
+  &:disabled {
+    opacity: 1;
+  }
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  max-height: min(62vh, 640px);
+  overflow-y: auto;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) minmax(220px, 3fr);
+  gap: 16px;
+
+  :global(.form-group) {
+    margin-bottom: 4px;
+  }
+}
+
+.fieldLabel,
+.fieldset legend {
+  padding: 0 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.fieldLabel {
+  padding: 0;
+}
+
+.triggerRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 8px 0 12px;
+  min-width: 0;
+}
+
+.triggerControls {
+  display: grid;
+  grid-template-columns: minmax(150px, 1fr) minmax(160px, 2fr);
+  gap: 12px;
+  align-items: start;
+
+  :global(.form-group) {
+    margin-bottom: 0;
+  }
+}
+
+.fieldset {
+  min-width: 0;
+  margin: 8px 0 16px;
+  padding: 12px 16px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.headerRow {
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) minmax(160px, 2fr) auto;
+  align-items: start;
+  gap: 12px;
+  margin-bottom: 8px;
+
+  :global(.form-group) {
+    margin-bottom: 0;
+  }
+}
+
+.hint {
+  margin: 0 0 8px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.textTab {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.textActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .grid,
+  .triggerControls {
+    grid-template-columns: 1fr;
+  }
+
+  .headerRow {
+    grid-template-columns: minmax(0, 1fr) auto;
+
+    > :first-child {
+      grid-column: 1 / -1;
+    }
+  }
+}

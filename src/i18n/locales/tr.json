@@ -2725,6 +2725,214 @@
       "idle": "Boşta"
     }
   },
+  "scheduled_tasks": {
+    "title": "Zamanlanmış görevler",
+    "nav_meta": "Zamanlanmış HTTP istekleri",
+    "description": "Gruplar görevleri barındırır ve her grup ya da görev bir tetikleyici taşır. Görev, proxy'nin kendi zamanlayıcısıyla gönderdiği serbest bir HTTP isteğidir; yönlendirmeye, model kataloğuna veya kota muhasebesine katılmaz. Bu sayfayı açmak hiçbir şey çalıştırmaz.",
+    "memory_hint": "Çalışma durumu (sonraki çalışma, son sonuç, son kayıtlar) yalnızca bellekte tutulur ve yeniden başlatmada sıfırlanır. Süreç kapalıyken kaçırılan çalışmalar telafi edilmez.",
+    "unsupported": "Bu arka uç zamanlanmış görevleri desteklemiyor. Bu sayfayı kullanmak için arka ucu güncelleyin.",
+    "load_failed": "Zamanlanmış görevler yüklenemedi. Yenileyip tekrar deneyin.",
+    "status_failed": "Çalışma durumu yenilenemedi. Gösterilen değerler son başarılı yenilemeden geliyor; yoklama yeniden deneyecek.",
+    "not_configured": {
+      "title": "Zamanlayıcı yapılandırılmamış",
+      "body": "Zamanlanmış görevleri etkinleştirmek için automation.schedule.dir yapılandırma anahtarına bir dizin atayın. Boş değer özelliği kapatır: zamanlayıcı başlamaz, hiçbir dosya okunmaz ve hiçbir görev var olamaz; bu sayfa “görev yok” anlamına gelmez.",
+      "hint": "Dizin ilk yazmada oluşturulur ve proxy sürecinin yazma izni olmalıdır."
+    },
+    "status": {
+      "scheduler": "Zamanlayıcı",
+      "running": "Çalışıyor",
+      "stopped": "Durduruldu",
+      "counts": "Tanımlar",
+      "count_values": "{{groups}} grup · {{tasks}} görev · {{enabled}} etkin",
+      "dir": "Dizin",
+      "dir_unset": "ayarlı değil",
+      "server_time": "Sunucu saati"
+    },
+    "empty": {
+      "title": "Henüz görev grubu yok",
+      "description": "Zamanlanmış görevleri barındıracak bir grup oluşturun, ardından görevleri tek tek ekleyin ya da curl komutlarını toplu yapıştırın."
+    },
+    "group": {
+      "create": "Yeni grup",
+      "saved": "Grup kaydedildi.",
+      "deleted": "Grup silindi.",
+      "disabled": "Devre dışı",
+      "import_curl": "curl'den ekle",
+      "no_tasks": "Bu grupta henüz görev yok.",
+      "per_task": "Grup tetikleyicisi yoksa her görev kendini zamanlar.",
+      "trigger": "Grup tetikleyicisi:"
+    },
+    "task": {
+      "create": "Görev ekle",
+      "saved": "Görev kaydedildi.",
+      "deleted": "Görev silindi.",
+      "disabled": "Devre dışı",
+      "run_now": "Şimdi çalıştır",
+      "run_now_label": "{{name}} görevini şimdi çalıştır",
+      "edit_label": "{{name}} düzenle",
+      "delete_label": "{{name}} sil",
+      "inherited": "Grup tetikleyicisini devralır ({{value}}).",
+      "manual_only": "Tetikleyici yok: yalnızca elle çalışır.",
+      "run_finished": "{{name}}: {{status}}."
+    },
+    "runtime": {
+      "unavailable": "Çalışma durumu henüz yok.",
+      "next_run": "Sonraki çalışma:",
+      "not_scheduled": "zamanlanmadı",
+      "last_run": "Son çalışma:",
+      "last_status": "Son durum",
+      "counts": "{{runs}} çalışma, {{failures}} hata",
+      "history": "Son kayıtlar ({{count}})",
+      "duration_none": "—",
+      "duration_ms": "{{value}} ms",
+      "duration_s": "{{value}} sn",
+      "snippet_truncated": "(kısaltıldı)",
+      "status_never": "Hiç çalışmadı",
+      "status_success": "Başarılı",
+      "status_failed": "Başarısız",
+      "status_skipped": "Atlandı",
+      "status_other": "{{status}}"
+    },
+    "source": {
+      "group": "Grup tetikleyicisi",
+      "task": "Görev tetikleyicisi",
+      "none": "Tetikleyici yok"
+    },
+    "trigger": {
+      "none": "Tetikleyici yok",
+      "fixed_rate": "Her {{value}}",
+      "fixed_delay": "Önceki çalışma bittikten {{value}} sonra",
+      "cron": "Cron {{value}}",
+      "inherit_hint": "Boş bırakılırsa grup tetikleyicisi ({{value}}) devralınır.",
+      "manual_hint": "Tetikleyici yoksa bu görev yalnızca elle çalışır.",
+      "hint": {
+        "fixed_rate": "Etkinleştirme anından itibaren sabit aralıkla çalışır; çalışmanın süresi önemsizdir.",
+        "fixed_delay": "Önceki çalışma bittikten sonra aralık kadar bekler.",
+        "cron": "Beş alan: dakika saat ayın-günü ay haftanın-günü."
+      }
+    },
+    "trigger_type": {
+      "none": "Tetikleyici yok",
+      "fixed_rate": "Sabit aralık",
+      "fixed_delay": "Çalışma sonrası gecikme",
+      "cron": "Cron ifadesi"
+    },
+    "body_mode": {
+      "none": "Gövde yok",
+      "body": "Ham gövde",
+      "form": "Form alanları"
+    },
+    "field": {
+      "id": "Kimlik",
+      "id_hint_new": "Harf, rakam, nokta, tire ve alt çizgi; dosya adı olarak da kullanılır.",
+      "id_hint_locked": "Oluşturulduktan sonra kimlik değiştirilemez.",
+      "name": "Ad",
+      "description": "Açıklama",
+      "enabled": "Etkin",
+      "group_enabled": "Bu grubu etkinleştir",
+      "task_enabled": "Bu görevi etkinleştir",
+      "trigger": "Tetikleyici",
+      "trigger_type": "Tetikleyici türü",
+      "trigger_value": "Tetikleyici değeri",
+      "method": "Yöntem",
+      "url": "URL",
+      "url_placeholder": "https://example.com/api",
+      "headers": "Başlıklar",
+      "header_name": "{{number}}. başlık adı",
+      "header_value": "{{number}}. başlık değeri",
+      "remove_header": "{{number}}. başlığı kaldır",
+      "add_header": "Başlık ekle",
+      "body_mode": "Gövde",
+      "body": "İstek gövdesi",
+      "form": "Form alanları",
+      "form_hint": "application/x-www-form-urlencoded olarak gönderilir ve her çalışmada yeniden oluşturulur.",
+      "form_name": "{{number}}. form alanı adı",
+      "form_value": "{{number}}. form alanı değeri",
+      "remove_form": "{{number}}. form alanını kaldır",
+      "add_form": "Alan ekle",
+      "timeout": "Zaman aşımı (ms)",
+      "timeout_hint": "1 ile 600000 arası; curl bunu ifade edemediği için her zaman form değeri kullanılır.",
+      "follow_redirects": "Yönlendirmeleri izle"
+    },
+    "error": {
+      "id_required": "Bir kimlik girin.",
+      "id_pattern": "Harf, rakam, nokta, tire veya alt çizgi kullanın ve harf ya da rakamla başlayın (en fazla 64 karakter).",
+      "name_required": "Bir ad girin.",
+      "name_too_long": "Adlar 200 karakterle sınırlıdır.",
+      "description_too_long": "Açıklamalar 1000 karakterle sınırlıdır.",
+      "trigger_value_required": "Bir tetikleyici değeri girin.",
+      "duration_invalid": "30s, 5m veya 1h30m gibi bir Go süresi kullanın.",
+      "duration_positive": "Aralık sıfırdan büyük olmalıdır.",
+      "cron_required": "Bir cron ifadesi girin.",
+      "cron_field_count": "Bir cron ifadesi tam olarak beş alan içermelidir.",
+      "cron_field": "Cron alanlarını denetleyin: değerler, aralıklar ve adımlar kendi aralığında olmalıdır.",
+      "header_name_invalid": "Boşluk içermeyen geçerli HTTP başlık adları girin.",
+      "header_line_break": "Başlık değerleri satır sonu içeremez.",
+      "header_duplicate": "Başlık adları büyük/küçük harf gözetilmeksizin benzersiz olmalıdır.",
+      "form_name_required": "Her form alanının bir adı olmalıdır.",
+      "form_name_invalid": "Form alanı adları satır sonu içeremez.",
+      "method_required": "Bir HTTP yöntemi girin.",
+      "method_invalid": "GET veya POST gibi bir HTTP belirteci kullanın.",
+      "url_required": "Bir URL girin.",
+      "url_invalid": "http:// veya https:// ile başlayan mutlak bir URL kullanın.",
+      "timeout_range": "Zaman aşımı 1 ile 600000 arasında tam sayı milisaniye olmalıdır.",
+      "save_failed": "Kaydedilemedi. Hatayı inceleyip tekrar deneyin.",
+      "delete_failed": "Silinemedi. Tanım değişmedi.",
+      "run_failed": "Görev başlatılamadı.",
+      "batch_skip": "Arka uç bu görevi reddetti: {{reason}}"
+    },
+    "json_error": {
+      "json_syntax": "Geçersiz JSON: {{detail}}",
+      "json_shape": "JSON; id, name, enabled, schedule ve request alanlarını içeren bir nesne olmalıdır.",
+      "json_field": "JSON içinde bilinmeyen veya geçersiz değer: {{detail}}"
+    },
+    "editor": {
+      "tabs_label": "Görev düzenleyici sekmeleri",
+      "tab": {
+        "form": "Form",
+        "curl": "curl",
+        "json": "JSON"
+      },
+      "curl_hint": "Tek bir curl komutu yapıştırıp sekmeyi değiştirerek forma uygulayın veya geçerli görevden üretilen komutu düzenleyin. Yalnızca curl'ün ifade edebildiği alanlar uygulanır; ad, etkinlik, zaman aşımı ve tetikleyici formdan korunur.",
+      "curl_reset": "Formdan üret",
+      "curl_empty": "Önce bir curl komutu yapıştırın.",
+      "curl_multiple": "Bu sekme tek bir görevi düzenler, ancak metinde {{count}} komut var. Birden fazlası için grubun toplu curl içe aktarımını kullanın.",
+      "curl_failed": "Komut ayrıştırılamadı.",
+      "json_hint": "Buradaki JSON, panelin camelCase modelidir; kaydederken API kendi alan adlarını uygular. Sekme değiştirmek metni taslağa uygular.",
+      "json_reset": "Formdan üret",
+      "parsing": "Ayrıştırılıyor…"
+    },
+    "import": {
+      "title": "curl'den {{name}} grubuna görev ekle",
+      "hint": "Boş satır, noktalı virgül veya && ile ayırarak bir ya da daha çok curl komutu yapıştırın. Her komut bir görev olur. Ayrıştırma hiçbir şey çalıştırmaz.",
+      "label": "curl komutları",
+      "submit": "Ayrıştır ve ekle",
+      "added": "{{count}} görev eklendi.",
+      "nothing": "Bu metinden hiçbir görev oluşturulamadı.",
+      "failed": "Komutlar içe aktarılamadı.",
+      "skipped_title": "Arka uç tarafından atlandı:",
+      "rejected_title": "Ayrıştırma sırasında reddedildi:",
+      "command_number": "{{number}}. komut",
+      "reason": {
+        "empty": "Ayrıştırılacak komut yok.",
+        "rejected_by_server": "Ayrıştırılamadı:"
+      }
+    },
+    "confirm": {
+      "delete_group_title": "Grubu sil",
+      "delete_group": "“{{name}}” grubu ve içindeki tüm görevler silinsin mi? Bu işlem geri alınamaz.",
+      "delete_task_title": "Görevi sil",
+      "delete_task": "“{{name}}” görevi silinsin mi? Bu işlem geri alınamaz."
+    },
+    "task_editor": {
+      "create_title": "Yeni görev",
+      "edit_title": "Görevi düzenle"
+    },
+    "group_editor": {
+      "create_title": "Yeni grup",
+      "edit_title": "Grubu düzenle"
+    }
+  },
   "codebuddy_quota": {
     "title": "CodeBuddy CN Kotası",
     "empty_title": "CodeBuddy CN Kimlik Dosyası Yok",

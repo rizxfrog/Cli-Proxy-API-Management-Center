@@ -14,6 +14,7 @@ import { PluginsPage } from '@/features/plugins/PluginsPage';
 import { PluginStorePage } from '@/features/plugins/PluginStorePage';
 import { ConfigPage } from '@/features/config/ConfigPage';
 import { AutoCheckinPage } from '@/features/autoCheckin/AutoCheckinPage';
+import { ScheduledTasksPage } from '@/features/scheduledTasks/ScheduledTasksPage';
 import { LogsPage } from '@/features/logs/LogsPage';
 import { SystemPage } from '@/pages/SystemPage';
 import { useAuthStore } from '@/stores';
@@ -49,6 +50,7 @@ const createMainRoutes = (supportsPlugin: boolean) => [
       ]),
   { path: '/config', element: <ConfigPage /> },
   { path: '/auto-checkin', element: <AutoCheckinPage /> },
+  { path: '/scheduled-tasks', element: <ScheduledTasksPage /> },
   { path: '/logs', element: <LogsPage /> },
   { path: '/system', element: <SystemPage /> },
   { path: '*', element: <Navigate to="/" replace /> },

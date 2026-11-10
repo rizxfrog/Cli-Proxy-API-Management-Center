@@ -1,0 +1,297 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  min-width: 0;
+}
+
+.pageHeader {
+  h1 {
+    margin: 0 0 12px;
+    font-size: 28px;
+    line-height: 1.2;
+    color: var(--text-primary);
+  }
+
+  p {
+    max-width: 85ch;
+    margin: 6px 0 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+.notice {
+  padding: 14px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+
+  p {
+    margin: 0 0 6px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  code {
+    font-family: $font-mono;
+    font-size: 13px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: var(--bg-tertiary);
+  }
+}
+
+.statusBar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 12px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-primary);
+}
+
+.statusItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+
+  code {
+    font-family: $font-mono;
+    overflow-wrap: anywhere;
+  }
+}
+
+.statusActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.groupTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.taskActions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.taskList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.task {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-secondary);
+
+  &[data-enabled='false'] {
+    opacity: 0.72;
+  }
+}
+
+.taskHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.taskTitle {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+
+  h3 {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+}
+
+.taskMeta {
+  min-width: 0;
+}
+
+.request {
+  display: block;
+  font-family: $font-mono;
+  font-size: 12.5px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  color: var(--text-secondary);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 550;
+  line-height: 1.6;
+  padding: 0 8px;
+  border-radius: $radius-full;
+  background: var(--count-badge-bg);
+  color: var(--count-badge-text);
+  white-space: nowrap;
+
+  &[data-source='task'] {
+    background: var(--success-badge-bg);
+    color: var(--success-badge-text);
+  }
+
+  &[data-source='none'] {
+    background: var(--muted-bg);
+    color: var(--text-secondary);
+  }
+}
+
+.runtime {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  font-size: 13px;
+}
+
+.runtimeLine {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+
+.muted {
+  color: var(--text-secondary);
+  overflow-wrap: anywhere;
+}
+
+.failure {
+  color: var(--danger-color);
+  overflow-wrap: anywhere;
+}
+
+.status {
+  font-weight: 550;
+
+  &[data-status='success'] {
+    color: var(--success-color);
+  }
+
+  &[data-status='failed'] {
+    color: var(--danger-color);
+  }
+}
+
+.history {
+  min-width: 0;
+
+  summary {
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+}
+
+.runList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 8px 0 0;
+  padding: 0 0 0 16px;
+  font-size: 12.5px;
+
+  li {
+    min-width: 0;
+  }
+}
+
+.snippet {
+  margin: 4px 0 0;
+  font-family: $font-mono;
+  font-size: 12px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  color: var(--text-secondary);
+}
+
+.hint {
+  margin: 0 0 8px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.report {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 16px;
+  font-size: 13px;
+
+  p {
+    margin: 0;
+  }
+}
+
+.reportList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding-left: 20px;
+  font-size: 12.5px;
+  overflow-wrap: anywhere;
+
+  code {
+    font-family: $font-mono;
+  }
+}
+
+@media (max-width: 768px) {
+  .statusBar {
+    align-items: stretch;
+  }
+
+  .statusActions {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .taskHead {
+    flex-direction: column;
+  }
+}

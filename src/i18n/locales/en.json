@@ -2636,6 +2636,214 @@
       "idle": "Idle"
     }
   },
+  "scheduled_tasks": {
+    "title": "Scheduled tasks",
+    "nav_meta": "Timed HTTP requests",
+    "description": "Groups hold tasks, and each group or task carries a trigger. Tasks are arbitrary HTTP requests the proxy sends on its own timer; they never participate in routing, model catalogues, or quota accounting. Opening this page does not run anything.",
+    "memory_hint": "Runtime state (next run, last result, recent runs) is held in memory only and resets on restart. Missed fires while the process was down are not backfilled.",
+    "unsupported": "This backend does not support scheduled tasks. Upgrade the backend to use this page.",
+    "load_failed": "Could not load scheduled tasks. Refresh to try again.",
+    "status_failed": "Runtime status could not be refreshed. Displayed values are from the last successful refresh; polling will retry.",
+    "not_configured": {
+      "title": "The scheduler is not configured",
+      "body": "Point the automation.schedule.dir configuration key at a directory to enable scheduled tasks. An empty value disables the feature: the scheduler never starts, no file is read, and no task can exist — this page is not showing an empty task list.",
+      "hint": "The directory is created on the first write, and the proxy process must be able to write to it."
+    },
+    "status": {
+      "scheduler": "Scheduler",
+      "running": "Running",
+      "stopped": "Stopped",
+      "counts": "Definitions",
+      "count_values": "{{groups}} groups · {{tasks}} tasks · {{enabled}} enabled",
+      "dir": "Directory",
+      "dir_unset": "not set",
+      "server_time": "Server time"
+    },
+    "empty": {
+      "title": "No task groups yet",
+      "description": "Create a group to hold scheduled tasks, then add tasks one by one or paste curl commands in bulk."
+    },
+    "group": {
+      "create": "New group",
+      "saved": "Group saved.",
+      "deleted": "Group deleted.",
+      "disabled": "Disabled",
+      "import_curl": "Add from curl",
+      "no_tasks": "This group has no tasks yet.",
+      "per_task": "Without a group trigger each task schedules itself.",
+      "trigger": "Group trigger:"
+    },
+    "task": {
+      "create": "Add task",
+      "saved": "Task saved.",
+      "deleted": "Task deleted.",
+      "disabled": "Disabled",
+      "run_now": "Run now",
+      "run_now_label": "Run {{name}} now",
+      "edit_label": "Edit {{name}}",
+      "delete_label": "Delete {{name}}",
+      "inherited": "Inherits the group trigger ({{value}}).",
+      "manual_only": "No trigger: runs only on demand.",
+      "run_finished": "{{name}}: {{status}}."
+    },
+    "runtime": {
+      "unavailable": "Runtime state is not available yet.",
+      "next_run": "Next run:",
+      "not_scheduled": "not scheduled",
+      "last_run": "Last run:",
+      "last_status": "Last status",
+      "counts": "{{runs}} runs, {{failures}} failures",
+      "history": "Recent runs ({{count}})",
+      "duration_none": "—",
+      "duration_ms": "{{value}} ms",
+      "duration_s": "{{value}} s",
+      "snippet_truncated": "(truncated)",
+      "status_never": "Never run",
+      "status_success": "Success",
+      "status_failed": "Failed",
+      "status_skipped": "Skipped",
+      "status_other": "{{status}}"
+    },
+    "source": {
+      "group": "Group trigger",
+      "task": "Task trigger",
+      "none": "No trigger"
+    },
+    "trigger": {
+      "none": "No trigger",
+      "fixed_rate": "Every {{value}}",
+      "fixed_delay": "{{value}} after the previous run",
+      "cron": "Cron {{value}}",
+      "inherit_hint": "Leaving this empty inherits the group trigger ({{value}}).",
+      "manual_hint": "Without a trigger this task runs only on demand.",
+      "hint": {
+        "fixed_rate": "Fires every interval, measured from activation, no matter how long a run takes.",
+        "fixed_delay": "Waits the interval after the previous run finishes.",
+        "cron": "Five fields: minute hour day-of-month month day-of-week."
+      }
+    },
+    "trigger_type": {
+      "none": "No trigger",
+      "fixed_rate": "Fixed interval",
+      "fixed_delay": "Delay after run",
+      "cron": "Cron expression"
+    },
+    "body_mode": {
+      "none": "No body",
+      "body": "Raw body",
+      "form": "Form fields"
+    },
+    "field": {
+      "id": "ID",
+      "id_hint_new": "Letters, digits, dot, dash and underscore; also the file name.",
+      "id_hint_locked": "The ID cannot change after creation.",
+      "name": "Name",
+      "description": "Description",
+      "enabled": "Enabled",
+      "group_enabled": "Enable this group",
+      "task_enabled": "Enable this task",
+      "trigger": "Trigger",
+      "trigger_type": "Trigger type",
+      "trigger_value": "Trigger value",
+      "method": "Method",
+      "url": "URL",
+      "url_placeholder": "https://example.com/api",
+      "headers": "Headers",
+      "header_name": "Header {{number}} name",
+      "header_value": "Header {{number}} value",
+      "remove_header": "Remove header {{number}}",
+      "add_header": "Add header",
+      "body_mode": "Body",
+      "body": "Request body",
+      "form": "Form fields",
+      "form_hint": "Sent as application/x-www-form-urlencoded, built on every run.",
+      "form_name": "Form field {{number}} name",
+      "form_value": "Form field {{number}} value",
+      "remove_form": "Remove form field {{number}}",
+      "add_form": "Add field",
+      "timeout": "Timeout (ms)",
+      "timeout_hint": "1 to 600000; curl cannot express this, so the form value always applies.",
+      "follow_redirects": "Follow redirects"
+    },
+    "error": {
+      "id_required": "Enter an ID.",
+      "id_pattern": "Use letters, digits, dot, dash or underscore, starting with a letter or digit (max 64 characters).",
+      "name_required": "Enter a name.",
+      "name_too_long": "Names are limited to 200 characters.",
+      "description_too_long": "Descriptions are limited to 1000 characters.",
+      "trigger_value_required": "Enter a trigger value.",
+      "duration_invalid": "Use a Go duration such as 30s, 5m or 1h30m.",
+      "duration_positive": "The interval must be greater than zero.",
+      "cron_required": "Enter a cron expression.",
+      "cron_field_count": "A cron expression needs exactly five fields.",
+      "cron_field": "Check the cron fields: values, ranges and steps must stay inside their range.",
+      "header_name_invalid": "Enter valid HTTP header names without spaces.",
+      "header_line_break": "Header values cannot contain line breaks.",
+      "header_duplicate": "Header names must be unique, ignoring case.",
+      "form_name_required": "Every form field needs a name.",
+      "form_name_invalid": "Form field names cannot contain line breaks.",
+      "method_required": "Enter an HTTP method.",
+      "method_invalid": "Use an HTTP token such as GET or POST.",
+      "url_required": "Enter a URL.",
+      "url_invalid": "Use an absolute http:// or https:// URL.",
+      "timeout_range": "Timeout must be a whole number of milliseconds between 1 and 600000.",
+      "save_failed": "Could not save. Review the error and try again.",
+      "delete_failed": "Could not delete. The definition is unchanged.",
+      "run_failed": "The task could not be started.",
+      "batch_skip": "The backend rejected this task: {{reason}}"
+    },
+    "json_error": {
+      "json_syntax": "Invalid JSON: {{detail}}",
+      "json_shape": "The JSON must be an object with id, name, enabled, schedule and request.",
+      "json_field": "Unknown or invalid value in the JSON: {{detail}}"
+    },
+    "editor": {
+      "tabs_label": "Task editor tabs",
+      "tab": {
+        "form": "Form",
+        "curl": "curl",
+        "json": "JSON"
+      },
+      "curl_hint": "Paste one curl command and switch tabs to apply it to the form, or edit the command rendered from the current task. Only what curl can express is applied, so name, enabled, timeout and trigger keep the form values.",
+      "curl_reset": "Render from the form",
+      "curl_empty": "Paste a curl command first.",
+      "curl_multiple": "This tab edits one task, but the text holds {{count}} commands. Use the group bulk curl import for several.",
+      "curl_failed": "The command could not be parsed.",
+      "json_hint": "This JSON uses the panel camelCase model; the API applies the backend field names on save. Switching tabs applies the text to the draft.",
+      "json_reset": "Render from the form",
+      "parsing": "Parsing…"
+    },
+    "import": {
+      "title": "Add tasks to {{name}} from curl",
+      "hint": "Paste one or more curl commands, separated by blank lines, semicolons or &&. Each command becomes one task. Parsing never runs anything.",
+      "label": "curl commands",
+      "submit": "Parse and add",
+      "added": "{{count}} tasks added.",
+      "nothing": "No task could be built from this text.",
+      "failed": "Could not import the commands.",
+      "skipped_title": "Skipped by the backend:",
+      "rejected_title": "Rejected while parsing:",
+      "command_number": "Command {{number}}",
+      "reason": {
+        "empty": "There was no command to parse.",
+        "rejected_by_server": "Could not be parsed:"
+      }
+    },
+    "confirm": {
+      "delete_group_title": "Delete group",
+      "delete_group": "Delete the group “{{name}}” and every task in it? This cannot be undone.",
+      "delete_task_title": "Delete task",
+      "delete_task": "Delete the task “{{name}}”? This cannot be undone."
+    },
+    "task_editor": {
+      "create_title": "New task",
+      "edit_title": "Edit task"
+    },
+    "group_editor": {
+      "create_title": "New group",
+      "edit_title": "Edit group"
+    }
+  },
   "codebuddy_quota": {
     "title": "CodeBuddy CN Quota",
     "empty_title": "No CodeBuddy CN credentials",
